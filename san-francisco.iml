@@ -99,11 +99,31 @@
     <orderEntry type="library" name="Maven: com.vaadin:vaadin-notification-flow:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.webjars.bowergithub.vaadin:vaadin-notification:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.vaadin:vaadin-cdi:10.0.0.beta1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.deltaspike.core:deltaspike-core-api:1.8.1" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.deltaspike.core:deltaspike-core-impl:1.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.deltaspike.core:deltaspike-core-api:1.8.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.deltaspike.core:deltaspike-core-impl:1.8.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax:javaee-api:7.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.mail:javax.mail:1.5.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-web:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-lang:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-cache:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-hash:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-core:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-crypto-cipher:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-config-core:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-config-ogdl:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.3" level="project" />
+    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-event:1.4.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.deltaspike.modules:deltaspike-data-module-api:1.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.deltaspike.modules:deltaspike-partial-bean-module-api:1.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.deltaspike.modules:deltaspike-jpa-module-api:1.8.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.deltaspike.modules:deltaspike-data-module-impl:1.8.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.deltaspike.modules:deltaspike-partial-bean-module-impl:1.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.deltaspike.modules:deltaspike-proxy-module-api:1.8.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.deltaspike.modules:deltaspike-proxy-module-impl-asm:1.8.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.deltaspike.modules:deltaspike-jpa-module-impl:1.8.2" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
   </component>

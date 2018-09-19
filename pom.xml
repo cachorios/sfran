@@ -19,6 +19,7 @@
 
         <!-- Dependencies -->
         <vaadin.version>10.0.5</vaadin.version>
+        <deltaspike.version>1.8.2</deltaspike.version>
     </properties>
 
     <pluginRepositories>
@@ -51,6 +52,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.apache.deltaspike.distribution</groupId>
+                <artifactId>distributions-bom</artifactId>
+                <version>${deltaspike.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -71,6 +79,26 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Shiro Control de seguridad-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+        <!-- Delta Spike JPA -->
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-data-module-api</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-data-module-impl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
 
         <!-- Added to provide logging output as Flow uses -->
         <!-- the unbound SLF4J no-operation (NOP) logger implementation -->
