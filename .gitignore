@@ -2,6 +2,8 @@
 *.iml
 /.git
 /.idea
+.idea/workspace.xml
+/.idea/workspace.xml
 /target
 src/main/webapp/WEB-INF/resources.xml
 /.designer/
