@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85d2f094-02c5-4893-b183-d40bb9861fda" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/dbinit/SecurityInit.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/jpa/DataProviderBuilder.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/jpa/DataProviderService.java" afterDir="false" />
@@ -24,9 +25,12 @@
       <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/san_francisco_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/san_francisco_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_core_10_0_5.xml" beforeDir="false" />
+=======
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/descripcion.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/descripcion.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/san-francisco.iml" beforeDir="false" afterPath="$PROJECT_DIR$/san-francisco.iml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/entidad/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/entidad/Role.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/entidad/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/entidad/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/jpa/AbstractEntidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/entidad/AbstractEntidad.java" afterDir="false" />
@@ -39,9 +43,12 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/view/MainView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/src/views/login/entrar-view.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/views/login/login-view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/src/views/main-view.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/views/main-view.html" afterDir="false" />
+=======
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -159,6 +166,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/entidad/Usuario.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -190,10 +198,21 @@
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
+=======
+      <file leaf-file-name="MainView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/view/MainView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/entidad/AbstractEntidad.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -235,6 +254,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+      <file leaf-file-name="descripcion.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/doc/descripcion.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="170">
+                <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+              </first_editor>
+              <second_editor />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
             </state>
           </provider>
         </entry>
@@ -276,6 +305,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/jpa/repositorios/Usuarios.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/entidad/Role.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/seguridad/ShiroRealm.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/webapp/frontend/src/views/login/entrar-view.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/seguridad/shiro/ShiroStartup.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/backend/seguridad/general/PrincipalMapper.java" />
@@ -303,6 +333,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/service/UsuarioService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/dbinit/SecurityInit.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/entidad/Usuario.java" />
+=======
+        <option value="$PROJECT_DIR$/doc/descripcion.md" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
       </list>
     </option>
   </component>
@@ -328,6 +361,7 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
+<<<<<<< HEAD
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
@@ -339,14 +373,20 @@
           <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
         </path>
       </expand>
+=======
+      <expand />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
       <select />
     </treeState>
   </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1672" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -360,6 +400,7 @@
           <expand>
             <path>
               <item name="san-francisco" type="b2602c69:ProjectViewProjectNode" />
+<<<<<<< HEAD
               <item name="SanFrancisco" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -490,11 +531,23 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="login" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="sfran" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="san-francisco" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sfran" type="462c0819:PsiDirectoryNode" />
+              <item name="doc" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+      <pane id="AndroidView" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -606,8 +659,7 @@
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
       </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
+      <method>
         <option name="BuildArtifacts" enabled="true">
           <artifact name="san-francisco:war exploded" />
         </option>
@@ -633,6 +685,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="26537000" />
   </component>
   <component name="ToolWindowManager">
@@ -641,13 +694,39 @@
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19989339" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Favorites" order="5" side_tool="true" />
+=======
+    <option name="totallyTimeSpent" value="13829000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Application Servers" order="12" weight="0.329718" />
+      <window_info anchor="right" id="Maven Projects" order="7" visible="true" weight="0.20644216" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="right" id="CDI" order="6" />
       <window_info id="Capture Tool" order="6" />
-      <window_info id="Learn" order="7" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
+      <window_info id="Designer" order="2" />
+      <window_info anchor="right" id="Database" order="8" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="JSF" order="4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info id="Image Layers" order="3" />
+      <window_info anchor="bottom" id="Java Enterprise" order="9" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4164859" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.36062992" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25475842" />
+      <window_info anchor="right" id="Bean Validation" order="11" />
       <window_info id="Web" order="8" side_tool="true" />
+<<<<<<< HEAD
       <window_info id="Persistence" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" weight="0.329718" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -662,20 +741,52 @@
       <window_info anchor="bottom" id="Java Enterprise" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Application Servers" order="12" weight="0.329718" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.329718" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+=======
+      <window_info anchor="right" id="Theme Preview" order="10" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4164859" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Learn" order="7" />
+      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Java Enterprise" order="9" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
+      <window_info anchor="bottom" id="Application Servers" order="12" weight="0.329718" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.36117136" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info anchor="right" id="Maven Projects" order="7" visible="true" weight="0.20682302" />
+      <window_info id="Web" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="JSF" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info id="Image Layers" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="10" />
       <window_info anchor="right" id="CDI" order="6" />
+<<<<<<< HEAD
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.10394456" />
       <window_info anchor="right" id="Database" order="8" visible="true" weight="0.32995737" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info anchor="right" id="Theme Preview" order="10" />
+=======
+      <window_info anchor="right" id="Database" order="8" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="JSF" order="4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21055438" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.329718" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
       <window_info anchor="right" id="Bean Validation" order="11" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info id="Designer" order="2" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -742,6 +853,53 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/view/MainView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/cdi/MessageBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="149" column="20" selection-start-line="149" selection-start-column="20" selection-end-line="149" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="17">
+            <caret line="1" selection-start-line="1" selection-end-line="1" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/view/MainView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -867,11 +1025,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/seguridad/shiro/NavigationInterceptor.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="499">
           <caret line="31" selection-start-line="31" selection-end-line="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="442">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
         </state>
       </provider>
     </entry>
@@ -884,8 +1047,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/view/LoginView.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="340">
           <caret line="32" column="45" lean-forward="true" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+=======
+        <state relative-caret-position="321">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -908,11 +1076,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/seguridad/shiro/ShiroRealm.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="656">
           <caret line="77" column="9" lean-forward="true" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="-289">
+          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
         </state>
       </provider>
     </entry>
@@ -942,6 +1115,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/jpa/EntityManagerProducer.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="374">
           <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
         </state>
@@ -954,6 +1128,10 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="-289">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
         </state>
       </provider>
     </entry>
@@ -980,11 +1158,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/repositorios/Usuarios.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="153">
           <caret line="9" column="56" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="255">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
         </state>
       </provider>
     </entry>
@@ -1000,16 +1183,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/dbinit/SecurityInit.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="309">
           <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/cacho/backend/service/UsuarioService.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="278">
           <caret line="31" selection-start-line="31" selection-end-line="31" />
           <folding>
@@ -1037,6 +1226,28 @@
             <element signature="e#894#895#0" expanded="true" />
             <element signature="e#934#935#0" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="255">
+          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/authz/SimpleAuthorizationInfo.class" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/gmail/sanfrancisco/seguridad/ShiroRealm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1085">
+          <caret line="111" column="5" lean-forward="true" selection-start-line="111" selection-start-column="5" selection-end-line="111" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/descripcion.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="170">
+            <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          </first_editor>
+          <second_editor />
+>>>>>>> 9de6253190f60b99a85ab81ce9b6904338071c1e
         </state>
       </provider>
     </entry>
