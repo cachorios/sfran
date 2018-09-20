@@ -9,7 +9,7 @@
 <link rel="import" href="../../../styles/shared-styles.html">
 
 
-<dom-module id="entrar-view">
+<dom-module id="login-view">
     <template>
        <style include="shared-styles">
           :host {
@@ -34,21 +34,21 @@
 
 <vaadin-form-layout class="login-layout">
     <vaadin-form-item>
-        <h2>Sign in</h2>
+        <h2>Ingresar</h2>
     </vaadin-form-item>
 
     <vaadin-form-item>
-        <label slot="label">Username</label>
+        <label slot="label">Usuario</label>
         <vaadin-text-field value="{{username}}" autofocus required invalid property="" property1="" property2="" property3="" property4="" property5=""></vaadin-text-field>
     </vaadin-form-item>
 
     <vaadin-form-item>
-        <label slot="label">Password</label>
+        <label slot="label">Clave</label>
         <vaadin-password-field value="{{password}}" required></vaadin-password-field>
     </vaadin-form-item>
 
     <vaadin-form-item>
-        <vaadin-checkbox checked="{{rememberMe}}"></vaadin-checkbox> Recordarme me
+        <vaadin-checkbox checked="{{rememberMe}}"></vaadin-checkbox> Recordarme
     </vaadin-form-item>
 
     <vaadin-form-item>
@@ -59,18 +59,18 @@
 
     <vaadin-form-item>
         <vaadin-button on-click="entrar">
-            Login
+            Ingregar
         </vaadin-button>
     </vaadin-form-item>
 </vaadin-form-layout>
 
-<p>Try with: root/root, or joe/joe!!!</p>
+
 </template>
 
     <script>
         class LoginView extends Polymer.Element {
             static get is() {
-                return 'entrar-view'
+                return 'login-view'
             }
         }
 

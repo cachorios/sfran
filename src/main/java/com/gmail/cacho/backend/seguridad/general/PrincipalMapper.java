@@ -1,19 +1,21 @@
-package com.gmail.sanfrancisco.seguridad;
+package com.gmail.cacho.backend.seguridad.general;
 
 
-import com.gmail.sanfrancisco.entidad.Usuario;
+
+import com.gmail.cacho.backend.entidad.Usuario;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
-
 import javax.enterprise.context.ApplicationScoped;
+
 
 @ApplicationScoped
 public class PrincipalMapper {
 
     public PrincipalCollection toPrincipals(Usuario usuario, String realmName) {
+
         SimplePrincipalCollection principals = new SimplePrincipalCollection();
-        principals.add(usuario.getId(), realmName);
-        principals.add(usuario.getUsername(), realmName);
+        principals.add(usuario.getId() , realmName);
+        principals.add(usuario.getEmail(), realmName);
         return principals;
     }
 

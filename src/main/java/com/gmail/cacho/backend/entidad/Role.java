@@ -1,4 +1,4 @@
-package com.gmail.sanfrancisco.entidad;
+package com.gmail.cacho.backend.entidad;
 
 public class Role {
     public static final String USUARIO = "usuario";

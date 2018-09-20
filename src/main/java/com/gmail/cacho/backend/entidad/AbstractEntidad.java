@@ -1,4 +1,4 @@
-package com.gmail.sanfrancisco.jpa;
+package com.gmail.cacho.backend.entidad;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,7 +8,6 @@ import java.util.Objects;
 
 @MappedSuperclass
 public abstract class AbstractEntidad implements Serializable, Cloneable {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -68,15 +67,15 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
 
     @PrePersist
     protected void setAltaData() {
-        //String username = Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
-        //usuarioalta = usuarioumod = (username == null) ? Constantes.SYS_CAD_UNSESION : username;
+        String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
+        usuarioalta = usuarioumod = "TEST"; //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
         fechaalta = fechaumod = Date.from(Instant.now());
     }
 
     @PreUpdate
     protected void setUmodData() {
-        //String username = Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
-        //usuarioalta = usuarioumod = (username == null) ? Constantes.SYS_CAD_UNSESION : username;
+        String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
+        usuarioalta = usuarioumod =  "TEST";  //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
         fechaumod = Date.from(Instant.now());
     }
 }

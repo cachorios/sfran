@@ -1,14 +1,13 @@
-package com.gmail.sanfrancisco.seguridad;
+package com.gmail.cacho.backend.seguridad.shiro;
 
 
-import com.gmail.sanfrancisco.entidad.Usuario;
-import com.gmail.sanfrancisco.jpa.repositorios.Usuarios;
+import com.gmail.cacho.backend.entidad.Usuario;
+import com.gmail.cacho.backend.repositorios.Usuarios;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.Permission;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.authz.permission.WildcardPermission;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -23,9 +22,7 @@ import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 
 public class ShiroRealm extends AuthorizingRealm {
@@ -72,8 +69,6 @@ public class ShiroRealm extends AuthorizingRealm {
         private Usuarios usuarios;
         @Inject
         private PrincipalMapper principalMapper;
-
-
 
         public AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
             Long userId = principalMapper.getUserId(principals);

@@ -1,4 +1,4 @@
-package com.gmail.sanfrancisco.seguridad.interfaces;
+package com.gmail.cacho.backend.seguridad.interfaces;
 
 public interface RoleInterface {
     public String getRoles();

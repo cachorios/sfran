@@ -1,4 +1,4 @@
-package com.gmail.sanfrancisco.seguridad;
+package com.gmail.cacho.backend.seguridad.shiro;
 
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.crypto.hash.Hash;

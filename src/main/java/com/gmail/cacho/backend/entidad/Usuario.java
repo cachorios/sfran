@@ -1,6 +1,4 @@
-package com.gmail.sanfrancisco.entidad;
-
-import com.gmail.sanfrancisco.jpa.AbstractEntidad;
+package com.gmail.cacho.backend.entidad;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,30 +9,35 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Usuario extends AbstractEntidad {
-    @NotNull
-    @Size(min=4, max = 20, message = "La cantidad de caracteres debe estar entre 4 y 20")
+    //@NotNull
+    //@Size(min=4, max = 30, message = "La cantidad de caracteres debe estar entre 4 y 30")
+    //@Column(unique = true)
     private String username;
 
-    @NotEmpty
-    @Email
-    @Size(max = 255)
+    //@NotNull
+    //@Email
+    //@Size(max = 255)
     @Column(unique = true)
     private String email;
 
-    @NotNull
-    @Size(min=4, max = 20, message = "La cantidad de caracteres debe estar entre 4 y 20")
+    //@NotNull
+    //@Size(min=3, max = 30, message = "La cantidad de caracteres debe estar entre 4 y 30")
     private String password;
 
-    @NotNull
+    //@NotNull
     private String salt;
 
     @NotNull
     private String role;
 
-    @Size(max = 2083)
+    @Size(max = 1024)
     private String photoUrl;
 
     private boolean locked = false;
+
+    public Usuario() {
+        this.role= Role.USUARIO;
+    }
 
     public String getUsername() {
         return username;
