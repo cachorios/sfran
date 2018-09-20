@@ -18,7 +18,7 @@
         <webapp.directory>src/main/webapp</webapp.directory>
 
         <!-- Dependencies -->
-        <vaadin.version>10.0.5</vaadin.version>
+        <vaadin.version>10.0.6</vaadin.version>
         <deltaspike.version>1.8.2</deltaspike.version>
     </properties>
 
@@ -99,6 +99,14 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Motor bdd Postgres -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>LATEST</version>
+            <scope>runtime</scope>
+        </dependency>
+
 
         <!-- Added to provide logging output as Flow uses -->
         <!-- the unbound SLF4J no-operation (NOP) logger implementation -->
@@ -159,7 +167,7 @@
                     <plugin>
                         <groupId>com.vaadin</groupId>
                         <artifactId>vaadin-maven-plugin</artifactId>
-                        <version>10.0.3</version>
+                        <version>10.0.5</version>
                         <executions>
                             <execution>
                                 <phase>prepare-package</phase>
