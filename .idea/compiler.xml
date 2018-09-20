@@ -9,5 +9,8 @@
         <module name="san-francisco" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="san-francisco" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
