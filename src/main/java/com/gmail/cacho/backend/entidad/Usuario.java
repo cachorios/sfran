@@ -24,7 +24,7 @@ public class Usuario extends AbstractEntidad {
     //@Size(min=3, max = 30, message = "La cantidad de caracteres debe estar entre 4 y 30")
     private String password;
 
-    //@NotNull
+    @NotNull
     private String salt;
 
     @NotNull
