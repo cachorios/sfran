@@ -1,6 +1,5 @@
 package com.gmail.cacho.backend.seguridad.shiro;
 
-
 import com.gmail.cacho.backend.entidad.Usuario;
 import com.gmail.cacho.backend.repositorios.Usuarios;
 import org.apache.shiro.authc.*;
@@ -24,7 +23,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class ShiroRealm extends AuthorizingRealm {
     private final RealmService service;
 
@@ -32,9 +30,7 @@ public class ShiroRealm extends AuthorizingRealm {
     public static class Producer {
 
         @Produces
-        private ShiroRealm createRealm(
-                RealmService service,
-                HashConfig hashConfig) {
+        private ShiroRealm createRealm( RealmService service, HashConfig hashConfig) {
             ShiroRealm realm = new ShiroRealm(service);
             realm.setRolePermissionResolver(service::resolvePermissionsInRole);
             realm.setCredentialsMatcher(hashConfig.createMatcher());
@@ -82,14 +78,14 @@ public class ShiroRealm extends AuthorizingRealm {
             Usuario usuario;
             try {
                 usuario = this.usuarios.findByUsername(username);
-                Usuario u = this.usuarios.findByUsername("root");
+                //Usuario u = this.usuarios.findByUsername("root");
 
             } catch (NoResultException e) {
                 throw new UnknownUserException();
             }
             return new SimpleAuthenticationInfo(
                     principalMapper.toPrincipals(usuario, realmName),
-                    usuario.getSalt(),
+                    usuario.getPassword(),
                     new SimpleByteSource(Hex.decode(usuario.getSalt()))
             );
         }
