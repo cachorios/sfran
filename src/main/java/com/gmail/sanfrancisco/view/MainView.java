@@ -39,6 +39,7 @@ public class MainView extends PolymerTemplate<MainView.MainModel> implements Rou
         PrincipalCollection principals = getSubject().getPrincipals();
         getModel().setUsername(principalMapper.getUsername(principals));
 
+
     }
 
     @EventHandler

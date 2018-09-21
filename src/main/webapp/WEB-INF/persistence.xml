@@ -4,9 +4,16 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
     <persistence-unit name="default" transaction-type="JTA">
+
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <jta-data-source>jdbc/PostgreDS</jta-data-source>
-        <non-jta-data-source>jdbc/sfnontjta</non-jta-data-source>
+
+        <class>com.gmail.cacho.backend.entidad.Usuario</class>
+
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <!--<non-jta-data-source>jdbc/sfnontjta</non-jta-data-source>-->
+
+
         <properties>
             <property name="javax.persistence.schema-generation.database.action"
                       value="drop-and-create"/>

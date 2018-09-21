@@ -107,6 +107,12 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.openjpa/openjpa-all -->
+        <dependency>
+            <groupId>org.apache.openjpa</groupId>
+            <artifactId>openjpa-all</artifactId>
+            <version>3.0.0</version>
+        </dependency>
 
         <!-- Added to provide logging output as Flow uses -->
         <!-- the unbound SLF4J no-operation (NOP) logger implementation -->
