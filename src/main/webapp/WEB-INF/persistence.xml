@@ -30,7 +30,9 @@
                       <!--value="jdbc:jdbc:postgresql://127.0.0.1/sfran"/>-->
             <!--<property name="openjpa.ConnectionDriverName"-->
                       <!--value="org.postgresql.Driver"/>-->
-            <property name="openjpa.MetaDataRepository" value="Preload=true"/>
+
+
+            <!--<property name="openjpa.MetaDataRepository" value="Preload=true"/>-->
         </properties>
     </persistence-unit>
 </persistence>
