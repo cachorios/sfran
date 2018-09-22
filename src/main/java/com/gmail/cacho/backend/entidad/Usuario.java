@@ -1,5 +1,12 @@
 package com.gmail.cacho.backend.entidad;
 
+import com.gmail.cacho.slapi.Sistema;
+import com.gmail.cacho.slbase.security.enums.ETipoPermiso;
+import com.gmail.cacho.slbase.security.excepciones.SecurityErrorException;
+import org.apache.shiro.crypto.hash.Sha256Hash;
+import org.apache.shiro.util.SimpleByteSource;
+
+import javax.enterprise.inject.spi.CDI;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
@@ -94,4 +101,19 @@ public class Usuario extends AbstractEntidad {
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
+
+
+    public boolean isPasswordOK(String password) {
+        ////todo: ver como veridicar ... hay un usuarioService
+//        SimpleByteSource sbs = new SimpleByteSource(username.concat(Sistema.getSistema().getPreSalt()));
+//        return new Sha256Hash(password, sbs, 1024).toBase64().equals(
+//                CDI.current().select(ServUsuario.class).get().getPasswordString(getId()));
+        return true;
+    }
+
+    public boolean poseePermiso(Parametro recurso, ETipoPermiso tipo) throws SecurityErrorException {
+        //todo: ver como dar permiso
+        return true;
+    }
+
 }

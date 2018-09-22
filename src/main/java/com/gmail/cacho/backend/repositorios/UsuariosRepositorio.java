@@ -5,7 +5,7 @@ import org.apache.deltaspike.data.api.*;
 
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
 @Repository
-public interface Usuarios  extends EntityRepository<Usuario, Long>, EntityManagerDelegate<Usuario> {
+public interface UsuariosRepositorio extends EntityRepository<Usuario, Long>, EntityManagerDelegate<Usuario> {
     Usuario findByUsername(String username);
     Usuario findByEmail(String email);
 

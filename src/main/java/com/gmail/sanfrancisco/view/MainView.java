@@ -1,6 +1,6 @@
 package com.gmail.sanfrancisco.view;
 
-import com.gmail.cacho.backend.seguridad.shiro.PrincipalMapper;
+import com.gmail.cacho.backend.seguridad.general.PrincipalMapper;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 
@@ -26,7 +26,7 @@ import static org.apache.shiro.SecurityUtils.getSubject;
 
 @Tag("main-view")
 @HtmlImport("src/views/main-view.html")
-@Route("")
+@Route("Pru")
 @Theme(Lumo.class)
 @RequiresUser
 public class MainView extends PolymerTemplate<MainView.MainModel> implements RouterLayout {

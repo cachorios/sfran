@@ -15,7 +15,7 @@ public class PrincipalMapper {
 
         SimplePrincipalCollection principals = new SimplePrincipalCollection();
         principals.add(usuario.getId() , realmName);
-        principals.add(usuario.getEmail(), realmName);
+        principals.add(usuario.getUsername(), realmName);
         return principals;
     }
 

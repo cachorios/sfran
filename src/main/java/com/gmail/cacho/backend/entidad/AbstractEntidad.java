@@ -1,5 +1,7 @@
 package com.gmail.cacho.backend.entidad;
 
+import com.gmail.cacho.slapi.comunes.C;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
@@ -77,5 +79,13 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
         String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod =  "TEST";  //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
         fechaumod = Date.from(Instant.now());
+    }
+
+    public boolean isNew() {
+        return (id == null);
+    }
+
+    public String toSimpleString() {
+        return (isNew() ? C.SYS_CAD_NEW : toString());
     }
 }

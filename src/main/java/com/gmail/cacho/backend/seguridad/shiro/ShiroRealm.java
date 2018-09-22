@@ -1,7 +1,9 @@
 package com.gmail.cacho.backend.seguridad.shiro;
 
 import com.gmail.cacho.backend.entidad.Usuario;
-import com.gmail.cacho.backend.repositorios.Usuarios;
+import com.gmail.cacho.backend.repositorios.UsuariosRepositorio;
+import com.gmail.cacho.backend.seguridad.general.PrincipalMapper;
+import com.gmail.cacho.slapi.Sistema;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -62,7 +64,7 @@ public class ShiroRealm extends AuthorizingRealm {
     @Stateless
     public static class RealmService {
         @Inject
-        private Usuarios usuarios;
+        private UsuariosRepositorio usuarios;
         @Inject
         private PrincipalMapper principalMapper;
 
@@ -83,9 +85,10 @@ public class ShiroRealm extends AuthorizingRealm {
             } catch (NoResultException e) {
                 throw new UnknownUserException();
             }
+
+            Sistema.getSistema().setPrincipalMapper(principalMapper);
             return new SimpleAuthenticationInfo(
-                    principalMapper.toPrincipals(usuario, realmName),
-                    usuario.getPassword(),
+                    principalMapper.toPrincipals(usuario, username), usuario.getPassword(),
                     new SimpleByteSource(Hex.decode(usuario.getSalt()))
             );
         }

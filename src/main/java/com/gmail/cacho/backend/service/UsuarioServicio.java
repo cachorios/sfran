@@ -1,9 +1,10 @@
 package com.gmail.cacho.backend.service;
 
-import com.gmail.cacho.backend.entidad.Role;
 import com.gmail.cacho.backend.entidad.Usuario;
-import com.gmail.cacho.backend.repositorios.Usuarios;
+import com.gmail.cacho.backend.jpa.ServicioModelo;
+import com.gmail.cacho.backend.repositorios.UsuariosRepositorio;
 import com.gmail.cacho.backend.seguridad.shiro.HashConfig;
+import com.vaadin.flow.data.provider.QuerySortOrder;
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Hash;
@@ -11,11 +12,13 @@ import org.apache.shiro.util.ByteSource;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.List;
+import java.util.stream.Stream;
 
 @Stateless
-public class UsuarioService {
+public class UsuarioServicio extends ServicioModelo<Usuario> {
     @Inject
-    private Usuarios repo;
+    private UsuariosRepositorio repo;
 //    @Inject
 //    private Role roles;
     @Inject
@@ -24,10 +27,11 @@ public class UsuarioService {
 
     private RandomNumberGenerator rng;
 
-    public Long createUser(String username, String password, String email) {
+    public Long createUser(String username, String password, String email, String avatar) {
         Usuario usuario = new Usuario();
         usuario.setUsername(username);
         usuario.setEmail(email);
+        usuario.setPhotoUrl(avatar);
         generateSaltedHash(password, usuario);
         this.repo.persist(usuario);
         return usuario.getId();
@@ -50,5 +54,19 @@ public class UsuarioService {
             rng = new SecureRandomNumberGenerator();
         }
         return rng;
+    }
+
+    public Usuario findByUserName(String userName){
+        return repo.findByUsername(userName);
+    }
+
+    @Override
+    public long countAnyMatching(Object padre, String filtro) {
+        return 0;
+    }
+
+    @Override
+    public Stream<Usuario> findAnyMatching(Object padre, String filtro, int offset, int limitm, List<QuerySortOrder> sortOrders) {
+        return null;
     }
 }
