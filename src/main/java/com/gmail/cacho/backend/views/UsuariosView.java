@@ -4,7 +4,7 @@ package com.gmail.cacho.backend.views;
 import com.gmail.cacho.backend.entidad.Usuario;
 import com.gmail.cacho.backend.jpa.DataProviderBuilder;
 import com.gmail.cacho.backend.jpa.DataProviderService;
-import com.gmail.sanfrancisco.view.MainViewTest;
+import com.gmail.cacho.slapi.layout.MainView;
 import com.vaadin.flow.component.AbstractField.ComponentValueChangeEvent;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
@@ -25,7 +25,7 @@ import javax.inject.Inject;
 
 @Tag("usuarios-view")
 @HtmlImport("src/views/usuarios/usuarios-view.html")
-@Route(value = "usuarios", layout = MainViewTest.class)
+@Route(value = "usuarios", layout = MainView.class)
 //@RequiresPermissions(AppPermissions.USER_ADMIN)
 public class UsuariosView extends PolymerTemplate<TemplateModel> {
 

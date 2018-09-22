@@ -16,10 +16,18 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Usuario extends AbstractEntidad {
+
+//    @NotNull
+    private String nombre;
+
     @NotNull
-    @Size(min=3, max = 30, message = "La cantidad de caracteres debe estar entre 4 y 30")
+    @Size(min=1, max = 30, message = "La cantidad de caracteres debe estar entre 4 y 30")
     @Column(unique = true)
     private String username;
+
+    @NotNull
+    @Size(min=1, max = 1024, message = "La cantidad de caracteres debe estar entre 4 y 30")
+    private String password;
 
     @NotNull
     @Email
@@ -27,9 +35,6 @@ public class Usuario extends AbstractEntidad {
     @Column(unique = true)
     private String email;
 
-    @NotNull
-    @Size(min=3, max = 1024, message = "La cantidad de caracteres debe estar entre 4 y 30")
-    private String password;
 
     @NotNull
     private String salt;

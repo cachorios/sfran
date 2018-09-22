@@ -72,7 +72,6 @@ public class MenuService {
         try {
 
             Usuario usuario = Sistema.getSistema().getSecurityControl().getUsuarioActivo();
-            System.out.println("===============  Usuario =========== >>>> " + usuario);
 
             if (usuario != null) {
                 for (Parametro m : getMenuConfig(servicio)) {

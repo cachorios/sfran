@@ -15,12 +15,22 @@
 
 
         <properties>
-            <property name="javax.persistence.schema-generation.database.action"
-                      value="drop-and-create"/>
-            <property name="openjpa.jdbc.SynchronizeMappings"
-                      value="buildSchema(SchemaAction='add,deleteTableContents')"/>
-            <!--<property name="openjpa.jdbc.SynchronizeMappings" value="validate"/>-->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="openjpa.Log" value="Enhance=TRACE, DefaultLevel=WARN, Runtime=WARN, Tool=INFO, SQL=TRACE"/>
 
+
+            <property name="javax.persistence.schema-generation.database.action"
+                      value="none"/>  <!-- none create  drop-and-create drop -->
+
+            <!--<property name="openjpa.jdbc.SynchronizeMappings"-->
+                      <!--value="buildSchema(SchemaAction='add,deleteTableContents')"/>-->
+            <property name="openjpa.jdbc.SynchronizeMappings" value="validate"/>
+
+            <!--<property name="openjpa.ConnectionURL"-->
+                      <!--value="jdbc:jdbc:postgresql://127.0.0.1/sfran"/>-->
+            <!--<property name="openjpa.ConnectionDriverName"-->
+                      <!--value="org.postgresql.Driver"/>-->
+            <property name="openjpa.MetaDataRepository" value="Preload=true"/>
         </properties>
     </persistence-unit>
 </persistence>

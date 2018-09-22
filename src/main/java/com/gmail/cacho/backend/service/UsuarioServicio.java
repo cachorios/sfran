@@ -42,7 +42,7 @@ public class UsuarioServicio extends ServicioModelo<Usuario> {
         usuario.setRole(role);
     }
 
-    private void generateSaltedHash(String password, Usuario usuario) {
+    public  void generateSaltedHash(String password, Usuario usuario) {
         ByteSource saltByteSrc = getRng().nextBytes();
         usuario.setSalt(saltByteSrc.toHex());
         Hash hash = hashConfig.createHash(password, saltByteSrc);
@@ -58,6 +58,10 @@ public class UsuarioServicio extends ServicioModelo<Usuario> {
 
     public Usuario findByUserName(String userName){
         return repo.findByUsername(userName);
+    }
+
+    public Usuario save(Usuario u){
+        return repo.save(u);
     }
 
     @Override

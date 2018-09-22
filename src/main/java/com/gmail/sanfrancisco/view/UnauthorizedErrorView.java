@@ -1,5 +1,6 @@
 package com.gmail.sanfrancisco.view;
 
+import com.gmail.cacho.slapi.layout.MainView;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Tag("unauthorized-error-view")
 @HtmlImport("src/views/unauthorized-error-view.html")
-@ParentLayout(MainViewTest.class)
+@ParentLayout(MainView.class)
 public class UnauthorizedErrorView
         extends PolymerTemplate<UnauthorizedErrorView.UnauthorizedErrorModel>
         implements HasErrorParameter<UnauthorizedException> {
