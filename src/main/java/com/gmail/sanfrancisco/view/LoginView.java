@@ -28,8 +28,7 @@ public class LoginView extends PolymerTemplate<LoginView.LoginModel> implements 
     private Location targetLocation;
 
     @Override
-    public int setErrorParameter(BeforeEnterEvent event,
-                                 ErrorParameter<UnauthenticatedException> parameter) {
+    public int setErrorParameter(BeforeEnterEvent event, ErrorParameter<UnauthenticatedException> parameter) {
         targetLocation = event.getLocation();
         return HttpServletResponse.SC_OK;
     }

@@ -70,8 +70,9 @@ public class MenuService {
      */
     public void completarMenuDesdeDB(LeftAppMenuBuilder lamb) {
         try {
-            SlbaseAccessControl a = (SlbaseAccessControl) Sistema.getSistema().getSecurityControl();
+
             Usuario usuario = Sistema.getSistema().getSecurityControl().getUsuarioActivo();
+            System.out.println("===============  Usuario =========== >>>> " + usuario);
 
             if (usuario != null) {
                 for (Parametro m : getMenuConfig(servicio)) {
