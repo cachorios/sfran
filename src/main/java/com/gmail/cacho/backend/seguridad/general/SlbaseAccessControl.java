@@ -46,13 +46,12 @@ public class SlbaseAccessControl implements IControladorSeguridad {
     }
 
     public boolean usuarioActivoPoseeCadenaPermiso(String permiso) {
-//        try {
-//            SecurityUtils.getSubject().checkPermission(permiso);
-//            return true;
-//        } catch (Exception ae) {
-//            return false;
-//        }
-        return true;
+        try {
+            SecurityUtils.getSubject().checkPermission(permiso);
+            return true;
+        } catch (Exception ae) {
+            return false;
+        }
     }
 
     public String getPrincipalName() {
@@ -66,7 +65,7 @@ public class SlbaseAccessControl implements IControladorSeguridad {
         VaadinSession.getCurrent().close();
     }
 
-        public boolean isUserInSomeRole(String... roles) {
+    public boolean isUserInSomeRole(String... roles) {
         String[] var2 = roles;
         int var3 = roles.length;
 

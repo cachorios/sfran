@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Tag("unauthorized-error-view")
 @HtmlImport("src/views/unauthorized-error-view.html")
-@ParentLayout(MainView.class)
+@ParentLayout(MainViewTest.class)
 public class UnauthorizedErrorView
         extends PolymerTemplate<UnauthorizedErrorView.UnauthorizedErrorModel>
         implements HasErrorParameter<UnauthorizedException> {

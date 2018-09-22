@@ -29,7 +29,7 @@ import static org.apache.shiro.SecurityUtils.getSubject;
 @Route("Pru")
 @Theme(Lumo.class)
 @RequiresUser
-public class MainView extends PolymerTemplate<MainView.MainModel> implements RouterLayout {
+public class MainViewTest extends PolymerTemplate<MainViewTest.MainModel> implements RouterLayout {
 
     @Inject
     private PrincipalMapper principalMapper;
