@@ -46,7 +46,7 @@ public interface IUsuario {
      * Este metodo debe retornar el conjunto (sin repeticiones) de los permisos que posee el
      * usuario, tomando a cada permiso como una cadena formada por el nombre del tipo de permiso
      * asignado concatenado a la cadena constante SYS_CAD_REFER concatenado al nombre del recurso
-     * (es decir el atributo "nombre" del objeto parametro que representa al recurso). Ejemplo:
+     * (es decir el atributo "nombre" del objeto Parametro que representa al recurso). Ejemplo:
      * "EJECUTAR->RCV_TAG_CAJA.RCV_BTN_VER"
      *
      * @return Retorna conjunto de cadenas que representan a los permisos del usuario.

@@ -68,7 +68,7 @@ public interface IPresenterList<T extends AbstractEntidad> extends IPresenter<T>
      * listado. Debe trabajar sobre el tipo de objeto del tipo de la entidad
      * en cuestión, dependiendo de sus métodos (y lanzando sus excepciones).
      *
-     * @param parametro un parametro que pudiese necesitarse para armar el listado.
+     * @param parametro un Parametro que pudiese necesitarse para armar el listado.
      */
     void listList(Object parametro);
 

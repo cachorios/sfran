@@ -35,7 +35,7 @@ alter table openjpa_sequences_table owner to postgres;
 alter table openjpa_sequences_table add constraint pk_openjpa_sequences_table primary key (id);
 
 -------------------------------------------------------------------------------------
--- parametro
+-- Parametro
 -------------------------------------------------------------------------------------
 create table parametro (
     id          bigint                 not null,

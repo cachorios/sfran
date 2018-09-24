@@ -71,7 +71,7 @@ public interface IPresentableList<T extends AbstractEntidad> extends IVisualizab
     /**
      * Este metodo debe encargarse de refrescar la lista contenida en el presentable.
      *
-     * @param parametro un parametro que permita adaptar el refresco a las condiciones actuales.
+     * @param parametro un Parametro que permita adaptar el refresco a las condiciones actuales.
      */
     void refrescarLista(Object parametro);
 }

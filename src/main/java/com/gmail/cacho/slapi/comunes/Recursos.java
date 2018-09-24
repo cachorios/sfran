@@ -14,10 +14,10 @@ package com.gmail.cacho.slapi.comunes;
  * formado por el TAG (un String) de la Vista y el TAG (tambien String) del componente en
  * cuestion representado por el recurso. El TAG del componente debe ser ingresado, en la
  * creación del mismo, en el atributo "Data" de dicho componente (con setData(...)).
- * Luego, debe existir un "parametro" (objeto de Tipo parametro y por ello un registro en
+ * Luego, debe existir un "Parametro" (objeto de Tipo Parametro y por ello un registro en
  * la tabla Parametros) que tenga en su atributo "nombre" (obtenido vía getNombre()) el
  * String resultado formado por "TAG-VISTA"."TAG-COMPONENTE".
- * A partir del Recurso (parametro) y de un tipo de permiso (ETipoPermiso), se podrá crear
+ * A partir del Recurso (Parametro) y de un tipo de permiso (ETipoPermiso), se podrá crear
  * un objeto Permiso que podrá ser asignado a un Rol determinado.
  * Para mostrar un componente, es preciso entonces que el Usuario actual tenga un Rol que
  * tenga permisos sobre dicho Recurso.

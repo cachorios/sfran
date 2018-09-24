@@ -121,7 +121,7 @@ public class ParamInnerForm extends DefaultInnerDialog<Parametro> {
               .bind(Parametro::getValordat, Parametro::setValordat);
 //        binder.forField(valorchr)
 //              .withConverter(new StringACharConverter())
-//              .bind(parametro::getValorchr, parametro::setValorchr);
+//              .bind(Parametro::getValorchr, Parametro::setValorchr);
 
 
         binder.bindInstanceFields(this);
