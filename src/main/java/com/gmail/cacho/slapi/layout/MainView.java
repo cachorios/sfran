@@ -1,6 +1,5 @@
 package com.gmail.cacho.slapi.layout;
 
-
 import com.github.appreciated.app.layout.behaviour.AppLayout;
 import com.github.appreciated.app.layout.behaviour.Behaviour;
 import com.github.appreciated.app.layout.builder.AppLayoutBuilder;

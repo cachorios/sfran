@@ -12,6 +12,7 @@ import java.util.Objects;
 public abstract class AbstractEntidad implements Serializable, Cloneable {
 
     @Id
+    @TableGenerator(name = "tabgen", allocationSize = 1, initialValue = 1)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -44,21 +45,28 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
         this.id = id;
     }
 
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if(this.id == null) {
+//            return false;
+//        }
+//
+//        if (obj instanceof AbstractEntidad && obj.getClass().equals(getClass())) {
+//            return this.id.equals(((AbstractEntidad) obj).id);
+//        }
+//
+//        return false;
+//    }
+
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if(this.id == null) {
-            return false;
-        }
-
-        if (obj instanceof AbstractEntidad && obj.getClass().equals(getClass())) {
-            return this.id.equals(((AbstractEntidad) obj).id);
-        }
-
-        return false;
+    public boolean equals(Object other) {
+        return ((id == null) ? super.equals(other)
+                : (this == other || ((other instanceof AbstractEntidad) && id.equals(((AbstractEntidad) other).getId()))));
     }
+
 
     @Override
     public int hashCode() {

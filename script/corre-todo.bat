@@ -22,9 +22,9 @@ rem -- PATH A LOS SCRIPTS DE DATOS --
 rem ---------------------------------
 
 
-rem set ubic="D:\Desarrollo"
+set ubic="D:\Desarrollo"
 rem set ubic="E:\Desarrollo"
-set ubic="D:\Vaadin"
+rem set ubic="D:\Vaadin"
 
 rem ---------------------------------
 rem -- MIGRACION DE LOS DATOS      --
