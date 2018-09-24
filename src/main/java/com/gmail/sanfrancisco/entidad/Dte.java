@@ -3,21 +3,28 @@ package com.gmail.sanfrancisco.entidad;
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
 public class Dte extends AbstractEntidad {
-//    private Localidad origen;
-//
-//    private Localidad destino;
-//
-//    private Renspa renspa;
-//
-//    private Conductor conductor;
-//
-//    private Movil movil;
+
+    @NotNull
+    private long origen;
+
+    @NotNull
+    private long destino;
+
+    @ManyToOne
+    private Renspa renspa;
+
+    @ManyToOne
+    private Conductor conductor;
+
+    @ManyToOne
+    private Movil movil;
 
     @NotNull
     private Integer cantidad;
@@ -39,7 +46,7 @@ public class Dte extends AbstractEntidad {
 
     @NotNull
     @Size(min=5, max=50, message="El numero de tropa debe contener entre 5 y 50 caracteres.")
-    private String numTropa;
+    private String numeroTropa;
 
     @NotNull
     private Date fechaCarga;
@@ -47,13 +54,16 @@ public class Dte extends AbstractEntidad {
     @NotNull
     private Date fechaVencimiento;
 
-//    private Consignatario consignatario;
-//
-//    private Comisionista comisionista;
+    @ManyToOne
+    private Consignatario consignatario;
 
-    // to do 'usuario'
+    @ManyToOne
+    private Comisionista comisionista;
 
-//    private Productor productor;
+//     to do 'usuario'
+
+    @ManyToOne
+    private Productor productor;
 
     @NotNull
     private Double kmSalida;
@@ -61,10 +71,91 @@ public class Dte extends AbstractEntidad {
     @NotNull
     private Double kmLlegada;
 
-    private String domJaula;
+    private String patenteJaula;
 
     private String titular;
 
+
+
+    public long getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(long origen) {
+        this.origen = origen;
+    }
+
+    public long getDestino() {
+        return destino;
+    }
+
+    public void setDestino(long destino) {
+        this.destino = destino;
+    }
+
+    public Renspa getRenspa() {
+        return renspa;
+    }
+
+    public void setRenspa(Renspa renspa) {
+        this.renspa = renspa;
+    }
+
+    public Conductor getConductor() {
+        return conductor;
+    }
+
+    public void setConductor(Conductor conductor) {
+        this.conductor = conductor;
+    }
+
+    public Movil getMovil() {
+        return movil;
+    }
+
+    public void setMovil(Movil movil) {
+        this.movil = movil;
+    }
+
+    public String getNumeroTropa() {
+        return numeroTropa;
+    }
+
+    public void setNumeroTropa(String numeroTropa) {
+        this.numeroTropa = numeroTropa;
+    }
+
+    public Consignatario getConsignatario() {
+        return consignatario;
+    }
+
+    public void setConsignatario(Consignatario consignatario) {
+        this.consignatario = consignatario;
+    }
+
+    public Comisionista getComisionista() {
+        return comisionista;
+    }
+
+    public void setComisionista(Comisionista comisionista) {
+        this.comisionista = comisionista;
+    }
+
+    public Productor getProductor() {
+        return productor;
+    }
+
+    public void setProductor(Productor productor) {
+        this.productor = productor;
+    }
+
+    public String getPatenteJaula() {
+        return patenteJaula;
+    }
+
+    public void setPatenteJaula(String patenteJaula) {
+        this.patenteJaula = patenteJaula;
+    }
 
     public Integer getCantidad() {
         return cantidad;
@@ -114,14 +205,6 @@ public class Dte extends AbstractEntidad {
         this.ajustes = ajustes;
     }
 
-    public String getNumTropa() {
-        return numTropa;
-    }
-
-    public void setNumTropa(String numTropa) {
-        this.numTropa = numTropa;
-    }
-
     public Date getFechaCarga() {
         return fechaCarga;
     }
@@ -138,8 +221,6 @@ public class Dte extends AbstractEntidad {
         this.fechaVencimiento = fechaVencimiento;
     }
 
-
-
     public Double getKmSalida() {
         return kmSalida;
     }
@@ -154,14 +235,6 @@ public class Dte extends AbstractEntidad {
 
     public void setKmLlegada(Double kmLlegada) {
         this.kmLlegada = kmLlegada;
-    }
-
-    public String getDomJaula() {
-        return domJaula;
-    }
-
-    public void setDomJaula(String domJaula) {
-        this.domJaula = domJaula;
     }
 
     public String getTitular() {
