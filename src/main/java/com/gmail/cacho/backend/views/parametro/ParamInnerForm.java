@@ -1,4 +1,4 @@
-package com.gmail.cacho.backend.views.Parametro;
+package com.gmail.cacho.backend.views.parametro;
 
 
 import com.gmail.cacho.backend.entidad.Parametro;
@@ -121,7 +121,7 @@ public class ParamInnerForm extends DefaultInnerDialog<Parametro> {
               .bind(Parametro::getValordat, Parametro::setValordat);
 //        binder.forField(valorchr)
 //              .withConverter(new StringACharConverter())
-//              .bind(Parametro::getValorchr, Parametro::setValorchr);
+//              .bind(parametro::getValorchr, parametro::setValorchr);
 
 
         binder.bindInstanceFields(this);

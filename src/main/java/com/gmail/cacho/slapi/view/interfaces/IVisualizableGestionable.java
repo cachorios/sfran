@@ -31,13 +31,13 @@ public interface IVisualizableGestionable extends IVisualizable {
      * durante la creación del mismo (por código o Designer), dentro del atributo "Data"
      * de dicho componente (con setData(...)) u otro atributo que reemplace a Data en un
      * futuro.
-     * Además, debe existir un "PARAMETRO" (objeto de Tipo Parametro y por ello registro
+     * Además, debe existir un "PARAMETRO" (objeto de Tipo parametro y por ello registro
      * en tabla Parametros) de tipo ETipoParametro.RECURSO (ordinal 1 de la enumeración)
      * que tenga en su atributo "nombre" (obtenido vía getNombre()) el String resultado
      * formado por "TAG-VIEW-GESTIONABLE"+Recursos.RCV_TAG_SPARATOR+"TAG-RECURSO" y que
      * representará al RECURSO en cuestión.
      * A partir de entonces, se podrá crear un PERMISO (registro en la tabla Permisos)
-     * sobre dicho RECURSO, dado el Parametro generado para el mismo y dado un tipo de
+     * sobre dicho RECURSO, dado el parametro generado para el mismo y dado un tipo de
      * permiso como ETipoPermiso.EJECUTAR (ordinal 5 de la enumeración ETipoPermiso).
      * Finalmente dicho permiso podrá ser asignado a un ROL determinado y entonces, para
      * mostrar un componente, es preciso que el USUARIO actual tenga un ROL que tenga un

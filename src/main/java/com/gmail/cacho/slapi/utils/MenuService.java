@@ -37,7 +37,7 @@ public class MenuService {
      * con atributo "tipo" ETipoParametro=MENU, desde la base de datos y sin ningun
      * tipo de filtro extra.
      *
-     * @param servicio, el servicio de Parametro para obtener los objetos de menu principal
+     * @param servicio, el servicio de parametro para obtener los objetos de menu principal
      * @return la listaCols de Parametros que representan las opciones de Menu Principal
      */
     private List<Parametro> getMenuConfig(ParametroServicio servicio) {
@@ -48,13 +48,13 @@ public class MenuService {
      * Obtiene la listaCols de opciones de menu secundario como objetos de tipo PARAMETRO
      * con atributo "tipo" ETipoParametro=MENU, desde la base de datos y tomando como
      * filtro un valor long que se compara contra el atributo "valorint" de cada objeto
-     * Parametro a efectos de restringir la listaCols a las opciones de menu secundario de
-     * una sola opcion de Menu Principal. Es decir que en cada Parametro de atributo
+     * parametro a efectos de restringir la listaCols a las opciones de menu secundario de
+     * una sola opcion de Menu Principal. Es decir que en cada parametro de atributo
      * "tipo" ETipoParametro=MENU, el atributo "valorint" representa la opcion de menu
-     * principal de la que dicho Parametro (dicha opcion de menu secundario) depende.
+     * principal de la que dicho parametro (dicha opcion de menu secundario) depende.
      *
      * @param menu,     el valor que representa a la opcion de menu principal a tomar como filtro
-     * @param servicio, el servicio de Parametro para obtener los objetos de submenu
+     * @param servicio, el servicio de parametro para obtener los objetos de submenu
      * @return la listaCols de Parametros que representan las opciones de Menu Principal
      */
     private List<Parametro> getSubMenuConfig(Long menu, ParametroServicio servicio) {

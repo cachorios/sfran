@@ -16,8 +16,8 @@
 
 
            (90, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Parametros del Sistema',       900, 2, FALSE, NULL, 7, 0,  'Configuracion General del Sistema', 1),
-           (91, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Parametros Generales',         901, 2, FALSE, NULL, 8, 90, 'com.gmail.cacho.backend.views.parametros.ParamView', 1),
-           (92, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Usuarios',                     902, 2, FALSE, NULL, 9, 90, 'com.gmail.cacho.backend.views.UsuarioView', 1);
+           (91, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Parametros Generales',         901, 2, FALSE, NULL, 8, 90, 'com.gmail.cacho.backend.views.parametro.ParamView', 1),
+           (92, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Usuarios',                     902, 2, FALSE, NULL, 9, 90, 'com.gmail.cacho.backend.views.UsuariosView', 1);
 
 
 --        (93, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Roles',                        904, 2, FALSE, NULL,10, 90, 'ar.com.sciolar.siddire.view.roles.RolView', 1),

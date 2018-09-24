@@ -1,4 +1,4 @@
-package com.gmail.cacho.backend.views.Parametro;
+package com.gmail.cacho.backend.views.parametro;
 
 
 import com.github.appreciated.app.layout.annotations.MenuIcon;

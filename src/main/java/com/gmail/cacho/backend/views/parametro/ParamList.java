@@ -1,4 +1,4 @@
-package com.gmail.cacho.backend.views.Parametro;
+package com.gmail.cacho.backend.views.parametro;
 
 import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.slapi.comunes.Recursos;
@@ -6,7 +6,6 @@ import com.gmail.cacho.slapi.view.AbstractList;
 import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.vaadin.flow.router.Route;
-import org.apache.openjpa.lib.meta.MetaDataFilter;
 
 import javax.inject.Inject;
 import java.util.Arrays;
