@@ -7,7 +7,6 @@ import com.github.appreciated.app.layout.component.appmenu.left.builder.LeftAppM
 import com.github.appreciated.app.layout.component.appmenu.left.builder.LeftSubMenuBuilder;
 import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.backend.entidad.Usuario;
-import com.gmail.cacho.backend.seguridad.general.SlbaseAccessControl;
 import com.gmail.cacho.backend.service.ParametroServicio;
 import com.gmail.cacho.slapi.Sistema;
 import com.gmail.cacho.slapi.comunes.C;
