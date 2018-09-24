@@ -10,6 +10,7 @@ import java.util.Date;
 @Entity
 public class Licencia extends AbstractEntidad {
 
+    @NotNull
     private long tipoLicencia;
 
     @NotNull
@@ -25,7 +26,6 @@ public class Licencia extends AbstractEntidad {
     private Boolean licenciaCarga;
 
     // to do 'conductor'
-
 
     public long getTipoLicencia() {
         return tipoLicencia;

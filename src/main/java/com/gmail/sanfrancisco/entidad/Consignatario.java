@@ -13,7 +13,7 @@ public class Consignatario extends AbstractEntidad {
     private String descripcion;
 
     @NotNull
-    @Size(min=5, max=20, message="El cuil debe contener entre 5 y 20 caracteres.")
+    @Size(min=11, max=11, message="El cuil debe contener entre 11 caracteres.")
     private String cuil;
 
     @NotNull
