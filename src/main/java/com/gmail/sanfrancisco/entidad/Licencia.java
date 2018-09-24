@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 public class Licencia extends AbstractEntidad {
-    @ManyToOne
+
     private long tipoLicencia;
 
     @NotNull

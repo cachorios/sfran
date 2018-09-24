@@ -9,15 +9,15 @@ import java.util.Date;
 
 @Entity
 public class Dte extends AbstractEntidad {
-    private Localidad origen;
-
-    private Localidad destino;
-
-    private Renspa renspa;
-
-    private Conductor conductor;
-
-    private Movil movil;
+//    private Localidad origen;
+//
+//    private Localidad destino;
+//
+//    private Renspa renspa;
+//
+//    private Conductor conductor;
+//
+//    private Movil movil;
 
     @NotNull
     private Integer cantidad;
@@ -47,13 +47,13 @@ public class Dte extends AbstractEntidad {
     @NotNull
     private Date fechaVencimiento;
 
-    private Consignatario consignatario;
-
-    private Comisionista comisionista;
+//    private Consignatario consignatario;
+//
+//    private Comisionista comisionista;
 
     // to do 'usuario'
 
-    private Productor productor;
+//    private Productor productor;
 
     @NotNull
     private Double kmSalida;
@@ -65,45 +65,6 @@ public class Dte extends AbstractEntidad {
 
     private String titular;
 
-    public Localidad getOrigen() {
-        return origen;
-    }
-
-    public void setOrigen(Localidad origen) {
-        this.origen = origen;
-    }
-
-    public Localidad getDestino() {
-        return destino;
-    }
-
-    public void setDestino(Localidad destino) {
-        this.destino = destino;
-    }
-
-    public Renspa getRenspa() {
-        return renspa;
-    }
-
-    public void setRenspa(Renspa renspa) {
-        this.renspa = renspa;
-    }
-
-    public Conductor getConductor() {
-        return conductor;
-    }
-
-    public void setConductor(Conductor conductor) {
-        this.conductor = conductor;
-    }
-
-    public Movil getMovil() {
-        return movil;
-    }
-
-    public void setMovil(Movil movil) {
-        this.movil = movil;
-    }
 
     public Integer getCantidad() {
         return cantidad;
@@ -177,29 +138,7 @@ public class Dte extends AbstractEntidad {
         this.fechaVencimiento = fechaVencimiento;
     }
 
-    public Consignatario getConsignatario() {
-        return consignatario;
-    }
 
-    public void setConsignatario(Consignatario consignatario) {
-        this.consignatario = consignatario;
-    }
-
-    public Comisionista getComisionista() {
-        return comisionista;
-    }
-
-    public void setComisionista(Comisionista comisionista) {
-        this.comisionista = comisionista;
-    }
-
-    public Productor getProductor() {
-        return productor;
-    }
-
-    public void setProductor(Productor productor) {
-        this.productor = productor;
-    }
 
     public Double getKmSalida() {
         return kmSalida;

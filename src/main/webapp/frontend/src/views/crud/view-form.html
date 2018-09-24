@@ -1,0 +1,81 @@
+
+
+
+<dom-module id="view-form">
+    <template>
+        <style include="lumo-color lumo-typography view-style">
+            :host([has-label]) {
+                padding-top: 40px!important;
+                background-color: #ef6c00!important;
+            }
+            .v-form{
+                background-color: var(--lumo-base-color);
+                /*margin: 0.5em;*/
+                display: block;
+                /*padding: 1em;*/
+            }
+            .full-width{
+                width: 100%!important;
+            }
+            .v-form .envolver {
+                /*display: inline-flex;*/
+                margin: 0;
+            }
+
+            .v-form .panel{
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .v-form .content{
+                padding: 0em !important;
+                padding-bottom: 0.2em;
+                border-bottom-style: solid;
+                border-bottom-width: 1px;
+                border-bottom-color: #d0d0d0;
+            }
+
+            .v-form .header {
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 12px;
+                /*padding-left: --lu,;*/
+                /*padding-right: $v-layout-spacing-vertical;*/
+
+                margin-bottom: 0.4em;
+                margin-top: 0.5em ;
+                border-bottom-style: solid;
+                border-bottom-width: 1px;
+                border-bottom-color: #d0d0d0;
+
+            }
+
+            .v-form .small{
+
+            }
+            .v-form .titulo{
+                margin: 0 0 0.2em 0;
+                border-bottom-style: solid;
+                border-bottom-width: 1px;
+                border-bottom-color: #d0d0d0;
+
+            }
+        </style>
+        <div class="view-form-titulo">My view title</div>
+    </template>
+</dom-module>
+<script>
+    class ViewForm extends Polymer.Element {
+        static get is() { return 'view-forn'; }
+    }
+
+    customElements.define(ViewForm.is, ViewForm);
+</script>
+
+<custom-style>
+    <style include="view-form">
+
+
+    </style>
+</custom-style>

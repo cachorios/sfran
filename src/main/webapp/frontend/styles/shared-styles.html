@@ -1,7 +1,118 @@
+<!--
+  ~ Copyright 2000-2017 Vaadin Ltd.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License"); you may not
+  ~ use this file except in compliance with the License. You may obtain a copy of
+  ~ the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  ~ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+  ~ License for the specific language governing permissions and limitations under
+  ~ the License.
+  -->
+
+<link rel="import" href="bower_components/vaadin-lumo-styles/color.html">
+<link rel="import" href="bower_components/vaadin-lumo-styles/sizing.html">
+<link rel="import" href="bower_components/vaadin-lumo-styles/spacing.html">
+<link rel="import" href="bower_components/vaadin-lumo-styles/style.html">
+<link rel="import" href="bower_components/vaadin-lumo-styles/typography.html">
+<link rel="import" href="bower_components/polymer/lib/elements/custom-style.html">
+
+
+<dom-module id="my-dialog-overlay-theme" theme-for="vaadin-dialog-overlay">
+    <template>
+        <style>
+            :host {
+                padding:  var(--lumo-space-s);
+            }
+            [part="overlay"] {
+                display: flex;
+                animation: none !important;
+                min-width: 300px;
+            }
+            [part="content"]{
+                padding: 0.3em;
+                background-color:  var(--lumo-base-color);
+            }
+        </style>
+    </template>
+</dom-module>
+
+<dom-module id="my_lumo-text-field" theme-for="vaadin-text-field">
+    <template>
+        <style>
+
+            /*:host(.wrap-label) [part="label"]{*/
+            /*white-space: normal;*/
+            /*}*/
+            /*[part="input-field"] {*/
+            /*border: 1px var(--lumo-contrast-5pct) solid;*/
+            /*}*/
+            /*:host([disabled]) [part="input-field"] {*/
+            /*background-color: var(--lumo-contrast-10pct);*/
+            /*}*/
+
+            :host([has-label])::before {
+                /* Label height + margin */
+                margin-top: calc(var(--lumo-font-size-s) * 1.5);
+            }
+            :host([has-label]) {
+                padding-top: calc(var(--lumo-space-m) * 0.3);
+            }
+
+            [part="value"]:focus {
+                /*-webkit-mask-image: none;*/
+                /*mask-image: none;*/
+
+            }
+
+        </style>
+    </template>
+</dom-module>
+
 <custom-style>
     <style>
-
         html {
+            /* Base (background) */
+            /*background-image: linear-gradient(145deg, #484962 30%, #d06b41 100%);*/
+            /*--lumo-base-color: #FFF !important;*/
+
+            --lumo-font-family: 'Open Sans', 'Trebuchet MS', arial, sans-serif !important;
+            --lumo-font-size-s: 11px !important;
+            --lumo-font-size-m: 12px !important;
+            --lumo-font-size-l: 1.2em !important;
+
+            --lumo-size-m: 20px;
+            --lumo-text-field-size: 100px;
+
+            /*--lumo-primary-color-10pct: #85b6f5 !important;*/
+            /*--lumo-body-text-color: #fff;*/
+
+        }
+        /**** app-* es para el menu ***/
+        app-toolbar{
+            background-color: #2b3d4c;
+            color: #fff;
+            color: #fff;
+        }
+        app-header {
+            color: #fff;
+            --app-header-background-rear-layer_-_background-color:  #ef6c00;;
+        }
+        app-drawer {
+            --app-drawer-scrim-background: rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .sub-menu{
+            background-color: var(--lumo-primary-color-10pct);
+        }
+
+        .sin-magenes{
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
     </style>
