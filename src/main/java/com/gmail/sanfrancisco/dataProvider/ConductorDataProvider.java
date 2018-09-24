@@ -1,4 +1,4 @@
-package com.gmail.sanfrancisco.dataPrivider;
+package com.gmail.sanfrancisco.dataProvider;
 
 import com.gmail.cacho.backend.jpa.FilterablePageableDataProvider;
 import com.gmail.cacho.backend.jpa.ServicioModelo;
