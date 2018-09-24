@@ -21,7 +21,7 @@ public class ParametroServicio extends ServicioModelo<Parametro> {
     private ParametrosRepositorio repo;
 
 
-    public Parametro findByTipoAndOrden(ETipoParametro tipo, Integer orden) {
+        public Parametro findByTipoAndOrden(ETipoParametro tipo, Integer orden) {
         return repo.findByTipoAndOrden(tipo, orden);
     }
 

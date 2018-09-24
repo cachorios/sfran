@@ -4,7 +4,9 @@ package com.gmail.cacho.backend.jpa;
 
 import com.vaadin.flow.data.provider.QuerySortOrder;
 
+import com.vaadin.flow.data.provider.SortDirection;
 import org.apache.deltaspike.data.api.EntityRepository;
+import org.apache.deltaspike.data.api.QueryResult;
 
 
 import java.util.List;
@@ -34,7 +36,26 @@ public abstract class ServicioModelo<U>  {
     /////////////////////////////////////////////////////////////////////////////////////////
     // METODOS DE SOPORTE A LA INTERFAZ DE USUARIO                                         //
     /////////////////////////////////////////////////////////////////////////////////////////
+
+    public abstract Stream<U> findAnyMatching(Object padre, String filtro, int offset, int limit, List<QuerySortOrder> sortOrders);
+
     public abstract long countAnyMatching(Object padre, String filtro);
 
-    public abstract Stream<U> findAnyMatching(Object padre, String filtro, int offset, int limitm, List<QuerySortOrder> sortOrders);
+    protected String likePattern(String filter) {
+        if(filter == null) filter = "";
+        return "%" +filter + "%";
+    }
+
+    public  QueryResult<U> applySortOrder(QueryResult<U> result, List<QuerySortOrder> sortOrders) {
+        QueryResult<U> queryResult = result;
+        for (QuerySortOrder sortOrder : sortOrders) {
+            if (sortOrder.getDirection() == SortDirection.ASCENDING) {
+                queryResult = queryResult.orderAsc(sortOrder.getSorted());
+            } else {
+                queryResult = queryResult.orderDesc(sortOrder.getSorted());
+            }
+        }
+
+        return queryResult;
+    }
 }

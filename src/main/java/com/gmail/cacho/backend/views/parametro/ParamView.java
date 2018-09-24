@@ -21,3 +21,5 @@ public class ParamView extends AbstractDefaultView<Parametro> {
         super(list, preview, form, EModoVista.EDITAR);
     }
 }
+
+

@@ -16,6 +16,12 @@ import com.gmail.cacho.backend.entidad.AbstractEntidad;
  * @version 20180201
  */
 public interface IVisualizableReadOnly<T extends AbstractEntidad> extends IVisualizable {
+
+    /**
+     * Este meddo envia el valor que se actualizara en el preciew, y se usa en setValor
+     * @param item
+     */
+    void setItem(T item);
     /**
      * Este metodo debe crar los elementos especificos del objeto visualizable.
      */

@@ -16,7 +16,7 @@
 
         <properties>
             <property name="hibernate.show_sql" value="true"/>
-            <property name="openjpa.Log" value="Enhance=TRACE, DefaultLevel=WARN, Runtime=WARN, Tool=INFO, SQL=TRACE"/>
+            <!--<property name="openjpa.Log" value="Enhance=TRACE, DefaultLevel=WARN, Runtime=WARN, Tool=INFO, SQL=TRACE"/>-->
 
 
             <property name="javax.persistence.schema-generation.database.action"

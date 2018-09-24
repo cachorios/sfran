@@ -11,7 +11,7 @@
 
            (1,  NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.TRAN', 'Transporte',                     0, 2, FALSE, NULL, 0, 0, 'Gestion Vehiculos y choferes', 1),
            (2,  NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.TRAN', 'Moviles',                        1, 2, FALSE, NULL, 1, 1, 'com.gmail.cacho.backend.views.NoView', 1),
-           (3,  NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.TRAN', 'Conductores',                    2, 2, FALSE, NULL, 2, 1, 'com.gmail.cacho.backend.views.NoView', 1),
+           (3,  NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.TRAN', 'Conductores',                    2, 2, FALSE, NULL, 2, 1, 'com.gmail.sanfrancisco.view.conductor.ConductorView', 1),
            (4,  NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.TRAN', 'Licencias',                      3, 2, FALSE, NULL, 3, 1, 'com.gmail.cacho.backend.views.NoView', 1),
 
 

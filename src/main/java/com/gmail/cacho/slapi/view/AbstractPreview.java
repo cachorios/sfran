@@ -7,7 +7,9 @@ import com.gmail.cacho.slapi.view.enums.EModoVista;
 import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
 import com.gmail.cacho.slapi.view.interfaces.IVisualizableReadOnly;
 import com.gmail.cacho.slbase.logging.L;
+import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.function.ValueProvider;
 
 /**
  * Esta clase es la implementación por defecto de la interfase IVisualizableReadOnly
@@ -65,4 +67,22 @@ public abstract class AbstractPreview<T extends AbstractEntidad> extends Vertica
 
     @Override
     public void cerrar() { }
+
+    public void setItem(T item){
+        registroPreview = item;
+    }
+
+    public <V> void setValor( AbstractField c, ValueProvider<T,V> proveedor){
+        String ret;
+        if(registroPreview == null) {
+            c.setValue("");
+        }else{
+            ret = proveedor.apply(registroPreview).toString();
+            if(ret == null){
+                c.setValue("");
+            }else{
+                c.setValue(ret);
+            }
+        }
+    }
 }

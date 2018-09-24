@@ -153,6 +153,7 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
     public void setObjetoActivo(T objeto) {
         registroSelect = objeto;
         if (preview != null) {
+            preview.setItem(registroSelect);
             preview.actualizar(registroSelect);
         }
         presenter.alActualizarSeleccion(Collections.singletonList(registroSelect));

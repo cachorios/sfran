@@ -3,7 +3,7 @@ package com.gmail.cacho.slapi.view.interfaces;
 public interface IManagerPanel extends IManager {
     /**
      * Este metodo debería ser llamado justo antes de guardar cualqueir modificacion para
-     * que se controle aqui cualuier cuestion asociada al modelo de negocio del elemento
+     * que se controle aqui cualuier cuestion asociada al serviciosModelo de negocio del elemento
      * a ser guardado. Si hubiere error no deberia salir con excepción, sino mostrar en
      * pantalla cualquier error encontrado y volver con false.
      *

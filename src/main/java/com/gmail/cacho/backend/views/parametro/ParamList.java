@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 
 
-@Route
+
 public class ParamList extends AbstractList<Parametro> {
     @Inject
     public ParamList(ParamListPresenter presenter) {

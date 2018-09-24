@@ -10,8 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Stream;
 
-public abstract class FilterablePageableDataProvider<U extends AbstractEntidad, TKI extends Serializable, F>
-        extends AbstractBackEndDataProvider<U, F> {
+public abstract class FilterablePageableDataProvider<U extends AbstractEntidad, TKI extends Serializable, F>   extends AbstractBackEndDataProvider<U, F> {
     private Object padre = null;
     private String filtro = null;
     private ServicioModelo<U> servicio;

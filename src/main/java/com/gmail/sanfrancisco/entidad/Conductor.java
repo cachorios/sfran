@@ -1,8 +1,10 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.backend.entidad.Usuario;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -18,15 +20,15 @@ public class Conductor extends AbstractEntidad {
     private String apellido;
 
     @NotNull
-    @Size(min=5, max=20, message="El cuil debe contener entre 5 y 20 caracteres.")
+    @Size(min=11, max=11, message="El cuil debe contener entre 11 caracteres.")
     private String cuil;
 
     @NotNull
-    @Size(min=5, max=20, message="El dni debe contener entre 5 y 20 caracteres.")
+    @Size(min=5, max=11, message="El dni debe contener entre 5 y 11 caracteres.")
     private String dni;
 
     @NotNull
-    private Date fechaNac;
+    private Date fechaNacimiento;
 
     @NotNull
     @Size(min=6, max=20, message="El telefono debe contener entre 6 y 20 caracteres.")
@@ -40,9 +42,10 @@ public class Conductor extends AbstractEntidad {
     private Date fechaIngreso;
 
     @NotNull
-    private long operadora;
+    private long operadoraTelefonica;
 
-    // to do 'usuario'
+    @ManyToOne
+    private Usuario usuario;
 
 
     public String getNombre() {
@@ -77,13 +80,6 @@ public class Conductor extends AbstractEntidad {
         this.dni = dni;
     }
 
-    public Date getFechaNac() {
-        return fechaNac;
-    }
-
-    public void setFechaNac(Date fechaNac) {
-        this.fechaNac = fechaNac;
-    }
 
     public String getTelefono() {
         return telefono;
@@ -109,11 +105,27 @@ public class Conductor extends AbstractEntidad {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public long getOperadora() {
-        return operadora;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setOperadora(long operadora) {
-        this.operadora = operadora;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public long getOperadoraTelefonica() {
+        return operadoraTelefonica;
+    }
+
+    public void setOperadoraTelefonica(long operadoraTelefonica) {
+        this.operadoraTelefonica = operadoraTelefonica;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
