@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class Comisionista extends AbstractEntidad {
     @NotNull
-    @Size(min=5, max=50, message="El cuil debe contener entre 5 y 50 caracteres.")
+    @Size(min=5, max=20, message="El cuil debe contener entre 5 y 20 caracteres.")
     private String cuil;
 
     @NotNull
