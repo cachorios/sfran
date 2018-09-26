@@ -11,7 +11,6 @@ public class DteDetalleCategoria extends AbstractEntidad {
     @ManyToOne
     private Dte dte;
 
-    @ManyToOne
     private long categoria;
 
     @NotNull

@@ -5,6 +5,8 @@ import com.gmail.cacho.backend.entidad.Usuario;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -28,6 +30,7 @@ public class Conductor extends AbstractEntidad {
     private String dni;
 
     @NotNull
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date fechaNacimiento;
 
     @NotNull
@@ -39,10 +42,12 @@ public class Conductor extends AbstractEntidad {
     private String celular;
 
     @NotNull
-    private Date fechaIngreso;
+    private long operadoraTelefonica;
 
     @NotNull
-    private long operadoraTelefonica;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date fechaIngreso;
+
 
     @ManyToOne
     private Usuario usuario;
