@@ -1,7 +1,5 @@
 package com.gmail.sanfrancisco.view.conductor;
 
-
-
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
@@ -67,7 +65,7 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
                 envolver(apellido),
                 envolver(nombre),
                 envolver(dni,"50%"),
-                envolver(cuil, "50"),
+                envolver(cuil, "50%"),
 
                 envolver(fechaNacimiento,"100%"),
                 envolver(fechaIngreso,"100%"),

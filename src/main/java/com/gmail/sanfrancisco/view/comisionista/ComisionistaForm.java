@@ -22,7 +22,7 @@ public class ComisionistaForm extends AbstractForm<Comisionista> {
     protected Focusable getPrimerElementoForm() { return null; }
 
     @Override
-    public String getTagVista() { return "RCV_TAG_ÄRAM"; }
+    public String getTagVista() { return "RCV_TAG_COMISIONISTA"; }
 
     @Override
     public Class<Comisionista> getEntityType() { return Comisionista.class; }
