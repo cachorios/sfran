@@ -52,8 +52,8 @@ public class Movil extends AbstractEntidad {
     @Size(min=5, max=60, message="El numero de chasis debe contener entre 5 y 60 caracteres.")
     private String numeroChasis;
 
-    @ManyToOne
-    private Marca marca;
+    @NotNull
+    private long marca;
 
     @NotNull
     private Date anno;
@@ -191,11 +191,11 @@ public class Movil extends AbstractEntidad {
         this.numeroChasis = numeroChasis;
     }
 
-    public Marca getMarca() {
+    public long getMarca() {
         return marca;
     }
 
-    public void setMarca(Marca marca) {
+    public void setMarca(long marca) {
         this.marca = marca;
     }
 

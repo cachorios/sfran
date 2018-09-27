@@ -33,8 +33,8 @@ public class Productor extends AbstractEntidad {
     @Size(min=10, max=50, message="El correo electronico debe contener entre 10 y 50 caracteres.")
     private String email;
 
-    @ManyToOne
-    private CondicionIva condicion;
+    @NotNull
+    private long condicion;
 
     public String getDescripcion() {
         return descripcion;
@@ -84,11 +84,11 @@ public class Productor extends AbstractEntidad {
         this.email = email;
     }
 
-    public CondicionIva getCondicion() {
+    public long getCondicion() {
         return condicion;
     }
 
-    public void setCondicion(CondicionIva condicion) {
+    public void setCondicion(long condicion) {
         this.condicion = condicion;
     }
 }
