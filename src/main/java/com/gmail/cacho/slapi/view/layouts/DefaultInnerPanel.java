@@ -99,7 +99,7 @@ public class DefaultInnerPanel extends VerticalLayout implements ILayoutInnerPan
 
     protected HorizontalLayout generarBotonera() {
         HorizontalLayout botonera = new HorizontalLayout();
-        botonera.setWidth("100100");
+        botonera.setWidth("100%");
         botonera.setHeight("50px");
 
         guardarButton = new Button(C.CRUD_FORM_BTN_GUARDAR);

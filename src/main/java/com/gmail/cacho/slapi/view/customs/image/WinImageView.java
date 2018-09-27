@@ -26,8 +26,8 @@ public class WinImageView extends Dialog {
 
     private void armarVentana() {
         //setStyleName("sciolar-window");
-        setWidth("900%");
-        setHeight("900%");
+        setWidth("900px");
+        setHeight("900px");
         /*
         setDraggable(true);
         setResizable(false);
@@ -40,8 +40,8 @@ public class WinImageView extends Dialog {
         final Image imagen = new Image();
         imagen.setSrc(Sistema.getSistema().getImagePath().concat(filename));
                 ////setSource(new FileResource(new File(Sistema.getSistema().getImagePath().concat(filename))));
-        imagen.setWidth("850%");
-        imagen.setHeight("700%");
+        imagen.setWidth("850px");
+        imagen.setHeight("700px");
         cancelar = new Button(C.CRUD_FORM_BTN_CANCELAR, clickEvent -> close());
         cancelar.setWidth("120px");
 
