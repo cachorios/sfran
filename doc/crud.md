@@ -220,7 +220,7 @@ y la clase completa.
                     envolver(apellido),
                     envolver(nombre),
                     envolver(dni,"50%"),
-                    envolver(cuil, "50"),
+                    envolver(cuil, "50%"),
     
                     envolver(fechaNacimiento,"100%"),
                     envolver(telefono),

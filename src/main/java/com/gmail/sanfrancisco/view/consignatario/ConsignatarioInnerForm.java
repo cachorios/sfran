@@ -46,7 +46,7 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
         form.add(
                 envolver(id, "30%"),
                 envolver(descripcion,"50%"),
-                envolver(cuil,"50"),
+                envolver(cuil,"50%"),
                 envolver(celular,"50%"),
                 envolver(telefono,"50%"),
                 envolver(domicilio,"100%"),
