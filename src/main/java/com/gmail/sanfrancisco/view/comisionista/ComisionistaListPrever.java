@@ -9,7 +9,8 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class ComisionistaListPrever extends AbstractPreview<Comisionista> {
     TextField id;
-    TextField descripcion;
+    TextField nombre;
+    TextField apellido;
     TextField cuil;
     TextField celular;
     TextField telefono;
@@ -20,7 +21,8 @@ public class ComisionistaListPrever extends AbstractPreview<Comisionista> {
     @Override
     public void crearElementos() {
         id          = textField("ID",false);
-        descripcion = textField("Descripción",false);
+        nombre      = textField("Nombre",false);
+        apellido    = textField("Apellido",false);
         cuil        = textField("CUIL",false);
         celular     = textField("Celular",false);
         telefono    = textField("Telefono",false);
@@ -28,14 +30,15 @@ public class ComisionistaListPrever extends AbstractPreview<Comisionista> {
         saldo       = textField("Saldo",false);
         email       = textField("Correo electronico",false);
 
-        add(id, descripcion, cuil, celular, telefono, domicilio, saldo, email);
+        add(id, nombre, apellido, cuil, celular, telefono, domicilio, saldo, email);
                 // envolver(valordat), valorchr, valorstr, envolver(espacio()), valorbol);
     }
 
     @Override
     public void actualizar(Comisionista item) {
         setValor(id,            Comisionista::getId);
-        setValor(descripcion,   Comisionista::getDescripcion);
+        setValor(nombre,        Comisionista::getNombre);
+        setValor(apellido,      Comisionista::getApellido);
         setValor(cuil,          Comisionista::getCuil);
         setValor(celular,       Comisionista::getCelular);
         setValor(telefono,      Comisionista::getTelefono);

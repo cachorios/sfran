@@ -13,7 +13,6 @@ public class ConductorListPrever extends AbstractPreview<Conductor> {
     TextField telefono;
     TextField celular;
 
-
     @Override
     public void crearElementos() {
         id          = textField("ID",       false);

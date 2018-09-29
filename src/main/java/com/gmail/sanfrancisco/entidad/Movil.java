@@ -11,8 +11,7 @@ import java.util.Date;
 @Entity
 public class Movil extends AbstractEntidad {
     @NotNull
-    @Size(min=3, max=100, message="La descripción debe contener entre 3 y 100 caracteres.")
-    private String descripcion;
+    private Long tipoMovil;
 
     @NotNull
     @Size(min=3, max=100, message="El serviciosModelo debe contener entre 3 y 100 caracteres.")
@@ -63,20 +62,20 @@ public class Movil extends AbstractEntidad {
     @NotNull
     private Date fecha;
 
+    public Long getTipoMovil() {
+        return tipoMovil;
+    }
+
+    public void setTipoMovil(Long tipoMovil) {
+        this.tipoMovil = tipoMovil;
+    }
+
     public long getEstadoMovil() {
         return estadoMovil;
     }
 
     public void setEstadoMovil(long estadoMovil) {
         this.estadoMovil = estadoMovil;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public String getModelo() {
