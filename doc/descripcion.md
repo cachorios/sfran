@@ -14,7 +14,7 @@ Titular de los terrenos donde se encuentran los animales.
 
 ## Renspa
 
-Codigo unico para un terreno de un productor.
+Codigo que asocia a un productor con el campo donde realiza su actividad.
 
 ## Consignatario
 

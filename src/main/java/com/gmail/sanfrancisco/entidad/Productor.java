@@ -10,8 +10,12 @@ import javax.validation.constraints.Size;
 @Entity
 public class Productor extends AbstractEntidad {
     @NotNull
-    @Size(min=5, max=50, message="La descripción debe contener entre 5 y 50 caracteres.")
-    private String descripcion;
+    @Size(min=5, max=50, message="La nombre debe contener entre 5 y 50 caracteres.")
+    private String nombre;
+
+    @NotNull
+    @Size(min=5, max=50, message = "El apellido debe contener entre 5 y 50 caracteres.")
+    private String apellido;
 
     @NotNull
     @Size(min=5, max=20, message="El cuil debe contener entre 5 y 20 caracteres.")
@@ -36,12 +40,20 @@ public class Productor extends AbstractEntidad {
     @NotNull
     private long condicion;
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCuil() {

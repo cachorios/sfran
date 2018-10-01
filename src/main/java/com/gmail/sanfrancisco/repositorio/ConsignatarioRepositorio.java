@@ -7,13 +7,13 @@ import org.apache.deltaspike.data.api.*;
 @Repository
 public interface ConsignatarioRepositorio extends EntityRepository<Consignatario, Long>, EntityManagerDelegate<Consignatario> {
 
-    @Query("SELECT u FROM Consignatario u WHERE u.descripcion like :filter")
+    @Query("SELECT u FROM Consignatario u WHERE u.nombre like :filter")
     QueryResult<Consignatario> findFiltered(
             @FirstResult int offset,
             @MaxResults int limit,
             @QueryParam("filter") String filter);
 
-    @Query("SELECT COUNT(u) FROM Consignatario u WHERE u.descripcion like :filter")
+    @Query("SELECT COUNT(u) FROM Consignatario u WHERE u.nombre like :filter")
     Long countFiltered(
             @QueryParam("filter") String filter);
 }

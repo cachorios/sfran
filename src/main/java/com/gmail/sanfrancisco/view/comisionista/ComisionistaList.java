@@ -29,3 +29,4 @@ public class ComisionistaList extends AbstractList<Comisionista> {
     @Override
     public String getTitulo() { return "Lista de Comisionistas"; }
 }
+

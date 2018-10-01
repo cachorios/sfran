@@ -14,7 +14,7 @@ import com.vaadin.flow.router.Route;
 
 import javax.inject.Inject;
 
-@Route(value="Numeros de DTE", layout = MainView.class)
+@Route(value="nrodte", layout = MainView.class)
 @PageTitle("Lista de Numeros de DTE")
 @MenuIcon(VaadinIcon.SPECIALIST)
 public class NumeroDteView extends AbstractDefaultView<NumeroDte> {

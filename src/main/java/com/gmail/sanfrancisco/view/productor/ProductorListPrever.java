@@ -1,12 +1,12 @@
-package com.gmail.sanfrancisco.view.consignatario;
+package com.gmail.sanfrancisco.view.productor;
 
 import com.gmail.cacho.slapi.view.AbstractPreview;
-import com.gmail.sanfrancisco.entidad.Consignatario;
+import com.gmail.sanfrancisco.entidad.Productor;
 import com.vaadin.flow.component.textfield.TextField;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
-public class ConsignatarioListPrever extends AbstractPreview<Consignatario> {
+public class ProductorListPrever extends AbstractPreview<Productor> {
     TextField id;
     TextField nombre;
     TextField apellido;
@@ -28,18 +28,18 @@ public class ConsignatarioListPrever extends AbstractPreview<Consignatario> {
         email       = textField("Correo electronico",false);
 
         add(id, nombre, apellido, cuil, celular, telefono, domicilio, email);
-        // envolver(valordat), valorchr, valorstr, envolver(espacio()), valorbol);
+                // envolver(valordat), valorchr, valorstr, envolver(espacio()), valorbol);
     }
 
     @Override
-    public void actualizar(Consignatario item) {
-        setValor(id,            Consignatario::getId);
-        setValor(nombre,        Consignatario::getNombre);
-        setValor(apellido,      Consignatario::getApellido);
-        setValor(cuil,          Consignatario::getCuil);
-        setValor(celular,       Consignatario::getCelular);
-        setValor(telefono,      Consignatario::getTelefono);
-        setValor(domicilio,     Consignatario::getDomicilio);
-        setValor(email,         Consignatario::getEmail);
+    public void actualizar(Productor item) {
+        setValor(id,            Productor::getId);
+        setValor(nombre,        Productor::getNombre);
+        setValor(apellido,      Productor::getApellido);
+        setValor(cuil,          Productor::getCuil);
+        setValor(celular,       Productor::getCelular);
+        setValor(telefono,      Productor::getTelefono);
+        setValor(domicilio,     Productor::getDomicilio);
+        setValor(email,         Productor::getEmail);
     }
 }

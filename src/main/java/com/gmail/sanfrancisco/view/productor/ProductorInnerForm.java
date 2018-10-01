@@ -1,8 +1,9 @@
-package com.gmail.sanfrancisco.view.consignatario;
+package com.gmail.sanfrancisco.view.productor;
 
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
-import com.gmail.sanfrancisco.entidad.Consignatario;
+import com.gmail.sanfrancisco.entidad.Comisionista;
+import com.gmail.sanfrancisco.entidad.Productor;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.html.Div;
@@ -13,7 +14,7 @@ import com.vaadin.flow.data.converter.StringToLongConverter;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
-public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
+public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
 
     private TextField id;
     private TextField nombre;
@@ -24,7 +25,7 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
     private TextField domicilio;
     private TextField email;
 
-    public ConsignatarioInnerForm(IPresentableForm<Consignatario> presentable, String elTitulo) {
+    public ProductorInnerForm(IPresentableForm<Productor> presentable, String elTitulo) {
         super(presentable, elTitulo);
     }
 
@@ -46,7 +47,7 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
         form.add(
                 envolver(id, "30%"),
                 envolver(nombre,"50%"),
-                envolver(apellido, "50%"),
+                envolver(apellido,"50%"),
                 envolver(cuil,"50%"),
                 envolver(celular,"50%"),
                 envolver(telefono,"50%"),
@@ -61,14 +62,13 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
     public Focusable getPrimerElementoForm() { return nombre; }
 
     @Override
-    public void bindFormFields(BeanValidationBinder<Consignatario> binder) {
+    public void bindFormFields(BeanValidationBinder<Productor> binder) {
 
         binder.forField(id)
                 .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
                 .withNullRepresentation(0l)
-                .bind(Consignatario::getId, null);
+                .bind(Productor::getId, null);
 
         binder.bindInstanceFields( this);
     }
 }
-
