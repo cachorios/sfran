@@ -22,7 +22,7 @@ public class ConsignatarioForm extends AbstractForm<Consignatario> {
     protected Focusable getPrimerElementoForm() { return null; }
 
     @Override
-    public String getTagVista() { return "RCV_TAG_ÄRAM"; }
+    public String getTagVista() { return "RCV_TAG_CONSIGNATARIO"; }
 
     @Override
     public Class<Consignatario> getEntityType() { return Consignatario.class; }

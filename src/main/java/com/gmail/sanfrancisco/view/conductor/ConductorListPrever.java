@@ -10,7 +10,6 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class ConductorListPrever extends AbstractPreview<Conductor> {
 
-
     @Override
     public void crearElementos() {
         addItem("id", new PreviewItem<>(textField("ID"), Conductor::getId));

@@ -1,7 +1,5 @@
 package com.gmail.sanfrancisco.view.conductor;
 
-
-
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;

@@ -17,7 +17,8 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
 
     private TextField id;
-    private TextField descripcion;
+    private TextField nombre;
+    private TextField apellido;
     private TextField cuil;
     private TextField celular;
     private TextField telefono;
@@ -35,7 +36,8 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
-        descripcion = textField("Descripción");
+        nombre = textField("Nombre");
+        apellido = textField("Apellido");
         cuil = textField("Cuil");
         celular = textField("Celular");
         telefono = textField("Telefono");
@@ -46,8 +48,9 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
 
         form.add(
                 envolver(id, "30%"),
-                envolver(descripcion,"50%"),
-                envolver(cuil,"50"),
+                envolver(nombre,"50%"),
+                envolver(apellido,"50%"),
+                envolver(cuil,"50%"),
                 envolver(celular,"50%"),
                 envolver(telefono,"50%"),
                 envolver(domicilio,"100%"),
@@ -59,7 +62,7 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
     }
 
     @Override
-    public Focusable getPrimerElementoForm() { return descripcion; }
+    public Focusable getPrimerElementoForm() { return nombre; }
 
     @Override
     public void bindFormFields(BeanValidationBinder<Comisionista> binder) {

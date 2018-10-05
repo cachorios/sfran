@@ -27,7 +27,7 @@ public class ConductorForm extends AbstractForm<Conductor> {
 
     @Override
     public String getTagVista() {
-        return "RCV_TAG_PARAM";
+        return "RCV_TAG_CONDUCTOR";
     }
 
     @Override

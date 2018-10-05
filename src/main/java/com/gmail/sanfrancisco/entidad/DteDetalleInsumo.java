@@ -20,9 +20,6 @@ public class DteDetalleInsumo extends AbstractEntidad {
     @NotNull
     private Double precio;
 
-    @NotNull
-    private Double subtotal;
-
     public Dte getDte() {
         return dte;
     }
@@ -53,13 +50,5 @@ public class DteDetalleInsumo extends AbstractEntidad {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
-    }
-
-    public Double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
     }
 }

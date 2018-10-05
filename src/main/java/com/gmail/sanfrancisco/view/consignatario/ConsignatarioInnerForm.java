@@ -16,14 +16,13 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
 
     private TextField id;
-    private TextField descripcion;
+    private TextField nombre;
+    private TextField apellido;
     private TextField cuil;
     private TextField celular;
     private TextField telefono;
     private TextField domicilio;
     private TextField email;
-    private TextField saldo;
-    private TextField saldoInicial;
 
     public ConsignatarioInnerForm(IPresentableForm<Consignatario> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -34,7 +33,8 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
-        descripcion = textField("Descripción");
+        nombre = textField("Nombre");
+        apellido = textField("Apellido");
         cuil = textField("Cuil");
         celular = textField("Celular");
         telefono = textField("Telefono");
@@ -43,20 +43,19 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
 
         form.add(
                 envolver(id, "30%"),
-                envolver(descripcion,"50%"),
+                envolver(nombre,"50%"),
+                envolver(apellido, "50%"),
                 envolver(cuil,"50%"),
                 envolver(celular,"50%"),
                 envolver(telefono,"50%"),
                 envolver(domicilio,"100%"),
-                envolver(email, "100%"),
-                envolver(saldo, "50%"),
-                envolver(saldoInicial, "50%")
+                envolver(email, "100%")
         );
 
     }
 
     @Override
-    public Focusable getPrimerElementoForm() { return descripcion; }
+    public Focusable getPrimerElementoForm() { return nombre; }
 
     @Override
     public void bindFormFields(BeanValidationBinder<Consignatario> binder) {

@@ -13,7 +13,8 @@ public class ComisionistaList extends AbstractList<Comisionista> {
     public ComisionistaList(IPresenterList<Comisionista> presenter) {
         super(presenter);
         setListaCols(Arrays.asList(
-                new ColumnList<>(Comisionista::getDescripcion,"Descripción","descripción", true),
+                new ColumnList<>(Comisionista::getNombre,"Nombre","nombre", true),
+                new ColumnList<>(Comisionista::getApellido,"Apellido","apellido", true),
                 new ColumnList<>(Comisionista::getCuil,"C.U.I.L.","cuil", true),
                 new ColumnList<>(Comisionista::getEmail,"Correo electronico","correo electronico", true)
         ));
@@ -28,3 +29,4 @@ public class ComisionistaList extends AbstractList<Comisionista> {
     @Override
     public String getTitulo() { return "Lista de Comisionistas"; }
 }
+

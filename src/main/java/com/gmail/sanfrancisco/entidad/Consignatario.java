@@ -9,8 +9,12 @@ import javax.validation.constraints.Size;
 @Entity
 public class Consignatario extends AbstractEntidad {
     @NotNull
-    @Size(min=5, max=50, message="La descripción debe contener entre 5 y 50 caracteres.")
-    private String descripcion;
+    @Size(min=5, max=50, message="La nombre debe contener entre 5 y 50 caracteres.")
+    private String nombre;
+
+    @NotNull
+    @Size(min=5, max=50, message="El apelldio debe contener entre 5 y 50 caracteres.")
+    private String apellido;
 
     @NotNull
     @Size(min=11, max=11, message="El cuil debe contener entre 11 caracteres.")
@@ -32,12 +36,20 @@ public class Consignatario extends AbstractEntidad {
     @Size(min=10, max=50, message="El correo electronico debe contener entre 10 y 50 caracteres.")
     private String email;
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCuil() {

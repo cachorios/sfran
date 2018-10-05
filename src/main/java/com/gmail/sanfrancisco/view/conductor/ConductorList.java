@@ -32,7 +32,7 @@ public class ConductorList  extends AbstractList<Conductor> {
 
     @Override
     public String getTitulo() {
-        return "Lista de Conductorres";
+        return "Lista de Conductores";
     }
 }
 

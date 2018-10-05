@@ -13,8 +13,12 @@ public class Comisionista extends AbstractEntidad {
     private String cuil;
 
     @NotNull
-    @Size(min=5, max=50, message="La descripción debe contener entre 5 y 50 caracteres.")
-    private String descripcion;
+    @Size(min=5, max=50, message="La nombre debe contener entre 5 y 50 caracteres.")
+    private String nombre;
+
+    @NotNull
+    @Size(min=5, max=50, message="La apellido debe contener entre 5 y 50 caracteres.")
+    private String apellido;
 
     @NotNull
     @Size(min=6, max=20, message="El celular debe contener entre 6 y 20 caracteres.")
@@ -46,12 +50,20 @@ public class Comisionista extends AbstractEntidad {
         this.cuil = cuil;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCelular() {
