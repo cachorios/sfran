@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.view.licencia;
 
 import com.gmail.cacho.slapi.view.AbstractPreview;
+import com.gmail.cacho.slapi.view.utils.PreviewItem;
 import com.gmail.sanfrancisco.entidad.Licencia;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -10,34 +11,14 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.dateField;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class LicenciaListPrever extends AbstractPreview<Licencia> {
-    TextField id;
-    TextField tipoLicencia;
-    DatePicker vencimiento;
-    DatePicker vencimientoNac;
-    DatePicker vencimientoCurso;
-    Checkbox licenciaCarga;
 
     @Override
     public void crearElementos() {
-        id               = textField("ID",       false);
-        tipoLicencia     = textField("Tipo licencia", false);
-        vencimiento      = dateField("Vencimiento", "50%");
-        vencimientoNac   = dateField("Vencimiento Nac", "50%");
-        vencimientoCurso = dateField("Vencimiento Curso", "50%");
-        licenciaCarga    = new Checkbox("Habilitado para carga");
-        licenciaCarga.setEnabled(false);
-
-        add(id, tipoLicencia, vencimiento, vencimientoNac, vencimientoCurso, licenciaCarga);
-//                envolver(valordat), valorchr, valorstr, envolver(espacio()), valorbol);
-    }
-
-    @Override
-    public void actualizar(Licencia item) {
-        setValor(id,                Licencia::getId);
-        setValor(tipoLicencia,      Licencia::getTipoLicencia);
-        setValor(vencimiento,       Licencia::getVencimiento);
-        setValor(vencimientoCurso,  Licencia::getVencimientoCurso);
-        setValor(vencimientoNac,    Licencia::getVencimientoNac);
-        setValor(licenciaCarga,     Licencia::getLicenciaCarga);
+        addItem("id", new PreviewItem<>(textField("ID"), Licencia::getId));
+        addItem("tipo de licencia", new PreviewItem<>(textField("Tipo de licencia"), Licencia::getTipoLicencia));
+        addItem("vencimiento", new PreviewItem<>(dateField("Vencimiento"), Licencia::getVencimiento));
+        addItem("venimiento del carnet", new PreviewItem<>(dateField("Vencimiento del carnet"), Licencia::getVencimientoNac));
+        addItem("vencimiento del curso", new PreviewItem<>(dateField("Vencimiento del curso"), Licencia::getVencimientoCurso));
+        addItem("habilitado para carga", new PreviewItem<>(new Checkbox("Habilitado para carga"), Licencia::getLicenciaCarga));
     }
 }

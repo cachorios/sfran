@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.view.movil;
 
 import com.gmail.cacho.slapi.view.AbstractPreview;
+import com.gmail.cacho.slapi.view.utils.PreviewItem;
 import com.gmail.sanfrancisco.entidad.Movil;
 import com.vaadin.flow.component.textfield.TextField;
 
@@ -15,22 +16,11 @@ public class MovilListPrever extends AbstractPreview<Movil> {
 
     @Override
     public void crearElementos() {
-        id              = textField("ID", false);
-        dominio         = textField("Dominio",false);
-        tipoMovil       = textField("Tipo de movil", false);
-        maxCabezas      = textField("Maximo de cabezas", false);
-        tipoCombustible = textField("Tipo de combustible", false);
-
-        add(id, dominio, tipoMovil, maxCabezas, tipoCombustible);
-//                envolver(valordat), valorchr, valorstr, envolver(espacio()), valorbol);
+        addItem("id", new PreviewItem<>(textField("ID"), Movil::getId));
+        addItem("dominio", new PreviewItem<>(textField("Dominio"), Movil::getDominio));
+        addItem("tipo de movil", new PreviewItem<>(textField("Tipo de movil"), Movil::getTipoMovil));
+        addItem("maximo de cabezas", new PreviewItem<>(textField("Maximo de cabezas"), Movil::getMaxCabezas));
+        addItem("tipo de combustible", new PreviewItem<>(textField("Tipo de combustible"), Movil::getTipoCombustible));
     }
 
-    @Override
-    public void actualizar(Movil item) {
-        setValor(id,                Movil::getId);
-        setValor(dominio,           Movil::getDominio);
-        setValor(tipoMovil,         Movil::getTipoMovil);
-        setValor(maxCabezas,        Movil::getMaxCabezas);
-        setValor(tipoCombustible,   Movil::getTipoCombustible);
-    }
 }
