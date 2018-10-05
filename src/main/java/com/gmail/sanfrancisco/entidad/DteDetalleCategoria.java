@@ -23,13 +23,7 @@ public class DteDetalleCategoria extends AbstractEntidad {
     private Double precioKgVivo;
 
     @NotNull
-    private Double saldoComision;
-
-    @NotNull
     private Double kgCarne;
-
-    @NotNull
-    private Double rendimiento;
 
     @NotNull
     private Double porcentajeComision;
@@ -74,28 +68,12 @@ public class DteDetalleCategoria extends AbstractEntidad {
         this.precioKgVivo = precioKgVivo;
     }
 
-    public Double getSaldoComision() {
-        return saldoComision;
-    }
-
-    public void setSaldoComision(Double saldoComision) {
-        this.saldoComision = saldoComision;
-    }
-
     public Double getKgCarne() {
         return kgCarne;
     }
 
     public void setKgCarne(Double kgCarne) {
         this.kgCarne = kgCarne;
-    }
-
-    public Double getRendimiento() {
-        return rendimiento;
-    }
-
-    public void setRendimiento(Double rendimiento) {
-        this.rendimiento = rendimiento;
     }
 
     public Double getPorcentajeComision() {
