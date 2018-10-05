@@ -17,7 +17,7 @@ import com.vaadin.flow.component.textfield.TextField;
  * @version 20180204
  */
 public class ViewTools {
-    public static final String ALTO_DEFAULT  = "40px";
+    public static final String ALTO_DEFAULT  = "100%";
     public static Component envolver(Component c){
         return envolver(c, "100%");
     }
@@ -74,12 +74,17 @@ public class ViewTools {
     }
 
     public static Span  espacio() {
+        return espacio("100%");
+    }
+
+    public static Span  espacio(String ancho) {
         Span t = new Span("");
-        t.setWidth("100%");
+        t.setWidth(ancho);
         t.getStyle().set("display", "inline-flex");
 
         return t;
     }
+
 
     public static Span generarTituloSeccion(String titulo) {
         Span label = new Span(titulo);

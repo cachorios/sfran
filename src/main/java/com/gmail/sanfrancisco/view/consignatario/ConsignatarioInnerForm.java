@@ -11,6 +11,7 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.converter.StringToLongConverter;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
+import static com.gmail.cacho.slapi.view.utils.ViewTools.espacio;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
@@ -42,14 +43,15 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
         email = textField("Correo electronico");
 
         form.add(
-                envolver(id, "30%"),
-                envolver(nombre,"50%"),
-                envolver(apellido, "50%"),
-                envolver(cuil,"50%"),
-                envolver(celular,"50%"),
-                envolver(telefono,"50%"),
-                envolver(domicilio,"100%"),
-                envolver(email, "100%")
+                envolver(id, "20%"),
+                envolver(espacio("80%")),
+                envolver(nombre,"48%"),
+                envolver(apellido, "48%"),
+                envolver(cuil,"48%"),
+                envolver(celular,"48%"),
+                envolver(telefono,"32%"),
+                envolver(domicilio,"32%"),
+                envolver(email, "32%")
         );
 
     }

@@ -45,6 +45,9 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
         this.id = id;
     }
 
+
+
+
 //    @Override
 //    public boolean equals(Object obj) {
 //        if (this == obj) {

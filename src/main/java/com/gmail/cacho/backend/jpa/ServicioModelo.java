@@ -2,6 +2,12 @@ package com.gmail.cacho.backend.jpa;
 
 
 
+import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.backend.entidad.Usuario;
+import com.gmail.cacho.slapi.comunes.C;
+import com.gmail.cacho.slbase.logging.L;
+import com.gmail.cacho.slbase.persist.excepciones.EntityErrorException;
+import com.gmail.cacho.slbase.persist.excepciones.PersistErrorException;
 import com.vaadin.flow.data.provider.QuerySortOrder;
 
 import com.vaadin.flow.data.provider.SortDirection;
@@ -9,6 +15,7 @@ import org.apache.deltaspike.data.api.EntityRepository;
 import org.apache.deltaspike.data.api.QueryResult;
 
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -22,17 +29,58 @@ import java.util.stream.Stream;
  * @author jmfragueiro
  * @version 20161011
  */
-public abstract class ServicioModelo<U>  {
-    protected EntityRepository<U, ?> repo;
+public abstract class ServicioModelo<U extends AbstractEntidad>  {
+    protected EntityRepository<U, Long> repo;
 
-    protected EntityRepository<U, ?> getRepository(){
+    protected EntityRepository<U, Long> getRepository(){
         return repo;
     }
 
 
-    protected U save(U entidad){
-        return repo.save(entidad);
+    public U save(U entidad) throws PersistErrorException {
+        try {
+            L.info((entidad.isNew() ? C.MSJ_DB_SAVEDATA : C.MSJ_DB_ALTERDATA), entidad.toString());
+            entidad = repo.saveAndFlush(entidad);
+            return entidad;
+        } catch (Exception ex) {
+            throw new PersistErrorException(C.MSJ_ERR_ATSAVEDATA, PersistenceExceptionUtil.verifyAndGenMessagePersistException(ex));
+        }
+
     }
+
+
+    public U refresh(U instancia) throws PersistErrorException {
+        try {
+            L.info(C.MSJ_DB_REFRESHDATA, instancia.toString());
+            repo.refresh(instancia);
+            return instancia;
+        } catch (Exception ex) {
+            throw new PersistErrorException(C.MSJ_ERR_ATREFRESHDATA, PersistenceExceptionUtil.verifyAndGenMessagePersistException(ex));
+        }
+    }
+
+     public void delete( U entity) {
+        if (entity == null) {
+            throw new EntityNotFoundException();
+        }
+//        entity.
+        repo.remove(entity);
+    }
+
+    public void delete(long id) {
+        delete(load(id));
+    }
+
+    public U load(long id) {
+        U entity = repo.findBy(Long.valueOf(id));
+        if (entity == null) {
+            throw new EntityNotFoundException();
+        }
+        return entity;
+    }
+
+
+
     /////////////////////////////////////////////////////////////////////////////////////////
     // METODOS DE SOPORTE A LA INTERFAZ DE USUARIO                                         //
     /////////////////////////////////////////////////////////////////////////////////////////

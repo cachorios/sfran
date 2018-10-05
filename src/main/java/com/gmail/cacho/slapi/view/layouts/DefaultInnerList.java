@@ -17,6 +17,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridSingleSelectionModel;
 import com.vaadin.flow.component.html.H2;
@@ -29,7 +30,8 @@ import com.vaadin.flow.component.textfield.TextField;
 
 import java.util.Arrays;
 
-@Tag("list-view")
+@Tag("list-view2")
+@HtmlImport("frontend://src/views/crud/list-preview-styles.html")
 public class DefaultInnerList<T extends AbstractEntidad> extends VerticalLayout implements ILayoutInnerList<T> {
     private IPresentableList<T> presentable;
     private H2 titulo;

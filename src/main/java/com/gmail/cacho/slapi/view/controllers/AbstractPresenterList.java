@@ -37,8 +37,7 @@ public abstract class AbstractPresenterList<T extends AbstractEntidad, S extends
        T objeto = getPresentable().getObjetoActivo();
        if (objeto != null && !objeto.isNew()) {
            try {
-               //todo: delete
-               ////servicio.delete(objeto);
+               servicio.delete(objeto);
                listList(filtro);
            } catch (Exception ex) {
                String msj = PersistenceExceptionUtil.verifyAndGenMessagePersistException(ex);

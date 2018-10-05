@@ -126,10 +126,21 @@ public abstract class AbstractForm<T extends AbstractEntidad> extends AbstractPr
         generarVista();
         bindearCampos();
         definirComportamientoComponentes();
+        setListener();
         actualizarEstadoBotones();
         establecerEstadoInicial();
         establecerEdicion();
         mostrarVentana();
+    }
+
+    private void setListener() {
+        if (getBinder() != null) {
+            getBinder().addStatusChangeListener(event -> {
+                hasChanges = event.getBinder().hasChanges();
+                hasValidationErrors = event.hasValidationErrors();
+                habilitarBotones();
+            });
+        }
     }
 
     @Override

@@ -4,7 +4,6 @@ package com.gmail.cacho.slapi.view.layouts;
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.comunes.R;
-import com.gmail.cacho.slapi.comunes.Recursos;
 import com.gmail.cacho.slapi.view.customs.tabs.CustomTabGroup;
 import com.gmail.cacho.slapi.view.enums.EModoVista;
 import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerForm;
@@ -15,14 +14,12 @@ import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dialog.Dialog;
-import com.vaadin.flow.component.formlayout.FormLayout;
+
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.H3;
+
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.data.binder.BeanValidationBinder;

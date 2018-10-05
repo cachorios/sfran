@@ -77,6 +77,9 @@
 <dom-module id="sciolar-text-field-theme" theme-for="vaadin-text-field">
     <template>
         <style>
+            :host{
+
+            }
             :host([status="new"]) [part~="input-field"],
             :host([status="confirmed"]) [part~="input-field"] {
                 color: var(--lumo-primary-color);
@@ -334,12 +337,12 @@
             /*--lumo-base-color: #efefef;*/
 
             /*--lumo-font-family: 'Open Sans', 'Trebuchet MS', arial, sans-serif !important;*/
-            --lumo-font-size-s: 0.8em !important;
-            --lumo-font-size-m: 1em !important;
-            --lumo-font-size-l: 1.2em !important;
+            --lumo-font-size-s: 12px !important;
+            --lumo-font-size-m: 14px !important;
+            --lumo-font-size-l: 16px !important;
 
-            --lumo-size-m: 21px;
-            --lumo-text-field-size: 100px;
+            --lumo-size-m: 25px;
+            /*--lumo-text-field-size: 100px;*/
 
             /*--lumo-primary-color-10pct: #85b6f5 !important;*/
             /*--lumo-body-text-color: #fff;*/

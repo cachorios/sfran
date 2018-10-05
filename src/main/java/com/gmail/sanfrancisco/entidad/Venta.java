@@ -6,9 +6,9 @@ import com.gmail.cacho.backend.entidad.Usuario;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-@Entity
+//@Entity
 public class Venta extends AbstractEntidad {
-    @ManyToOne
+//    @ManyToOne
     private Usuario usuario;
 
     public Usuario getUsuario() {

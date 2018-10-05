@@ -76,9 +76,9 @@ public abstract class AbstractPresenterForm<T extends AbstractEntidad, S extends
                 ///////////////////////////////////////////////////////////////////
                 // Procesa el guardado
                 ///////////////////////////////////////////////////////////////////
-                ////Todo: persist
-                //// T item2 = servicio.persist(item);
-                ////getPresentable().setObjetoActivo(item2);
+
+                T item2 = servicio.save(item);
+                getPresentable().setObjetoActivo(item2);
                 Sistema.getSistema().mostrarMensaje(ENivelAplicacion.INFO, C.WIN_TIT_SAVEREG, C.CRUD_MSG_BOXOK);
                 ///////////////////////////////////////////////////////////////////
 
