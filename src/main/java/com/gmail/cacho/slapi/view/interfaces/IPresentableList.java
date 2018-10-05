@@ -18,7 +18,7 @@ import java.util.List;
  * @author larios
  * @version 20180201
  */
-public interface IPresentableList<T extends AbstractEntidad> extends IVisualizableGestionable, IPresentable<T>, ISolapable<T> {
+public interface IPresentableList<T extends AbstractEntidad> extends IPresentable<T> {
     /**
      * Una lista tiene que permitir la posibilidad de tener un formulario CRUD
      * asociado, el cual será utilizado para las operaciones de VER, EDITAR, y
@@ -71,7 +71,7 @@ public interface IPresentableList<T extends AbstractEntidad> extends IVisualizab
     /**
      * Este metodo debe encargarse de refrescar la lista contenida en el presentable.
      *
-     * @param parametro un Parametro que permita adaptar el refresco a las condiciones actuales.
+     * @param parametro un parametro que permita adaptar el refresco a las condiciones actuales.
      */
     void refrescarLista(Object parametro);
 }

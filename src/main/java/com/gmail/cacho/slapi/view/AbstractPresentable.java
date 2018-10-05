@@ -1,12 +1,12 @@
 package com.gmail.cacho.slapi.view;
 
-
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.slapi.comunes.C;
+import com.gmail.cacho.slapi.view.customs.tabs.CustomTab;
 import com.gmail.cacho.slapi.view.enums.EModoVista;
 import com.gmail.cacho.slapi.view.interfaces.IPresentable;
 import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
-import com.gmail.cacho.slapi.view.interfaces.IVisualizableGestionable;
+
 import com.gmail.cacho.slapi.view.utils.ComponenteVista;
 import com.gmail.cacho.slbase.logging.L;
 import com.vaadin.flow.component.Focusable;
@@ -14,7 +14,6 @@ import com.vaadin.flow.component.HasValue;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * Esta clase es la implementación por defecto de la interfase IPresentableList e
@@ -34,10 +33,11 @@ import java.util.List;
  * @author cachorios-jmfragueiro
  * @version 20180204
  */
-public abstract class AbstractPresentable<T extends AbstractEntidad> implements IVisualizableGestionable, IPresentable<T> {
+public abstract class AbstractPresentable<T extends AbstractEntidad> implements IPresentable<T>{
     private IVisualizable padre;
     private List<ComponenteVista> componentesVista;
     private EModoVista modoVista;
+    private CustomTab tabpadre;
 
     public AbstractPresentable() {
         componentesVista = new ArrayList<>();
@@ -62,14 +62,14 @@ public abstract class AbstractPresentable<T extends AbstractEntidad> implements 
 
         // finalmente verifica por si existe un panel asociado
         componentesVista.stream()
-                        .filter(bv -> bv.getComponente().isVisible())
-                        .forEach(bv -> bv.getComponente().setVisible(esVisualizable(bv)));
+                .filter(bv -> bv.getComponente().isVisible())
+                .forEach(bv -> bv.getComponente().setVisible(esVisualizable(bv)));
     }
 
     protected void habilitarBotones() {
         componentesVista.stream()
-                        .filter(bv -> bv.getComponente().isVisible())
-                        .forEach(bv -> bv.getComponente().setEnabled(esHabilitable(bv)));
+                .filter(bv -> bv.getComponente().isVisible())
+                .forEach(bv -> bv.getComponente().setEnabled(esHabilitable(bv)));
     }
 
     public void focusField(HasValue<?,?> field) {
@@ -119,5 +119,20 @@ public abstract class AbstractPresentable<T extends AbstractEntidad> implements 
     @Override
     public void establecerEstadoInicial() {
 
+    }
+
+    @Override
+    public void actualizar(Object parametro) {
+
+    }
+
+    @Override
+    public void setTabpadre(CustomTab tab) {
+        tabpadre = tab;
+    }
+
+    @Override
+    public CustomTab getTabpadre() {
+        return tabpadre;
     }
 }

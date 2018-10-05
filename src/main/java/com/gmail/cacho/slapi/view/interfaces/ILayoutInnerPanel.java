@@ -9,5 +9,5 @@ package com.gmail.cacho.slapi.view.interfaces;
  * @version 20180201
  */
 public interface ILayoutInnerPanel extends ILayoutInner {
-    IVisualizablePanel getVisuatable();
+    IManageablePanel getManageable();
 }

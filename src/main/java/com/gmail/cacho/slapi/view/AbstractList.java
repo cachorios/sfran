@@ -7,6 +7,7 @@ import com.gmail.cacho.slapi.view.customs.tabs.CustomTab;
 import com.gmail.cacho.slapi.view.enums.EModoVista;
 import com.gmail.cacho.slapi.view.interfaces.*;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerList;
+import com.gmail.cacho.slapi.view.layouts.DefaultInnerListPolymer;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.cacho.slapi.view.utils.ComponenteVista;
 import com.gmail.cacho.slbase.logging.L;
@@ -34,6 +35,7 @@ import java.util.List;
  * @author cachorios-jmfragueiro
  * @version 20180204
  */
+
 public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPresentable<T> implements IPresentableList<T> {
     private IPresenterList<T> presenter;
     private IPresentableForm<T> form;
@@ -41,7 +43,7 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
     private ILayoutInnerList<T> layout;
     private List<ColumnList> listaCols;
     private T registroSelect;
-    private CustomTab<T> tabPadre;
+    private CustomTab tabpadre;
 
     protected AbstractList(IPresenterList<T> presenter) {
         super();
@@ -58,7 +60,8 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
     }
 
     protected ILayoutInnerList<T> generarLayout(AbstractList<T> padre, String titulo) {
-        return new DefaultInnerList<>(padre, getTitulo());
+        return new DefaultInnerListPolymer<>(padre, getTitulo());
+        //DefaultInnerList<>(padre, getTitulo());
     }
 
     protected void setListaCols(List<ColumnList> listaCols) {
@@ -73,8 +76,7 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
     @Override
     public void setForm(IPresentableForm<T> form) {
         if (form != null) {
-            L.info(C.MSG_ACC_SETFORMCRUD,
-                   form.getClass().getSimpleName().concat(C.SYS_CAD_REFER).concat(this.getClass().getSimpleName()));
+            L.info(C.MSG_ACC_SETFORMCRUD, form.getClass().getSimpleName().concat(C.SYS_CAD_REFER).concat(this.getClass().getSimpleName()));
             this.form = form;
             form.setPadre(this);
         } else {
@@ -88,16 +90,6 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
     }
 
     @Override
-    public void setTabPadre(CustomTab<T> tab) {
-        tabPadre = tab;
-    }
-
-    @Override
-    public CustomTab<T> getTabPadre() {
-        return tabPadre;
-    }
-
-    @Override
     public IVisualizableReadOnly<T> getPreview() {
         return preview;
     }
@@ -106,7 +98,7 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
     public void setPreview(IVisualizableReadOnly<T> preview) {
         if (preview != null) {
             L.info(C.MSG_ACC_SETPREVIEW,
-                   preview.getClass().getSimpleName().concat(C.SYS_CAD_REFER).concat(this.getClass().getSimpleName()));
+                    preview.getClass().getSimpleName().concat(C.SYS_CAD_REFER).concat(this.getClass().getSimpleName()));
             this.preview = preview;
             preview.setPadre(this);
         } else {
@@ -117,12 +109,11 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
     @Override
     public void iniciar(EModoVista modoVista, AbstractEntidad item) {
         L.info(C.MSG_ACC_INITVIEW, this.getClass().getSimpleName().concat(C.SYS_CAD_OPENTYPE)
-                                       .concat(((modoVista != null) ? modoVista.toString()
-                                                                    : C.SYS_CAD_TXTNULL.concat(C.SYS_CAD_REFER)
-                                                                                       .concat(EModoVista.VER.toString())))
-                                       .concat(C.SYS_CAD_LOGSEP)
-                                       .concat(((item != null) ? item.toString() : C.SYS_CAD_TXTNULL))
-                                       .concat(C.SYS_CAD_CLOSETPE));
+                .concat(((modoVista != null) ? modoVista.toString() : C.SYS_CAD_TXTNULL.concat(C.SYS_CAD_REFER)
+                        .concat(EModoVista.VER
+                                .toString())))
+                .concat(C.SYS_CAD_LOGSEP).concat(((item != null) ? item.toString() : C.SYS_CAD_TXTNULL))
+                .concat(C.SYS_CAD_CLOSETPE));
 
         setModoVista(modoVista);
         presenter.setItemPadre(item);
@@ -135,7 +126,7 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
 
     @Override
     public Component getViewComponent() {
-        return (Component)layout;
+        return layout.getLayout();
     }
 
     @Override
@@ -149,11 +140,11 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
         return presenter;
     }
 
+
     @Override
     public void setObjetoActivo(T objeto) {
         registroSelect = objeto;
         if (preview != null) {
-            preview.setItem(registroSelect);
             preview.actualizar(registroSelect);
         }
         presenter.alActualizarSeleccion(Collections.singletonList(registroSelect));
@@ -172,7 +163,6 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
 
     @Override
     public void refrescarLista(Object parametro) {
-        presenter.setItemPadre(parametro);
         registroSelect = null;
         presenter.listList(parametro);
         habilitarBotones();
@@ -185,7 +175,16 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
 
     @Override
     public boolean esHabilitable(ComponenteVista componente) {
-        return (componente.getModosVista().contains(this.getModoVista())
-                && (!componente.conSel() || registroSelect != null));
+        return (componente.getModosVista().contains(this.getModoVista()) && (!componente.conSel() || registroSelect != null));
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        getViewComponent().setVisible(visible);
+    }
+
+    @Override
+    public boolean isVisible() {
+        return getViewComponent().isVisible();
     }
 }

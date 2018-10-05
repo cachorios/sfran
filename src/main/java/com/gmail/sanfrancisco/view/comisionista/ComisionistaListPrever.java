@@ -1,46 +1,28 @@
 package com.gmail.sanfrancisco.view.comisionista;
 
 import com.gmail.cacho.slapi.view.AbstractPreview;
+import com.gmail.cacho.slapi.view.utils.PreviewItem;
 import com.gmail.cacho.slapi.view.utils.ViewTools;
 import com.gmail.sanfrancisco.entidad.Comisionista;
+import com.gmail.sanfrancisco.entidad.Consignatario;
 import com.vaadin.flow.component.textfield.TextField;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class ComisionistaListPrever extends AbstractPreview<Comisionista> {
-    TextField id;
-    TextField descripcion;
-    TextField cuil;
-    TextField celular;
-    TextField telefono;
-    TextField domicilio;
-    TextField saldo;
-    TextField email;
 
     @Override
     public void crearElementos() {
-        id          = textField("ID",false);
-        descripcion = textField("Descripción",false);
-        cuil        = textField("CUIL",false);
-        celular     = textField("Celular",false);
-        telefono    = textField("Telefono",false);
-        domicilio   = textField("Domicilio",false);
-        saldo       = textField("Saldo",false);
-        email       = textField("Correo electronico",false);
-
-        add(id, descripcion, cuil, celular, telefono, domicilio, saldo, email);
-                // envolver(valordat), valorchr, valorstr, envolver(espacio()), valorbol);
+        addItem("id", new PreviewItem<>(textField("ID"), Comisionista::getId));
+        addItem("descripcion", new PreviewItem<>(textField("Descripción"), Comisionista::getDescripcion));
+        addItem("cuil", new PreviewItem<>(textField("CUIL"), Comisionista::getCuil));
+        addItem("celular", new PreviewItem<>(textField("Nro.Cel."), Comisionista::getCelular));
+        addItem("telefono", new PreviewItem<>(textField("Nro.Tel."), Comisionista::getTelefono));
+        addItem("domicilio", new PreviewItem<>(textField("Domicilio"), Comisionista::getDomicilio));
+        addItem("celular", new PreviewItem<>(textField("Nro.Cle."), Comisionista::getCelular));
+        addItem("saldo", new PreviewItem<>(textField("Saldo"), Comisionista::getSaldo));
+        addItem("email", new PreviewItem<>(textField("Email"), Comisionista::getEmail));
     }
 
-    @Override
-    public void actualizar(Comisionista item) {
-        setValor(id,            Comisionista::getId);
-        setValor(descripcion,   Comisionista::getDescripcion);
-        setValor(cuil,          Comisionista::getCuil);
-        setValor(celular,       Comisionista::getCelular);
-        setValor(telefono,      Comisionista::getTelefono);
-        setValor(domicilio,     Comisionista::getDomicilio);
-        setValor(saldo,         Comisionista::getSaldo);
-        setValor(email,         Comisionista::getEmail);
-    }
+
 }

@@ -1,0 +1,35 @@
+vaadin-text-field {
+    border: 1px solid gray;
+    width: 100%;
+    padding: 5em;
+    background-color: red;
+}
+
+vaadin-horizontal-layout{
+    border: 1px #ef6cff solid;
+}
+
+.list-view{
+    border: 1px #ef6c00 solid;
+    background-color: #2d9f19;
+}
+h2{
+    border: 1px #00a7f5 solid;
+    color: red;
+}
+
+.list-contenido{
+    border: 1px #ef6c00 solid;
+    background-color: #2d9f19;
+}
+.list-contenido {
+    border: 1px #ef6c00 solid;
+}
+
+.list-contenido label{
+    border: 1px #ef6c00 solid;
+}
+
+label{
+    border: 1px #ef6c00 solid;
+}

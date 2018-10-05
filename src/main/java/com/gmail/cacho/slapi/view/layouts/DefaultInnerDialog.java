@@ -3,6 +3,7 @@ package com.gmail.cacho.slapi.view.layouts;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.slapi.comunes.C;
+import com.gmail.cacho.slapi.comunes.R;
 import com.gmail.cacho.slapi.comunes.Recursos;
 import com.gmail.cacho.slapi.view.customs.tabs.CustomTabGroup;
 import com.gmail.cacho.slapi.view.enums.EModoVista;
@@ -10,33 +11,51 @@ import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerForm;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterForm;
 import com.gmail.cacho.slapi.view.utils.ComponenteVista;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Focusable;
-import com.vaadin.flow.component.HasStyle;
-import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.templatemodel.TemplateModel;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-@HtmlImport("frontend://src/views/crud/view-form.html")
-public class DefaultInnerDialog<T extends AbstractEntidad> extends Dialog implements ILayoutInnerForm<T> {
+@Tag("form-dialog")
+@HtmlImport("frontend://src/components/crud/form-dialog.html")
+public class DefaultInnerDialog<T extends AbstractEntidad> extends PolymerTemplate<DefaultInnerDialog.BindingModel> implements ILayoutInnerForm<T> {
+
+    public interface BindingModel extends TemplateModel {
+        void setTitulo(String titulo);
+    }
+
+    private final Dialog dialog = new Dialog();
+
     private IPresentableForm<T> presentable;
-    private H3 titulo;
-    private VerticalLayout contenido;
-    private HorizontalLayout botonera;
+
+    @Id("titulo")
+    private H2 titulo;
+    @Id("contenido")
+    private Div contenido;
+    @Id("botonera")
+    private Div botonera;
+    @Id("tabs-container")
+    private Div tabContainer;
+
     private Button guarAddButton;
     private Button guardarButton;
     private Button cancelarButton;
+
     private CustomTabGroup tabs;
     protected Component form;
 
@@ -50,64 +69,46 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends Dialog implem
     }
 
     protected void setearEstiloGeneral() {
-        setHeight("600px");
-        setWidth("800px");
-        setCloseOnEsc(false);
-        setCloseOnOutsideClick(false);
+        dialog.setHeight("600px");
+        dialog.setWidth("800px");
+        dialog.setCloseOnEsc(false);
+        dialog.setCloseOnOutsideClick(false);
     }
 
     private void generarVista(String elTitulo) {
         // 1.TITULO
-        if (elTitulo != null && !elTitulo.isEmpty()) {
-            titulo = generarTitulo(elTitulo);
-        }
+        generarTitulo(elTitulo);
+        generarForm(contenido);
 
-        // 2.CONTENIDO (FORM+TABS)
-        contenido = generarContenido();
-        form = generarForm();
+
+        tabContainer.setVisible(false);
         if (presentable.contieneTabs()) {
             tabs = generarTabs();
-            VerticalLayout frame = new VerticalLayout();
-            frame.setSizeFull();
-            frame.add(form, tabs);
-            frame.setMargin(false);
-            frame.setSpacing(false);
-            frame.setPadding(false);
-            frame.setFlexGrow(getFormRatio(), form);
-            frame.setFlexGrow(1.0f - getFormRatio(), tabs);
-            contenido.add(frame);
-        } else {
-            contenido.add(form);
+            tabContainer.setVisible(true);
+            tabContainer.add(tabs);
+
+            ///tabContainer.setFlexGrow(1.0f - getFormRatio(), tabs);
         }
 
         // 3.BOTONERA
-        botonera = generarBotonera();
-
-        // 4.ARMADO FINAL
-        add(titulo, contenido, botonera); //this.expand(contenido); esto venia despues: que hacemos? setearFlexGrow();??
+        generarBotonera();
 
         // 5.REGISTRADO DE COMPONENTES POR DEFECTO
         registrarComponentesDefault();
         setearShortcuts();
+        generarContenido();
     }
 
-    protected H3 generarTitulo(String eltitulo) {
-        H3 titulo = new H3(eltitulo);
-        titulo.setClassName("titulo");
-        titulo.setWidth("100%");
+    protected void generarTitulo(String elTitulo) {
+        titulo.setVisible(elTitulo != null && !elTitulo.isEmpty());
+        if (titulo.isVisible()) {
+            titulo.setText(elTitulo);
+        }
 
-        return titulo;
     }
 
-    protected VerticalLayout generarContenido() {
-        VerticalLayout content = new VerticalLayout();
-        content.setClassName("content");
-        content.setSizeFull();
-        content.setPadding(false);
-        content.setMargin(false);
-        content.setSpacing(false);
-
-        return content;
+    protected void generarContenido() {
+        dialog.add(this);
     }
 
     protected CustomTabGroup generarTabs() {
@@ -121,49 +122,39 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends Dialog implem
         return tabs;
     }
 
-    protected HorizontalLayout generarBotonera() {
-        HorizontalLayout botonera = new HorizontalLayout();
-
-        botonera.setWidth("100%");
-        botonera.setHeight("50px");
+    protected Div generarBotonera() {
 
         generarGuardarButton();
         generarGuarAddButton();
         generarCancelarButton();
         botonera.add(guardarButton,guarAddButton, cancelarButton);
-
-        botonera.setAlignSelf(FlexComponent.Alignment.END, guardarButton, guarAddButton, cancelarButton);
-
         return botonera;
     }
 
     protected void generarGuardarButton() {
         guardarButton = new Button(C.CRUD_FORM_BTN_GUARDAR);
-        //// guardarButton.setStyleName("small");
+        guardarButton.getElement().setAttribute("theme", "primary");
+
         guardarButton.setIcon(VaadinIcon.CHECK_SQUARE_O.create());
-        guardarButton.getElement().setProperty("data", Recursos.RCV_BTN_ALLCAN);
+        guardarButton.getElement().setProperty("data", R.RCV_BTN_ALLCAN);
     }
 
     protected void generarGuarAddButton() {
         guarAddButton = new Button(C.CRUD_FORM_BTN_GUARADD);
-        //// guarAddButton.setStyleName("small");
+        guarAddButton.getElement().setAttribute("theme", "primary");
         guarAddButton.setIcon(VaadinIcon.CHECK_SQUARE_O.create());
-        guarAddButton.getElement().setProperty("data", Recursos.RCV_BTN_ALLCAN);
+        guarAddButton.getElement().setProperty("data", R.RCV_BTN_ALLCAN);
     }
 
     protected void generarCancelarButton() {
         cancelarButton = new Button(C.CRUD_FORM_BTN_CANCELAR);
-        //// cancelarButton.setStyleName("small");
+        cancelarButton.getElement().setAttribute("theme", "primary");
+
         cancelarButton.setIcon(VaadinIcon.CLOSE.create());
-        cancelarButton.getElement().setProperty("data", Recursos.RCV_BTN_ALLCAN);
+        cancelarButton.getElement().setProperty("data", R.RCV_BTN_ALLCAN);
     }
 
-    protected Component generarForm() {
-        Component form =  new FormLayout();
-        ((HasStyle)form).setClassName("panel");
-
-        return form;
-    }
+    protected void generarForm(Div form) {}
 
     protected float getFormRatio() {
         return formRatio;
@@ -181,7 +172,7 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends Dialog implem
 
     @Override
     public void mostrar() {
-        open();
+        dialog.open();
     }
 
     @Override
@@ -195,7 +186,7 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends Dialog implem
     }
 
     @Override
-    public VerticalLayout getContenido() {
+    public Component getContenido() {
         return contenido;
     }
 
@@ -216,7 +207,7 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends Dialog implem
 
     @Override
     public void cerrar() {
-        close();
+        dialog.close();
     }
 
     @Override
@@ -236,7 +227,7 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends Dialog implem
 
     @Override
     public void setEditableState(boolean enable) {
-        form.getElement().setAttribute("enabled", true);
+        contenido.setEnabled(enable);
     }
 
     @Override

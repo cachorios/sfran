@@ -6,6 +6,7 @@ import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.enums.EModoVista;
 import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
 import com.gmail.cacho.slbase.logging.L;
+import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import javax.annotation.PostConstruct;
@@ -28,6 +29,8 @@ import java.io.Serializable;
  * @author cachorios-jmfragueiro
  * @version 20180204
  */
+
+@HtmlImport("frontend://src/views/crud/form-view-styles.html")
 public abstract class AbstractDefaultView<T extends AbstractEntidad> extends VerticalLayout implements Serializable {
     private IVisualizable principal;
     private EModoVista modo;

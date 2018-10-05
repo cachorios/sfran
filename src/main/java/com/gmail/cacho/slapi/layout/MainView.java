@@ -32,108 +32,49 @@ import de.kaesdingeling.hybridmenu.design.DesignItem;
 
 import javax.enterprise.inject.spi.CDI;
 
+import static com.github.appreciated.app.layout.entity.Section.HEADER;
 
-@UIScoped
 @BodySize(height = "100vh", width = "100vw")
+@HtmlImport("frontend://styles/shared-styles.html")
 @Theme(value = Lumo.class, variant = Lumo.LIGHT)
 @HtmlImport("frontend://styles/shared-styles.html")
-@Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
-public class MainView extends HybridMenu {
+@HtmlImport("frontend://styles/shared-styles.html")
+public class MainView extends AppLayoutRouterLayout {
+    public MainView() {
+        Sistema.getSistema().getEventBus().register(this);
+    }
 
-        @Override
-        public boolean init(VaadinSession vaadinSession, UI ui) {
+    @Override
+    public AppLayout getAppLayout() {
+        // Primero define ciertos componentes de la barra superior
+        TopClickableComponent tc1 = new TopClickableComponent(null, VaadinIcon.LOCK.create(),
+                clickEvent -> (new WinChangePass()).open());
+        tc1.setSizeFull();
+        TopClickableComponent tc2 = new TopClickableComponent(null, VaadinIcon.OUT.create(),
+                clickEvent -> Sistema.getSistema().getEventBus()
+                        .post(new Events.UserLogoutEvent()));
+        tc2.setSizeFull();
 
-            withConfig(MenuConfig.get().withDesignItem(DesignItem.getWhiteDesign()).withBreadcrumbs(false));
+        // Aqui organiza el layout general con titulo
+        // y con la barra superior (y establece el diseño)
+        AppLayoutBuilder alb = AppLayoutBuilder.get(Behaviour.LEFT).withTitle(Sistema.getSistema().getTitulo())
+                .withAppBar(AppBarBuilder.get().add(tc1).add(tc2).build())
+                .withDesign(AppLayoutDesign.DEFAULT);//.MATERIAL);
 
-//        TopMenu topMenu = getTopMenu();
+        // Aqui se comienza el armado del menu principal
+        // y su parte superior (con imagen y nombre/version)
+        LeftAppMenuBuilder lamb = LeftAppMenuBuilder.get();
+        String sistema = Sistema.getSistema().getNombre();
+        String username = Sistema.getSistema().getNombreUsuarioActivo();
+        String diricono = Sistema.getSistema().getImagePath() + username + ".png";
+        MenuHeaderComponent header = new MenuHeaderComponent(username, null, diricono);
+        header.setAlignItems(FlexComponent.Alignment.CENTER);
+        lamb.addToSection(header, HEADER);
 
-            // topMenu.add(HMTextField.get(VaadinIcon.SEARCH, "Search ..."));
+        // Aqui completa el menu del centro segun la db, el
+        // usuario activo en la sesion activa y los permisos
+        CDI.current().select(MenuService.class).get().completarMenuDesdeDB(lamb);
 
-//        topMenu.add(HMButton.get()
-//                .withIcon(VaadinIcon.HOME)
-//                .withDescription("Home")
-//                .withNavigateTo(ParamView.class));
-
-
-            LeftMenu leftMenu = getLeftMenu();
-
-            leftMenu.add(HMLabel.get()
-                    .withCaption("<b>Hybrid</b> Menu")
-                    .withIcon(new Image("./frontend/hybridmenu/logo.png", "HybridMenu Logo")));
-
-//        getBreadCrumbs().setRoot(leftMenu.add(HMButton.get()
-//                .withCaption("Home")
-//                .withIcon(VaadinIcon.HOME)
-//                .withNavigateTo(ParamView.class)));
-
-//        leftMenu.add(HMButton.get()
-//                .withCaption("Notification Builder")
-//                .withIcon(VaadinIcon.BELL)
-//                .withNavigateTo(NotificationBuilderPage.class));
-
-
-//		leftMenu.add(HMButton.get()
-//				.withCaption("Theme Builder")
-//				.withIcon(FontAwesome.WRENCH)
-//				.withNavigateTo(ThemeBuilderPage.class));
-//
-
-        /*
-        HMSubMenu memberList = leftMenu.add(HMSubMenu.get()
-                .withCaption("Member")
-                .withIcon(VaadinIcon.USERS));
-
-        memberList.add(HMButton.get()
-                .withCaption("Settings")
-                .withIcon(VaadinIcon.COGS)
-                .withNavigateTo(SettingsPage.class));
-
-        memberList.add(HMButton.get()
-                .withCaption("Member")
-                .withIcon(VaadinIcon.USERS)
-                .withNavigateTo(ParamView.class));
-
-        memberList.add(HMButton.get()
-                .withCaption("Group")
-                .withIcon(VaadinIcon.USERS)
-                .withNavigateTo(ParamView.class));
-
-        HMSubMenu memberListTwo = memberList.add(HMSubMenu.get()
-                .withCaption("Member")
-                .withIcon(VaadinIcon.USERS));
-
-        memberListTwo.add(HMButton.get()
-                .withCaption("Settings")
-                .withIcon(VaadinIcon.COGS)
-                .withNavigateTo(SettingsPage.class));
-
-        memberListTwo.add(HMButton.get()
-                .withCaption("Member")
-                .withIcon(VaadinIcon.USERS)
-                .withNavigateTo(ParamView.class));
-
-
-        HMSubMenu demoSettings = leftMenu.add(HMSubMenu.get()
-                .withCaption("Settings")
-                .withIcon(VaadinIcon.COGS));
-
-        demoSettings.add(HMButton.get()
-                .withCaption("White Theme")
-                .withIcon(VaadinIcon.PALETE)
-                .withClickListener(e -> switchTheme(DesignItem.getWhiteDesign())));
-
-        demoSettings.add(HMButton.get()
-                .withCaption("Dark Theme")
-                .withIcon(VaadinIcon.PALETE)
-                .withClickListener(e -> switchTheme(DesignItem.getDarkDesign())));
-
-        demoSettings.add(HMButton.get()
-                .withCaption("Minimal")
-                .withIcon(VaadinIcon.COG)
-                .withClickListener(e -> getLeftMenu().toggleSize()));
-        */
-
-            CDI.current().select(MenuService.class).get().completarHybridMenuDesdeDB(leftMenu);
-            return true;
-        }
+        return alb.withAppMenu(lamb.build()).build();
+    }
 }

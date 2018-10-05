@@ -1,18 +1,18 @@
 package com.gmail.cacho.slapi.view;
 
-
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.customs.tabs.CustomTab;
 import com.gmail.cacho.slapi.view.customs.tabs.CustomTabGroup;
 import com.gmail.cacho.slapi.view.enums.EModoVista;
-import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerPanel;
-import com.gmail.cacho.slapi.view.interfaces.IManager;
-import com.gmail.cacho.slapi.view.interfaces.IManagerPanel;
-import com.gmail.cacho.slapi.view.interfaces.IVisualizablePanel;
+import com.gmail.cacho.slapi.view.interfaces.*;
+import com.gmail.cacho.slapi.view.utils.ComponenteVista;
 import com.gmail.cacho.slbase.logging.L;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Esta clase es la implementación por defecto de la interfase IVisuatablePanel e
@@ -28,21 +28,38 @@ import com.vaadin.flow.component.Focusable;
  * @author cachorios-jmfragueiro
  * @version 20180204
  */
-public abstract class AbstractPanel extends AbstractPresentable implements IVisualizablePanel {
+public abstract class AbstractPanel implements IManageablePanel {
+    private IVisualizable padre;
+    private List<ComponenteVista> componentesVista;
+    private EModoVista modoVista;
     private IManager manager;
     private Runnable onSaveOK;
-    private CustomTabGroup tabGroup;
     private ILayoutInnerPanel layout;
-    private CustomTab tabPadre;
+    private CustomTabGroup tabGroup;
+    private CustomTab tabpadre;
 
     protected AbstractPanel(IManagerPanel manager) {
-        super();
+        componentesVista = new ArrayList<>();
         this.manager = manager;
         manager.setGestionable(this);
     }
 
+    protected void setModoVista(EModoVista modoVista) {
+        this.modoVista = (modoVista == null) ? EModoVista.VER : modoVista;
+    }
+
     private void generarVista() {
         layout = generarLayout(this, ((getPadre() != null) ? null : getTitulo()));
+    }
+
+    @Override
+    public void registrarComponenteVista(ComponenteVista componente) {
+        componentesVista.add(componente);
+    }
+
+    @Override
+    public List<ComponenteVista> getComponentesVista() {
+        return componentesVista;
     }
 
     private void mostrarVentana() {
@@ -55,6 +72,41 @@ public abstract class AbstractPanel extends AbstractPresentable implements IVisu
     protected void setTabGroup(CustomTabGroup tabGroup) { this.tabGroup = tabGroup; }
 
     protected abstract Focusable getPrimerElementoForm();
+
+    protected void definirComportamientoComponentes() {
+        componentesVista.forEach(b -> b.getComponente().addClickListener(b.getCl()));
+    }
+
+    protected void actualizarEstadoBotones() {
+        visualizarBotones();
+        habilitarBotones();
+    }
+
+    protected void visualizarBotones() {
+        // primero verificar por permisos del usuario
+        getManager().aplicarPermisos();
+
+        // finalmente verifica por si existe un panel asociado
+        componentesVista.stream()
+                .filter(bv -> bv.getComponente().isVisible())
+                .forEach(bv -> bv.getComponente().setVisible(esVisualizable(bv)));
+    }
+
+    protected void habilitarBotones() {
+        componentesVista.stream()
+                .filter(bv -> bv.getComponente().isVisible())
+                .forEach(bv -> bv.getComponente().setEnabled(esHabilitable(bv)));
+    }
+
+    @Override
+    public boolean hasUnsavedChanges() {
+        return false;
+    }
+
+    @Override
+    public boolean hasValidationErrors() {
+        return false;
+    }
 
     @Override
     public AbstractEntidad getObjetoMasterTab(Class claseTab) {
@@ -84,19 +136,20 @@ public abstract class AbstractPanel extends AbstractPresentable implements IVisu
     @Override
     public void iniciar(EModoVista modoVista, AbstractEntidad item) {
         L.info(C.MSG_ACC_INITVIEW,
-               this.getClass().getSimpleName()
-                   .concat(C.SYS_CAD_OPENTYPE)
-                   .concat(((modoVista != null)
-                            ? modoVista.toString()
-                            : C.SYS_CAD_TXTNULL.concat(C.SYS_CAD_REFER).concat(EModoVista.VER.toString())))
-                   .concat(C.SYS_CAD_LOGSEP)
-                   .concat(((item != null)
-                            ? item.toString()
-                            : C.SYS_CAD_TXTNULL))
-                   .concat(C.SYS_CAD_CLOSETPE));
+                this.getClass().getSimpleName()
+                        .concat(C.SYS_CAD_OPENTYPE)
+                        .concat(((modoVista != null)
+                                ? modoVista.toString()
+                                : C.SYS_CAD_TXTNULL.concat(C.SYS_CAD_REFER).concat(EModoVista.VER.toString())))
+                        .concat(C.SYS_CAD_LOGSEP)
+                        .concat(((item != null)
+                                ? item.toString()
+                                : C.SYS_CAD_TXTNULL))
+                        .concat(C.SYS_CAD_CLOSETPE));
 
         setModoVista(modoVista);
         generarVista();
+        definirComportamientoComponentes();
         actualizarEstadoBotones();
         establecerEstadoInicial();
         mostrarVentana();
@@ -135,12 +188,57 @@ public abstract class AbstractPanel extends AbstractPresentable implements IVisu
     }
 
     @Override
-    public void setTabPadre(CustomTab tab) {
-        tabPadre = tab;
+    public void establecerEstadoInicial() {
+
     }
 
     @Override
-    public CustomTab getTabPadre() {
-        return tabPadre;
+    public void actualizar(Object parametro) {
+
+    }
+
+    @Override
+    public boolean esVisualizable(ComponenteVista componente) {
+        return true;
+    }
+
+    @Override
+    public EModoVista getModoVista() {
+        return modoVista;
+    }
+
+    @Override
+    public boolean esHabilitable(ComponenteVista componente) {
+        return (componente.getModosVista().contains(this.getModoVista()));
+    }
+
+    @Override
+    public void setTabpadre(CustomTab tab) {
+        tabpadre = tab;
+    }
+
+    @Override
+    public CustomTab getTabpadre() {
+        return tabpadre;
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        getViewComponent().setVisible(visible);
+    }
+
+    @Override
+    public boolean isVisible() {
+        return getViewComponent().isVisible();
+    }
+
+    @Override
+    public IVisualizable getPadre() {
+        return padre;
+    }
+
+    @Override
+    public void setPadre(IVisualizable padre) {
+        this.padre = padre;
     }
 }

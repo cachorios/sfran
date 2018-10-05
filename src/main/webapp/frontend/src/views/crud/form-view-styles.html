@@ -1,9 +1,6 @@
-
-
-
-<dom-module id="view-form">
+<dom-module id="form-view">
     <template>
-        <style include="lumo-color lumo-typography view-style">
+        <style include="lumo-color lumo-typography">
             :host([has-label]) {
                 padding-top: 40px!important;
                 background-color: #ef6c00!important;
@@ -40,6 +37,7 @@
                 font-weight: bold;
                 text-transform: uppercase;
                 font-size: 12px;
+                padding-top: 0.2em;
                 /*padding-left: --lu,;*/
                 /*padding-right: $v-layout-spacing-vertical;*/
 
@@ -48,12 +46,11 @@
                 border-bottom-style: solid;
                 border-bottom-width: 1px;
                 border-bottom-color: #d0d0d0;
-
             }
 
             .v-form .small{
-
             }
+
             .v-form .titulo{
                 margin: 0 0 0.2em 0;
                 border-bottom-style: solid;
@@ -65,17 +62,19 @@
         <div class="view-form-titulo">My view title</div>
     </template>
 </dom-module>
+
 <script>
     class ViewForm extends Polymer.Element {
-        static get is() { return 'view-forn'; }
+        static get is() { return 'form-view'; }
     }
 
     customElements.define(ViewForm.is, ViewForm);
 </script>
 
 <custom-style>
-    <style include="view-form">
+    <style include="form-view">
 
 
     </style>
 </custom-style>
+

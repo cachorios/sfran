@@ -72,7 +72,6 @@ public class MenuService {
      */
     public void completarMenuDesdeDB(LeftAppMenuBuilder lamb) {
         try {
-
             Usuario usuario = Sistema.getSistema().getSecurityControl().getUsuarioActivo();
 
             if (usuario != null) {
@@ -87,17 +86,17 @@ public class MenuService {
                                 if (sm.getNombre() != null
                                         && !sm.getNombre().substring(0,1).equals(C.SYS_CFG_MENU_SEPARATOR)
                                         && Sistema.getSistema()
-                                                  .getSecurityControl()
-                                                  .usuarioActivoPoseeCadenaPermiso(
-                                                          ETipoPermiso.EJECUTAR.name()
-                                                                               .concat(Constantes.SYS_CAD_REFER)
-                                                                               .concat(sm.getNombre()))) {
+                                        .getSecurityControl()
+                                        .usuarioActivoPoseeCadenaPermiso(
+                                                ETipoPermiso.EJECUTAR.name()
+                                                        .concat(Constantes.SYS_CAD_REFER)
+                                                        .concat(sm.getNombre()))) {
                                     Class c = Class.forName(sm.getValorstr());
                                     smb.add(new LeftNavigationComponent(sm.getNombre(), getIcono(c), c));
                                 }
                             } catch (Exception ex) {
                                 L.warning(C.SYS_MENU_ERR_NOEXISTS,
-                                          sm.getNombre().concat(C.SYS_CFG_MENU_SEPARATOR).concat(sm.getValorstr()));
+                                        sm.getNombre().concat(C.SYS_CFG_MENU_SEPARATOR).concat(sm.getValorstr()));
                             }
                         });
                         lamb.add(smb.build());

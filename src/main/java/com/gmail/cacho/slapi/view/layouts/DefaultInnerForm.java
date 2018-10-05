@@ -3,6 +3,7 @@ package com.gmail.cacho.slapi.view.layouts;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.slapi.comunes.C;
+import com.gmail.cacho.slapi.comunes.R;
 import com.gmail.cacho.slapi.comunes.Recursos;
 import com.gmail.cacho.slapi.view.customs.tabs.CustomTabGroup;
 import com.gmail.cacho.slapi.view.enums.EModoVista;
@@ -10,35 +11,47 @@ import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerForm;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterForm;
 import com.gmail.cacho.slapi.view.utils.ComponenteVista;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Focusable;
-import com.vaadin.flow.component.HasStyle;
-import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.templatemodel.TemplateModel;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-@HtmlImport("frontend://src/views/crud/view-form.html")
-public class DefaultInnerForm<T extends AbstractEntidad> extends VerticalLayout implements ILayoutInnerForm<T> {
+@Tag("form-view")
+@HtmlImport("frontend://src/components/crud/form-view.html")
+public class DefaultInnerForm<T extends AbstractEntidad> extends PolymerTemplate<DefaultInnerForm.BindingModel> implements ILayoutInnerForm<T> {
+    public interface BindingModel extends TemplateModel {
+        void setTitulo(String titulo);
+    }
+
     private IPresentableForm<T> presentable;
-    private H3 titulo;
-    private VerticalLayout contenido;
-    private HorizontalLayout botonera;
+    @Id("titulo")
+    private H2 titulo;
+    @Id("contenido")
+    private Div contenido;
+    @Id("botonera")
+    private Div botonera;
+
     private Button guarAddButton;
     private Button guardarButton;
     private Button cancelarButton;
+
     private CustomTabGroup tabs;
     protected Component form;
 
-    private float formRatio = 0.5f;
+    private float formRatio = 1f;
 
     public DefaultInnerForm(IPresentableForm<T> presentable, String elTitulo) {
         this.presentable = presentable;
@@ -48,24 +61,21 @@ public class DefaultInnerForm<T extends AbstractEntidad> extends VerticalLayout 
     }
 
     protected void setearEstiloGeneral() {
-        setClassName("v-form");
-        setSpacing(false);
-        setMargin(false);
-        setPadding(false);
-        this.setSizeFull();
+//        setClassName("v-form");
+//        this.setSizeFull();
     }
 
     private void generarVista(String eltitulo) {
         // 1.TITULO
-        if (eltitulo != null && !eltitulo.isEmpty()) {
-            titulo = generarTitulo(eltitulo);
-        }
+
+        generarTitulo(eltitulo);
 
         // 2.CONTENIDO (FORM+TABS)
-        contenido = generarContenido();
+        //contenido = generarContenido();
         form = generarForm();
+
         if (presentable.contieneTabs()) {
-            tabs = generarTabs();
+            /*tabs = generarTabs();
             VerticalLayout frame = new VerticalLayout();
             frame.setSizeFull();
             frame.add(form, tabs);
@@ -74,40 +84,40 @@ public class DefaultInnerForm<T extends AbstractEntidad> extends VerticalLayout 
             frame.setPadding(false);
             frame.setFlexGrow(getFormRatio(), form);
             frame.setFlexGrow(1.0f - getFormRatio(), tabs);
-            contenido.add(frame);
+            contenido.add(frame);*/
         } else {
             contenido.add(form);
         }
 
+
         // 3.BOTONERA
-        botonera = generarBotonera();
+        generarBotonera();
 
         // 4.ARMADO FINAL
-        this.add(titulo, contenido, botonera);
-        setearFlexGrow();
+        ////////////////this.add(titulo, contenido, botonera);
+        //setearFlexGrow();
 
         // 5.REGISTRADO DE COMPONENTES POR DEFECTO
         registrarComponentesDefault();
-        setearShortcuts();
+        //setearShortcuts();
     }
 
-    protected H3 generarTitulo(String eltitulo) {
-        H3 titulo = new H3(eltitulo);
-        titulo.setClassName("titulo");
-        titulo.setWidth("100%");
-
-        return titulo;
+    protected  void generarTitulo(String eltitulo) {
+        titulo.setVisible(eltitulo != null && !eltitulo.isEmpty());
+//        if (titulo.isVisible() ) {
+//        }
     }
 
-    private VerticalLayout generarContenido() {
-        VerticalLayout content = new VerticalLayout();
-        content.setClassName("content");
-        content.setSizeFull();
-        this.setPadding(false);
-        this.setMargin(false);
-        this.setSpacing(false);
-        return content;
-    }
+//    private VerticalLayout generarContenido() {
+//        VerticalLayout content = new VerticalLayout();
+//        content.setClassName("content");
+//        content.setSizeFull();
+////        this.setPadding(false);
+////        this.setMargin(false);
+////        this.setSpacing(false);
+//        return content;
+//    }
+
 
     private CustomTabGroup generarTabs() {
         tabs = presentable.getTabGroup();
@@ -118,56 +128,49 @@ public class DefaultInnerForm<T extends AbstractEntidad> extends VerticalLayout 
         tabs.setVisible(true);
 
         return tabs;
+
     }
 
-    protected HorizontalLayout generarBotonera() {
-        HorizontalLayout botonera = new HorizontalLayout();
-
-
-        botonera.setWidth("100%");
-        botonera.setHeight("50px");
+    protected void generarBotonera() {
 
         generarGuardarButton();
         generarGuarAddButton();
         generarCancelarButton();
         botonera.add(guardarButton,guarAddButton, cancelarButton);
 
-        botonera.setAlignSelf(Alignment.END, guardarButton,guarAddButton, cancelarButton);
 
-        return botonera;
     }
 
     protected void setearFlexGrow() {
-        this.setFlexGrow(0, titulo);
-        this.setFlexGrow(1,contenido);
-        this.setFlexGrow(0, botonera);
+//        this.setFlexGrow(0, titulo);
+//        this.setFlexGrow(1,contenido);
+//        this.setFlexGrow(0, botonera);
     }
 
     protected void generarGuardarButton() {
         guardarButton = new Button(C.CRUD_FORM_BTN_GUARDAR);
         //// guardarButton.setStyleName("small");
         guardarButton.setIcon(VaadinIcon.CHECK_SQUARE_O.create());
-        guardarButton.getElement().setProperty("data", Recursos.RCV_BTN_ALLCAN);
+        guardarButton.getElement().setProperty("data", R.RCV_BTN_ALLCAN);
     }
 
     protected void generarGuarAddButton() {
         guarAddButton = new Button(C.CRUD_FORM_BTN_GUARADD);
         //// guarAddButton.setStyleName("small");
         guarAddButton.setIcon(VaadinIcon.CHECK_SQUARE_O.create());
-        guarAddButton.getElement().setProperty("data", Recursos.RCV_BTN_ALLCAN);
+        guarAddButton.getElement().setProperty("data", R.RCV_BTN_ALLCAN);
     }
 
     protected void generarCancelarButton() {
         cancelarButton = new Button(C.CRUD_FORM_BTN_CANCELAR);
         //// cancelarButton.setStyleName("small");
         cancelarButton.setIcon(VaadinIcon.CLOSE.create());
-        cancelarButton.getElement().setProperty("data", Recursos.RCV_BTN_ALLCAN);
+        cancelarButton.getElement().setProperty("data", R.RCV_BTN_ALLCAN);
     }
 
     protected Component generarForm() {
-        Component form =  new FormLayout();
+        Component form =  new Div();
         ((HasStyle)form).setClassName("panel");
-
         return form;
     }
 
@@ -201,7 +204,7 @@ public class DefaultInnerForm<T extends AbstractEntidad> extends VerticalLayout 
     }
 
     @Override
-    public VerticalLayout getContenido() {
+    public Component getContenido() {
         return contenido;
     }
 

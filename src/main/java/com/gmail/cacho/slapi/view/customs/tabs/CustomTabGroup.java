@@ -46,7 +46,7 @@ public class CustomTabGroup extends VerticalLayout {
     private void establecerComportamientoDefault() {
         tabgroup.addSelectedChangeListener(e -> {
             if (!estaCargando) {
-                this.setActual((CustomTab) tabgroup.getSelectedTab());
+                setActual((CustomTab) tabgroup.getSelectedTab());
             }
         });
     }
@@ -54,11 +54,8 @@ public class CustomTabGroup extends VerticalLayout {
     private void add(CustomTab tab) {
         estaCargando = true;
         if (!tabs.contains(tab)) {
+            tabs.add(tab);
             tabgroup.add(tab);
-
-            if (tabs.size() == 1) {
-                setActual(tab);
-            }
         }
         estaCargando = false;
     }
@@ -88,6 +85,10 @@ public class CustomTabGroup extends VerticalLayout {
             t.getContenido().iniciar(modo, item);
             preformatearContenidoTab(t);
             divgroup.add(t.getContenido().getViewComponent());
+
+            if (actual == null) {
+                setActual(t);
+            }
         });
     }
 

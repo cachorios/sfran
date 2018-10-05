@@ -1,6 +1,5 @@
 package com.gmail.cacho.slapi.view;
 
-
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.customs.tabs.CustomTabGroup;
@@ -110,16 +109,16 @@ public abstract class AbstractForm<T extends AbstractEntidad> extends AbstractPr
     @Override
     public void iniciar(EModoVista modoVista, AbstractEntidad item) {
         L.info(C.MSG_ACC_INITVIEW,
-               this.getClass().getSimpleName()
-                   .concat(C.SYS_CAD_OPENTYPE)
-                   .concat(((modoVista != null)
-                            ? modoVista.toString()
-                            : C.SYS_CAD_TXTNULL.concat(C.SYS_CAD_REFER).concat(EModoVista.VER.toString())))
-                   .concat(C.SYS_CAD_LOGSEP)
-                   .concat(((item != null)
-                            ? item.toString()
-                            : C.SYS_CAD_TXTNULL))
-                   .concat(C.SYS_CAD_CLOSETPE));
+                this.getClass().getSimpleName()
+                        .concat(C.SYS_CAD_OPENTYPE)
+                        .concat(((modoVista != null)
+                                ? modoVista.toString()
+                                : C.SYS_CAD_TXTNULL.concat(C.SYS_CAD_REFER).concat(EModoVista.VER.toString())))
+                        .concat(C.SYS_CAD_LOGSEP)
+                        .concat(((item != null)
+                                ? item.toString()
+                                : C.SYS_CAD_TXTNULL))
+                        .concat(C.SYS_CAD_CLOSETPE));
 
         setModoVista(modoVista);
         generarBinder();
@@ -135,7 +134,7 @@ public abstract class AbstractForm<T extends AbstractEntidad> extends AbstractPr
 
     @Override
     public Component getViewComponent() {
-        return (Component)layout;
+        return layout.getLayout();
     }
 
     @Override
@@ -159,9 +158,6 @@ public abstract class AbstractForm<T extends AbstractEntidad> extends AbstractPr
     }
 
     @Override
-    abstract public String getTagVista();
-
-    @Override
     public abstract Class<T> getEntityType();
 
     @Override
@@ -174,10 +170,10 @@ public abstract class AbstractForm<T extends AbstractEntidad> extends AbstractPr
         if (objeto != null) {
             if (objeto.getClass() != getEntityType()) {
                 throw new VistaErrorException(C.MSJ_VIW_ERR_NONEWITEM,
-                                              C.SYS_CAD_OPENTYPE
-                                                      .concat(objeto.getClass().getSimpleName())
-                                                      .concat(C.SYS_CAD_REFER)
-                                                      .concat(getEntityType().getSimpleName()));
+                        C.SYS_CAD_OPENTYPE
+                                .concat(objeto.getClass().getSimpleName())
+                                .concat(C.SYS_CAD_REFER)
+                                .concat(getEntityType().getSimpleName()));
             }
 
             editItem = objeto;
@@ -230,5 +226,15 @@ public abstract class AbstractForm<T extends AbstractEntidad> extends AbstractPr
     @Override
     public AbstractEntidad getObjetoMasterTab(Class claseTab) {
         return editItem;
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        getViewComponent().setVisible(visible);
+    }
+
+    @Override
+    public boolean isVisible() {
+        return getViewComponent().isVisible();
     }
 }

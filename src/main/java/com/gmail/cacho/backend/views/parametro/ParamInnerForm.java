@@ -41,7 +41,7 @@ public class ParamInnerForm extends DefaultInnerDialog<Parametro> {
     }
 
     @Override
-    protected Component generarForm() {
+    protected void generarForm(Div form) {
         //setFormRatio(0.65f);
         setFormRatio(1);
 
@@ -67,13 +67,6 @@ public class ParamInnerForm extends DefaultInnerDialog<Parametro> {
         valordat = dateField(Parametro.F_PAR_VALORDAT);
 
 
-
-        ////tipo.setEmptySelectionAllowed(false);
-        ////tipo.setTextInputAllowed(false);
-
-        Div form = new Div();
-        form.setSizeFull();
-
         form.add(
                 envolver(id, "30%"),
 
@@ -92,7 +85,6 @@ public class ParamInnerForm extends DefaultInnerDialog<Parametro> {
                 envolver(espacio()),
                 envolver(valorbol, "40%")
         );
-        return form;
 
     }
 

@@ -1,0 +1,71 @@
+<!--<link rel="import" href="../../../bower_components/polymer/polymer-element.html">-->
+
+<link rel="import" href="/frontend/styles/shared-styles.html">
+<link rel="import" href="/frontend/src/components/crud/tool-bar.html">
+<link rel="import" href="/frontend/src/components/crud/list-preview.html">
+
+<dom-module id="list-view">
+    <template>
+        <style include="shared-styles">
+            :host {
+                --lumo-font-size-m: 10px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            #titulo{
+                font-size: calc(var(--lumo-font-size-m) * 1.5);
+            }
+
+            @media (min-width: 600px) {
+                .row {
+                    width: 100%;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+                .list-container {
+                    display: none;
+                }
+            }
+
+            .list-container {
+                display: inline-flex;
+                /*flex-flow: row wrap;*/
+                height: calc(100vh - 150px);
+            }
+
+            #grid{
+                height: 100%;
+            }
+        </style>
+
+        <h2 id="titulo" class="row"></h2>
+        <tool-bar id="toolbar"></tool-bar>
+        <div class="list-container row">
+            <vaadin-grid id="grid" theme="crud" style="width: 400px" ></vaadin-grid>
+            <list-preview id="list-preview"></list-preview>
+        </div>
+
+    </template>
+</dom-module>
+
+<script>
+    class ViewList extends Polymer.Element {
+        static get is() { return 'list-view'; }
+    }
+
+    customElements.define(ViewList.is, ViewList);
+</script>
+
+<custom-style>
+    <style>
+        /*#titulo{*/
+            /*border: 1px red solid;*/
+            /*margin: 2em;*/
+            /*background-color: #ef6c00;*/
+        /*}*/
+        /*#grid{*/
+            /*background-color: #5c1974;*/
+        /*}*/
+    </style>
+</custom-style>

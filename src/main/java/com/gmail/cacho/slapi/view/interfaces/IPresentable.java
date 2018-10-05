@@ -17,7 +17,7 @@ import com.gmail.cacho.slapi.view.utils.ComponenteVista;
  * @author larios
  * @version 20180201
  */
-public interface IPresentable<T extends AbstractEntidad> extends IVisualizableGestionable {
+public interface IPresentable<T extends AbstractEntidad> extends ITabeable {
     /**
      * Este metodo retorna la clase del tipo de ENTIDAD que "comanda" (o al que se
      * refiere) el objeto presentable en cuestion. Obviamente en este caso se trata

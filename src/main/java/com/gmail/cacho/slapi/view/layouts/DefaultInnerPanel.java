@@ -1,12 +1,13 @@
 package com.gmail.cacho.slapi.view.layouts;
 
 import com.gmail.cacho.slapi.comunes.C;
-import com.gmail.cacho.slapi.comunes.Recursos;
+import com.gmail.cacho.slapi.comunes.R;
+
 import com.gmail.cacho.slapi.view.customs.tabs.CustomTabGroup;
 import com.gmail.cacho.slapi.view.enums.EModoVista;
 import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerPanel;
+import com.gmail.cacho.slapi.view.interfaces.IManageablePanel;
 import com.gmail.cacho.slapi.view.interfaces.IManagerPanel;
-import com.gmail.cacho.slapi.view.interfaces.IVisualizablePanel;
 import com.gmail.cacho.slapi.view.utils.ComponenteVista;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
@@ -20,8 +21,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import java.util.Arrays;
 
 public class DefaultInnerPanel extends VerticalLayout implements ILayoutInnerPanel {
-    private IVisualizablePanel visuatable;
-
+    private IManageablePanel manageable;
     private Span titulo;
     private VerticalLayout contenido;
     private HorizontalLayout botonera;
@@ -31,8 +31,8 @@ public class DefaultInnerPanel extends VerticalLayout implements ILayoutInnerPan
     protected VerticalLayout panel;
     private float formRatio = 0.5f;
 
-    public DefaultInnerPanel(IVisualizablePanel visuatable, String elTitulo) {
-        this.visuatable = visuatable;
+    public DefaultInnerPanel(IManageablePanel manageable, String elTitulo) {
+        this.manageable = manageable;
 
         setearEstiloGeneral();
         generarVista(elTitulo);
@@ -57,7 +57,7 @@ public class DefaultInnerPanel extends VerticalLayout implements ILayoutInnerPan
         // 2.CONTENIDO (FORM+TABS)
         contenido = generarContenido();
         panel = generarForm();
-        if (visuatable.contieneTabs()) {
+        if (manageable.contieneTabs()) {
             tabs = generarTabs();
             VerticalLayout frame = new VerticalLayout();
             frame.setSizeFull();
@@ -92,7 +92,7 @@ public class DefaultInnerPanel extends VerticalLayout implements ILayoutInnerPan
 
     private CustomTabGroup generarTabs() {
         tabs.setSizeFull();
-        tabs.getTabs().forEach(t -> t.getContenido().iniciar(visuatable.getModoVista(), visuatable.getObjetoMasterTab(t.getClass())));
+        tabs.getTabs().forEach(t -> t.getContenido().iniciar(manageable.getModoVista(), manageable.getObjetoMasterTab(t.getClass())));
 
         return tabs;
     }
@@ -104,13 +104,13 @@ public class DefaultInnerPanel extends VerticalLayout implements ILayoutInnerPan
 
         guardarButton = new Button(C.CRUD_FORM_BTN_GUARDAR);
         guardarButton.setIcon(VaadinIcon.CHECK_SQUARE_O.create());
-        guardarButton.getElement().setProperty("data", Recursos.RCV_BTN_ALLCAN);
+        guardarButton.getElement().setProperty("data", R.RCV_BTN_ALLCAN);
         botonera.add(guardarButton);
         botonera.setAlignSelf(Alignment.START);
 
         cancelarButton = new Button(C.CRUD_FORM_BTN_CANCELAR);
         cancelarButton.setIcon(VaadinIcon.CLOSE.create());
-        cancelarButton.getElement().setProperty("data", Recursos.RCV_BTN_ALLCAN);
+        cancelarButton.getElement().setProperty("data", R.RCV_BTN_ALLCAN);
         botonera.add(cancelarButton);
         botonera.setAlignSelf(Alignment.END, cancelarButton);
 
@@ -130,8 +130,8 @@ public class DefaultInnerPanel extends VerticalLayout implements ILayoutInnerPan
     }
 
     @Override
-    public IVisualizablePanel getVisuatable() {
-        return visuatable;
+    public IManageablePanel getManageable() {
+        return manageable;
     }
 
     @Override
@@ -172,23 +172,23 @@ public class DefaultInnerPanel extends VerticalLayout implements ILayoutInnerPan
     @Override
     public void registrarComponentesDefault() {
         if (getGuardarButton() != null) {
-            visuatable.registrarComponenteVista(
+            manageable.registrarComponenteVista(
                     new ComponenteVista(getGuardarButton(),
                             Arrays.asList(EModoVista.NUEVO, EModoVista.EDITAR),
                             true,
                             true,
                             Key.F9,
-                            e -> ((IManagerPanel) visuatable.getManager()).formSave()));
+                            e -> ((IManagerPanel) manageable.getManager()).formSave()));
 
         }
         if (getCancelarButton() != null) {
-            visuatable.registrarComponenteVista(
+            manageable.registrarComponenteVista(
                     new ComponenteVista(getCancelarButton(),
                             Arrays.asList(EModoVista.VER, EModoVista.NUEVO, EModoVista.EDITAR),
                             false,
                             false,
                             Key.F12,
-                            e -> ((IManagerPanel) visuatable.getManager()).formClose()));
+                            e -> ((IManagerPanel) manageable.getManager()).formClose()));
         }
     }
 

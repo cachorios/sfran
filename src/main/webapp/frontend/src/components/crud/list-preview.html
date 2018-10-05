@@ -1,0 +1,50 @@
+<link rel="import" href="/frontend/styles/shared-styles.html">
+
+<dom-module id="list-preview">
+    <template>
+        <style include="shared-styles">
+            :host{
+                display: flex;
+                flex-direction: column;
+                /*height: calc(100vh - 100px);*/
+                width: 350px;
+                background: #efefef;
+                margin-left: 0.2em;
+
+                border-radius: 10px;
+
+
+            }
+            .envolver{
+
+
+            }
+            vaadin-text-field :host{
+                height: 80px;
+            }
+            .contenido{
+                padding: 1em;
+            }
+            .text{
+                height: 60px;
+            }
+        </style>
+
+        <div id="preview-contenido" class="contenido">
+
+        </div>
+
+    </template>
+</dom-module>
+
+<script>
+    class ListPreview extends Polymer.Element{
+        static get is(){
+            return "list-preview"
+        }
+    }
+
+    customElements.define(ListPreview.is, ListPreview);
+
+
+</script>

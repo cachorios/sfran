@@ -59,6 +59,12 @@ public interface IVisualizableGestionable extends IVisualizable {
     String getTitulo();
 
     /**
+     * Este metodo debe permitir establecer el estado inicial de un objeto gestionable, de
+     * manera mas o menos independiente de los datos que pudiese recibir al iniciarse.
+     */
+    void establecerEstadoInicial();
+
+    /**
      * Este método permite registrar un componente RECURSO en la vista, de manera de que
      * el mismo puede ser gestionado por el encargado de administrar recursos y permisos
      * (ver getTagVista() mas arriba).
@@ -74,4 +80,17 @@ public interface IVisualizableGestionable extends IVisualizable {
      * @return la lista de botones administrables para el objeto visual gestionable.
      */
     List<ComponenteVista> getComponentesVista();
+
+    /**
+     * Este metodo debe permitir establecer si un determinado Componente Visual del objeto
+     * presentable, que ha sido registrado, puede ser visualizado.
+     */
+    boolean esVisualizable(ComponenteVista componente);
+
+    /**
+     * Este metodo debe permitir establecer si un determinado Componente Visual del objeto
+     * presentable, que ha sido registrado, puede ser habilitado para interaccionar con el
+     * usuario.
+     */
+    boolean esHabilitable(ComponenteVista componente);
 }

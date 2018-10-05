@@ -1,0 +1,60 @@
+
+<link rel="import" href="/frontend/styles/shared-styles.html">
+
+<dom-module id="form-dialog">
+    <template>
+        <style include="shared-styles">
+            :host {
+                --lumo-font-size-m: 10px;
+                display: flex;
+                flex-direction: column;
+                padding: 0.5em;
+            }
+
+            #titulo{
+                padding: 0;
+                margin: 0;
+                font-size: calc(var(--lumo-font-size-m) * 1.5);
+            }
+
+            #contenido {
+                height: 100%;
+                display: inline-flex;
+                flex-wrap: wrap;
+                /*display: flex;*/
+                /*flex-direction: row;*/
+                justify-content: space-between;
+                padding-bottom: var(--lumo-space-s);
+            }
+            .envolver {
+                /*display: flex;*/
+                /*flex-direction: column;*/
+                /*box-sizing: border-box;*/
+                /*flex: auto;*/
+
+            }
+
+            #botonera{
+                /*justify-content: flex-end;*/
+                align-items: flex-end;
+            }
+
+
+        </style>
+
+        <h2 id="titulo" class=""></h2>
+        <div id="contenido" class=""></div>
+        <div id="tabs-container" class=""></div>
+        <div id="botonera" class=""></div>
+
+    </template>
+</dom-module>
+
+<script>
+    class FormDialog extends Polymer.Element{
+        static get is() {
+            return "form-dialog";
+        }
+    }
+    customElements.define(FormDialog.is, FormDialog);
+</script>

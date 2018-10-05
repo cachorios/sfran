@@ -39,7 +39,7 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
     }
 
     @Override
-    protected Component generarForm() {
+    protected void generarForm(Div form) {
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
@@ -60,14 +60,12 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
         fechaIngreso.setWidth("100%");
         fechaIngreso.setRequired(true);
 
-        Div form = new Div();
-        form.setSizeFull();
         form.add(
                 envolver(id, "30%"),
                 envolver(apellido),
                 envolver(nombre),
                 envolver(dni,"50%"),
-                envolver(cuil, "50"),
+                envolver(cuil, "50%"),
 
                 envolver(fechaNacimiento,"100%"),
                 envolver(fechaIngreso,"100%"),
@@ -78,8 +76,6 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
 
         );
 
-
-        return form;
     }
 
     @Override

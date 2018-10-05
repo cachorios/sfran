@@ -11,58 +11,243 @@
 
 <dom-module id="login-view">
     <template>
-       <style include="shared-styles">
-          :host {
-            display: flex;
-           flex-flow: column nowrap;
-           align-items: center;
-          }
-          .login-layout {
-            width: 400px;
-          }
+        <style include="shared-styles">
 
-          vaadin-text-field, vaadin-password-field {
-            width: 100%;
-          }
-          .error {
-             background-color: var(--lumo-error-color);
-             color: var(--lumo-error-contrast-color);
-             border-radius: var(--lumo-border-radius);
-             padding: var(--lumo-space-s);
-          }
-       </style>
+            :host{
+                width: 100vw;
+                height: 100vh;
 
-<vaadin-form-layout class="login-layout">
-    <vaadin-form-item>
-        <h2>Ingresar</h2>
-    </vaadin-form-item>
+                background-color: transparent;
+                background-image: url(/frontend/images//bg.jpg);
+                background-size: cover;
 
-    <vaadin-form-item>
-        <label slot="label">Usuario</label>
-        <vaadin-text-field value="{{username}}" autofocus required invalid property="" property1="" property2="" property3="" property4="" property5=""></vaadin-text-field>
-    </vaadin-form-item>
+                justify-content: center;
+                display: inline-flex;
+                align-items: center;
+            }
 
-    <vaadin-form-item>
-        <label slot="label">Clave</label>
-        <vaadin-password-field value="{{password}}" required></vaadin-password-field>
-    </vaadin-form-item>
 
-    <vaadin-form-item>
-        <vaadin-checkbox checked="{{rememberMe}}"></vaadin-checkbox> Recordarme
-    </vaadin-form-item>
+            #info {
+                color: #ffffff;
+                text-align: center;
+                padding: 25px;
+                text-shadow: 2px 2px #36374b;
+            }
 
-    <vaadin-form-item>
-        <template is="dom-if" if="[[error]]">
-            <label class="error">[[error]]</label>
-        </template>
-    </vaadin-form-item>
 
-    <vaadin-form-item>
-        <vaadin-button on-click="onLogin">
-            Ingregar
-        </vaadin-button>
-    </vaadin-form-item>
-</vaadin-form-layout>
+            #logo {
+                display: inline-block;
+                width: 60px;
+                height: 60px;
+                border-radius: 100%;
+                background-image: url(/frontend/images/siddire-40x40.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-color: rgba(255, 255, 255, 0.2);
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, .2);
+            }
+
+            #form {
+                display: flex;
+                background-color: #fff;
+
+            }
+
+
+            @media (max-width: 1000px) {
+                h2 {
+                    display: none;
+                }
+            }
+
+            @media (min-width: 1001px) {
+
+                #logo {
+                width: 96px;
+                height: 96px;
+                }
+
+                #info, #form {
+                    height: 450px;
+                    box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+                }
+                #info {
+                    background-color: rgba(255, 255, 255, .2);
+                    width: 465px;
+                    border-radius: 5px 0 0 5px;
+                }
+                #form {
+                    width: 320px;
+                    padding: 0 35px;
+                    border-radius: 0 5px 5px 0;
+
+                }
+
+            }
+
+
+
+            h1 {
+                font-size: 36px;
+                font-weight: 600;
+            }
+
+            h2 {
+                font-size: 28px;
+                font-weight: 600;
+                margin-top: 1em;
+                margin-bottom: 0px;
+                padding: 0;
+            }
+
+            form {
+                max-width: 320px;
+            }
+
+
+            vaadin-button{
+                width: 100%;
+                margin-top: 37px;
+                height: 37px;
+                border: 1px solid #666;
+                border-radius: 4px;
+                background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 2%, rgba(0, 0, 0, 0.1) 98%);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.05);
+                outline: none;
+                cursor: pointer;
+                color: #fff;
+                text-align: center;
+                position: relative;
+                font: inherit;
+                font-weight: 600;
+            }
+            vaadin-button{
+                background-color: #4b4b65;
+            }
+
+            vaadin-button:focus:after {
+                    box-shadow: 0 0 0 2px rgba(0, 0, 0, .5);
+                    content: "";
+                    position: absolute;
+                    top: -2px;
+                    right: -2px;
+                    bottom: -2px;
+                    left: -2px;
+                    border-radius: inherit;
+                }
+
+            #button-submit:focus:after {
+                box-shadow: 0 0 0 2px rgba(0, 0, 0, .5);
+                content: "";
+                position: absolute;
+                top: -2px;
+                right: -2px;
+                bottom: -2px;
+                left: -2px;
+                border-radius: inherit;
+            }
+
+
+
+            .error form:after {
+                content: "El Nombre de Usuario o la Contrase&ntilde;a ingresada no son correctos. Por favor ingrese nuevamente.";
+                display: block;
+                border: 1px solid red;
+                border-radius: 4px;
+                width: 100%;
+                margin-top: 16px;
+                font-size: 14px;
+                padding: 8px;
+                align-content: center;
+            }
+
+            *, *:before, *:after {
+                box-sizing: border-box;
+            }
+
+
+
+
+
+            .error {
+                background-color: var(--lumo-error-color);
+                color: var(--lumo-error-contrast-color);
+                border-radius: var(--lumo-border-radius);
+                padding: var(--lumo-space-s);
+                align-content: center;
+
+                width: 100%;
+            }
+
+
+            @media (min-width: 550px) {
+                .login__layout {
+                    flex-direction: row;
+                    align-items: flex-end;
+                }
+
+                #form > *:not(:first-child) {
+                    margin-left: var(--lumo-space-m);
+                }
+
+
+            }
+
+            vaadin-password-field{
+                width: 100%;
+            }
+
+
+
+        </style>
+
+
+
+        <div id="info">
+            <div id="logo"></div>
+            <h1>MI APP</h1>
+            <h2>Sistema de Gesti&oacute;n de Distribuci&oacute;n</h2>
+        </div>
+        <div id="form">
+            <vaadin-form-layout id="theform">
+                <h2>Ingreso</h2>
+                <!--<label id="login-label" for="login">Nombre de Usuario</label>-->
+                <!--<input type="text" id="login" name="username" aria-labelledby="login-label" autofocus>-->
+
+                <vaadin-text-field id="login" label="Nombre de Usuario" value="{{username}}" autofocus required >
+                </vaadin-text-field>
+                <!--<label id="password-label" for="password">Contrase&ntilde;a</label>-->
+                <!--<input type="password" id="password" name="password" aria-labelledby="password-label">-->
+                <vaadin-form-item>
+
+                    <!--<label slot="label">Password</label>-->
+                    <vaadin-password-field id="password" name="password" label="Clave" value="{{password}}" required/>
+                </vaadin-form-item>
+
+
+                <vaadin-form-item>
+                    <vaadin-checkbox checked="{{rememberMe}}"/>
+                    Recordarme
+                </vaadin-form-item>
+
+                <vaadin-form-item>
+
+                    <template is="dom-if" if="[[error]]">
+                        <div class="error">
+                            <label >[[error]]</label>
+                        </div>
+                    </template>
+
+                </vaadin-form-item>
+
+
+                <vaadin-button id="button-submit" on-click="onLogin" class="login" theme="primary" >
+                    Ingresar
+                </vaadin-button>
+
+
+            </vaadin-form-layout>
+        </div>
 
 
 </template>
@@ -77,3 +262,46 @@
         customElements.define(LoginView.is, LoginView);
     </script>
 </dom-module>
+
+<custom-style>
+    <style>
+        /*@font-face {*/
+            /*font-family: "Open Sans";*/
+            /*!*src: url(VAADIN/themes/valo/fonts/open-sans/OpenSans-Light-webfont.woff) format("woff");*!*/
+            /*font-weight: 300;*/
+            /*font-style: normal;*/
+        /*}*/
+
+        /*@font-face {*/
+            /*font-family: "Open Sans";*/
+            /*!*src: url(VAADIN/themes/valo/fonts/open-sans/OpenSans-Semibold-webfont.woff) format("woff");*!*/
+            /*font-weight: 600;*/
+            /*font-style: normal;*/
+        /*}*/
+
+        html {
+            /*background: linear-gradient(145deg, #484962 30%, #d06b41 100%);*/
+        }
+
+        @media (min-width: 1001px) {
+            body {
+                display: flex;
+
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+
+        @media (min-width: 1000px) {
+            /* load on wide screens */
+            body {
+                background-color: transparent;
+                /*background-image: url(/frontend/images//bg.jpg);*/
+                background-size: cover;
+            }
+        }
+
+
+    </style>
+</custom-style>

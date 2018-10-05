@@ -1,6 +1,7 @@
 package com.gmail.cacho.slapi.view.utils;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.vaadin.flow.data.renderer.Renderer;
 import com.vaadin.flow.function.ValueProvider;
 
 
@@ -10,7 +11,7 @@ public class ColumnList<T extends AbstractEntidad, S> {
     private String titulo;
     private String propiedad;
     private boolean ordenable;
-    private String formato;
+    private Renderer renderer;
 
     public ColumnList(ValueProvider<T, S> proveedor, String titulo, String propiedad, boolean ordenable) {
         this.proveedor = proveedor;
@@ -21,7 +22,13 @@ public class ColumnList<T extends AbstractEntidad, S> {
 
     public ColumnList(ValueProvider<T, S> proveedor, String titulo, String propiedad, boolean ordenable, String formato) {
         this(proveedor, titulo, propiedad, ordenable);
-        this.formato = formato;
+    }
+
+    public ColumnList(Renderer renderer, String titulo, String propiedad, boolean ordenable) {
+        this.renderer = renderer;
+        this.titulo = titulo;
+        this.propiedad = propiedad;
+        this.ordenable = ordenable;
     }
 
     public ValueProvider<T, S> getProveedor() {
@@ -40,11 +47,9 @@ public class ColumnList<T extends AbstractEntidad, S> {
         return ordenable;
     }
 
-    public boolean tieneFormato() { return (formato != null && !formato.isEmpty()); }
+    public boolean tieneFormato()  { return (renderer != null); }
 
-//    public Renderer getRenderer() {
-//        return ((formato != null && !formato.isEmpty()) ? new LocalDateRenderer() : null);
-//    }
-//
-
+    public Renderer getRenderer() {
+        return renderer;
+    }
 }

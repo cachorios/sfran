@@ -1,0 +1,32 @@
+
+<link rel="import" href="/frontend/styles/shared-styles.html">
+
+<dom-module id="form-view">
+    <template>
+        <style include="shared-styles">
+            :host {
+                --lumo-font-size-m: 10px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            #titulo{
+                font-size: calc(var(--lumo-font-size-m) * 1.5);
+            }
+
+            #contenido{
+                height: 100%;
+            }
+
+            #botonera{
+                background: #ef6c00;
+            }
+
+        </style>
+        <h2 id="titulo" class="row"></h2>
+        <div id="contenido" class="row"></div>
+        <div id="tabs" class="row"></div>
+        <div id="botonera" class="row"></div>
+
+    </template>
+</dom-module>

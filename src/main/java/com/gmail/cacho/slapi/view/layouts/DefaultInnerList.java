@@ -1,6 +1,7 @@
 package com.gmail.cacho.slapi.view.layouts;
 
 
+
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.comunes.Recursos;
@@ -16,7 +17,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridSingleSelectionModel;
 import com.vaadin.flow.component.html.H2;
@@ -30,7 +30,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import java.util.Arrays;
 
 @Tag("list-view")
-@HtmlImport("frontend://src/views/crud/listpreview_style.html")
 public class DefaultInnerList<T extends AbstractEntidad> extends VerticalLayout implements ILayoutInnerList<T> {
     private IPresentableList<T> presentable;
     private H2 titulo;
@@ -39,6 +38,7 @@ public class DefaultInnerList<T extends AbstractEntidad> extends VerticalLayout 
     private TextField filtro;
     private HorizontalLayout areaFiltro, prebotones, botonera, posbotones;
     private Grid<T> grilla;
+
     private Button verButton;
     private Button nuevoButton;
     private Button editarButton;
@@ -53,6 +53,7 @@ public class DefaultInnerList<T extends AbstractEntidad> extends VerticalLayout 
     }
 
     private void setearEstiloGeneral() {
+        this.setClassName("list-view");
         this.setMargin(false);
         this.setSpacing(false);
         this.setPadding(false);
@@ -174,7 +175,7 @@ public class DefaultInnerList<T extends AbstractEntidad> extends VerticalLayout 
         verButton = new Button(C.CRUD_MSG_VER);
         ////verButton.setStyleName("small borderless");
         verButton.setIcon(VaadinIcon.SEARCH.create());
-        verButton.getElement().setProperty("data",Recursos.RCV_BTN_VER);
+        verButton.getElement().setProperty("data", Recursos.RCV_BTN_VER);
 
         return verButton;
     }
@@ -317,8 +318,8 @@ public class DefaultInnerList<T extends AbstractEntidad> extends VerticalLayout 
     @Override
     public void actualizarCantidadRegistros() {
         if (presentable.getPadre() != null) {
-            if (presentable.getTabPadre() != null) {
-                presentable.getTabPadre().setLabel(presentable.getTitulo().concat(getTextoCantidad()));
+            if (presentable.getTabpadre() != null) {
+                presentable.getTabpadre().setLabel(presentable.getTitulo().concat(getTextoCantidad()));
             }
         } else {
             if (getTitulo() != null && getTitulo().getText() != null && baseTitulo != null) {
