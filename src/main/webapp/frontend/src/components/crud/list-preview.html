@@ -3,7 +3,7 @@
 <dom-module id="list-preview">
     <template>
         <style include="shared-styles">
-            :host{
+            :host {
                 display: flex;
                 flex-direction: column;
                 /*height: calc(100vh - 100px);*/
@@ -12,8 +12,12 @@
                 margin-left: 0.2em;
 
                 border-radius: 10px;
+                /*--lumo-disabled-text-color: red;*/
 
 
+            }
+            vaadin-text-field{
+                --lumo-disabled-text-color: #3c3f41;
             }
             .envolver{
 

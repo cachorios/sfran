@@ -106,6 +106,38 @@
     </template>
 </dom-module>
 
+<dom-module id="sciolar-text-field-disabled-theme" theme-for="vaadin-text-field">
+    <template>
+        <style>
+            :host{
+
+            }
+            :host([status="new"]) [part~="input-field"],
+            :host([status="confirmed"]) [part~="input-field"] {
+                color: var(--lumo-primary-color);
+                background: var(--lumo-primary-color-10pct);
+            }
+
+            :host([status="ready"]) [part~="input-field"],
+            :host([status="delivered"]) [part~="input-field"] {
+                color: var(--lumo-success-color);
+                background: var(--lumo-success-color-10pct);
+            }
+
+            :host([status="problem"]) [part~="input-field"],
+            :host([status="cancelled"]) [part~="input-field"] {
+                color: var(--lumo-error-color);
+                background: var(--lumo-error-color-10pct);
+            }
+
+            :host([theme="white"]) [part~="input-field"] {
+                color: var(--lumo-secondary-text-color);
+                background-color: var(--lumo-base-color);
+            }
+        </style>
+    </template>
+</dom-module>
+
 <!-- Theme for the vaadin-grid -->
 <dom-module id="sciolar-grid-theme" theme-for="vaadin-grid">
     <template>
@@ -337,9 +369,11 @@
             /*--lumo-base-color: #efefef;*/
 
             /*--lumo-font-family: 'Open Sans', 'Trebuchet MS', arial, sans-serif !important;*/
-            --lumo-font-size-s: 14px !important;
-            --lumo-font-size-m: 16px !important;
-            --lumo-font-size-l: 18px !important;
+            --lumo-font-size-s: 12px !important;
+            --lumo-font-size-m: 14px !important;
+            --lumo-font-size-l: 16px !important;
+
+
 
             --lumo-size-m: 28px;
             /*--lumo-text-field-size: 100px;*/
