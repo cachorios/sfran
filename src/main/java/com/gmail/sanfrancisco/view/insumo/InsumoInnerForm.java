@@ -25,7 +25,7 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
     }
 
     @Override
-    protected Component generarForm() {
+    protected void generarForm(Div form) {
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
@@ -33,8 +33,7 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
         tipoInsumo = textField("Tipo insumo");
         unidad = textField("Unidad");
 
-        Div form = new Div();
-        form.setSizeFull();
+
         form.add(
                 envolver(id,            "30%"),
                 envolver(descripcion),
@@ -42,7 +41,7 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
                 envolver(unidad,        "50%")
         );
 
-        return form;
+
     }
 
     @Override

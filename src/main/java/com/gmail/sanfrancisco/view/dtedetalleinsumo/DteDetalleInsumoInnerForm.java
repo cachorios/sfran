@@ -26,23 +26,19 @@ public class DteDetalleInsumoInnerForm extends DefaultInnerDialog<DteDetalleInsu
     }
 
     @Override
-    protected Component generarForm() {
+    protected void generarForm(Div form) {
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
         cantidad = textField("Cantidad");
         precio = textField("Precio");
 
-        Div form = new Div();
-        form.setSizeFull();
         form.add(
                 envolver(id, "30%"),
                 envolver(cantidad),
                 envolver(precio)
         );
 
-
-        return form;
     }
 
     @Override

@@ -19,6 +19,7 @@ public class LicenciaListPrever extends AbstractPreview<Licencia> {
 
     @Override
     public void crearElementos() {
+
         id               = textField("ID",       false);
         tipoLicencia     = textField("Tipo licencia", false);
         vencimiento      = dateField("Vencimiento", "50%");
@@ -31,13 +32,5 @@ public class LicenciaListPrever extends AbstractPreview<Licencia> {
 //                envolver(valordat), valorchr, valorstr, envolver(espacio()), valorbol);
     }
 
-    @Override
-    public void actualizar(Licencia item) {
-        setValor(id,                Licencia::getId);
-        setValor(tipoLicencia,      Licencia::getTipoLicencia);
-        setValor(vencimiento,       Licencia::getVencimiento);
-        setValor(vencimientoCurso,  Licencia::getVencimientoCurso);
-        setValor(vencimientoNac,    Licencia::getVencimientoNac);
-        setValor(licenciaCarga,     Licencia::getLicenciaCarga);
-    }
+
 }

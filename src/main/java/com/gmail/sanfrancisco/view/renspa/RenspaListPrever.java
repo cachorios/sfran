@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.view.renspa;
 
 import com.gmail.cacho.slapi.view.AbstractPreview;
+import com.gmail.cacho.slapi.view.utils.PreviewItem;
 import com.gmail.sanfrancisco.entidad.Renspa;
 import com.vaadin.flow.component.textfield.TextField;
 
@@ -12,16 +13,7 @@ public class RenspaListPrever extends AbstractPreview<Renspa> {
 
     @Override
     public void crearElementos() {
-        id              = textField("ID", false);
-        descripcion     = textField("Descripción", false);
-
-        add(id, descripcion);
-//                envolver(valordat), valorchr, valorstr, envolver(espacio()), valorbol);
-    }
-
-    @Override
-    public void actualizar(Renspa item) {
-        setValor(id,            Renspa::getId);
-        setValor(descripcion,   Renspa::getDescripcion);
+        addItem("id", new PreviewItem<>(textField("ID"),Renspa::getId));
+        addItem("id", new PreviewItem<>(textField("Descripción"),Renspa::getDescripcion));
     }
 }

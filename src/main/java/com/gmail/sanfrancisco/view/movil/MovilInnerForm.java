@@ -43,7 +43,7 @@ public class MovilInnerForm extends DefaultInnerDialog<Movil> {
     }
 
     @Override
-    protected Component generarForm() {
+    protected void generarForm(Div form) {
         id = textField("ID");
         id.setPreventInvalidInput(true);
         tipoMovil = textField("Tipo de movil");
@@ -72,8 +72,6 @@ public class MovilInnerForm extends DefaultInnerDialog<Movil> {
         fecha.setWidth("100%");
         fecha.setRequired(true);
 
-        Div form = new Div();
-        form.setSizeFull();
         form.add(
                 envolver(id,            "30%"),
                 envolver(tipoMovil,     "50%"),
@@ -96,7 +94,6 @@ public class MovilInnerForm extends DefaultInnerDialog<Movil> {
                 envolver(fecha, "50%")
         );
 
-        return form;
     }
 
     @Override
