@@ -50,7 +50,7 @@ public class ViewTools {
         TextField t = new TextField(caption);
         t.setWidth(ancho);
         t.setEnabled(enabled);
-        t.setHeight(alto);
+//        t.setHeight(alto);
 
         return t;
     }
@@ -65,7 +65,7 @@ public class ViewTools {
         DatePicker fecha;
         fecha = new DatePicker(caption);
         fecha.setWidth("100%");
-        fecha.setHeight(ALTO_DEFAULT);
+//        fecha.setHeight(ALTO_DEFAULT);
 
         //fecha.setLocale(Locale.CANADA);                //setDateFormat(C.SYS_APP_VIEW_DATEFORMAT);
         fecha.addValueChangeListener(v -> fecha.focus());
