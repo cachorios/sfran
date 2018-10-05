@@ -40,7 +40,11 @@
         <repository>
              <id>Vaadin Directory</id>
              <url>http://maven.vaadin.com/vaadin-addons</url>
-        </repository>        
+        </repository>
+        <repository>
+            <id>jr-ce-releases</id>
+            <url>http://jaspersoft.artifactoryonline.com/jaspersoft/jr-ce-releases</url>
+        </repository>
     </repositories>
 
     <dependencyManagement>
@@ -143,6 +147,42 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-juli</artifactId>
             <version>LATEST</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-functions</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-fonts</artifactId>
+            <version>6.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.4</version>
+        </dependency>
+        <!--fin jasperreports-->
+        <!--Para exportar a documentos Microsoft-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.15</version>
+        </dependency>
+        <!--fin Para exportar a documentos Microsoft-->
+
+        <dependency>
+            <groupId>org.vaadin.alejandro</groupId>
+            <artifactId>pdf_browser</artifactId>
+            <version>1.0.0-alpha1</version>
         </dependency>
 
         <!-- Added to provide logging output as Flow uses -->
