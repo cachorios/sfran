@@ -39,7 +39,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     }
 
     @Override
-    protected Component generarForm() {
+    protected void generarForm(Div form) {
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
@@ -67,8 +67,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         patenteJaula = textField("Patente de jaula");
         titular = textField("Titular");
 
-        Div form = new Div();
-        form.setSizeFull();
         form.add(
                 envolver(id, "30%"),
                 envolver(origen,"50%"),
@@ -88,7 +86,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 envolver(titular,"50%")
         );
 
-        return form;
     }
 
     @Override

@@ -23,19 +23,15 @@ public class NumeroDteInnerForm extends DefaultInnerDialog<NumeroDte> {
     }
 
     @Override
-    protected Component generarForm() {
+    protected void generarForm(Div form) {
         id = textField("ID");
         id.setPreventInvalidInput(true);
         descripcion = textField("Descripción");
 
-        Div form = new Div();
-        form.setSizeFull();
         form.add(
                 envolver(id, "30%"),
                 envolver(descripcion, "50%")
         );
-
-        return form;
     }
 
     @Override

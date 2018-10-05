@@ -32,7 +32,7 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
     }
 
     @Override
-    protected Component generarForm() {
+    protected void generarForm(Div form) {
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
@@ -53,8 +53,6 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
         licenciaCarga = new Checkbox("Habilitado para carga");
         licenciaCarga.setEnabled(false);
 
-        Div form = new Div();
-        form.setSizeFull();
         form.add(
                 envolver(id, "30%"),
                 envolver(tipoLicencia, "30%"),
@@ -63,9 +61,6 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
                 envolver(vencimientoCurso, "50%"),
                 envolver(licenciaCarga,"50%")
         );
-
-
-        return form;
     }
 
     @Override

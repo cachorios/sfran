@@ -30,7 +30,7 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
     }
 
     @Override
-    protected Component generarForm() {
+    protected void generarForm(Div form) {
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
@@ -42,8 +42,7 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
         domicilio = textField("Domicilio");
         email = textField("Correo electronico");
 
-        Div form = new Div();
-        form.setSizeFull();
+
         form.add(
                 envolver(id, "30%"),
                 envolver(nombre,"50%"),
@@ -55,7 +54,6 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
                 envolver(email, "100%")
         );
 
-        return form;
     }
 
     @Override
