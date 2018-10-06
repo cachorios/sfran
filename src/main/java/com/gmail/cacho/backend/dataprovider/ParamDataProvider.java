@@ -1,4 +1,4 @@
-package com.gmail.cacho.backend.views.parametro;
+package com.gmail.cacho.backend.dataprovider;
 
 
 import com.gmail.cacho.backend.entidad.Parametro;
