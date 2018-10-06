@@ -34,4 +34,9 @@ public class DteDetalleCategoriaForm extends AbstractForm<DteDetalleCategoria> {
     public Class<DteDetalleCategoria> getEntityType() {
         return DteDetalleCategoria.class;
     }
+
+    @Override
+    public String getTitulo() {
+        return "Categorias de un DTE";
+    }
 }

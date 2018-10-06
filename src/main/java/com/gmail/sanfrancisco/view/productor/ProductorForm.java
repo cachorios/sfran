@@ -26,4 +26,9 @@ public class ProductorForm extends AbstractForm<Productor> {
 
     @Override
     public Class<Productor> getEntityType() { return Productor.class; }
+
+    @Override
+    public String getTitulo() {
+        return "Productor";
+    }
 }

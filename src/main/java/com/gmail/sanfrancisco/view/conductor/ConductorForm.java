@@ -34,4 +34,9 @@ public class ConductorForm extends AbstractForm<Conductor> {
     public Class<Conductor> getEntityType() {
         return Conductor.class;
     }
+
+    @Override
+    public String getTitulo() {
+        return "Conductor";
+    }
 }

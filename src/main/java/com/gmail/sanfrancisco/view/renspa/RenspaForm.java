@@ -34,4 +34,9 @@ public class RenspaForm extends AbstractForm<Renspa> {
     public Class<Renspa> getEntityType() {
         return Renspa.class;
     }
+
+    @Override
+    public String getTitulo() {
+        return "Numero de renspa";
+    }
 }

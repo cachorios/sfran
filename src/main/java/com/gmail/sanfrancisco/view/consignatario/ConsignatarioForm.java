@@ -26,4 +26,9 @@ public class ConsignatarioForm extends AbstractForm<Consignatario> {
 
     @Override
     public Class<Consignatario> getEntityType() { return Consignatario.class; }
+
+    @Override
+    public String getTitulo() {
+        return "Consignatario";
+    }
 }

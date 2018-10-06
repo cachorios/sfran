@@ -27,6 +27,9 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
     @Override
     protected void generarForm(Div form) {
 
+        setHeight("252px");
+        setWidth("700px");
+
         id = textField("ID");
         id.setPreventInvalidInput(true);
         descripcion = textField("Descripción");
@@ -36,9 +39,11 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
 
         form.add(
                 envolver(id,            "30%"),
+
                 envolver(descripcion),
-                envolver(tipoInsumo,    "50%"),
-                envolver(unidad,        "50%")
+
+                envolver(tipoInsumo,    "48%"),
+                envolver(unidad,        "48%")
         );
 
 
