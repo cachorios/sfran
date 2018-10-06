@@ -44,8 +44,10 @@ public class ParamInnerForm extends DefaultInnerDialog<Parametro> {
     protected void generarForm(Div form) {
         //setFormRatio(0.65f);
         setFormRatio(1);
+        setHeight("430px");
+        setWidth("700px");
 
-        id = textField("ID");
+        id = textField("ID","100%");
 
         tipo = new ComboBox<>(Parametro.F_PAR_TIPO);
         tipo.setItems(ETipoParametro.values());
@@ -68,9 +70,9 @@ public class ParamInnerForm extends DefaultInnerDialog<Parametro> {
 
 
         form.add(
-                envolver(id, "30%"),
+                envolver(id, "15%"),
 
-                envolver(tipo),
+                envolver(tipo,"83%"),
 
                 envolver(clase, "35%"),
                 envolver(orden, "15%"),
@@ -98,6 +100,7 @@ public class ParamInnerForm extends DefaultInnerDialog<Parametro> {
         binder.forField(id)
               .withConverter(new StringToLongConverter(Constantes.MSJ_ERR_DB_ATCONVERTDATA
                                                                .concat(Constantes.MSJ_ERR_DB_NEEDINTEGER)))
+                .withNullRepresentation(0l)
               .bind(Parametro::getId, null);
         binder.forField(orden)
               .withConverter(new StringAIntegerConverter())

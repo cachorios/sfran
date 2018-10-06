@@ -1,5 +1,6 @@
 package com.gmail.sanfrancisco.view.licencia;
 
+import com.gmail.cacho.slapi.comunes.Recursos;
 import com.gmail.cacho.slapi.view.AbstractForm;
 import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerForm;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterForm;
@@ -33,5 +34,10 @@ public class LicenciaForm extends AbstractForm<Licencia> {
     @Override
     public Class<Licencia> getEntityType() {
         return Licencia.class;
+    }
+
+    @Override
+    public String getTitulo() {
+        return "Licencia de Conductor";
     }
 }
