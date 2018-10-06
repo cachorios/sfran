@@ -198,7 +198,11 @@ y la clase completa.
         }
     
         @Override
-        protected Component generarForm() {
+        protected void generarForm(Div form) {
+            
+            setWith("700px");
+            setHeigth("500px");
+                        
             id = textField("ID");
             apellido = textField("Apellido");
             nombre = textField("Nombre");
@@ -213,8 +217,6 @@ y la clase completa.
             celular = textField("Nro. Celular");
             operadoraTelefonica = textField("Operadora");
     
-            Div form = new Div();
-            form.setSizeFull();
             form.add(
                     envolver(id, "30%"),
                     envolver(apellido),
@@ -227,7 +229,6 @@ y la clase completa.
                     envolver(celular,"50%"),
                     envolver(operadoraTelefonica,"50%")
                 );
-           return form;
         }
     
         @Override
