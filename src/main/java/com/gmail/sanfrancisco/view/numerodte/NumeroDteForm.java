@@ -34,4 +34,9 @@ public class NumeroDteForm extends AbstractForm<NumeroDte> {
     public Class<NumeroDte> getEntityType() {
         return NumeroDte.class;
     }
+
+    @Override
+    public String getTitulo() {
+        return "Numero de DTE";
+    }
 }

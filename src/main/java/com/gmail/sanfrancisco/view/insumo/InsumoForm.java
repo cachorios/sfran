@@ -26,4 +26,9 @@ public class InsumoForm extends AbstractForm<Insumo> {
 
     @Override
     public Class<Insumo> getEntityType() { return Insumo.class; }
+
+    @Override
+    public String getTitulo() {
+        return "Insumo";
+    }
 }

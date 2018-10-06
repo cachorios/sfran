@@ -25,4 +25,9 @@ public class MovilForm extends AbstractForm<Movil> {
 
     @Override
     public Class<Movil> getEntityType() { return Movil.class; }
+
+    @Override
+    public String getTitulo() {
+        return "Movil";
+    }
 }

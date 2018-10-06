@@ -26,4 +26,9 @@ public class ComisionistaForm extends AbstractForm<Comisionista> {
 
     @Override
     public Class<Comisionista> getEntityType() { return Comisionista.class; }
+
+    @Override
+    public String getTitulo() {
+        return "Comisionista";
+    }
 }
