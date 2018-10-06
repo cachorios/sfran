@@ -72,6 +72,14 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends PolymerTempla
         dialog.setCloseOnOutsideClick(false);
     }
 
+    public void setHeight(String alto){
+        dialog.setHeight(alto);
+    }
+
+    public void setWidth(String ancho){
+        dialog.setWidth(ancho);
+    }
+
     private void generarVista(String elTitulo) {
         // 1.TITULO
         generarTitulo(elTitulo);

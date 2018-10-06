@@ -9,20 +9,17 @@ package com.gmail.cacho.backend.enumeradores;
  * @version 20161011
  */
 public enum ETipoParametro {
-    NINGUNO,
-    RECURSO,
-    MENU,
-    CONFIG,
-    TIPOGESTION,
-    FORMAPAGO,
-    ESTADOCUENTA,
-    ESTADOGESTION,
-    RESULTADOGESTION,
-    PROVINCIA,
-    LOCALIDAD,
-    TIPO_TITULO,
-    TIPO_EDICION,
-    TIPO_CARGO,
-    TIPO_COMPROBANTE,
-    ENTIDAD_BANCARIA
+    NINGUNO,        //0
+    RECURSO,        //1
+    MENU,           //2
+    CONFIG,         //3
+    SEXO,           //4
+    GRUPO_SANGUINEO,//5
+    OPERADORA_TEL,  //6
+    TIPO_DOC,       //7
+    COLOR,          //8
+    PROVINCIA,      //9
+    LOCALIDAD,      //10
+
+
 }

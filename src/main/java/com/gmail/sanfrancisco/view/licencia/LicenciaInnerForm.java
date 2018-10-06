@@ -34,7 +34,7 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
     @Override
     protected void generarForm(Div form) {
 
-        id = textField("ID");
+        id = textField("ID","20em");
         id.setPreventInvalidInput(true);
         tipoLicencia = textField("Tipo licencia");
 
@@ -54,7 +54,7 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
         licenciaCarga.setEnabled(false);
 
         form.add(
-                envolver(id, "30%"),
+                envolver(id),
                 envolver(tipoLicencia, "30%"),
                 envolver(vencimiento, "50%"),
                 envolver(vencimientoNac,"50%"),
