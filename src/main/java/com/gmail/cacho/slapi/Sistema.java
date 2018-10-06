@@ -158,9 +158,7 @@ public class Sistema implements IControladorSistema<SistemaUI, EventManager> {
     @Override
     public void logoff() {
         getSecurityControl().logoff();
-        UI.getCurrent().getPage().reload();
-        //        getUIPpal().getUI().get().getSession().close();  ////esta nulo
-
+        UI.getCurrent().getPage().executeJavaScript("window.location.href='/'");
     }
 
     @Override

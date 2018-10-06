@@ -49,10 +49,12 @@ public class MainView extends AppLayoutRouterLayout {
         // Primero define ciertos componentes de la barra superior
         TopClickableComponent tc1 = new TopClickableComponent(null, VaadinIcon.LOCK.create(),
                 clickEvent -> (new WinChangePass()).open());
+        tc1.getElement().getStyle().set("cursor", "pointer");
         tc1.setSizeFull();
         TopClickableComponent tc2 = new TopClickableComponent(null, VaadinIcon.OUT.create(),
                 clickEvent -> Sistema.getSistema().getEventBus()
                         .post(new Events.UserLogoutEvent()));
+        tc2.getElement().getStyle().set("cursor", "pointer");
         tc2.setSizeFull();
 
         // Aqui organiza el layout general con titulo
