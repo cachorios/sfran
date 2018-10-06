@@ -37,9 +37,6 @@ public class Comisionista extends AbstractEntidad {
     private String email;
 
     @NotNull
-    private Double saldo;
-
-    @NotNull
     private Double saldoInicial;
 
     public String getCuil() {
@@ -96,14 +93,6 @@ public class Comisionista extends AbstractEntidad {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Double getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(Double saldo) {
-        this.saldo = saldo;
     }
 
     public Double getSaldoInicial() {

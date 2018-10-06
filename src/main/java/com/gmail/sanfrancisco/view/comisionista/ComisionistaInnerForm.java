@@ -24,7 +24,6 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
     private TextField telefono;
     private TextField domicilio;
     private TextField email;
-    private TextField saldo;
     private TextField saldoInicial;
 
     public ComisionistaInnerForm(IPresentableForm<Comisionista> presentable, String elTitulo) {
@@ -33,6 +32,9 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
 
     @Override
     protected void generarForm(Div form) {
+
+        setHeight("588px");
+        setWidth("700px");
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
@@ -43,19 +45,23 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
         telefono = textField("Telefono");
         domicilio = textField("Domicilio");
         email = textField("Correo electronico");
-        saldo = textField("Saldo");
         saldoInicial = textField("Saldo inicial");
 
         form.add(
                 envolver(id, "30%"),
-                envolver(nombre,"50%"),
-                envolver(apellido,"50%"),
+
+                envolver(nombre,"48%"),
+                envolver(apellido,"48%"),
+
                 envolver(cuil,"50%"),
-                envolver(celular,"50%"),
-                envolver(telefono,"50%"),
+
+                envolver(celular,"48%"),
+                envolver(telefono,"48%"),
+
                 envolver(domicilio,"100%"),
+
                 envolver(email, "100%"),
-                envolver(saldo, "50%"),
+
                 envolver(saldoInicial, "50%")
         );
 

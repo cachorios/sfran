@@ -44,6 +44,10 @@ public class MovilInnerForm extends DefaultInnerDialog<Movil> {
 
     @Override
     protected void generarForm(Div form) {
+
+        setHeight("672px");
+        setWidth("700px");
+
         id = textField("ID");
         id.setPreventInvalidInput(true);
         tipoMovil = textField("Tipo de movil");
@@ -74,24 +78,31 @@ public class MovilInnerForm extends DefaultInnerDialog<Movil> {
 
         form.add(
                 envolver(id,            "30%"),
-                envolver(tipoMovil,     "50%"),
-                envolver(modelo,        "50%"),
-                envolver(dominio,       "50%"),
-                envolver(tipoCombustible, "50%"),
-                envolver(color, "50%"),
-                envolver(maxCabezas,"50%"),
-                envolver(tara, "50%"),
-                envolver(cargaMax, "50%"),
-                envolver(consumo, "50%"),
-                envolver(alto, "50%"),
-                envolver(largo, "50%"),
-                envolver(ancho, "50%"),
-                envolver(numeroMotor,"50%"),
-                envolver(numeroChasis,"50%"),
-                envolver(marca, "50%"),
-                envolver(anno, "50%"),
-                envolver(estadoMovil, "50%"),
-                envolver(fecha, "50%")
+
+                envolver(tipoMovil,     "32%"),
+                envolver(modelo,        "32%"),
+                envolver(dominio,       "32%"),
+
+                envolver(tara, "48%"),
+                envolver(maxCabezas,"48%"),
+
+                envolver(cargaMax, "32%"),
+                envolver(tipoCombustible, "32%"),
+                envolver(consumo, "32%"),
+
+                envolver(alto, "32%"),
+                envolver(largo, "32%"),
+                envolver(ancho, "32%"),
+
+                envolver(numeroMotor,"48%"),
+                envolver(numeroChasis,"48%"),
+
+                envolver(color, "32%"),
+                envolver(marca, "32%"),
+                envolver(anno, "32%"),
+
+                envolver(estadoMovil, "48%"),
+                envolver(fecha, "48%")
         );
 
     }

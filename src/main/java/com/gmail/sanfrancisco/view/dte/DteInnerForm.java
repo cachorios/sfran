@@ -41,6 +41,9 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     @Override
     protected void generarForm(Div form) {
 
+        setHeight("672px");
+        setWidth("700px");
+
         id = textField("ID");
         id.setPreventInvalidInput(true);
         origen = textField("Origen");
@@ -69,21 +72,29 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         form.add(
                 envolver(id, "30%"),
-                envolver(origen,"50%"),
-                envolver(destino, "50%"),
-                envolver(cantidad,"50%"),
-                envolver(especie, "50%"),
-                envolver(peso,"50%"),
-                envolver(entrega,"50%"),
-                envolver(total,"50%"),
-                envolver(ajustes,"50%"),
+
                 envolver(numeroTropa,"50%"),
-                envolver(fechaCarga,"50%"),
-                envolver(fechaVencimiento,"50%"),
-                envolver(kmSalida,"50%"),
-                envolver(kmLlegada,"50%"),
-                envolver(patenteJaula,"50%"),
-                envolver(titular,"50%")
+
+                envolver(origen,"48%"),
+                envolver(destino, "48%"),
+
+                envolver(cantidad,"32%"),
+                envolver(especie, "32%"),
+                envolver(peso,"32%"),
+
+                envolver(entrega,"32%"),
+                envolver(total,"32%"),
+                envolver(ajustes,"32%"),
+
+
+                envolver(fechaCarga,"48%"),
+                envolver(fechaVencimiento,"48%"),
+
+                envolver(kmSalida,"48"),
+                envolver(kmLlegada,"48%"),
+
+                envolver(patenteJaula,"48%"),
+                envolver(titular,"48%")
         );
 
     }
