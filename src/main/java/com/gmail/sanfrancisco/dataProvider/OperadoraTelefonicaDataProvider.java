@@ -1,26 +1,34 @@
 package com.gmail.sanfrancisco.dataProvider;
 
 import com.gmail.cacho.backend.entidad.Parametro;
+import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.FilterablePageableDataProvider;
 import com.gmail.cacho.backend.service.ParamVariosServicio;
 import com.vaadin.flow.data.provider.Query;
 import com.vaadin.flow.data.provider.QuerySortOrder;
+import com.vaadin.flow.data.provider.SortDirection;
 
-import java.util.List;
+import javax.inject.Inject;
+import java.util.Arrays;
+
 import java.util.stream.Stream;
 
 public class OperadoraTelefonicaDataProvider extends FilterablePageableDataProvider<Parametro, Long, String> {
     private ParamVariosServicio servicio;
-    private Long tipo;
+    private ETipoParametro tipo;
     private String filtro;
 
-    public OperadoraTelefonicaDataProvider(ParamVariosServicio servicio, List<QuerySortOrder> defaultSortOrders) {
-        super(servicio, defaultSortOrders);
+    @Inject
+    public OperadoraTelefonicaDataProvider(ParamVariosServicio servicio) {
+        super(servicio, Arrays.asList(
+                new QuerySortOrder("id", SortDirection.ASCENDING))
+        );
+
         this.servicio = servicio;
     }
 
 
-    public void setTipo(Long tipo) {
+    public void setTipo(ETipoParametro tipo) {
         this.tipo = tipo;
     }
 
@@ -36,6 +44,7 @@ public class OperadoraTelefonicaDataProvider extends FilterablePageableDataProvi
 
     @Override
     protected Stream<Parametro> fetchFromBackEnd(Query<Parametro, String> query) {
+        filtro = filtro==null ? "%" :"%"+filtro;
         return servicio.findAnyMatching(tipo, filtro, query.getOffset(), query.getLimit(), getSortOrders(query));
     }
 

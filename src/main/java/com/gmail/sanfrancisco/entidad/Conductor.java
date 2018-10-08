@@ -1,12 +1,10 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.backend.entidad.Usuario;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -42,7 +40,8 @@ public class Conductor extends AbstractEntidad {
     private String celular;
 
     @NotNull
-    private long operadoraTelefonica;
+    @ManyToOne
+    private Parametro operadoraTelefonica;
 
     @NotNull
     @Temporal(value = TemporalType.TIMESTAMP)
@@ -118,13 +117,6 @@ public class Conductor extends AbstractEntidad {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public long getOperadoraTelefonica() {
-        return operadoraTelefonica;
-    }
-
-    public void setOperadoraTelefonica(long operadoraTelefonica) {
-        this.operadoraTelefonica = operadoraTelefonica;
-    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -132,5 +124,13 @@ public class Conductor extends AbstractEntidad {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Parametro getOperadoraTelefonica() {
+        return operadoraTelefonica;
+    }
+
+    public void setOperadoraTelefonica(Parametro operadoraTelefonica) {
+        this.operadoraTelefonica = operadoraTelefonica;
     }
 }

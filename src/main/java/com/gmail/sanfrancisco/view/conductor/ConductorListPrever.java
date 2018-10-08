@@ -16,6 +16,7 @@ public class ConductorListPrever extends AbstractPreview<Conductor> {
         addItem("apellido", new PreviewItem<>(textField("Apellido"), Conductor::getApellido));
         addItem("nombre", new PreviewItem<>(textField("Nombre"), Conductor::getNombre));
         addItem("telefono", new PreviewItem<>(textField("Nro.Tel."), Conductor::getTelefono));
+        addItem("Operadora", new PreviewItem<>(textField("Nro.Tel."), Conductor::getOperadoraTelefonica));
         addItem("Celular", new PreviewItem<>(textField("Nro.Cel."), Conductor::getCelular));
     }
 }

@@ -1,18 +1,22 @@
 package com.gmail.sanfrancisco.view.conductor;
 
+import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.dataProvider.OperadoraTelefonicaDataProvider;
 import com.gmail.sanfrancisco.entidad.Conductor;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.converter.StringToLongConverter;
 
+
+import javax.enterprise.inject.spi.CDI;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
@@ -27,7 +31,7 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
     private DatePicker fechaNacimiento;
     private TextField telefono;
     private TextField celular;
-    private TextField operadoraTelefonica;
+    private ComboBox operadoraTelefonica;
     private DatePicker fechaIngreso;
 
 
@@ -55,7 +59,12 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
 
         telefono = textField("Nro. Telefono");
         celular = textField("Nro. Celular");
-        operadoraTelefonica = textField("Operadora");
+
+        operadoraTelefonica = new ComboBox("Operadora");
+        operadoraTelefonica.setWidth("100%");
+        OperadoraTelefonicaDataProvider dp = CDI.current().select(OperadoraTelefonicaDataProvider.class).get();
+        dp.setTipo(ETipoParametro.OPERADORA_TEL);
+        operadoraTelefonica.setDataProvider(dp);
 
         fechaIngreso = new DatePicker("Fecha Ingreso");
         fechaIngreso.setWidth("100%");
@@ -89,7 +98,6 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
     @Override
     public void bindFormFields(BeanValidationBinder<Conductor> binder) {
 
-
         binder.forField(id)
                 .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
                 .withNullRepresentation(0l)
@@ -103,9 +111,8 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
                 .withConverter(new LocalDateADateConverter())
                 .bind(Conductor::getFechaIngreso, Conductor::setFechaIngreso);
 
-        binder.forField(operadoraTelefonica)
-                .withConverter(new StringToLongConverter("No es un nro válido."))
-                .bind(Conductor::getOperadoraTelefonica, Conductor::setOperadoraTelefonica);
+        binder.bind(operadoraTelefonica, conductor -> conductor.getOperadoraTelefonica(), (conductor, parametro) -> conductor.setOperadoraTelefonica(parametro));
+
 
         binder.bindInstanceFields(this);
     }

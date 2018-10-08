@@ -12,16 +12,18 @@ import javax.validation.constraints.Size;
 @Entity
 public class Usuario extends AbstractEntidad {
 
-//    @NotNull
+    @NotNull
+    @Column(unique = true)
+    @Size(min=3, max = 60, message = "La cantidad de caracteres debe estar entre 3 y 60")
     private String nombre;
 
     @NotNull
-    @Size(min=1, max = 30, message = "La cantidad de caracteres debe estar entre 4 y 30")
+    @Size(min=4, max = 30, message = "La cantidad de caracteres debe estar entre 4 y 30")
     @Column(unique = true)
     private String username;
 
     @NotNull
-    @Size(min=1, max = 1024, message = "La cantidad de caracteres debe estar entre 4 y 30")
+    @Size(min=4, max = 1024, message = "La cantidad de caracteres debe estar entre 4 y 30")
     private String password;
 
     @NotNull
@@ -102,6 +104,13 @@ public class Usuario extends AbstractEntidad {
         this.locked = locked;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public boolean isPasswordOK(String password) {
         ////todo: ver como veridicar ... hay un usuarioService

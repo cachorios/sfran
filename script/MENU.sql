@@ -16,7 +16,7 @@
 
 
            (90, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Parametros del Sistema',       900, 2, FALSE, NULL, 7,  0,  'Configuracion General del Sistema', 1),
-           (91, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Parametros Generales',         901, 2, FALSE, NULL, 8,  0,  'com.gmail.cacho.backend.views.parametro.ParamView', 1),
+           (91, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Parametros Generales',         901, 2, FALSE, NULL, 8,  90,  'com.gmail.cacho.backend.views.parametro.ParamView', 1),
            (92, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Comisionistas',                902, 2, FALSE, NULL, 9,  1,  'com.gmail.sanfrancisco.view.comisionista.ComisionistaView', 1),
            (93, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Consignatarios',               903, 2, FALSE, NULL, 10, 1,  'com.gmail.sanfrancisco.view.consignatario.ConsignatarioView', 1),
            (94, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Productores',                  904, 2, FALSE, NULL, 11, 1,  'com.gmail.sanfrancisco.view.productor.ProductorView', 1),
