@@ -24,7 +24,7 @@ public interface IVisualizableReadOnly<T extends AbstractEntidad> extends IVisua
 
     /**
      * Este metodo debe actualizar lo mostrado por el visualizable, para lo cual podria
-     * basarse en un objeto pasado como Parametro (el cual se admite que pueda ser nulo
+     * basarse en un objeto pasado como parametro (el cual se admite que pueda ser nulo
      * si no hiceiera falta).
      *
      * @param item un objeto que sirve para el proceso de actualización (o nulo si no hay).

@@ -133,4 +133,13 @@ public class Conductor extends AbstractEntidad {
     public void setOperadoraTelefonica(Parametro operadoraTelefonica) {
         this.operadoraTelefonica = operadoraTelefonica;
     }
+
+    @Override
+    public String toString() {
+        String leyenda = "Nuevo Conductor";
+        if(!isNew()){
+            leyenda = getApellido() + ", " + getNombre();
+        }
+        return leyenda;
+    }
 }

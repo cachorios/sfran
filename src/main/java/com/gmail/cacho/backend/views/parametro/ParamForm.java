@@ -18,7 +18,7 @@ public class ParamForm extends AbstractForm<Parametro> {
 
     @Override
     protected Focusable getPrimerElementoForm() {
-        return ((ParamInnerForm)getViewComponent()).getPrimerElementoForm();
+        return ((com.gmail.cacho.backend.views.parametro.ParamInnerForm)getViewComponent()).getPrimerElementoForm();
     }
 
     @Override

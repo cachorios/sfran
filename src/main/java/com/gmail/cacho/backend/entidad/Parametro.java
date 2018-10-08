@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
- * Esta clase representa a un Parametro del sistema y contiene, ademas de un conjunto de campos para guardar
+ * Esta clase representa a un parametro del sistema y contiene, ademas de un conjunto de campos para guardar
  * valores de distinto tipo: double, long, booelan, Timestamp, etc. Los parámetros tiene un Tipo basado en la
  * enumeracion ETipoParametro.
  *
