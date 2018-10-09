@@ -81,6 +81,7 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
 
         binder.forField(saldoInicial)
                 .withConverter(new StringToDoubleConverter("No es un nro válido."))
+                .withNullRepresentation(0.0)
                 .bind(Comisionista::getSaldoInicial, Comisionista::setSaldoInicial);
 
 
