@@ -8,6 +8,7 @@ import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.converter.StringToDoubleConverter;
 import com.vaadin.flow.data.converter.StringToLongConverter;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
@@ -77,6 +78,11 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
                 .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
                 .withNullRepresentation(0l)
                 .bind(Comisionista::getId, null);
+
+        binder.forField(saldoInicial)
+                .withConverter(new StringToDoubleConverter("No es un nro válido."))
+                .bind(Comisionista::getSaldoInicial, Comisionista::setSaldoInicial);
+
 
         binder.bindInstanceFields( this);
     }
