@@ -70,6 +70,7 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends PolymerTempla
         dialog.setWidth("800px");
         dialog.setCloseOnEsc(false);
         dialog.setCloseOnOutsideClick(false);
+
     }
 
     public void setHeight(String alto){
@@ -97,6 +98,10 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends PolymerTempla
 
         // 3.BOTONERA
         generarBotonera();
+
+        guarAddButton.setClassName("crud_btn");
+        guardarButton.setClassName("crud_btn");
+        cancelarButton.setClassName("crud_btn");
 
         // 5.REGISTRADO DE COMPONENTES POR DEFECTO
         registrarComponentesDefault();

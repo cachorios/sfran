@@ -17,7 +17,6 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.capitalize;
 
-
 /**
  * Esta clase es la implementación por defecto de la interfase IPresentableForm e
  * implementa un objeto presentable del sistema asociado a un esquema de formulario
@@ -108,6 +107,7 @@ public abstract class AbstractForm<T extends AbstractEntidad> extends AbstractPr
 
     @Override
     public void iniciar(EModoVista modoVista, AbstractEntidad item) {
+        hasChanges = false;
         L.info(C.MSG_ACC_INITVIEW,
                 this.getClass().getSimpleName()
                         .concat(C.SYS_CAD_OPENTYPE)
@@ -119,6 +119,7 @@ public abstract class AbstractForm<T extends AbstractEntidad> extends AbstractPr
                                 ? item.toString()
                                 : C.SYS_CAD_TXTNULL))
                         .concat(C.SYS_CAD_CLOSETPE));
+
 
         setModoVista(modoVista);
         generarBinder();

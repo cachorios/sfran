@@ -22,9 +22,9 @@ rem -- PATH A LOS SCRIPTS DE DATOS --
 rem ---------------------------------
 
 
-set ubic="D:\Desarrollo"
+rem set ubic="D:\Desarrollo"
 rem set ubic="E:\Desarrollo"
-rem set ubic="D:\Vaadin"
+set ubic="D:\Vaadin"
 
 rem ---------------------------------
 rem -- MIGRACION DE LOS DATOS      --
@@ -35,8 +35,7 @@ psql -d sfran -U postgres -f "db-pgsql-data.sql"
 psql -d sfran -U postgres -f "MENU.sql"
 psql -d sfran -U postgres -f "PROVINCIAS.sql"
 psql -d sfran -U postgres -f "LOCALIDADES.sql"
-psql -d sfran -U postgres -f "TIPO_CARGOS.sql"
-
+psql -d sfran -U postgres -f "operadora.sql"
 rem ---------------------------------
 psql -d sfran -U postgres -f "USUARIOS.sql"
 psql -d sfran -U postgres -f "AFIP.sql"
