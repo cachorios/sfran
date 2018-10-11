@@ -13,7 +13,7 @@ public class NumeroDteList extends AbstractList<NumeroDte> {
     public NumeroDteList(IPresenterList<NumeroDte> presenter) {
         super(presenter);
         setListaCols(Arrays.asList(
-                new ColumnList<>(NumeroDte::getDescripcion, "Numero de DTE", "numero de dte", true)
+                new ColumnList<>(NumeroDte::getNumero, "Numero de DTE", "numero", true)
         ));
     }
 

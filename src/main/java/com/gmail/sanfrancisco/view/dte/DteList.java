@@ -13,9 +13,10 @@ public class DteList  extends AbstractList<Dte> {
     public DteList(IPresenterList<Dte> presenter) {
         super(presenter);
         setListaCols(Arrays.asList(
-                new ColumnList<>(Dte::getNumeroTropa,"Numero de tropa","numero de tropa", true),
-                new ColumnList<>(Dte::getProductor,"Productor","productor", true),
+                new ColumnList<>(Dte::getFechaCarga,"Fecha Carga","fechaCarga", true),
+                new ColumnList<>(Dte::getNumeroTropa,"Numero de tropa","numeroTropa", true),
                 new ColumnList<>(Dte::getComisionista,"Comisionista","comisionista", true),
+                new ColumnList<>(Dte::getProductor,"Productor","productor", true),
                 new ColumnList<>(Dte::getCantidad,"Cantidad","cantidad", true),
                 new ColumnList<>(Dte::getPeso,"Peso","peso", true),
                 new ColumnList<>(Dte::getTotal,"Total de factura","total de factura", true)
@@ -32,6 +33,6 @@ public class DteList  extends AbstractList<Dte> {
 
     @Override
     public String getTitulo() {
-        return "Lista de DTEs";
+        return "Lista de DTE's";
     }
 }

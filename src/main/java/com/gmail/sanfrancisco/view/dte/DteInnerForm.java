@@ -112,28 +112,20 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .withNullRepresentation(0l)
                 .bind(Dte::getId, null);
 
-        binder.forField(origen)
-                .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(Dte::getOrigen, null);
 
-        binder.forField(destino)
-                .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(Dte::getDestino, null);
 
         binder.forField(especie)
                 .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
                 .withNullRepresentation(0l)
                 .bind(Dte::getEspecie, null);
 
-        binder.forField(fechaCarga)
-                .withConverter(new LocalDateADateConverter())
-                .bind(Dte::getFechaCarga, Dte::setFechaCarga);
-
-        binder.forField(fechaVencimiento)
-                .withConverter(new LocalDateADateConverter())
-                .bind(Dte::getFechaVencimiento, Dte::setFechaVencimiento);
+//        binder.forField(fechaCarga)
+//                .withConverter(new LocalDateADateConverter())
+//                .bind(Dte::getFechaCarga, Dte::setFechaCarga);
+//
+//        binder.forField(fechaVencimiento)
+//                .withConverter(new LocalDateADateConverter())
+//                .bind(Dte::getFechaVencimiento, Dte::setFechaVencimiento);
 
         binder.bindInstanceFields(this);
     }

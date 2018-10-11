@@ -1,21 +1,29 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.backend.entidad.Parametro;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Entity
 public class Dte extends AbstractEntidad {
 
     @NotNull
-    private long origen;
+    @Size(min=4, max=4, message="El numero de tropa debe contener 4 caracteres.")
+    private String numeroTropa;
 
     @NotNull
-    private long destino;
+    @ManyToOne
+    private Parametro localidadOrigen;
+
+    @NotNull
+    @ManyToOne
+    private Parametro localidadDestino;
 
     @ManyToOne
     private Renspa renspa;
@@ -44,15 +52,15 @@ public class Dte extends AbstractEntidad {
     @NotNull
     private Double ajustes;
 
+
+    /**
+     * @Description: Fecha en que cargan el camion
+     */
     @NotNull
-    @Size(min=5, max=50, message="El numero de tropa debe contener entre 5 y 50 caracteres.")
-    private String numeroTropa;
+    private LocalDate fechaCarga;
 
     @NotNull
-    private Date fechaCarga;
-
-    @NotNull
-    private Date fechaVencimiento;
+    private LocalDate fechaVencimiento;
 
     @ManyToOne
     private Consignatario consignatario;
@@ -60,7 +68,6 @@ public class Dte extends AbstractEntidad {
     @ManyToOne
     private Comisionista comisionista;
 
-//     to do 'usuario'
 
     @ManyToOne
     private Productor productor;
@@ -75,23 +82,6 @@ public class Dte extends AbstractEntidad {
 
     private String titular;
 
-
-
-    public long getOrigen() {
-        return origen;
-    }
-
-    public void setOrigen(long origen) {
-        this.origen = origen;
-    }
-
-    public long getDestino() {
-        return destino;
-    }
-
-    public void setDestino(long destino) {
-        this.destino = destino;
-    }
 
     public Renspa getRenspa() {
         return renspa;
@@ -205,19 +195,19 @@ public class Dte extends AbstractEntidad {
         this.ajustes = ajustes;
     }
 
-    public Date getFechaCarga() {
+    public LocalDate getFechaCarga() {
         return fechaCarga;
     }
 
-    public void setFechaCarga(Date fechaCarga) {
+    public void setFechaCarga(LocalDate fechaCarga) {
         this.fechaCarga = fechaCarga;
     }
 
-    public Date getFechaVencimiento() {
+    public LocalDate getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(Date fechaVencimiento) {
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 
@@ -243,5 +233,21 @@ public class Dte extends AbstractEntidad {
 
     public void setTitular(String titular) {
         this.titular = titular;
+    }
+
+    public Parametro getLocalidadOrigen() {
+        return localidadOrigen;
+    }
+
+    public void setLocalidadOrigen(Parametro localidadOrigen) {
+        this.localidadOrigen = localidadOrigen;
+    }
+
+    public Parametro getLocalidadDestino() {
+        return localidadDestino;
+    }
+
+    public void setLocalidadDestino(Parametro localidadDestino) {
+        this.localidadDestino = localidadDestino;
     }
 }

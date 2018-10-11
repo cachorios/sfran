@@ -5,6 +5,7 @@ import com.gmail.cacho.slapi.comunes.C;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -27,15 +28,13 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     private String usuarioalta;
 
     @Column(name = "fechaalta")
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date fechaalta;
+    private LocalDate fechaalta;
 
     @Column(name = "usuarioumod")
     private String usuarioumod;
 
     @Column(name = "fechaumod")
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date fechaumod;
+    private LocalDate fechaumod;
 
     public Long getId() {
         return id;
@@ -82,14 +81,14 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     protected void setAltaData() {
         String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod = "TEST"; //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
-        fechaalta = fechaumod = Date.from(Instant.now());
+        fechaalta = fechaumod = LocalDate.from(Instant.now());
     }
 
     @PreUpdate
     protected void setUmodData() {
         String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod =  "TEST";  //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
-        fechaumod = Date.from(Instant.now());
+        fechaumod = LocalDate.from(Instant.now());
     }
 
     public boolean isNew() {

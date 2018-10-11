@@ -10,19 +10,11 @@ import javax.validation.constraints.Size;
 @Entity
 public class NumeroDte extends AbstractEntidad {
     @NotNull
-    @Size(min=3, max=50, message="La descripción debe contener entre 3 y 50 caracteres.")
-    private String descripcion;
+    @Size(min=11, max=11, message="El nro de DTE tiene 9 digiyo + 1 de verfificacion 'nnnnnnnnn-n'")
+    private String numero;
 
     @ManyToOne
     private Dte dte;
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public Dte getDte() {
         return dte;
@@ -30,5 +22,13 @@ public class NumeroDte extends AbstractEntidad {
 
     public void setDte(Dte dte) {
         this.dte = dte;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 }

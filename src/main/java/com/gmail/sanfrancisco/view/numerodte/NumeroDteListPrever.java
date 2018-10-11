@@ -11,8 +11,7 @@ public class NumeroDteListPrever extends AbstractPreview<NumeroDte> {
 
     @Override
     public void crearElementos() {
-        addItem("id", new PreviewItem<>(textField("ID"), NumeroDte::getId));
-        addItem("descripcion", new PreviewItem<>(textField("Descripción"), NumeroDte::getDescripcion));
+        addItem("Nro", new PreviewItem<>(textField("Descripción"), NumeroDte::getNumero));
 
     }
 }
