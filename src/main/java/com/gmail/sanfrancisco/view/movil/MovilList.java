@@ -14,8 +14,8 @@ public class MovilList extends AbstractList<Movil> {
         super(presenter);
         setListaCols(Arrays.asList(
                 new ColumnList<>(Movil::getDominio, "Dominio","dominio",true),
-                new ColumnList<>(Movil::getEstadoMovil, "Estado del movil", "estado del movil", true),
-                new ColumnList<>(Movil::getMaxCabezas, "Maximo de cabezas", "maximo de cabezas", true)
+                new ColumnList<>(Movil::getEstadoMovil, "Estado del movil", "estadomovil", true),
+                new ColumnList<>(Movil::getMaxCabezas, "Maximo de cabezas", "maxcabezas", true)
         ));
     }
 

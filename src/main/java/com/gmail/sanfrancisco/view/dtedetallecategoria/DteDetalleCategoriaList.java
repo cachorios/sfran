@@ -15,10 +15,10 @@ public class DteDetalleCategoriaList  extends AbstractList<DteDetalleCategoria> 
         setListaCols(Arrays.asList(
                 new ColumnList<>(DteDetalleCategoria::getCategoria,"Categoria","categoria", true),
                 new ColumnList<>(DteDetalleCategoria::getCantidad,"Cantidad","cantidad", true),
-                new ColumnList<>(DteDetalleCategoria::getKgVivo,"Kilogramos vivos","kilogramos vivos", true),
-                new ColumnList<>(DteDetalleCategoria::getPrecioKgVivo,"Precio por kg vivos","precio por kg vivos", true),
-                new ColumnList<>(DteDetalleCategoria::getKgCarne,"Kilogramos de carne","kilogramos de carne", true),
-                new ColumnList<>(DteDetalleCategoria::getPorcentajeComision,"Porcentaje de comision","porcentaje de comision", true)
+                new ColumnList<>(DteDetalleCategoria::getKgVivo,"Kilogramos vivos","kgvivos", true),
+                new ColumnList<>(DteDetalleCategoria::getPrecioKgVivo,"Precio por kg vivos","preciokgvivo", true),
+                new ColumnList<>(DteDetalleCategoria::getKgCarne,"Kilogramos de carne","kgcarne", true),
+                new ColumnList<>(DteDetalleCategoria::getPorcentajeComision,"Porcentaje de comision","porcentajecomision", true)
         ));
     }
 

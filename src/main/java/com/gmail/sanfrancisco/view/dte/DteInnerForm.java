@@ -112,13 +112,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .withNullRepresentation(0l)
                 .bind(Dte::getId, null);
 
-
-
-        binder.forField(especie)
-                .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(Dte::getEspecie, null);
-
 //        binder.forField(fechaCarga)
 //                .withConverter(new LocalDateADateConverter())
 //                .bind(Dte::getFechaCarga, Dte::setFechaCarga);

@@ -14,7 +14,7 @@ public class InsumoList extends AbstractList<Insumo> {
         super(presenter);
         setListaCols(Arrays.asList(
                 new ColumnList<>(Insumo::getDescripcion, "Descripción", "descripcion", true),
-                new ColumnList<>(Insumo::getTipoInsumo, "Tipo insumo", "tipo insumo", true),
+                new ColumnList<>(Insumo::getTipoInsumo, "Tipo insumo", "tipoinsumo", true),
                 new ColumnList<>(Insumo::getUnidad, "Unidad", "unidad", true)
         ));
     }

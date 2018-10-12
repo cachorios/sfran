@@ -1,67 +1,60 @@
-package com.gmail.sanfrancisco.view.insumo;
+package com.gmail.sanfrancisco.view.documento;
 
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
-import com.gmail.sanfrancisco.entidad.Insumo;
-import com.vaadin.flow.component.Component;
+import com.gmail.sanfrancisco.entidad.Comisionista;
+import com.gmail.sanfrancisco.entidad.Documento;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.converter.StringToDoubleConverter;
 import com.vaadin.flow.data.converter.StringToLongConverter;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
-public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
+public class DocumentoInnerForm extends DefaultInnerDialog<Documento> {
 
     private TextField id;
+    private TextField nombreArchivo;
     private TextField descripcion;
-    private TextField tipoInsumo;
-    private TextField unidad;
 
-    public InsumoInnerForm(IPresentableForm<Insumo> presentable, String elTitulo) {
+    public DocumentoInnerForm(IPresentableForm<Documento> presentable, String elTitulo) {
         super(presentable, elTitulo);
     }
 
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("252px");
+        setHeight("170px");
         setWidth("700px");
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
+        nombreArchivo = textField("Nombre de archivo");
         descripcion = textField("Descripción");
-        tipoInsumo = textField("Tipo insumo");
-        unidad = textField("Unidad");
-
 
         form.add(
-                envolver(id,            "30%"),
+                envolver(id, "30%"),
 
-                envolver(descripcion),
-
-                envolver(tipoInsumo,    "48%"),
-                envolver(unidad,        "48%")
+                envolver(nombreArchivo,"48%"),
+                envolver(descripcion,"48%")
         );
+
     }
 
     @Override
-    public Focusable getPrimerElementoForm() { return descripcion; }
+    public Focusable getPrimerElementoForm() { return nombreArchivo; }
 
     @Override
-    public void bindFormFields(BeanValidationBinder<Insumo> binder) {
+    public void bindFormFields(BeanValidationBinder<Documento> binder) {
 
         binder.forField(id)
                 .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
                 .withNullRepresentation(0l)
-                .bind(Insumo::getId, null);
+                .bind(Documento::getId, null);
 
-        binder.forField(unidad)
-                .withConverter(new StringToLongConverter("No es un nro válido."))
-                .bind(Insumo::getUnidad, Insumo::setUnidad);
-
-        binder.bindInstanceFields(this);
+        binder.bindInstanceFields( this);
     }
 }

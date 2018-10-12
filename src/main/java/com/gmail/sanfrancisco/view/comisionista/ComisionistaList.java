@@ -16,7 +16,7 @@ public class ComisionistaList extends AbstractList<Comisionista> {
                 new ColumnList<>(Comisionista::getNombre,"Nombre","nombre", true),
                 new ColumnList<>(Comisionista::getApellido,"Apellido","apellido", true),
                 new ColumnList<>(Comisionista::getCuil,"C.U.I.L.","cuil", true),
-                new ColumnList<>(Comisionista::getEmail,"Correo electronico","correo electronico", true)
+                new ColumnList<>(Comisionista::getEmail,"Correo electronico","email", true)
         ));
     }
 
@@ -29,4 +29,3 @@ public class ComisionistaList extends AbstractList<Comisionista> {
     @Override
     public String getTitulo() { return "Lista de Comisionistas"; }
 }
-
