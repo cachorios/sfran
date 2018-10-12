@@ -5,7 +5,6 @@ import com.gmail.cacho.slapi.comunes.C;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -28,13 +27,15 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     private String usuarioalta;
 
     @Column(name = "fechaalta")
-    private LocalDate fechaalta;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date fechaalta;
 
     @Column(name = "usuarioumod")
     private String usuarioumod;
 
     @Column(name = "fechaumod")
-    private LocalDate fechaumod;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date fechaumod;
 
     public Long getId() {
         return id;
@@ -81,14 +82,14 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     protected void setAltaData() {
         String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod = "TEST"; //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
-        fechaalta = fechaumod = LocalDate.from(Instant.now());
+        fechaalta = fechaumod = Date.from(Instant.now());
     }
 
     @PreUpdate
     protected void setUmodData() {
         String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod =  "TEST";  //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
-        fechaumod = LocalDate.from(Instant.now());
+        fechaumod = Date.from(Instant.now());
     }
 
     public boolean isNew() {
@@ -97,5 +98,13 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
 
     public String toSimpleString() {
         return (isNew() ? C.SYS_CAD_NEW : toString());
+    }
+
+    public Date getFechaumod() {
+        return fechaumod;
+    }
+
+    public void setFechaumod(Date fechaumod) {
+        this.fechaumod = fechaumod;
     }
 }
