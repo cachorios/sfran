@@ -38,7 +38,8 @@ public class Dte extends AbstractEntidad {
     private Integer cantidad;
 
     @NotNull
-    private long especie;
+    @ManyToOne
+    private Parametro especie;
 
     @NotNull
     private Integer peso;
@@ -155,11 +156,11 @@ public class Dte extends AbstractEntidad {
         this.cantidad = cantidad;
     }
 
-    public long getEspecie() {
+    public Parametro getEspecie() {
         return especie;
     }
 
-    public void setEspecie(long especie) {
+    public void setEspecie(Parametro especie) {
         this.especie = especie;
     }
 

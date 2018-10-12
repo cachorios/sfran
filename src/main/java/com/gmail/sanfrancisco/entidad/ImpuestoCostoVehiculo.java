@@ -8,9 +8,9 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class DteDetalleImpuesto extends AbstractEntidad {
+public class ImpuestoCostoVehiculo extends AbstractEntidad {
     @ManyToOne
-    private Dte dte;
+    private InsumoCostoVehiculo insumocostovehiculo;
 
     @NotNull
     @ManyToOne
@@ -19,12 +19,12 @@ public class DteDetalleImpuesto extends AbstractEntidad {
     @NotNull
     private Double saldo;
 
-    public Dte getDte() {
-        return dte;
+    public InsumoCostoVehiculo getInsumocostovehiculo() {
+        return insumocostovehiculo;
     }
 
-    public void setDte(Dte dte) {
-        this.dte = dte;
+    public void setInsumocostovehiculo(InsumoCostoVehiculo insumocostovehiculo) {
+        this.insumocostovehiculo = insumocostovehiculo;
     }
 
     public Parametro getImpuesto() {

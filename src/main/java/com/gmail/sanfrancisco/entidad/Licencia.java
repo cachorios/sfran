@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.backend.entidad.Parametro;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -11,7 +12,8 @@ import java.util.Date;
 public class Licencia extends AbstractEntidad {
 
     @NotNull
-    private long tipoLicencia;
+    @ManyToOne
+    private Parametro tipoLicencia;
 
     @NotNull
     private Date vencimiento;
@@ -25,13 +27,14 @@ public class Licencia extends AbstractEntidad {
     @NotNull
     private Boolean licenciaCarga;
 
-    // to do 'conductor'
+    @ManyToOne
+    private Conductor conductor;
 
-    public long getTipoLicencia() {
+    public Parametro getTipoLicencia() {
         return tipoLicencia;
     }
 
-    public void setTipoLicencia(long tipoLicencia) {
+    public void setTipoLicencia(Parametro tipoLicencia) {
         this.tipoLicencia = tipoLicencia;
     }
 
@@ -65,5 +68,13 @@ public class Licencia extends AbstractEntidad {
 
     public void setLicenciaCarga(Boolean licenciaCarga) {
         this.licenciaCarga = licenciaCarga;
+    }
+
+    public Conductor getConductor() {
+        return conductor;
+    }
+
+    public void setConductor(Conductor conductor) {
+        this.conductor = conductor;
     }
 }

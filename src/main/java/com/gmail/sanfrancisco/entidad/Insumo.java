@@ -1,8 +1,10 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.backend.entidad.Parametro;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -13,7 +15,8 @@ public class Insumo extends AbstractEntidad {
     private String descripcion;
 
     @NotNull
-    private long tipoInsumo;
+    @ManyToOne
+    private Parametro tipoInsumo;
 
     @NotNull
     private long unidad;
@@ -26,11 +29,11 @@ public class Insumo extends AbstractEntidad {
         this.descripcion = descripcion;
     }
 
-    public long getTipoInsumo() {
+    public Parametro getTipoInsumo() {
         return tipoInsumo;
     }
 
-    public void setTipoInsumo(long tipoInsumo) {
+    public void setTipoInsumo(Parametro tipoInsumo) {
         this.tipoInsumo = tipoInsumo;
     }
 

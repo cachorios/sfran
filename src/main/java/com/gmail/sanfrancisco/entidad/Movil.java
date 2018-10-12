@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.backend.entidad.Parametro;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -11,7 +12,8 @@ import java.util.Date;
 @Entity
 public class Movil extends AbstractEntidad {
     @NotNull
-    private Long tipoMovil;
+    @ManyToOne
+    private Parametro tipoMovil;
 
     @NotNull
     @Size(min=3, max=100, message="El serviciosModelo debe contener entre 3 y 100 caracteres.")
@@ -22,10 +24,12 @@ public class Movil extends AbstractEntidad {
     private String dominio;
 
     @NotNull
-    private long tipoCombustible;
+    @ManyToOne
+    private Parametro tipoCombustible;
 
     @NotNull
-    private long color;
+    @ManyToOne
+    private Parametro color;
 
     private Integer maxCabezas;
 
@@ -52,31 +56,18 @@ public class Movil extends AbstractEntidad {
     private String numeroChasis;
 
     @NotNull
-    private long marca;
+    @ManyToOne
+    private Parametro marca;
 
     @NotNull
     private Date anno;
 
-    private long estadoMovil;
+    @NotNull
+    @ManyToOne
+    private Parametro estadoMovil;
 
     @NotNull
     private Date fecha;
-
-    public Long getTipoMovil() {
-        return tipoMovil;
-    }
-
-    public void setTipoMovil(Long tipoMovil) {
-        this.tipoMovil = tipoMovil;
-    }
-
-    public long getEstadoMovil() {
-        return estadoMovil;
-    }
-
-    public void setEstadoMovil(long estadoMovil) {
-        this.estadoMovil = estadoMovil;
-    }
 
     public String getModelo() {
         return modelo;
@@ -92,22 +83,6 @@ public class Movil extends AbstractEntidad {
 
     public void setDominio(String dominio) {
         this.dominio = dominio;
-    }
-
-    public long getTipoCombustible() {
-        return tipoCombustible;
-    }
-
-    public void setTipoCombustible(long tipoCombustible) {
-        this.tipoCombustible = tipoCombustible;
-    }
-
-    public long getColor() {
-        return color;
-    }
-
-    public void setColor(long color) {
-        this.color = color;
     }
 
     public Integer getMaxCabezas() {
@@ -190,14 +165,6 @@ public class Movil extends AbstractEntidad {
         this.numeroChasis = numeroChasis;
     }
 
-    public long getMarca() {
-        return marca;
-    }
-
-    public void setMarca(long marca) {
-        this.marca = marca;
-    }
-
     public Date getAnno() {
         return anno;
     }
@@ -212,5 +179,45 @@ public class Movil extends AbstractEntidad {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Parametro getTipoMovil() {
+        return tipoMovil;
+    }
+
+    public void setTipoMovil(Parametro tipoMovil) {
+        this.tipoMovil = tipoMovil;
+    }
+
+    public Parametro getTipoCombustible() {
+        return tipoCombustible;
+    }
+
+    public void setTipoCombustible(Parametro tipoCombustible) {
+        this.tipoCombustible = tipoCombustible;
+    }
+
+    public Parametro getColor() {
+        return color;
+    }
+
+    public void setColor(Parametro color) {
+        this.color = color;
+    }
+
+    public Parametro getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Parametro marca) {
+        this.marca = marca;
+    }
+
+    public Parametro getEstadoMovil() {
+        return estadoMovil;
+    }
+
+    public void setEstadoMovil(Parametro estadoMovil) {
+        this.estadoMovil = estadoMovil;
     }
 }

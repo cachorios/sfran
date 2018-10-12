@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.backend.entidad.Parametro;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -38,7 +39,8 @@ public class Productor extends AbstractEntidad {
     private String email;
 
     @NotNull
-    private long condicion;
+    @ManyToOne
+    private Parametro condicion;
 
     public String getNombre() {
         return nombre;
@@ -96,11 +98,11 @@ public class Productor extends AbstractEntidad {
         this.email = email;
     }
 
-    public long getCondicion() {
+    public Parametro getCondicion() {
         return condicion;
     }
 
-    public void setCondicion(long condicion) {
+    public void setCondicion(Parametro condicion) {
         this.condicion = condicion;
     }
 }
