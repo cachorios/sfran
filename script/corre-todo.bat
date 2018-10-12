@@ -1,7 +1,7 @@
 @echo off
 cls
 set PGPASSWORD=postgres
-set PGDATA="C:\\Program Files\\PostgreSQL\\10\\data"
+set PGDATA="C:\\Program Files (x86)\\PostgreSQL\\10\\data"
 
 rem ---------------------------------
 rem -- COMANDOS UTILES             --
@@ -22,9 +22,9 @@ rem -- PATH A LOS SCRIPTS DE DATOS --
 rem ---------------------------------
 
 
-rem set ubic="D:\Desarrollo"
+set ubic="D:\Desarrollo"
 rem set ubic="E:\Desarrollo"
-set ubic="D:\Vaadin"
+rem set ubic="D:\Vaadin"
 
 rem ---------------------------------
 rem -- MIGRACION DE LOS DATOS      --
