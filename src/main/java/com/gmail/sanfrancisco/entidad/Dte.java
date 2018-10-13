@@ -164,16 +164,6 @@ public class Dte extends AbstractEntidad {
         this.cantidad = cantidad;
     }
 
-<<<<<<< HEAD
-=======
-    public Parametro getEspecie() {
-        return especie;
-    }
-
-    public void setEspecie(Parametro especie) {
-        this.especie = especie;
-    }
->>>>>>> b5d193ee81fa6af928bfc2a6aa9ed0957ff1c95f
 
     public Integer getPeso() {
         return peso;
@@ -286,4 +276,6 @@ public class Dte extends AbstractEntidad {
     public void setEspecie(Parametro especie) {
         this.especie = especie;
     }
+
+
 }
