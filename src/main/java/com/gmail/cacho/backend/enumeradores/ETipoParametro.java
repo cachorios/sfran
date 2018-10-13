@@ -20,5 +20,6 @@ public enum ETipoParametro {
     COLOR,          //8
     PROVINCIA,      //9
     LOCALIDAD,      //10
+    ESPECIES,       //11
 
 }

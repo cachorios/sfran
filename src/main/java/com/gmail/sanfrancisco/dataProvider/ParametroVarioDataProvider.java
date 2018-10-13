@@ -13,13 +13,13 @@ import java.util.Arrays;
 
 import java.util.stream.Stream;
 
-public class OperadoraTelefonicaDataProvider extends FilterablePageableDataProvider<Parametro, Long, String> {
+public class ParametroVarioDataProvider extends FilterablePageableDataProvider<Parametro, Long, String> {
     private ParamVariosServicio servicio;
     private ETipoParametro tipo;
     private String filtro;
 
     @Inject
-    public OperadoraTelefonicaDataProvider(ParamVariosServicio servicio) {
+    public ParametroVarioDataProvider(ParamVariosServicio servicio) {
         super(servicio, Arrays.asList(
                 new QuerySortOrder("id", SortDirection.ASCENDING))
         );

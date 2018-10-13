@@ -4,7 +4,7 @@ import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
-import com.gmail.sanfrancisco.dataProvider.OperadoraTelefonicaDataProvider;
+import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.entidad.Conductor;
 import com.vaadin.flow.component.Focusable;
 
@@ -62,7 +62,7 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
 
         operadoraTelefonica = new ComboBox("Operadora");
         operadoraTelefonica.setWidth("100%");
-        OperadoraTelefonicaDataProvider dp = CDI.current().select(OperadoraTelefonicaDataProvider.class).get();
+        ParametroVarioDataProvider dp = CDI.current().select(ParametroVarioDataProvider.class).get();
         dp.setTipo(ETipoParametro.OPERADORA_TEL);
         operadoraTelefonica.setDataProvider(dp);
 

@@ -8,8 +8,6 @@
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <jta-data-source>jdbc/PostgreDS</jta-data-source>
 
-        <class>com.gmail.cacho.backend.entidad.Usuario</class>
-
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <!--<non-jta-data-source>jdbc/sfnontjta</non-jta-data-source>-->
 

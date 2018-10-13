@@ -13,31 +13,22 @@ import com.gmail.cacho.slapi.Sistema;
 import com.gmail.cacho.slapi.dialogs.WinChangePass;
 import com.gmail.cacho.slapi.utils.MenuService;
 import com.gmail.cacho.slbase.security.Events;
-import com.vaadin.cdi.annotation.UIScoped;
-import com.vaadin.flow.component.UI;
+
 import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.component.html.Image;
+
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.page.BodySize;
-import com.vaadin.flow.component.page.Viewport;
-import com.vaadin.flow.server.VaadinSession;
+
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
-import de.kaesdingeling.hybridmenu.HybridMenu;
-import de.kaesdingeling.hybridmenu.components.HMLabel;
-import de.kaesdingeling.hybridmenu.components.LeftMenu;
-import de.kaesdingeling.hybridmenu.data.MenuConfig;
-import de.kaesdingeling.hybridmenu.design.DesignItem;
 
 import javax.enterprise.inject.spi.CDI;
 
 import static com.github.appreciated.app.layout.entity.Section.HEADER;
 
 @BodySize(height = "100vh", width = "100vw")
-@HtmlImport("frontend://styles/shared-styles.html")
 @Theme(value = Lumo.class, variant = Lumo.LIGHT)
-@HtmlImport("frontend://styles/shared-styles.html")
 @HtmlImport("frontend://styles/shared-styles.html")
 public class MainView extends AppLayoutRouterLayout {
     public MainView() {

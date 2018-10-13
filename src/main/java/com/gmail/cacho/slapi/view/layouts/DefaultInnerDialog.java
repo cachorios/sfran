@@ -25,6 +25,8 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
+import javax.enterprise.inject.Instance;
+import javax.enterprise.inject.spi.CDI;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -280,5 +282,9 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends PolymerTempla
     @Override
     public String getEstiloVisual(String estilo) {
         return getElement().getStyle().get(estilo);
+    }
+
+    protected <C> C getObject(Class<C> clase){
+        return  CDI.current().select(clase).get();
     }
 }

@@ -19,7 +19,15 @@ public class Dte extends AbstractEntidad {
 
     @NotNull
     @ManyToOne
+    private Parametro provinciaOrigen;
+
+    @NotNull
+    @ManyToOne
     private Parametro localidadOrigen;
+
+    @NotNull
+    @ManyToOne
+    private Parametro provinciaDestino;
 
     @NotNull
     @ManyToOne
@@ -38,13 +46,14 @@ public class Dte extends AbstractEntidad {
     private Integer cantidad;
 
     @NotNull
-    private long especie;
+    @ManyToOne
+    private Parametro especie;
 
     @NotNull
     private Integer peso;
 
     @NotNull
-    private Double entrega;
+    private Double importeEntrega;
 
     @NotNull
     private Double total;
@@ -155,13 +164,6 @@ public class Dte extends AbstractEntidad {
         this.cantidad = cantidad;
     }
 
-    public long getEspecie() {
-        return especie;
-    }
-
-    public void setEspecie(long especie) {
-        this.especie = especie;
-    }
 
     public Integer getPeso() {
         return peso;
@@ -171,12 +173,12 @@ public class Dte extends AbstractEntidad {
         this.peso = peso;
     }
 
-    public Double getEntrega() {
-        return entrega;
+    public Double getImporteEntrega() {
+        return importeEntrega;
     }
 
-    public void setEntrega(Double entrega) {
-        this.entrega = entrega;
+    public void setImporteEntrega(Double importeEntrega) {
+        this.importeEntrega = importeEntrega;
     }
 
     public Double getTotal() {
@@ -249,5 +251,29 @@ public class Dte extends AbstractEntidad {
 
     public void setLocalidadDestino(Parametro localidadDestino) {
         this.localidadDestino = localidadDestino;
+    }
+
+    public Parametro getProvinciaOrigen() {
+        return provinciaOrigen;
+    }
+
+    public void setProvinciaOrigen(Parametro provinciaOrigen) {
+        this.provinciaOrigen = provinciaOrigen;
+    }
+
+    public Parametro getProvinciaDestino() {
+        return provinciaDestino;
+    }
+
+    public void setProvinciaDestino(Parametro provinciaDestino) {
+        this.provinciaDestino = provinciaDestino;
+    }
+
+    public Parametro getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(Parametro especie) {
+        this.especie = especie;
     }
 }

@@ -15,9 +15,7 @@ import com.gmail.cacho.slbase.logging.L;
 import com.gmail.cacho.slbase.security.enums.ETipoPermiso;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import de.kaesdingeling.hybridmenu.components.HMButton;
-import de.kaesdingeling.hybridmenu.components.HMSubMenu;
-import de.kaesdingeling.hybridmenu.components.LeftMenu;
+
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -117,48 +115,48 @@ public class MenuService {
      * @param lamb,      el objeto sobre el que se construye el menu
      */
 
-    public void completarHybridMenuDesdeDB(LeftMenu lamb) {
-        try {
-            Usuario usuario = Sistema.getSistema().getSecurityControl().getUsuarioActivo();
-
-            if (usuario != null) {
-                for (Parametro m : getMenuConfig(servicio)) {
-                    // Agrega la opcion de menu ppal solo si el usuario tiene permiso de ejeucion
-                    if (usuario.poseePermiso(m, ETipoPermiso.EJECUTAR)) {
-                        HMSubMenu smb = HMSubMenu.get()
-                                .withCaption(m.getNombre())
-                                .withIcon(VaadinIcon.ELLIPSIS_DOTS_V.create());
-                        getSubMenuConfig(m.getId(), servicio).forEach(sm -> {
-                            try {
-                                // Agrega la opcion de submenu solo si no es un separador
-                                // (valorstr=null) y el usuario tiene permiso de ejecucion
-                                if (sm.getNombre() != null
-                                        && !sm.getNombre().substring(0,1).equals(C.SYS_CFG_MENU_SEPARATOR)
-                                        && Sistema.getSistema()
-                                        .getSecurityControl()
-                                        .usuarioActivoPoseeCadenaPermiso(
-                                                ETipoPermiso.EJECUTAR.name()
-                                                        .concat(Constantes.SYS_CAD_REFER)
-                                                        .concat(sm.getNombre()))) {
-                                    Class c = Class.forName(sm.getValorstr());
-                                    smb.add(HMButton.get()
-                                            .withCaption(sm.getNombre())
-                                            .withIcon(getIcono(c))
-                                            .withNavigateTo(c));
-                                }
-                            } catch (Exception ex) {
-                                L.warning(C.SYS_MENU_ERR_NOEXISTS,
-                                        sm.getNombre().concat(C.SYS_CFG_MENU_SEPARATOR).concat(sm.getValorstr()));
-                            }
-                        });
-                        lamb.add(smb);
-                    }
-                }
-            }
-        } catch (Exception ex) {
-            L.error(C.SYS_MENU_ERR_ONBUILD, ex.getMessage());
-        }
-    }
+//    public void completarHybridMenuDesdeDB(LeftMenu lamb) {
+//        try {
+//            Usuario usuario = Sistema.getSistema().getSecurityControl().getUsuarioActivo();
+//
+//            if (usuario != null) {
+//                for (Parametro m : getMenuConfig(servicio)) {
+//                    // Agrega la opcion de menu ppal solo si el usuario tiene permiso de ejeucion
+//                    if (usuario.poseePermiso(m, ETipoPermiso.EJECUTAR)) {
+//                        HMSubMenu smb = HMSubMenu.get()
+//                                .withCaption(m.getNombre())
+//                                .withIcon(VaadinIcon.ELLIPSIS_DOTS_V.create());
+//                        getSubMenuConfig(m.getId(), servicio).forEach(sm -> {
+//                            try {
+//                                // Agrega la opcion de submenu solo si no es un separador
+//                                // (valorstr=null) y el usuario tiene permiso de ejecucion
+//                                if (sm.getNombre() != null
+//                                        && !sm.getNombre().substring(0,1).equals(C.SYS_CFG_MENU_SEPARATOR)
+//                                        && Sistema.getSistema()
+//                                        .getSecurityControl()
+//                                        .usuarioActivoPoseeCadenaPermiso(
+//                                                ETipoPermiso.EJECUTAR.name()
+//                                                        .concat(Constantes.SYS_CAD_REFER)
+//                                                        .concat(sm.getNombre()))) {
+//                                    Class c = Class.forName(sm.getValorstr());
+//                                    smb.add(HMButton.get()
+//                                            .withCaption(sm.getNombre())
+//                                            .withIcon(getIcono(c))
+//                                            .withNavigateTo(c));
+//                                }
+//                            } catch (Exception ex) {
+//                                L.warning(C.SYS_MENU_ERR_NOEXISTS,
+//                                        sm.getNombre().concat(C.SYS_CFG_MENU_SEPARATOR).concat(sm.getValorstr()));
+//                            }
+//                        });
+//                        lamb.add(smb);
+//                    }
+//                }
+//            }
+//        } catch (Exception ex) {
+//            L.error(C.SYS_MENU_ERR_ONBUILD, ex.getMessage());
+//        }
+//    }
 
     /**
      * Este metodo obtiene el icono a mostrar como parte del menu y a partir de la

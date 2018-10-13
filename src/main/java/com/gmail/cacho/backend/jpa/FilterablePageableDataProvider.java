@@ -22,6 +22,8 @@ public abstract class FilterablePageableDataProvider<U extends AbstractEntidad, 
         this.defaultSortOrders = defaultSortOrders;
     }
 
+
+
     @Override
     protected Stream<U> fetchFromBackEnd(Query<U, F> query) {
         return getServicio()

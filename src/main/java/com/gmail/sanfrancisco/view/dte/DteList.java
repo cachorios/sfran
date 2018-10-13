@@ -19,7 +19,7 @@ public class DteList  extends AbstractList<Dte> {
                 new ColumnList<>(Dte::getProductor,"Productor","productor", true),
                 new ColumnList<>(Dte::getCantidad,"Cantidad","cantidad", true),
                 new ColumnList<>(Dte::getPeso,"Peso","peso", true),
-                new ColumnList<>(Dte::getTotal,"Total de factura","total de factura", true)
+                new ColumnList<>(Dte::getTotal,"Total de factura","total", true)
         ));
     }
 
