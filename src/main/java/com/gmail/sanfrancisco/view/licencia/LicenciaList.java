@@ -13,9 +13,9 @@ public class LicenciaList  extends AbstractList<Licencia> {
     public LicenciaList(IPresenterList<Licencia> presenter) {
         super(presenter);
         setListaCols(Arrays.asList(
-                new ColumnList<>(Licencia::getTipoLicencia,"Tipo de licencia","tipo de licencia", true),
+                new ColumnList<>(Licencia::getTipoLicencia,"Tipo de licencia","tipolicencia", true),
                 new ColumnList<>(Licencia::getVencimiento,"Vencimiento","vencimiento", true),
-                new ColumnList<>(Licencia::getLicenciaCarga,"Licencia carga","licencia carga", true)
+                new ColumnList<>(Licencia::getLicenciaCarga,"Licencia carga","licenciacarga", true)
 
         ));
     }

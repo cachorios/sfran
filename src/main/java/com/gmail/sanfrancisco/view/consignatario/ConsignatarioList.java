@@ -16,7 +16,7 @@ public class ConsignatarioList extends AbstractList<Consignatario> {
                 new ColumnList<>(Consignatario::getNombre, "Nombre", "nombre", true),
                 new ColumnList<>(Consignatario::getApellido, "Apellido", "apellido", true),
                 new ColumnList<>(Consignatario::getCuil, "C.U.I.L.", "cuil", true),
-                new ColumnList<>(Consignatario::getEmail, "Correo electronico", "correo electronico", true)
+                new ColumnList<>(Consignatario::getEmail, "Correo electronico", "email", true)
         ));
     }
 

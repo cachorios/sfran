@@ -45,8 +45,6 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
                 envolver(tipoInsumo,    "48%"),
                 envolver(unidad,        "48%")
         );
-
-
     }
 
     @Override
@@ -59,10 +57,6 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
                 .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
                 .withNullRepresentation(0l)
                 .bind(Insumo::getId, null);
-
-        binder.forField(tipoInsumo)
-                .withConverter(new StringToLongConverter("No es un nro válido."))
-                .bind(Insumo::getTipoInsumo, Insumo::setTipoInsumo);
 
         binder.forField(unidad)
                 .withConverter(new StringToLongConverter("No es un nro válido."))

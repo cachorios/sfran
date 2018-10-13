@@ -146,11 +146,14 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         binder.bind(pciaOrigen, Dte::getProvinciaOrigen, Dte::setProvinciaOrigen);
         binder.bind(localidadOrigen, Dte::getLocalidadOrigen, Dte::setLocalidadOrigen);
 
+<<<<<<< HEAD
         binder.bind(pciaDestino, Dte::getProvinciaDestino, Dte::setProvinciaDestino);
         binder.bind(localidadDestino, Dte::getLocalidadDestino, Dte::setLocalidadDestino);
 
 
 
+=======
+>>>>>>> b5d193ee81fa6af928bfc2a6aa9ed0957ff1c95f
 //        binder.forField(fechaCarga)
 //                .withConverter(new LocalDateADateConverter())
 //                .bind(Dte::getFechaCarga, Dte::setFechaCarga);

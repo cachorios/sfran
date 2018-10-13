@@ -117,29 +117,9 @@ public class MovilInnerForm extends DefaultInnerDialog<Movil> {
                 .withNullRepresentation(0l)
                 .bind(Movil::getId, null);
 
-        binder.forField(tipoMovil)
-                .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(Movil::getTipoMovil, null);
-
-        binder.forField(tipoCombustible)
-                .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(Movil::getTipoCombustible, null);
-
-        binder.forField(marca)
-                .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(Movil::getMarca, null);
-
         binder.forField(anno)
                 .withConverter(new LocalDateADateConverter())
                 .bind(Movil::getAnno, Movil::setAnno);
-
-        binder.forField(estadoMovil)
-                .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(Movil::getEstadoMovil, null);
 
         binder.forField(fecha)
                 .withConverter(new LocalDateADateConverter())

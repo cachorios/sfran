@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.backend.entidad.Parametro;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -11,7 +12,9 @@ public class DteDetalleCategoria extends AbstractEntidad {
     @ManyToOne
     private Dte dte;
 
-    private long categoria;
+    @NotNull
+    @ManyToOne
+    private Parametro categoria;
 
     @NotNull
     private Integer cantidad;
@@ -36,11 +39,11 @@ public class DteDetalleCategoria extends AbstractEntidad {
         this.dte = dte;
     }
 
-    public long getCategoria() {
+    public Parametro getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(long categoria) {
+    public void setCategoria(Parametro categoria) {
         this.categoria = categoria;
     }
 

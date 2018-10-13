@@ -76,11 +76,6 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
                 .withNullRepresentation(0l)
                 .bind(Licencia::getId, null);
 
-        binder.forField(tipoLicencia)
-                .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(Licencia::getTipoLicencia, null);
-
         binder.forField(vencimiento)
                 .withConverter(new LocalDateADateConverter())
                 .bind(Licencia::getVencimiento, Licencia::setVencimiento);
