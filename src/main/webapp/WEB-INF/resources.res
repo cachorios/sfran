@@ -5,7 +5,7 @@
         JdbcDriver org.postgresql.Driver
         JdbcUrl jdbc:postgresql://127.0.0.1/sfran
         UserName postgres
-        Password cacho
+        Password postgres
         ]]
     </Resource>
 </tomee>
