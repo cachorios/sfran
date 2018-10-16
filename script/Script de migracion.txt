@@ -108,3 +108,11 @@ FROM costovehiculo
 
 select CONCAT("INSERT INTO impuestocostovehiculo (id, saldo, impuesto_id, insumocostovehiculo_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idCostoVehiculoDet as CHAR(4)), ", ", saldo, ", ", idImpuesto , ", ", idCostoVehiculo, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(fechaBaja='0000-00-00 00:00:00',null,fechaBaja),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM costovehiculodet
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idProvincia+35000),"), 'UNKNOW', 'UNKNOW', 'PROVINCIA', '", descripcion,"', ", idProvincia,", 9, 1);")
+FROM provincias
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((", (idLocalidad+10000),"), 'UNKNOW', 'UNKNOW', 'LOCALIDAD', '", nombre,"', ", idLocalidad,", 10, ", idProvincia,", false,  1);")
+FROM localidad
