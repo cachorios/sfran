@@ -61,7 +61,6 @@ create table parametro (
 alter table parametro owner to postgres;
 alter table parametro add constraint pk_parametro primary key (id);
 alter table parametro add constraint uk_parametro_tipoorden unique (tipo, orden);
-alter table parametro add constraint uk_parametro_clasenombre unique (clase, nombre);
 create index ix_parametro_tipoorden on parametro using btree (tipo, orden);
 create index ix_parametro_clasenmbre on parametro using btree (clase, nombre);
 
