@@ -1,0 +1,14 @@
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35601), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'NAFTA SUPER', 1, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35602), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'DIESEL', 2, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35603), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'NAFTA PREMIUM ', 3, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35604), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'NAFTA PREMIUM ', 4, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35605), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'NAFTA PREMIUM ', 5, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35606), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'NAFTA PREMIUM ', 6, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35607), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'NAFTA PREMIUM ', 7, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35608), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'NAFTA PREMIUM ', 8, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35609), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'NAFTA PREMIUM ', 9, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35610), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'NAFTA PREMIUM ', 10, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35611), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'NAFTA PREMIUM ', 11, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35612), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'NAFTA PREMIUM ', 12, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35613), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'DIESEL PREMIUM', 13, 17, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((35614), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', 'SIN CONBUSTIBLE', 14, 17, 1);

@@ -121,3 +121,44 @@ select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombr
 FROM localidad
 INNER JOIN dte ON localidad.idLocalidad=dte.idOrigen or localidad.idLocalidad=dte.idDestino
 GROUP BY idLocalidad
+
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idCategorias+35100),"), 'UNKNOW', 'UNKNOW', 'CATEGORIA ANIMAL', '", descripcion,"', ", idCategorias,", 11, 1);")
+FROM categorias
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idColor+35200),"), 'UNKNOW', 'UNKNOW', 'COLOR', '", descripcion,"', ", idColor,", 12, 1);")
+FROM color
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idCondicion+35300),"), 'UNKNOW', 'UNKNOW', 'CONDICION FRENTE AL IVA', '", descripcion,"', ", idCondicion,", 13, 1);")
+FROM condicion
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idEstadoMovil+35350),"), 'UNKNOW', 'UNKNOW', 'ESTADOS DE MOVIL', '", descripcion,"', ", idEstadoMovil,", 14, 1);")
+FROM estadosmovil
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idMarca+35400),"), 'UNKNOW', 'UNKNOW', 'MARCA DE MOVIL', '", descripcion,"', ", idMarca,", 15, 1);")
+FROM marca
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idOperadora+35500),"), 'UNKNOW', 'UNKNOW', 'OPERADORA TELEFONICA', '", descripcion,"', ", idOperadora,", 16, 1);")
+FROM operadoras
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idTipoCombustible+35600),"), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', '", descripcion,"', ", idTipoCombustible,", 17, 1);")
+FROM tipocombustible
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idTipoInsumo+35700),"), 'UNKNOW', 'UNKNOW', 'TIPO INSUMO', '", descripcion,"', ", idTipoInsumo,", 18, 1);")
+FROM tipoinsumo
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idTipoMovil+35800),"), 'UNKNOW', 'UNKNOW', 'TIPO MOVIL', '", descripcion,"', ", idTipoMovil,", 19, 1);")
+FROM tipomovil
+
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((", (idImpuesto+35900),"), 'UNKNOW', 'UNKNOW', 'IMPUESTO', '", descripcion,"', ", idImpuesto,", 20, ", porcentaje,", false,  1);")
+FROM impuestos
