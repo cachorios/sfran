@@ -21,8 +21,8 @@ rem ---------------------------------
 rem -- PATH A LOS SCRIPTS DE DATOS --
 rem ---------------------------------
 
-set ubic="D:\Servidor\htdocs"
-rem set ubic="D:\Desarrollo"
+rem set ubic="D:\Servidor\htdocs"
+set ubic="D:\Desarrollo"
 rem set ubic="E:\Desarrollo"
 rem set ubic="D:\Vaadin"
 
