@@ -116,3 +116,8 @@ FROM provincias
 
 select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((", (idLocalidad+10000),"), 'UNKNOW', 'UNKNOW', 'LOCALIDAD', '", nombre,"', ", idLocalidad,", 10, ", idProvincia,", false,  1);")
 FROM localidad
+
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((", (idLocalidad+10000),"), 'UNKNOW', 'UNKNOW', 'LOCALIDAD', '", nombre,"', ", idLocalidad,", 10, ", idProvincia,", false,  1);")
+FROM localidad
+INNER JOIN dte ON localidad.idLocalidad=dte.idOrigen or localidad.idLocalidad=dte.idDestino
+GROUP BY idLocalidad
