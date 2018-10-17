@@ -3,6 +3,7 @@ package com.gmail.sanfrancisco.view.dte;
 import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.views.csselect.LocalidadCS;
+import com.gmail.cacho.slapi.view.customs.params.ParamCSDataProvider;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
@@ -60,7 +61,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         pciaOrigen = new ComboBox("Provincia");
         pciaOrigen.setDataProvider(dpPcia);
-        pciaOrigen.addValueChangeListener(DteInnerForm::pciaOrigenChanged);
+        pciaOrigen.addValueChangeListener(e-> {this.pciaOrigenChanged(e);});
 
         localidadOrigen = new LocalidadCS("Localidad Origen", getPresentable());
 
@@ -124,9 +125,10 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     }
 
-    private static void pciaOrigenChanged(HasValue.ValueChangeEvent<?> e) {
+    private void pciaOrigenChanged(HasValue.ValueChangeEvent<?> e) {
         if( e.getValue() != null){
-            
+            Long grupo = ((Parametro) e.getValue()).getOrden().longValue();
+            ((ParamCSDataProvider)localidadOrigen.getDataProvider()).setGrupo( grupo );
         }
     }
 

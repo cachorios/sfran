@@ -42,5 +42,12 @@ public class ParamCSDataProvider extends FilterablePageableDataProvider<Parametr
         return ((ParametroServicio)getServicio())
                 .findAnyMatching(getPadre(),grupo , getFiltro(), query.getOffset(), query.getLimit(), getSortOrders(query));
     }
+
+    @Override
+    protected int sizeInBackEnd(Query<Parametro, String> query) {
+        return Math.toIntExact(((ParametroServicio) getServicio())
+                .countAnyMatching(getPadre(), grupo, getFiltro(), query.getOffset(), query.getLimit(), getSortOrders(query)));
+
+    }
 }
 

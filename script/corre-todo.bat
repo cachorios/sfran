@@ -29,7 +29,7 @@ rem set ubic="D:\Vaadin"
 rem ---------------------------------
 rem -- MIGRACION DE LOS DATOS      --
 rem ---------------------------------
-psql -d sfran -U postgres -f "db-pgsql-common.sql"
+rem psql -d sfran -U postgres -f "db-pgsql-common.sql"
 
 psql -d sfran -U postgres -f "db-pgsql-data.sql"
 psql -d sfran -U postgres -f "MENU.sql"
