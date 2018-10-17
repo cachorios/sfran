@@ -1,21 +1,19 @@
 package com.gmail.sanfrancisco.view.dte;
 
+import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.backend.enumeradores.ETipoParametro;
-import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.backend.views.csselect.LocalidadCS;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.entidad.Dte;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
+import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
-import com.vaadin.flow.data.converter.StringToLongConverter;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
@@ -23,8 +21,8 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     private TextField numeroTropa;
-    private ComboBox pciaOrigen;
-    private ComboBox pciaDestino;
+    private ComboBox<Parametro> pciaOrigen;
+    private ComboBox<Parametro> pciaDestino;
 
     private LocalidadCS localidadOrigen;
     private LocalidadCS localidadDestino;
@@ -47,6 +45,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         super(presentable, elTitulo);
     }
 
+
+
     @Override
     protected void generarForm(Div form) {
 
@@ -60,6 +60,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         pciaOrigen = new ComboBox("Provincia");
         pciaOrigen.setDataProvider(dpPcia);
+        pciaOrigen.addValueChangeListener(DteInnerForm::pciaOrigenChanged);
+
         localidadOrigen = new LocalidadCS("Localidad Origen", getPresentable());
 
         pciaDestino = new ComboBox("Provincia");
@@ -122,6 +124,12 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     }
 
+    private static void pciaOrigenChanged(HasValue.ValueChangeEvent<?> e) {
+        if( e.getValue() != null){
+            
+        }
+    }
+
     @Override
     public Focusable getPrimerElementoForm() {
         return numeroTropa;
@@ -162,4 +170,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         binder.bindInstanceFields(this);
     }
+
+
 }

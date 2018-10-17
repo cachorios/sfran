@@ -72,4 +72,28 @@ public class ParametroServicio extends ServicioModelo<Parametro> {
 
         return QueryHelper.applyLimitsAndSortOrder(result, offset, limitm, sortOrders).getResultList().stream();
     }
+
+    public Stream<Parametro> findAnyMatching(Object padre, Long grupo , String filtro, int offset, int limitm,
+                                             List<QuerySortOrder> sortOrders) {
+        QueryResult<Parametro> result = null;
+
+        if (padre != null) {
+            if (padre instanceof ETipoParametro) {
+                result = ((ParametrosRepositorio) repo)
+                        .queryTipoAndGrupoandFilter((ETipoParametro) padre, likePattern(grupo.toString()), likePattern(filtro));
+            }
+
+        } else {
+            result = ((ParametrosRepositorio) repo).queryAll();
+        }
+
+        return QueryHelper.applyLimitsAndSortOrder(result, offset, limitm, sortOrders).getResultList().stream();
+    }
+
+    public Long countAnyMatching(Object padre, Long grupo , String filtro, int offset, int limitm,
+                                             List<QuerySortOrder> sortOrders) {
+        return findAnyMatching(padre, grupo, filtro, offset, limitm, sortOrders).count();
+
+    }
+
 }
