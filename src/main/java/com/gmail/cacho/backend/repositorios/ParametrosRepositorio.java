@@ -14,6 +14,8 @@ public interface ParametrosRepositorio extends EntityRepository<Parametro, Long>
     @Query("SELECT e FROM Parametro e WHERE e.tipo = :tipo AND e.valorint = :grupo AND e.fechabaja IS NULL AND LOWER(e.nombre) LIKE :filtro")
     QueryResult<Parametro>queryTipoAndGrupoandFilter(@QueryParam("tipo") ETipoParametro tipo, @QueryParam("grupo") Long grupo, @QueryParam("filtro") String filtro);
 
+    Parametro findByTipoAndValorintAndOrden(ETipoParametro tipo,Integer valorint ,Integer orden);
+
     @Query("SELECT e FROM Parametro e WHERE e.tipo = ?1 AND e.fechabaja IS NULL AND (LOWER(e.clase) LIKE ?2 OR LOWER(e.nombre) LIKE ?2)")
     QueryResult<Parametro> queryAliveByTipoAndClaseNombreLike(ETipoParametro tipo, String like);
 
