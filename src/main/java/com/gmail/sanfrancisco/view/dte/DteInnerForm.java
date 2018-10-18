@@ -17,6 +17,7 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
+import static com.gmail.cacho.slapi.view.utils.ViewTools.generarTituloSeccion;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class DteInnerForm extends DefaultInnerDialog<Dte> {
@@ -51,8 +52,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("672px");
-        setWidth("700px");
+//        setHeight("672px");
+        setWidth("800px");
 
         numeroTropa = textField("Numero de tropa","30%");
 
@@ -61,16 +62,13 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         pciaOrigen = new ComboBox("Provincia");
         pciaOrigen.setDataProvider(dpPcia);
-        pciaOrigen.addValueChangeListener(e-> {this.pciaOrigenChanged(e);});
-
-        localidadOrigen = new LocalidadCS("Localidad Origen", getPresentable());
+        pciaOrigen.addValueChangeListener(e-> {this.pciaChanged(e, localidadOrigen);});
+        localidadOrigen = new LocalidadCS("Localidad", getPresentable());
 
         pciaDestino = new ComboBox("Provincia");
         pciaDestino.setDataProvider(dpPcia);
-        localidadDestino = new LocalidadCS("Localidad Destino", getPresentable());
-
-
-
+        pciaDestino.addValueChangeListener(e-> {this.pciaChanged(e, localidadDestino);});
+        localidadDestino = new LocalidadCS("Localidad", getPresentable());
 
         especie = new ComboBox("Especie");
         especie.setWidth("100%");
@@ -99,8 +97,10 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         form.add(
                 envolver(numeroTropa,"100%"),
+                generarTituloSeccion("Origen"),
                 envolver(pciaOrigen,"40%"),
                 envolver(localidadOrigen,"58%"),
+                generarTituloSeccion("Destino"),
                 envolver(pciaDestino,"40%"),
                 envolver(localidadDestino, "58%"),
 
@@ -125,10 +125,10 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     }
 
-    private void pciaOrigenChanged(HasValue.ValueChangeEvent<?> e) {
+    private void pciaChanged(HasValue.ValueChangeEvent<?> e, LocalidadCS localidadCS) {
         if( e.getValue() != null){
             Long grupo = ((Parametro) e.getValue()).getOrden().longValue();
-            ((ParamCSDataProvider)localidadOrigen.getDataProvider()).setGrupo( grupo );
+            ((ParamCSDataProvider)localidadCS.getDataProvider()).setGrupo( grupo );
         }
     }
 

@@ -58,7 +58,6 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends PolymerTempla
     private CustomTabGroup tabs;
     protected Component form;
 
-    private float formRatio = 0.5f;
 
     public DefaultInnerDialog(IPresentableForm<T> presentable, String elTitulo) {
         this.presentable = presentable;
@@ -68,11 +67,8 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends PolymerTempla
     }
 
     protected void setearEstiloGeneral() {
-        dialog.setHeight("600px");
-        dialog.setWidth("800px");
         dialog.setCloseOnEsc(false);
         dialog.setCloseOnOutsideClick(false);
-
     }
 
     public void setHeight(String alto){
@@ -168,13 +164,7 @@ public class DefaultInnerDialog<T extends AbstractEntidad> extends PolymerTempla
 
     protected void generarForm(Div form) {}
 
-    protected float getFormRatio() {
-        return formRatio;
-    }
 
-    protected void setFormRatio(float formRatio) {
-        this.formRatio = formRatio;
-    }
 
     protected void setearShortcuts() {
         //// componentesVista.stream()

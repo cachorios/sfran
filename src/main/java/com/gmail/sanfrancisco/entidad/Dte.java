@@ -7,7 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
+import java.sql.Date;
+
 
 
 @Entity
@@ -66,10 +67,10 @@ public class Dte extends AbstractEntidad {
      * @Description: Fecha en que cargan el camion
      */
     @NotNull
-    private LocalDate fechaCarga;
+    private Date fechaCarga;
 
     @NotNull
-    private LocalDate fechaVencimiento;
+    private Date fechaVencimiento;
 
     @ManyToOne
     private Consignatario consignatario;
@@ -197,19 +198,19 @@ public class Dte extends AbstractEntidad {
         this.ajustes = ajustes;
     }
 
-    public LocalDate getFechaCarga() {
+    public Date getFechaCarga() {
         return fechaCarga;
     }
 
-    public void setFechaCarga(LocalDate fechaCarga) {
+    public void setFechaCarga(Date fechaCarga) {
         this.fechaCarga = fechaCarga;
     }
 
-    public LocalDate getFechaVencimiento() {
+    public Date getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(LocalDate fechaVencimiento) {
+    public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 

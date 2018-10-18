@@ -42,8 +42,6 @@ public class ParamInnerForm extends DefaultInnerDialog<Parametro> {
 
     @Override
     protected void generarForm(Div form) {
-        //setFormRatio(0.65f);
-        setFormRatio(1);
         setHeight("430px");
         setWidth("700px");
 

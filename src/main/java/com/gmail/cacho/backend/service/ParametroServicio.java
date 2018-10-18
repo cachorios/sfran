@@ -80,7 +80,7 @@ public class ParametroServicio extends ServicioModelo<Parametro> {
         if (padre != null) {
             if (padre instanceof ETipoParametro) {
                 result = ((ParametrosRepositorio) repo)
-                        .queryTipoAndGrupoandFilter((ETipoParametro) padre, likePattern(grupo==null ? "": grupo.toString()), likePattern(filtro));
+                        .queryTipoAndGrupoandFilter((ETipoParametro) padre, grupo, likePattern(filtro));
             }
 
         } else {

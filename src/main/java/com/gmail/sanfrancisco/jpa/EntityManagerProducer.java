@@ -10,7 +10,7 @@ import javax.persistence.PersistenceUnit;
 
 
 @ApplicationScoped
-public final class EntityManagerProducer {
+public  class EntityManagerProducer {
 
     @Produces
     @PersistenceContext
