@@ -17,8 +17,7 @@ c.telefono,
 c.celular
 FROM
 productor AS c
-WHERE c.id = $P{p_Id} and
-c.fechabaja IS NOT NULL]]>
+WHERE c.id = $P{p_Id} ]]>
 	</queryString>
 	<field name="apellido" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="apellido"/>

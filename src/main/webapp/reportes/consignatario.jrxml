@@ -18,8 +18,7 @@ c.celular
 FROM
 consignatario AS c
 WHERE 
-c.id = $P{p_Id} and
-c.fechabaja IS NOT NULL]]>
+c.id = $P{p_Id} ]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>

@@ -15,8 +15,7 @@ c.saldoinicial,
 c.telefono
 FROM
 comisionista AS c
-WHERE
-c.fechabaja IS NOT NULL]]>
+]]>
 	</queryString>
 	<field name="apellido" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="apellido"/>
