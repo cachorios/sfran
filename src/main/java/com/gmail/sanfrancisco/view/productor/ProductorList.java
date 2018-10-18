@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.view.productor;
 
 import com.gmail.cacho.slapi.view.AbstractList;
+import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.entidad.Productor;
@@ -27,5 +28,10 @@ public class ProductorList extends AbstractList<Productor> {
     public Class<Productor> getEntityType() { return Productor.class; }
 
     @Override
-    public String getTitulo() { return "Lista de Comisionistas"; }
+    public String getTitulo() { return "Lista de Productores"; }
+
+    @Override
+    protected ILayoutInnerList<Productor> generarLayout(AbstractList<Productor> padre, String titulo) {
+        return new ProductorInnerList(padre, getTitulo());
+    }
 }
