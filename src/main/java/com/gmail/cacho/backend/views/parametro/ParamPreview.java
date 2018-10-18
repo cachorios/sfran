@@ -8,10 +8,13 @@ import com.gmail.cacho.slapi.view.utils.ViewTools;
 import com.gmail.cacho.slbase.core.Constantes;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.html.Anchor;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class ParamPreview extends AbstractPreview<Parametro> {
+    private Anchor downloadLink;
+    private Long idComp;
 
     @Override
     public void crearElementos() {
@@ -23,6 +26,11 @@ public class ParamPreview extends AbstractPreview<Parametro> {
         addItem("valorchr", new PreviewItem<>(textField(Parametro.F_PAR_VALORCHR), Parametro::getValorchr));
         addItem("espacio", new PreviewItem<>(textField(Constantes.SYS_CAD_NULL), null));
         addItem("valorbol", new PreviewItem<>(new Checkbox(Parametro.F_PAR_VALORBOL), Parametro::getValorbol));
+
+        downloadLink = new Anchor("", "Download");
+        downloadLink.getElement().setAttribute("download", true);
+
+        add(downloadLink);
     }
 
 }

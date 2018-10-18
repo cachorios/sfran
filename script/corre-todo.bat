@@ -21,8 +21,8 @@ rem ---------------------------------
 rem -- PATH A LOS SCRIPTS DE DATOS --
 rem ---------------------------------
 
-rem set ubic="D:\Servidor\htdocs"
-set ubic="D:\Desarrollo"
+set ubic="D:\Servidor\htdocs"
+rem set ubic="D:\Desarrollo"
 rem set ubic="E:\Desarrollo"
 rem set ubic="D:\Vaadin"
 
@@ -34,6 +34,16 @@ rem psql -d sfran -U postgres -f "db-pgsql-common.sql"
 psql -d sfran -U postgres -f "db-pgsql-data.sql"
 psql -d sfran -U postgres -f "MENU.sql"
 psql -d sfran -U postgres -f "PROVINCIASNUEVO.sql"
+psql -d sfran -U postgres -f "CATEGORIA.sql"
+psql -d sfran -U postgres -f "COLOR.sql"
+psql -d sfran -U postgres -f "CONDICION.sql"
+psql -d sfran -U postgres -f "ESTADOSMOVIL.sql"
+psql -d sfran -U postgres -f "MARCAMOVIL.sql"
+psql -d sfran -U postgres -f "OPERADORASTELEFONICAS.sql"
+psql -d sfran -U postgres -f "TIPOCOMBUSTIBLE.sql"
+psql -d sfran -U postgres -f "TIPOINSUMO.sql"
+psql -d sfran -U postgres -f "TIPOMOVIL.sql"
+psql -d sfran -U postgres -f "IMPUESTO.sql"
 psql -d sfran -U postgres -f "COMISIONISTA.sql"
 psql -d sfran -U postgres -f "CONDUCTOR.sql"
 psql -d sfran -U postgres -f "CONSIGNATARIO.sql"

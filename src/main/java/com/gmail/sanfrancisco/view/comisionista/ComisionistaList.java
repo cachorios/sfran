@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.view.comisionista;
 
 import com.gmail.cacho.slapi.view.AbstractList;
+import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.entidad.Comisionista;
@@ -28,4 +29,9 @@ public class ComisionistaList extends AbstractList<Comisionista> {
 
     @Override
     public String getTitulo() { return "Lista de Comisionistas"; }
+
+    @Override
+    protected ILayoutInnerList<Comisionista> generarLayout(AbstractList<Comisionista> padre, String titulo) {
+        return new ComisionistaInnerList(padre, getTitulo());
+    }
 }
