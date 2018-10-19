@@ -30,4 +30,6 @@ public class ComisionistaService extends ServicioModelo<Comisionista> {
         cnt = ((ComisionistaRepositorio) repo).countFiltered(likePattern(filtro));
         return cnt;
     }
+
+
 }

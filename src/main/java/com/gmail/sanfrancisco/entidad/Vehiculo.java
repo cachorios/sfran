@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-public class Movil extends AbstractEntidad {
+public class Vehiculo extends AbstractEntidad {
     @NotNull
     @ManyToOne
     private Parametro tipoMovil;
@@ -219,5 +219,10 @@ public class Movil extends AbstractEntidad {
 
     public void setEstadoMovil(Parametro estadoMovil) {
         this.estadoMovil = estadoMovil;
+    }
+
+    @Override
+    public String toString() {
+        return isNew() ? "Nuevo Vehiculo" : this.getDominio();
     }
 }

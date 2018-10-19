@@ -26546,10 +26546,10 @@ INSERT INTO `marca` (`idMarca`, `descripcion`, `fechaAlta`, `fechaModificacion`,
 (7, 'TOYOTA', '2018-10-04 09:45:39', NULL, NULL, 1);
 
 --
--- Volcado de datos para la tabla `movil`
+-- Volcado de datos para la tabla `vehiculo`
 --
 
-INSERT INTO `movil` (`idMovil`, `modelo`, `dominio`, `idTipoCombustible`, `color`, `maxcabezas`, `tara`, `cargaMax`, `consumo`, `alto`, `largo`, `ancho`, `volumen`, `numeromotor`, `numerochasis`, `idMarca`, `idEstadoMovil`, `idEstado`, `fechaAlta`, `fechaBaja`, `fechaModificacion`, `anno`, `fecha`, `idTipoMovil`) VALUES
+INSERT INTO `vehiculo` (`idMovil`, `modelo`, `dominio`, `idTipoCombustible`, `color`, `maxcabezas`, `tara`, `cargaMax`, `consumo`, `alto`, `largo`, `ancho`, `volumen`, `numeromotor`, `numerochasis`, `idMarca`, `idEstadoMovil`, `idEstado`, `fechaAlta`, `fechaBaja`, `fechaModificacion`, `anno`, `fecha`, `idTipoMovil`) VALUES
 (1, '2015', 'AAA-000', 1, 'BLANCO', 2.00, 2.00, 1.00, 10.00, 2.00, 2.00, 2.00, 8.00, '3132123123', '1231232', 4, 3, 1, '2018-09-05 09:17:27', NULL, '2018-09-24 07:57:42', '2018-09-05', '2018-09-05', 1),
 (2, '490 S 41 T', 'KPJ-776', 13, 'BLANCO', 0.00, 0.00, 1.00, 0.00, 2.50, 3.50, 2.50, 21.88, 'F3BE068*5031313*', '8ATM2ASH0CX079369', 1, 3, 1, '2018-09-05 10:23:29', NULL, '2018-09-21 10:25:05', '2011-01-01', '2018-09-01', 1),
 (3, 'stralis 490 s 41t nr', 'MBC-258', 13, 'BLANCO', 1.00, 0.00, 1.00, 0.00, 2.50, 3.50, 2.50, 21.88, 'F3BE06815034804', '1', 1, 3, 1, '2018-09-05 10:30:38', NULL, '2018-09-05 10:31:12', '2013-01-01', '2018-08-01', 1),

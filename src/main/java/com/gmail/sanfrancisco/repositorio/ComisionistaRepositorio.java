@@ -17,4 +17,6 @@ public interface ComisionistaRepositorio extends EntityRepository<Comisionista, 
     @Query("SELECT COUNT(u) FROM Comisionista u WHERE u.nombre like :filter")
     Long countFiltered(
             @QueryParam("filter") String filter);
+
+
 }

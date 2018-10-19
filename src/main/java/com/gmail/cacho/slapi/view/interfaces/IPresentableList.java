@@ -3,6 +3,7 @@ package com.gmail.cacho.slapi.view.interfaces;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
+import com.vaadin.flow.component.grid.Grid;
 
 import java.util.List;
 
@@ -74,4 +75,6 @@ public interface IPresentableList<T extends AbstractEntidad> extends IPresentabl
      * @param parametro un parametro que permita adaptar el refresco a las condiciones actuales.
      */
     void refrescarLista(Object parametro);
+
+    default void setCols(Grid<T> grilla){};
 }

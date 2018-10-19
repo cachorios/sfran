@@ -34,8 +34,8 @@ La comision se calcula multiplicando kg vivos por precio por el porcentaje de co
 Transportes usando por los conductores. Datos:
 
 ###### - Tara: Masa del vehículo con su equipo fijo autorizado, sin personal y sus recursos/herramientas.
-###### - Estado movil: Estado actual del movil
-###### - Fecha: La fecha que indica cuando fue el ultimo cambio de estado del movil.
+###### - Estado vehiculo: Estado actual del vehiculo
+###### - Fecha: La fecha que indica cuando fue el ultimo cambio de estado del vehiculo.
 
 ## Consignatario
 Persona que figura en los documentos como receptor de los envios de los animales.
@@ -57,4 +57,4 @@ Las licencias de conducir de los choferes. Datos:
 Indicacion de en que modulo podra agregarse el insumo.
 
 ## Operadoras
-Operadoras de telefonia movil.
+Operadoras de telefonia vehiculo.

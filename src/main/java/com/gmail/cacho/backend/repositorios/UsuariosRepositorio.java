@@ -10,7 +10,7 @@ public interface UsuariosRepositorio extends EntityRepository<Usuario, Long>, En
     Usuario findByEmail(String email);
 
 
-    @Query("SELECT u FROM Usuario u WHERE u.username like :filter")
+    @Query("SELECT e FROM Usuario e WHERE e.username like :filter")
     QueryResult<Usuario> findFiltered(
             @FirstResult int offset,
             @MaxResults int limit,

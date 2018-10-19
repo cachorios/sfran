@@ -7,7 +7,10 @@ import com.gmail.cacho.slapi.view.customs.params.ParamCSDataProvider;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
+import com.gmail.sanfrancisco.dataProvider.VehiculolDataProvider;
 import com.gmail.sanfrancisco.entidad.Dte;
+import com.gmail.sanfrancisco.entidad.Vehiculo;
+import com.gmail.sanfrancisco.view.comisionista.ComisionistaCS;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -15,6 +18,8 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
+
+import javax.enterprise.inject.spi.CDI;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.generarTituloSeccion;
@@ -28,9 +33,17 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     private LocalidadCS localidadOrigen;
     private LocalidadCS localidadDestino;
+
+    private ComboBox<Vehiculo> vehiculoComboBox;
+    private TextField titular;
+
+    private ComisionistaCS comisionistaCS;
+
     private TextField cantidad;
     private ComboBox especie;
     private TextField peso;
+
+
 //    private TextField entrega;
 
     /*private TextField total;
@@ -40,8 +53,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private DatePicker fechaVencimiento;
     private TextField kmSalida;
     private TextField kmLlegada;
-    private TextField patenteJaula;
-    private TextField titular;*/
+    private TextField patenteJaula; */
+
 
     public DteInnerForm(IPresentableForm<Dte> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -70,6 +83,12 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         pciaDestino.addValueChangeListener(e-> {this.pciaChanged(e, localidadDestino);});
         localidadDestino = new LocalidadCS("Localidad", getPresentable());
 
+        vehiculoComboBox = new ComboBox<>("Vehiculo");
+        vehiculoComboBox.setDataProvider(CDI.current().select(VehiculolDataProvider.class).get() );
+        titular = textField("Titular");
+
+        comisionistaCS = new ComisionistaCS("Comisionista", getPresentable(),true,true, true);
+
         especie = new ComboBox("Especie");
         especie.setWidth("100%");
         ParametroVarioDataProvider dpEspecie = getObject(ParametroVarioDataProvider.class);
@@ -78,6 +97,12 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         cantidad = textField("Cantidad");
         peso = textField("Peso");
+
+
+
+
+
+
      /*   entrega = textField("Entrega en efectivo");
         total = textField("Total de factura");
         ajustes = textField("Ajustes");
@@ -96,17 +121,26 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         titular = textField("Titular");*/
 
         form.add(
-                envolver(numeroTropa,"100%"),
+                envolver(numeroTropa, "100%"),
+
                 generarTituloSeccion("Origen"),
-                envolver(pciaOrigen,"40%"),
-                envolver(localidadOrigen,"58%"),
+                envolver(pciaOrigen, "40%"),
+                envolver(localidadOrigen, "58%"),
+
                 generarTituloSeccion("Destino"),
-                envolver(pciaDestino,"40%"),
+                envolver(pciaDestino, "40%"),
                 envolver(localidadDestino, "58%"),
 
-                envolver(cantidad,"32%"),
+                envolver(vehiculoComboBox, "49%"),
+                envolver(titular, "49%"),
+
+                envolver(comisionistaCS),
+
+                envolver(cantidad, "32%"),
                 envolver(especie, "32%"),
-                envolver(peso,"32%")
+                envolver(peso, "32%")
+
+
 
            /*     envolver(entrega,"32%"),
                 envolver(total,"32%"),
@@ -158,6 +192,9 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         binder.bind(pciaDestino, Dte::getProvinciaDestino, Dte::setProvinciaDestino);
         binder.bind(localidadDestino, Dte::getLocalidadDestino, Dte::setLocalidadDestino);
+
+        binder.bind(vehiculoComboBox, Dte::getVehiculo, Dte::setVehiculo);
+
 
 
 
