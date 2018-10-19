@@ -58,7 +58,6 @@ psql -d sfran -U postgres -f "NUMERODTE.sql"
 psql -d sfran -U postgres -f "PRODUCTOR.sql"
 psql -d sfran -U postgres -f "RENSPA.sql"
 
-psql -d sfran -U postgres -f "DTE.sql"
 psql -d sfran -U postgres -f "NUMERODTE.sql"
 psql -d sfran -U postgres -f "DTEDETALLECATEGORIA.sql"
 psql -d sfran -U postgres -f "DTEDETALLEIMPUESTO.sql"
