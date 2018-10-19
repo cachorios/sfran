@@ -4,6 +4,7 @@ package com.gmail.sanfrancisco.view.comisionista;
 import com.gmail.cacho.backend.jpa.FilterablePageableDataProvider;
 import com.gmail.cacho.slapi.view.customs.commons.AbstractCustomSelect;
 import com.gmail.cacho.slapi.view.enums.EModoVista;
+import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.dataProvider.ComisionistaDataProvider;
@@ -50,9 +51,8 @@ public class ComisionistaCS extends AbstractCustomSelect {
     }
 
 
-
     @Override
-    protected void setPresentationValue(Object o) {
-
+    protected IPresentableForm getFormAgregar() {
+        return new ComisionistaForm(new ComisionistaFormPresenter(CDI.current().select(ComisionistaService.class).get()), this.getPadre());
     }
 }
