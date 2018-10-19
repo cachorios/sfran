@@ -93,6 +93,6 @@ public class Comisionista extends AbstractEntidad {
 
     @Override
     public String toString() {
-        return getApellido() + ", " + getNombre();
+        return getNombre();
     }
 }

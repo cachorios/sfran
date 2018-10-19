@@ -96,6 +96,6 @@ public class Productor extends AbstractEntidad {
 
     @Override
     public String toString() {
-        return getApellido() + ", " + getNombre();
+        return getNombre();
     }
 }
