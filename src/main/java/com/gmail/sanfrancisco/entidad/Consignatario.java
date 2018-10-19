@@ -13,10 +13,6 @@ public class Consignatario extends AbstractEntidad {
     private String nombre;
 
     @NotNull
-    @Size(min=5, max=50, message="El apelldio debe contener entre 5 y 50 caracteres.")
-    private String apellido;
-
-    @NotNull
     @Size(min=11, max=11, message="El cuil debe contener entre 11 caracteres.")
     private String cuil;
 
@@ -42,14 +38,6 @@ public class Consignatario extends AbstractEntidad {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getCuil() {

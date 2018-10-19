@@ -15,7 +15,6 @@ public class ComisionistaList extends AbstractList<Comisionista> {
         super(presenter);
         setListaCols(Arrays.asList(
                 new ColumnList<>(Comisionista::getNombre,"Nombre","nombre", true),
-                new ColumnList<>(Comisionista::getApellido,"Apellido","apellido", true),
                 new ColumnList<>(Comisionista::getCuil,"C.U.I.L.","cuil", true),
                 new ColumnList<>(Comisionista::getEmail,"Correo electronico","email", true)
         ));

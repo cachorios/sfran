@@ -26,7 +26,6 @@ public class ProductorListPrever extends AbstractPreview<Productor> {
     public void crearElementos() {
         addItem("id", new PreviewItem<>(textField("ID"),Productor::getId));
         addItem("nombre", new PreviewItem<>(textField("Nombre"),Productor::getNombre));
-        addItem("apellido", new PreviewItem<>(textField("Apellido"),Productor::getApellido));
         addItem("cuil", new PreviewItem<>(textField("CUIL"),Productor::getCuil));
         addItem("celular", new PreviewItem<>(textField("Nro. Cel."),Productor::getCelular));
         addItem("telefono", new PreviewItem<>(textField("Nro.Tel"),Productor::getTelefono));
