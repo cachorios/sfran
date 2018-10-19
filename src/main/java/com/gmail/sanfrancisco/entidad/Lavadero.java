@@ -12,14 +12,14 @@ public class Lavadero extends AbstractEntidad {
     private Usuario usuario;
 
     @ManyToOne
-    private Movil movil;
+    private Vehiculo vehiculo;
 
-    public Movil getMovil() {
-        return movil;
+    public Vehiculo getVehiculo() {
+        return vehiculo;
     }
 
-    public void setMovil(Movil movil) {
-        this.movil = movil;
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     public Usuario getUsuario() {

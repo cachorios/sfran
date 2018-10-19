@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-public class Movil extends AbstractEntidad {
+public class Vehiculo extends AbstractEntidad {
     @NotNull
     @ManyToOne
     private Parametro tipoMovil;

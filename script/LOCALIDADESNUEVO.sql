@@ -1,3 +1,5 @@
+CREATE SEQUENCE idloc START 1;
+SELECT setval('idloc',1);
 INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorstr, version) SELECT 18404, 'UNKNOW', 'UNKNOW', 'LOCALIDAD', 'FORMOSA', nextval('idloc'), 10, id, 8404, 1 FROM parametro WHERE clase='PROVINCIA' and orden=9;
 INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorstr, version) SELECT 18510, 'UNKNOW', 'UNKNOW', 'LOCALIDAD', 'IBARRETA', nextval('idloc'), 10, id, 8510, 1 FROM parametro WHERE clase='PROVINCIA' and orden=9;
 INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorstr, version) SELECT 18520, 'UNKNOW', 'UNKNOW', 'LOCALIDAD', 'LAS LOMITAS', nextval('idloc'), 10, id, 8520, 1 FROM parametro WHERE clase='PROVINCIA' and orden=9;

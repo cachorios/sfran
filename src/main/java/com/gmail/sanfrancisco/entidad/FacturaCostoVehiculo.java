@@ -13,7 +13,7 @@ public class FacturaCostoVehiculo extends AbstractEntidad {
     private Date fecha;
 
     @ManyToOne
-    private Movil movil;
+    private Vehiculo vehiculo;
 
     public Date getFecha() {
         return fecha;
@@ -23,11 +23,11 @@ public class FacturaCostoVehiculo extends AbstractEntidad {
         this.fecha = fecha;
     }
 
-    public Movil getMovil() {
-        return movil;
+    public Vehiculo getVehiculo() {
+        return vehiculo;
     }
 
-    public void setMovil(Movil movil) {
-        this.movil = movil;
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 }

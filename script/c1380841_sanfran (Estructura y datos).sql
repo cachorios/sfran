@@ -27376,11 +27376,11 @@ INSERT INTO `marca` (`idMarca`, `descripcion`, `fechaAlta`, `fechaModificacion`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `movil`
+-- Estructura de tabla para la tabla `vehiculo`
 --
 
-DROP TABLE IF EXISTS `movil`;
-CREATE TABLE IF NOT EXISTS `movil` (
+DROP TABLE IF EXISTS `vehiculo`;
+CREATE TABLE IF NOT EXISTS `vehiculo` (
   `idMovil` int(11) NOT NULL AUTO_INCREMENT,
   `modelo` varchar(100) NOT NULL,
   `dominio` varchar(50) NOT NULL,
@@ -27415,10 +27415,10 @@ CREATE TABLE IF NOT EXISTS `movil` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
--- Volcado de datos para la tabla `movil`
+-- Volcado de datos para la tabla `vehiculo`
 --
 
-INSERT INTO `movil` (`idMovil`, `modelo`, `dominio`, `idTipoCombustible`, `color`, `maxcabezas`, `tara`, `cargaMax`, `consumo`, `alto`, `largo`, `ancho`, `volumen`, `numeromotor`, `numerochasis`, `idMarca`, `idEstadoMovil`, `idEstado`, `fechaAlta`, `fechaBaja`, `fechaModificacion`, `anno`, `fecha`, `idTipoMovil`) VALUES
+INSERT INTO `vehiculo` (`idMovil`, `modelo`, `dominio`, `idTipoCombustible`, `color`, `maxcabezas`, `tara`, `cargaMax`, `consumo`, `alto`, `largo`, `ancho`, `volumen`, `numeromotor`, `numerochasis`, `idMarca`, `idEstadoMovil`, `idEstado`, `fechaAlta`, `fechaBaja`, `fechaModificacion`, `anno`, `fecha`, `idTipoMovil`) VALUES
 (1, '2015', 'AAA-000', 1, 'BLANCO', 2.00, 2.00, 1.00, 10.00, 2.00, 2.00, 2.00, 8.00, '3132123123', '1231232', 4, 3, 1, '2018-09-05 09:17:27', NULL, '2018-09-24 07:57:42', '2018-09-05', '2018-09-05', 1),
 (2, '490 S 41 T', 'KPJ-776', 13, 'BLANCO', 0.00, 0.00, 1.00, 0.00, 2.50, 3.50, 2.50, 21.88, 'F3BE068*5031313*', '8ATM2ASH0CX079369', 1, 3, 1, '2018-09-05 10:23:29', NULL, '2018-09-21 10:25:05', '2011-01-01', '2018-09-01', 1),
 (3, 'stralis 490 s 41t nr', 'MBC-258', 13, 'BLANCO', 1.00, 0.00, 1.00, 0.00, 2.50, 3.50, 2.50, 21.88, 'F3BE06815034804', '1', 1, 3, 1, '2018-09-05 10:30:38', NULL, '2018-09-05 10:31:12', '2013-01-01', '2018-08-01', 1),
@@ -28316,7 +28316,7 @@ ALTER TABLE `consignatario`
 ALTER TABLE `costovehiculo`
   ADD CONSTRAINT `fk_costovehiculo_codigocostovehiculo` FOREIGN KEY (`idCodigoCostoVehiculo`) REFERENCES `codigocostovehiculo` (`idCodigoCostoVehiculo`),
   ADD CONSTRAINT `fk_costovehiculo_estados` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_costovehiculo_idmovil` FOREIGN KEY (`idMovil`) REFERENCES `movil` (`idMovil`),
+  ADD CONSTRAINT `fk_costovehiculo_idmovil` FOREIGN KEY (`idMovil`) REFERENCES `vehiculo` (`idMovil`),
   ADD CONSTRAINT `fk_costovehiculo_insumo` FOREIGN KEY (`idInsumo`) REFERENCES `insumos` (`idInsumo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -28371,7 +28371,7 @@ ALTER TABLE `dte`
   ADD CONSTRAINT `conductor_dte_fk` FOREIGN KEY (`idConductor`) REFERENCES `conductor` (`idConductor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `consignatario_dte_fk` FOREIGN KEY (`idConsignatario`) REFERENCES `consignatario` (`idConsignatario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `estados_dte_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `movil_dte_fk` FOREIGN KEY (`idMovil`) REFERENCES `movil` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `movil_dte_fk` FOREIGN KEY (`idMovil`) REFERENCES `vehiculo` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `productor_dte_fk` FOREIGN KEY (`idProductor`) REFERENCES `productor` (`idProductor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `usuarios_dte_fk` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -28454,7 +28454,7 @@ ALTER TABLE `insumos`
 --
 ALTER TABLE `lavadero`
   ADD CONSTRAINT `estados_lavadero_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `movil_lavadero_fk` FOREIGN KEY (`idMovil`) REFERENCES `movil` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `movil_lavadero_fk` FOREIGN KEY (`idMovil`) REFERENCES `vehiculo` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `usuarios_lavadero_fk` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -28492,7 +28492,7 @@ ALTER TABLE `log`
 --
 ALTER TABLE `mantenimiento`
   ADD CONSTRAINT `estados_mantenimiento_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `movil_mantenimiento_fk` FOREIGN KEY (`idMovil`) REFERENCES `movil` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `movil_mantenimiento_fk` FOREIGN KEY (`idMovil`) REFERENCES `vehiculo` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `usuarios_mantenimiento_fk` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -28510,9 +28510,9 @@ ALTER TABLE `marca`
   ADD CONSTRAINT `estados_marca_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `movil`
+-- Filtros para la tabla `vehiculo`
 --
-ALTER TABLE `movil`
+ALTER TABLE `vehiculo`
   ADD CONSTRAINT `estados_movil_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `estadosmovil_movil_fk` FOREIGN KEY (`idEstadoMovil`) REFERENCES `estadosmovil` (`idEstadoMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_movil_idtipomovil` FOREIGN KEY (`idTipoMovil`) REFERENCES `tipomovil` (`idTipoMovil`),

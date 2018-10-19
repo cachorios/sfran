@@ -41,7 +41,7 @@ public class Dte extends AbstractEntidad {
     private Conductor conductor;
 
     @ManyToOne
-    private Movil movil;
+    private Vehiculo vehiculo;
 
     @NotNull
     private Integer cantidad;
@@ -109,12 +109,12 @@ public class Dte extends AbstractEntidad {
         this.conductor = conductor;
     }
 
-    public Movil getMovil() {
-        return movil;
+    public Vehiculo getVehiculo() {
+        return vehiculo;
     }
 
-    public void setMovil(Movil movil) {
-        this.movil = movil;
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     public String getNumeroTropa() {

@@ -855,11 +855,11 @@ CREATE TABLE IF NOT EXISTS `marca` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `movil`
+-- Estructura de tabla para la tabla `vehiculo`
 --
 
-DROP TABLE IF EXISTS `movil`;
-CREATE TABLE IF NOT EXISTS `movil` (
+DROP TABLE IF EXISTS `vehiculo`;
+CREATE TABLE IF NOT EXISTS `vehiculo` (
   `idMovil` int(11) NOT NULL AUTO_INCREMENT,
   `modelo` varchar(100) NOT NULL,
   `dominio` varchar(50) NOT NULL,
@@ -1358,7 +1358,7 @@ ALTER TABLE `consignatario`
 ALTER TABLE `costovehiculo`
   ADD CONSTRAINT `fk_costovehiculo_codigocostovehiculo` FOREIGN KEY (`idCodigoCostoVehiculo`) REFERENCES `codigocostovehiculo` (`idCodigoCostoVehiculo`),
   ADD CONSTRAINT `fk_costovehiculo_estados` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_costovehiculo_idmovil` FOREIGN KEY (`idMovil`) REFERENCES `movil` (`idMovil`),
+  ADD CONSTRAINT `fk_costovehiculo_idmovil` FOREIGN KEY (`idMovil`) REFERENCES `vehiculo` (`idMovil`),
   ADD CONSTRAINT `fk_costovehiculo_insumo` FOREIGN KEY (`idInsumo`) REFERENCES `insumos` (`idInsumo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1413,7 +1413,7 @@ ALTER TABLE `dte`
   ADD CONSTRAINT `conductor_dte_fk` FOREIGN KEY (`idConductor`) REFERENCES `conductor` (`idConductor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `consignatario_dte_fk` FOREIGN KEY (`idConsignatario`) REFERENCES `consignatario` (`idConsignatario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `estados_dte_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `movil_dte_fk` FOREIGN KEY (`idMovil`) REFERENCES `movil` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `movil_dte_fk` FOREIGN KEY (`idMovil`) REFERENCES `vehiculo` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `productor_dte_fk` FOREIGN KEY (`idProductor`) REFERENCES `productor` (`idProductor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `usuarios_dte_fk` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -1496,7 +1496,7 @@ ALTER TABLE `insumos`
 --
 ALTER TABLE `lavadero`
   ADD CONSTRAINT `estados_lavadero_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `movil_lavadero_fk` FOREIGN KEY (`idMovil`) REFERENCES `movil` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `movil_lavadero_fk` FOREIGN KEY (`idMovil`) REFERENCES `vehiculo` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `usuarios_lavadero_fk` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1534,7 +1534,7 @@ ALTER TABLE `log`
 --
 ALTER TABLE `mantenimiento`
   ADD CONSTRAINT `estados_mantenimiento_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `movil_mantenimiento_fk` FOREIGN KEY (`idMovil`) REFERENCES `movil` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `movil_mantenimiento_fk` FOREIGN KEY (`idMovil`) REFERENCES `vehiculo` (`idMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `usuarios_mantenimiento_fk` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1552,9 +1552,9 @@ ALTER TABLE `marca`
   ADD CONSTRAINT `estados_marca_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `movil`
+-- Filtros para la tabla `vehiculo`
 --
-ALTER TABLE `movil`
+ALTER TABLE `vehiculo`
   ADD CONSTRAINT `estados_movil_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `estadosmovil_movil_fk` FOREIGN KEY (`idEstadoMovil`) REFERENCES `estadosmovil` (`idEstadoMovil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_movil_idtipomovil` FOREIGN KEY (`idTipoMovil`) REFERENCES `tipomovil` (`idTipoMovil`),

@@ -2,7 +2,7 @@ package com.gmail.sanfrancisco.dataProvider;
 
 import com.gmail.cacho.backend.jpa.FilterablePageableDataProvider;
 import com.gmail.cacho.backend.jpa.ServicioModelo;
-import com.gmail.sanfrancisco.entidad.Movil;
+import com.gmail.sanfrancisco.entidad.Vehiculo;
 import com.vaadin.flow.data.provider.QuerySortOrder;
 import com.vaadin.flow.data.provider.SortDirection;
 
@@ -11,9 +11,9 @@ import javax.inject.Inject;
 import java.util.Arrays;
 
 @Dependent
-public class MovilDataProvider extends FilterablePageableDataProvider<Movil, Long, String> {
+public class MovilDataProvider extends FilterablePageableDataProvider<Vehiculo, Long, String> {
     @Inject
-    public MovilDataProvider(ServicioModelo<Movil> servicio) {
+    public MovilDataProvider(ServicioModelo<Vehiculo> servicio) {
         super(servicio, Arrays.asList(
                     new QuerySortOrder("id", SortDirection.ASCENDING))
         );

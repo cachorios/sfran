@@ -3,8 +3,7 @@ package com.gmail.sanfrancisco.view.movil;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
-import com.gmail.sanfrancisco.entidad.Movil;
-import com.vaadin.flow.component.Component;
+import com.gmail.sanfrancisco.entidad.Vehiculo;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
@@ -16,7 +15,7 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.dateField;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
-public class MovilInnerForm extends DefaultInnerDialog<Movil> {
+public class MovilInnerForm extends DefaultInnerDialog<Vehiculo> {
     private TextField id;
     private TextField tipoMovil;
     private TextField modelo;
@@ -38,7 +37,7 @@ public class MovilInnerForm extends DefaultInnerDialog<Movil> {
     private TextField estadoMovil;
     private DatePicker fecha;
 
-    public MovilInnerForm(IPresentableForm<Movil> presentable, String elTitulo) {
+    public MovilInnerForm(IPresentableForm<Vehiculo> presentable, String elTitulo) {
         super(presentable, elTitulo);
     }
 
@@ -111,19 +110,19 @@ public class MovilInnerForm extends DefaultInnerDialog<Movil> {
     public Focusable getPrimerElementoForm() { return dominio; }
 
     @Override
-    public void bindFormFields(BeanValidationBinder<Movil> binder) {
+    public void bindFormFields(BeanValidationBinder<Vehiculo> binder) {
         binder.forField(id)
                 .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
                 .withNullRepresentation(0l)
-                .bind(Movil::getId, null);
+                .bind(Vehiculo::getId, null);
 
         binder.forField(anno)
                 .withConverter(new LocalDateADateConverter())
-                .bind(Movil::getAnno, Movil::setAnno);
+                .bind(Vehiculo::getAnno, Vehiculo::setAnno);
 
         binder.forField(fecha)
                 .withConverter(new LocalDateADateConverter())
-                .bind(Movil::getFecha, Movil::setFecha);
+                .bind(Vehiculo::getFecha, Vehiculo::setFecha);
 
         binder.bindInstanceFields(this);
     }
