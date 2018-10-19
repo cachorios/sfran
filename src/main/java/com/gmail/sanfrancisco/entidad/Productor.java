@@ -93,4 +93,9 @@ public class Productor extends AbstractEntidad {
     public void setCondicion(Parametro condicion) {
         this.condicion = condicion;
     }
+
+    @Override
+    public String toString() {
+        return getApellido() + ", " + getNombre();
+    }
 }

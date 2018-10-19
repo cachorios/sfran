@@ -36,7 +36,16 @@ public abstract class ParamCSComponent extends AbstractCustomSelect<Parametro> {
 
     @Override
     protected Parametro getElemento(String codigo) {
-        return CDI.current().select(ParametroServicio.class).get().findByTipoAndOrden(getTipoParametro(), Integer.valueOf(codigo));
+        Parametro ret;
+        Integer grupo = Math.toIntExact(((ParamCSDataProvider) getDataProvider()).getGrupo());
+
+        if( grupo == null)
+            ret =  CDI.current().select(ParametroServicio.class).get().findByTipoAndOrden(getTipoParametro(), Integer.valueOf(codigo));
+        else{
+            ret =  CDI.current().select(ParametroServicio.class).get().findByTipoAndGrupoAndOrden(getTipoParametro(),grupo , Integer.valueOf(codigo));
+        }
+
+        return ret;
     }
 
     @Override

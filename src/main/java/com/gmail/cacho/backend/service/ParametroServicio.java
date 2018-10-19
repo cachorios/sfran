@@ -21,7 +21,7 @@ public class ParametroServicio extends ServicioModelo<Parametro> {
     private ParametrosRepositorio repo;
 
 
-        public Parametro findByTipoAndOrden(ETipoParametro tipo, Integer orden) {
+    public Parametro findByTipoAndOrden(ETipoParametro tipo, Integer orden) {
         return repo.findByTipoAndOrden(tipo, orden);
     }
 
@@ -80,7 +80,7 @@ public class ParametroServicio extends ServicioModelo<Parametro> {
         if (padre != null) {
             if (padre instanceof ETipoParametro) {
                 result = ((ParametrosRepositorio) repo)
-                        .queryTipoAndGrupoandFilter((ETipoParametro) padre, likePattern(grupo.toString()), likePattern(filtro));
+                        .queryTipoAndGrupoandFilter((ETipoParametro) padre, grupo, likePattern(filtro));
             }
 
         } else {
@@ -94,6 +94,10 @@ public class ParametroServicio extends ServicioModelo<Parametro> {
                                              List<QuerySortOrder> sortOrders) {
         return findAnyMatching(padre, grupo, filtro, offset, limitm, sortOrders).count();
 
+    }
+
+    public Parametro findByTipoAndGrupoAndOrden(ETipoParametro tipo,Integer grupo, Integer orden) {
+        return repo.findByTipoAndValorintAndOrden(tipo, grupo, orden);
     }
 
 }

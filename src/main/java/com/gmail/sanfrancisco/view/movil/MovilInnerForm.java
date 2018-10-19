@@ -46,7 +46,7 @@ public class MovilInnerForm extends DefaultInnerDialog<Movil> {
     protected void generarForm(Div form) {
 
         setHeight("672px");
-        setWidth("700px");
+//        setWidth("700px");
 
         id = textField("ID");
         id.setPreventInvalidInput(true);

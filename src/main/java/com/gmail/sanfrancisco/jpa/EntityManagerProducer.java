@@ -8,8 +8,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 
+
 @ApplicationScoped
-public class EntityManagerProducer {
+public  class EntityManagerProducer {
 
     @Produces
     @PersistenceContext

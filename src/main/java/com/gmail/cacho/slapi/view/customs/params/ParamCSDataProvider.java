@@ -37,10 +37,35 @@ public class ParamCSDataProvider extends FilterablePageableDataProvider<Parametr
         this.grupo = grupo;
     }
 
+    public Long getGrupo() {
+        return grupo;
+    }
+
     @Override
     protected Stream<Parametro> fetchFromBackEnd(Query<Parametro, String> query) {
-        return ((ParametroServicio)getServicio())
+        Stream str;
+        if(grupo == null)
+            str = ((ParametroServicio)getServicio())
+                    .findAnyMatching(getPadre(),getFiltro(), query.getOffset(), query.getLimit(), getSortOrders(query));
+        else
+            str = ((ParametroServicio)getServicio())
                 .findAnyMatching(getPadre(),grupo , getFiltro(), query.getOffset(), query.getLimit(), getSortOrders(query));
+        return str;
+    }
+
+    @Override
+    protected int sizeInBackEnd(Query<Parametro, String> query) {
+        int reg = 0;
+
+        if(grupo == null)
+            reg = Math.toIntExact(((ParametroServicio) getServicio())
+                    .countAnyMatching(getPadre(), getFiltro()));
+        else
+            reg = Math.toIntExact(((ParametroServicio) getServicio())
+                    .countAnyMatching(getPadre(), grupo, getFiltro(), query.getOffset(), query.getLimit(), getSortOrders(query)));
+
+        return reg;
+
     }
 }
 

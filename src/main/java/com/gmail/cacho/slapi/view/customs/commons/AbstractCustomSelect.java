@@ -47,6 +47,7 @@ public abstract class AbstractCustomSelect<T extends AbstractEntidad> extends Ab
         lblCaption.setText(caption);
         lblCaption.setWidth("100%");
 
+
         codigo = new TextField();
         this.conBuscar = conBuscar;
         this.conVer = conVer;
@@ -55,6 +56,7 @@ public abstract class AbstractCustomSelect<T extends AbstractEntidad> extends Ab
         this.titulo = caption;
 
         this.getContent().setAlignItems(FlexComponent.Alignment.BASELINE);
+        this.getContent().setClassName("cselect");
 
     }
 

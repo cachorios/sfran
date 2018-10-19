@@ -7,7 +7,7 @@ import org.apache.deltaspike.data.api.*;
 @Repository
 public interface DteRepositorio extends EntityRepository<Dte, Long>, EntityManagerDelegate<Dte> {
 
-    @Query("SELECT u FROM Dte WHERE u.numeroTropa like :filter")
+    @Query("SELECT u FROM Dte u WHERE u.numeroTropa like :filter")
     QueryResult<Dte> findFiltered(
             @FirstResult int offset,
             @MaxResults int limit,

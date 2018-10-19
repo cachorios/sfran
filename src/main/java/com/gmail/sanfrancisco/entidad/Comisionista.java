@@ -90,4 +90,9 @@ public class Comisionista extends AbstractEntidad {
     public void setSaldoInicial(Double saldoInicial) {
         this.saldoInicial = saldoInicial;
     }
+
+    @Override
+    public String toString() {
+        return getApellido() + ", " + getNombre();
+    }
 }
