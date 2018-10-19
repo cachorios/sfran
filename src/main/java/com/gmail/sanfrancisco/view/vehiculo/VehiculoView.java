@@ -14,8 +14,8 @@ import com.vaadin.flow.router.Route;
 
 import javax.inject.Inject;
 
-@Route(value="moviles", layout = MainView.class)
-@PageTitle("Lista de moviles")
+@Route(value="vehiculos", layout = MainView.class)
+@PageTitle("Lista de Vehiculos")
 @MenuIcon(VaadinIcon.SPECIALIST)
 
 public class VehiculoView extends AbstractDefaultView<Vehiculo> {

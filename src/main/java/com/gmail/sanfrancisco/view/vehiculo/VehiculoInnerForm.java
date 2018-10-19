@@ -35,7 +35,7 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
     private TextField numeroChasis;
     private TextField marca;
     private DatePicker anno;
-    private TextField estadoMovil;
+    private TextField estadoVehiculo;
     private DatePicker fecha;
 
 
@@ -71,7 +71,7 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
         anno.setWidth("100%");
         anno.setRequired(true);
 
-        estadoMovil = textField("Estado del vehiculo");
+        estadoVehiculo = textField("Estado del vehiculo");
 
         fecha = dateField("Fecha de cambio de estado");
         fecha.setWidth("100%");
@@ -102,7 +102,7 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
                 envolver(marca, "32%"),
                 envolver(anno, "32%"),
 
-                envolver(estadoMovil, "48%"),
+                envolver(estadoVehiculo, "48%"),
                 envolver(fecha, "48%")
         );
 

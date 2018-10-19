@@ -22,7 +22,7 @@ public class VehiculoForm extends AbstractForm<Vehiculo> {
     protected Focusable getPrimerElementoForm() { return null; }
 
     @Override
-    public String getTagVista() { return "RCV_TAG_MOVIL"; }
+    public String getTagVista() { return "RCV_TAG_VEHICULO"; }
 
     @Override
     public Class<Vehiculo> getEntityType() { return Vehiculo.class; }
