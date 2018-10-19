@@ -17,6 +17,7 @@ import javax.inject.Inject;
 @Route(value="moviles", layout = MainView.class)
 @PageTitle("Lista de moviles")
 @MenuIcon(VaadinIcon.SPECIALIST)
+
 public class VehiculoView extends AbstractDefaultView<Vehiculo> {
     @Inject
     public VehiculoView(AbstractList<Vehiculo> list, AbstractPreview<Vehiculo> preview, AbstractForm<Vehiculo> form) {

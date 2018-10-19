@@ -8,6 +8,7 @@ import com.vaadin.flow.component.Focusable;
 
 import javax.inject.Inject;
 
+
 public class VehiculoForm extends AbstractForm<Vehiculo> {
     @Inject
     public VehiculoForm(IPresenterForm<Vehiculo> presenter) { super(presenter); }

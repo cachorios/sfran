@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import java.util.Arrays;
 
 @Dependent
+
 public class VehiculolDataProvider extends FilterablePageableDataProvider<Vehiculo, Long, String> {
     @Inject
     public VehiculolDataProvider(ServicioModelo<Vehiculo> servicio) {
