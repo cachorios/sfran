@@ -1,4 +1,4 @@
-package com.gmail.sanfrancisco.view.movil;
+package com.gmail.sanfrancisco.view.vehiculo;
 
 import com.gmail.cacho.slapi.view.AbstractForm;
 import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerForm;
@@ -8,13 +8,14 @@ import com.vaadin.flow.component.Focusable;
 
 import javax.inject.Inject;
 
-public class MovilForm extends AbstractForm<Vehiculo> {
+
+public class VehiculoForm extends AbstractForm<Vehiculo> {
     @Inject
-    public MovilForm(IPresenterForm<Vehiculo> presenter) { super(presenter); }
+    public VehiculoForm(IPresenterForm<Vehiculo> presenter) { super(presenter); }
 
     @Override
     protected ILayoutInnerForm<Vehiculo> generarLayout(AbstractForm<Vehiculo> padre, String titulo) {
-        return new MovilInnerForm(padre, titulo);
+        return new VehiculoInnerForm(padre, titulo);
     }
 
     @Override

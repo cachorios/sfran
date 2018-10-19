@@ -21,10 +21,10 @@ rem ---------------------------------
 rem -- PATH A LOS SCRIPTS DE DATOS --
 rem ---------------------------------
 
-set ubic="D:\Servidor\htdocs"
+rem set ubic="D:\Servidor\htdocs"
 rem set ubic="D:\Desarrollo"
 rem set ubic="E:\Desarrollo"
-rem set ubic="D:\Vaadin"
+set ubic="D:\Vaadin"
 
 rem ---------------------------------
 rem -- MIGRACION DE LOS DATOS      --

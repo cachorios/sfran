@@ -12,16 +12,23 @@ public class ColumnList<T extends AbstractEntidad, S> {
     private String propiedad;
     private boolean ordenable;
     private Renderer renderer;
+    private String width;
 
     public ColumnList(ValueProvider<T, S> proveedor, String titulo, String propiedad, boolean ordenable) {
         this.proveedor = proveedor;
         this.titulo = titulo;
         this.propiedad = propiedad;
         this.ordenable = ordenable;
+        this.width = "100px";
     }
 
-    public ColumnList(ValueProvider<T, S> proveedor, String titulo, String propiedad, boolean ordenable, String formato) {
+    public ColumnList(ValueProvider<T, S> proveedor, String titulo, String propiedad, boolean ordenable, String with) {
         this(proveedor, titulo, propiedad, ordenable);
+        this.width = with;
+    }
+
+    public ColumnList(ValueProvider<T, S> proveedor, String titulo, String propiedad, boolean ordenable, String with, String formato) {
+        this(proveedor, titulo, propiedad, ordenable, with);
     }
 
     public ColumnList(Renderer renderer, String titulo, String propiedad, boolean ordenable) {
@@ -29,6 +36,14 @@ public class ColumnList<T extends AbstractEntidad, S> {
         this.titulo = titulo;
         this.propiedad = propiedad;
         this.ordenable = ordenable;
+        this.width = "";
+    }
+    public ColumnList(Renderer renderer, String titulo, String propiedad, boolean ordenable, String with) {
+        this.renderer = renderer;
+        this.titulo = titulo;
+        this.propiedad = propiedad;
+        this.ordenable = ordenable;
+        this.width = with;
     }
 
     public ValueProvider<T, S> getProveedor() {
@@ -51,5 +66,9 @@ public class ColumnList<T extends AbstractEntidad, S> {
 
     public Renderer getRenderer() {
         return renderer;
+    }
+
+    public String getWidth() {
+        return width;
     }
 }

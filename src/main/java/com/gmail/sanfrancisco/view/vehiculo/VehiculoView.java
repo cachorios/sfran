@@ -1,4 +1,4 @@
-package com.gmail.sanfrancisco.view.movil;
+package com.gmail.sanfrancisco.view.vehiculo;
 
 import com.github.appreciated.app.layout.annotations.MenuIcon;
 import com.gmail.cacho.slapi.layout.MainView;
@@ -17,9 +17,10 @@ import javax.inject.Inject;
 @Route(value="moviles", layout = MainView.class)
 @PageTitle("Lista de moviles")
 @MenuIcon(VaadinIcon.SPECIALIST)
-public class MovilView extends AbstractDefaultView<Vehiculo> {
+
+public class VehiculoView extends AbstractDefaultView<Vehiculo> {
     @Inject
-    public MovilView(AbstractList<Vehiculo> list, AbstractPreview<Vehiculo> preview, AbstractForm<Vehiculo> form) {
+    public VehiculoView(AbstractList<Vehiculo> list, AbstractPreview<Vehiculo> preview, AbstractForm<Vehiculo> form) {
         super(list, preview, form, EModoVista.EDITAR);
     }
 }

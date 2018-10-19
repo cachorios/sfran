@@ -1,4 +1,4 @@
-package com.gmail.sanfrancisco.view.movil;
+package com.gmail.sanfrancisco.view.vehiculo;
 
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
@@ -15,9 +15,10 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.dateField;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
-public class MovilInnerForm extends DefaultInnerDialog<Vehiculo> {
+
+public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
     private TextField id;
-    private TextField tipoMovil;
+    private TextField tipoVehiculo;
     private TextField modelo;
     private TextField dominio;
     private TextField tipoCombustible;
@@ -37,7 +38,8 @@ public class MovilInnerForm extends DefaultInnerDialog<Vehiculo> {
     private TextField estadoMovil;
     private DatePicker fecha;
 
-    public MovilInnerForm(IPresentableForm<Vehiculo> presentable, String elTitulo) {
+
+    public VehiculoInnerForm(IPresentableForm<Vehiculo> presentable, String elTitulo) {
         super(presentable, elTitulo);
     }
 
@@ -49,7 +51,7 @@ public class MovilInnerForm extends DefaultInnerDialog<Vehiculo> {
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
-        tipoMovil = textField("Tipo de movil");
+        tipoVehiculo = textField("Tipo de vehiculo");
         modelo = textField("Modelo");
         dominio = textField("Dominio");
         tipoCombustible = textField("Tipo de combustible");
@@ -69,7 +71,7 @@ public class MovilInnerForm extends DefaultInnerDialog<Vehiculo> {
         anno.setWidth("100%");
         anno.setRequired(true);
 
-        estadoMovil = textField("Estado del movil");
+        estadoMovil = textField("Estado del vehiculo");
 
         fecha = dateField("Fecha de cambio de estado");
         fecha.setWidth("100%");
@@ -78,7 +80,7 @@ public class MovilInnerForm extends DefaultInnerDialog<Vehiculo> {
         form.add(
                 envolver(id,            "30%"),
 
-                envolver(tipoMovil,     "32%"),
+                envolver(tipoVehiculo,     "32%"),
                 envolver(modelo,        "32%"),
                 envolver(dominio,       "32%"),
 

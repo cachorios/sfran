@@ -6,7 +6,7 @@ import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.customs.tabs.CustomTab;
 import com.gmail.cacho.slapi.view.enums.EModoVista;
 import com.gmail.cacho.slapi.view.interfaces.*;
-import com.gmail.cacho.slapi.view.layouts.DefaultInnerList;
+
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerListPolymer;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.cacho.slapi.view.utils.ComponenteVista;
@@ -61,7 +61,7 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
 
     protected ILayoutInnerList<T> generarLayout(AbstractList<T> padre, String titulo) {
         return new DefaultInnerListPolymer<>(padre, getTitulo());
-        //DefaultInnerList<>(padre, getTitulo());
+
     }
 
     protected void setListaCols(List<ColumnList> listaCols) {

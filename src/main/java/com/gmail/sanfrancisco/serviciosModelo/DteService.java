@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.serviciosModelo;
 
 import com.gmail.cacho.backend.jpa.ServicioModelo;
+import com.gmail.cacho.slapi.comunes.QueryHelper;
 import com.gmail.sanfrancisco.entidad.Dte;
 import com.gmail.sanfrancisco.repositorio.DteRepositorio;
 import com.vaadin.flow.data.provider.QuerySortOrder;
@@ -24,8 +25,7 @@ public class DteService extends ServicioModelo<Dte> {
         QueryResult<Dte> result = ((DteRepositorio)repo).findFiltered( offset, limit, likePattern(filtro));
 
 
-        return result.getResultList().stream();
-        //QueryHelper.applyLimitsAndSortOrder(result, offset, limit, sortOrders).getResultList().stream();
+        return QueryHelper.applyLimitsAndSortOrder(result, offset, limit, sortOrders).getResultList().stream();
     }
 
     @Override

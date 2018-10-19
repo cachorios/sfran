@@ -11,9 +11,10 @@ import javax.inject.Inject;
 import java.util.Arrays;
 
 @Dependent
-public class MovilDataProvider extends FilterablePageableDataProvider<Vehiculo, Long, String> {
+
+public class VehiculolDataProvider extends FilterablePageableDataProvider<Vehiculo, Long, String> {
     @Inject
-    public MovilDataProvider(ServicioModelo<Vehiculo> servicio) {
+    public VehiculolDataProvider(ServicioModelo<Vehiculo> servicio) {
         super(servicio, Arrays.asList(
                     new QuerySortOrder("id", SortDirection.ASCENDING))
         );

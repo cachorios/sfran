@@ -5,9 +5,12 @@ import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.vaadin.flow.data.provider.AbstractBackEndDataProvider;
 import com.vaadin.flow.data.provider.Query;
 import com.vaadin.flow.data.provider.QuerySortOrder;
+import com.vaadin.flow.data.provider.SortOrder;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class FilterablePageableDataProvider<U extends AbstractEntidad, TKI extends Serializable, F>   extends AbstractBackEndDataProvider<U, F> {
@@ -45,6 +48,7 @@ public abstract class FilterablePageableDataProvider<U extends AbstractEntidad, 
             sortOrders = q.getSortOrders();
         }
         return sortOrders;
+
     }
 
     private List<QuerySortOrder> getDefaultSortOrders() {

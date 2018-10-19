@@ -33,6 +33,11 @@ FROM marca
 select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idOperadora+35500),"), 'UNKNOW', 'UNKNOW', 'OPERADORA TELEFONICA', '", descripcion,"', ", idOperadora,", 16, 1);")
 FROM operadoras
 
+<<<<<<< HEAD
+select CONCAT("INSERT INTO vehiculo (id, alto, fechaalta, fechabaja, fechaumod, ancho, anno, cargaMax, color_id, consumo, dominio, estadoMovil_id, fecha, largo, marca_id, maxCabezas, modelo, numeroChasis, numeroMotor, tara, tipoCombustible_id, tipoMovil_id, volumen, usuarioalta, usuarioumod, version) VALUES (", CAST(idMovil as CHAR(4)), ", ", alto, ", '", CAST(ifnull(if(vehiculo.fechaAlta='0000-00-00 00:00:00',null,vehiculo.fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(vehiculo.fechaBaja='0000-00-00 00:00:00',null,vehiculo.fechaBaja),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(vehiculo.fechaModificacion='0000-00-00 00:00:00',null,vehiculo.fechaModificacion),'01-01-2008') as CHAR(19)), "', ", ancho, ", '", CAST(ifnull(if(vehiculo.anno='0000-00-00 00:00:00',null,vehiculo.anno),'01-01-2008') as CHAR(19)), "', ", cargaMax, ", ", color.idColor, ", ", consumo, ", '", dominio, "', ", idEstadoMovil, ", '", CAST(ifnull(if(vehiculo.fecha='0000-00-00 00:00:00',null,vehiculo.fecha),'01-01-2008') as CHAR(19)), "', ", largo, ", ", idMarca, ", ", maxCabezas, ", '", modelo, "', '", numeroChasis, "', '", numeroMotor, "', ", tara, ", ", idTipoCombustible, ", ", idTipoMovil, ", ", volumen, ", 'Algo', 'Algo', 1);")
+FROM vehiculo INNER JOIN color ON vehiculo.color=color.descripcion;
+=======
+>>>>>>> 0b563a63786c6f71dea6f4557dc928454227d8ec
 
 select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idTipoCombustible+35600),"), 'UNKNOW', 'UNKNOW', 'TIPO COMBUSTIBLE', '", descripcion,"', ", idTipoCombustible,", 17, 1);")
 FROM tipocombustible

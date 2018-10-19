@@ -127,14 +127,18 @@ public class DefaultInnerListPolymer<T extends AbstractEntidad> extends PolymerT
                     grilla.addColumn(col.getRenderer())
                           .setHeader(col.getTitulo())
                           .setSortable(col.isOrdenable())
-                          .setId(col.getPropiedad());
+                          .setKey(col.getPropiedad())
+                          .setWidth(col.getWidth());
                 } else {
                     grilla.addColumn(col.getProveedor())
                           .setHeader(col.getTitulo())
                           .setSortable(col.isOrdenable())
-                          .setId(col.getPropiedad());
+                          .setKey(col.getPropiedad())
+                          .setWidth(col.getWidth());
                 }
             });
+        }else{
+            this.presentable.setCols(grilla);
         }
 
         grilla.deselectAll();
