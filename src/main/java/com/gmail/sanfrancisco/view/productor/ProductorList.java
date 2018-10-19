@@ -15,7 +15,6 @@ public class ProductorList extends AbstractList<Productor> {
         super(presenter);
         setListaCols(Arrays.asList(
                 new ColumnList<>(Productor::getNombre,"Nombre","nombre", true),
-                new ColumnList<>(Productor::getApellido,"Apellido","apellido", true),
                 new ColumnList<>(Productor::getCuil,"C.U.I.L.","cuil", true),
                 new ColumnList<>(Productor::getEmail,"Correo electronico","email", true)
         ));

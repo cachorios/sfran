@@ -15,10 +15,6 @@ public class Productor extends AbstractEntidad {
     private String nombre;
 
     @NotNull
-    @Size(min=5, max=50, message = "El apellido debe contener entre 5 y 50 caracteres.")
-    private String apellido;
-
-    @NotNull
     @Size(min=5, max=20, message="El cuil debe contener entre 5 y 20 caracteres.")
     private String cuil;
 
@@ -48,14 +44,6 @@ public class Productor extends AbstractEntidad {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getCuil() {
