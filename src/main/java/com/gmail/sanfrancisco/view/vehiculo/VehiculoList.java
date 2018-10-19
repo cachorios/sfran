@@ -14,17 +14,17 @@ public class VehiculoList extends AbstractList<Vehiculo> {
         super(presenter);
         setListaCols(Arrays.asList(
                 new ColumnList<>(Vehiculo::getDominio, "Dominio","dominio",true),
-                new ColumnList<>(Vehiculo::getEstadoMovil, "Estado del vehiculo", "estadomovil", true),
+                new ColumnList<>(Vehiculo::getEstadoVehiculo, "Estado del vehiculo", "estadoVehiculo", true),
                 new ColumnList<>(Vehiculo::getMaxCabezas, "Maximo de cabezas", "maxcabezas", true)
         ));
     }
 
     @Override
-    public String getTagVista() { return  "MOVIL"; }
+    public String getTagVista() { return  "VEHICULO"; }
 
     @Override
     public Class<Vehiculo> getEntityType() { return Vehiculo.class; }
 
     @Override
-    public String getTitulo() { return "Lista de moviles"; }
+    public String getTitulo() { return "Lista de Vehiculos"; }
 }

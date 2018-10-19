@@ -45,15 +45,18 @@ psql -d sfran -U postgres -f "TIPOCOMBUSTIBLE.sql"
 psql -d sfran -U postgres -f "TIPOINSUMO.sql"
 psql -d sfran -U postgres -f "TIPOMOVIL.sql"
 psql -d sfran -U postgres -f "IMPUESTO.sql"
+
 psql -d sfran -U postgres -f "COMISIONISTA.sql"
 psql -d sfran -U postgres -f "CONDUCTOR.sql"
 psql -d sfran -U postgres -f "CONSIGNATARIO.sql"
 psql -d sfran -U postgres -f "INSUMO.sql"
 psql -d sfran -U postgres -f "MOVIL.sql"
-psql -d sfran -U postgres -f "DTE.sql"
-psql -d sfran -U postgres -f "NUMERODTE.sql"
+
 psql -d sfran -U postgres -f "PRODUCTOR.sql"
 psql -d sfran -U postgres -f "RENSPA.sql"
+
+psql -d sfran -U postgres -f "DTE.sql"
+psql -d sfran -U postgres -f "NUMERODTE.sql"
 psql -d sfran -U postgres -f "DTEDETALLECATEGORIA.sql"
 psql -d sfran -U postgres -f "DTEDETALLEIMPUESTO.sql"
 psql -d sfran -U postgres -f "DTEDETALLEINSUMO.sql"
@@ -65,7 +68,7 @@ psql -d sfran -U postgres -f "INSUMOCOSTOVEHICULO.sql"
 psql -d sfran -U postgres -f "IMPUESTOCOSTOVEHICULO.sql"
 psql -d sfran -U postgres -f "LOCALIDADESNUEVO.sql"
 
-psql -d sfran -U postgres -f "operadora.sql"
+
 rem ---------------------------------
 psql -d sfran -U postgres -f "USUARIOS.sql"
 psql -d sfran -U postgres -f "AFIP.sql"

@@ -64,7 +64,7 @@ public class Vehiculo extends AbstractEntidad {
 
     @NotNull
     @ManyToOne
-    private Parametro estadoMovil;
+    private Parametro estadoVehiculo;
 
     @NotNull
     private Date fecha;
@@ -185,8 +185,8 @@ public class Vehiculo extends AbstractEntidad {
         return tipoVehiculo;
     }
 
-    public void setTipoVehiculo(Parametro tipoMovil) {
-        this.tipoVehiculo = tipoMovil;
+    public void setTipoVehiculo(Parametro tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
     }
 
     public Parametro getTipoCombustible() {
@@ -213,12 +213,12 @@ public class Vehiculo extends AbstractEntidad {
         this.marca = marca;
     }
 
-    public Parametro getEstadoMovil() {
-        return estadoMovil;
+    public Parametro getEstadoVehiculo() {
+        return estadoVehiculo;
     }
 
-    public void setEstadoMovil(Parametro estadoMovil) {
-        this.estadoMovil = estadoMovil;
+    public void setEstadoVehiculo(Parametro estadoVehiculo) {
+        this.estadoVehiculo = estadoVehiculo;
     }
 
     @Override
