@@ -52,8 +52,6 @@ psql -d sfran -U postgres -f "CONSIGNATARIO.sql"
 psql -d sfran -U postgres -f "INSUMO.sql"
 
 psql -d sfran -U postgres -f "VEHICULO.sql"
-psql -d sfran -U postgres -f "DTE.sql"
-psql -d sfran -U postgres -f "NUMERODTE.sql"
 
 psql -d sfran -U postgres -f "PRODUCTOR.sql"
 psql -d sfran -U postgres -f "RENSPA.sql"
