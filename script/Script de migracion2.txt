@@ -1,40 +1,36 @@
-select CONCAT("INSERT INTO comisionista (id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, nombre, celular, cuil, domicilio, email, saldoInicial, telefono, version) VALUES (", CAST(idComisionista as CHAR(4)), ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', '", descripcion, "', '", celular, "', '", cuit, "', '", domicilio, "', '", email, "', '", CAST(ifnull(saldoInicial,'0.00') as CHAR(20)), "', '" , telefono, "', 1);")
+select CONCAT("INSERT INTO comisionista (id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, nombre, celular, cuil, domicilio, email, saldoInicial, telefono, version) VALUES (", CAST(idComisionista as CHAR(4)), ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', '", descripcion, "', '", celular, "', '", cuit, "', '", domicilio, "', '", email, "', '", CAST(ifnull(saldoInicial,'0.00') as CHAR(20)), "', '" , telefono, "', 1);")
 FROM comisionista;
 
 
 
-select CONCAT("INSERT INTO conductor (id, dni, nombre, apellido, celular, telefono, operadoraTelefonica_id, usuario_id, cuil, fechaalta, fechabaja, fechaIngreso, fechaNacimiento, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idConductor as CHAR(4)), ", '", dni, "', '", nombre, "', '", apellido, "', '", celular, "', '", telefono, "', ", idOperadora, ", ", idUsuario, ", '", cuit, "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaIngreso='0000-00-00 00:00:00',null,fechaIngreso),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(fechaNac='0000-00-00 00:00:00',null,fechaNac),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO conductor (id, dni, nombre, apellido, celular, telefono, operadoraTelefonica_id, usuario_id, cuil, fechaalta, fechabaja, fechaIngreso, fechaNacimiento, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idConductor as CHAR(4)), ", '", dni, "', '", nombre, "', '", apellido, "', '", celular, "', '", telefono, "', ", idOperadora, ", ", idUsuario, ", '", cuit, "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaIngreso='0000-00-00 00:00:00',null,fechaIngreso),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(fechaNac='0000-00-00 00:00:00',null,fechaNac),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM conductor;
 
 
 
-select CONCAT("INSERT INTO consignatario (id, nombre, celular, telefono, cuil, domicilio, email, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idConsignatario as CHAR(4)), ", '", descripcion, "', '", celular, "', '", telefono, "', '", cuit, "', '", domicilio, "', '", email, "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO consignatario (id, nombre, celular, telefono, cuil, domicilio, email, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idConsignatario as CHAR(4)), ", '", descripcion, "', '", celular, "', '", telefono, "', '", cuit, "', '", domicilio, "', '", email, "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM consignatario;
 
 
 
 
 
-select CONCAT("INSERT INTO insumo (id, descripcion, fechaalta, fechabaja, fechaumod, tipoInsumo_id, unidad, usuarioalta, usuarioumod, version) VALUES (", CAST(idInsumo as CHAR(4)), ", '", descripcion, "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', ", idTipoInsumo, ", ", idUnidad, ", 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO insumo (id, descripcion, fechaalta, fechabaja, fechaumod, tipoInsumo_id, unidad, usuarioalta, usuarioumod, version) VALUES (", CAST(idInsumo as CHAR(4)), ", '", descripcion, "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', ", idTipoInsumo, ", ", idUnidad, ", 'Algo', 'Algo', 1);")
 FROM insumos;
 
 
 
 
 
-select CONCAT("INSERT INTO movil (id, alto, fechaalta, fechabaja, fechaumod, ancho, anno, cargaMax, color_id, consumo, dominio, estadoMovil_id, fecha, largo, marca_id, maxCabezas, modelo, numeroChasis, numeroMotor, tara, tipoCombustible_id, tipoMovil_id, volumen, usuarioalta, usuarioumod, version) VALUES (", CAST(idMovil as CHAR(4)), ", ", alto, ", '", CAST(ifnull(if(movil.fechaAlta='0000-00-00 00:00:00',null,movil.fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(movil.idEstado=2,movil.fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(movil.fechaModificacion='0000-00-00 00:00:00',null,movil.fechaModificacion),'01-01-2008') as CHAR(19)), "', ", ancho, ", '", CAST(ifnull(if(movil.anno='0000-00-00 00:00:00',null,movil.anno),'01-01-2008') as CHAR(19)), "', ", cargaMax, ", ", color.idColor, ", ", consumo, ", '", dominio, "', ", idEstadoMovil, ", '", CAST(ifnull(if(movil.fecha='0000-00-00 00:00:00',null,movil.fecha),'01-01-2008') as CHAR(19)), "', ", largo, ", ", idMarca, ", ", maxCabezas, ", '", modelo, "', '", numeroChasis, "', '", numeroMotor, "', ", tara, ", ", idTipoCombustible, ", ", idTipoMovil, ", ", volumen, ", 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO movil (id, alto, fechaalta, fechabaja, fechaumod, ancho, anno, cargaMax, color_id, consumo, dominio, estadoMovil_id, fecha, largo, marca_id, maxCabezas, modelo, numeroChasis, numeroMotor, tara, tipoCombustible_id, tipoMovil_id, volumen, usuarioalta, usuarioumod, version) VALUES (", CAST(idMovil as CHAR(4)), ", ", alto, ", '", CAST(ifnull(if(movil.fechaAlta='0000-00-00 00:00:00',null,movil.fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(movil.idEstado=2,CONCAT("'",movil.fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(movil.fechaModificacion='0000-00-00 00:00:00',null,movil.fechaModificacion),'01-01-2008') as CHAR(19)), "', ", ancho, ", '", CAST(ifnull(if(movil.anno='0000-00-00 00:00:00',null,movil.anno),'01-01-2008') as CHAR(19)), "', ", cargaMax, ", ", color.idColor, ", ", consumo, ", '", dominio, "', ", idEstadoMovil, ", '", CAST(ifnull(if(movil.fecha='0000-00-00 00:00:00',null,movil.fecha),'01-01-2008') as CHAR(19)), "', ", largo, ", ", idMarca, ", ", maxCabezas, ", '", modelo, "', '", numeroChasis, "', '", numeroMotor, "', ", tara, ", ", idTipoCombustible, ", ", idTipoMovil, ", ", volumen, ", 'Algo', 'Algo', 1);")
 FROM movil INNER JOIN color ON movil.color=color.descripcion;
 
 
 
 
 
-select CONCAT("INSERT INTO dte (id, ajustes, conductor_id, cantidad, localidaddestino_id, importeentrega, especie_id, fechacarga, fechavencimiento, kmllegada, kmsalida, numerotropa, localidadorigen_id, patentejaula, peso, titular, total, comisionista_id, consignatario_id, movil_id, productor_id, renspa_id, fechaalta, fechabaja, fechaumod, provinciaorigen_id, provinciadestino_id, usuarioalta, usuarioumod, version) VALUES (", CAST(idDte as CHAR(4)), ", ", ajustes, ", ", idConductor, ", ", cantidad, ", ", idDestino, ", ", entrega, ", 1, '", CAST(ifnull(if(fechaCarga='0000-00-00 00:00:00',null,fechaCarga),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(fechaVencimiento='0000-00-00 00:00:00',null,fechaVencimiento),'01-01-2008') as CHAR(19)), "', ", ifnull(kmArr,0), ", ", ifnull(kmDep,0), ", '", ifnull(numTropa,'0'), "', ", idOrigen, ", '", ifnull(domJaula,'XXX-XXX'), "',", peso, ", '", titular, "', ", total, ", ", idComisionista, ", ", idConsignatario, ", ", idMovil, ", ", idProductor, ", '", if(tipoRenspa!='',tipoRenspa,'0'), "', '", CAST(ifnull(if(dte.fechaAlta='0000-00-00 00:00:00',null,dte.fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(dte.idEstado=2,dte.fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(dte.fechaModificacion='0000-00-00 00:00:00',null,dte.fechaModificacion),'01-01-2008') as CHAR(19)), "', ", p1.idProvincia, ", ", p2.idProvincia, ", 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO dte (id, ajustes, conductor_id, cantidad, localidaddestino_id, importeentrega, especie_id, fechacarga, fechavencimiento, kmllegada, kmsalida, numerotropa, localidadorigen_id, patentejaula, peso, titular, total, comisionista_id, consignatario_id, movil_id, productor_id, renspa_id, fechaalta, fechabaja, fechaumod, provinciaorigen_id, provinciadestino_id, usuarioalta, usuarioumod, version) SELECT ", CAST(idDte as CHAR(4)), ", ", ajustes, ", ", idConductor, ", ", cantidad, ", (select id from parametro where tipo=10 and orden=", idDestino, "), ", entrega, ", 1, '", CAST(ifnull(if(fechaCarga='0000-00-00 00:00:00',null,fechaCarga),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(fechaVencimiento='0000-00-00 00:00:00',null,fechaVencimiento),'01-01-2008') as CHAR(19)), "', ", ifnull(kmArr,0), ", ", ifnull(kmDep,0), ", '", ifnull(numTropa,'0'), "', (select id from parametro where tipo=10 and orden=", idOrigen, "), '", ifnull(domJaula,'XXX-XXX'), "',", peso, ", '", titular, "', ", total, ", ", idComisionista, ", ", idConsignatario, ", ", idMovil, ", ", idProductor, ", '", if(tipoRenspa!='',tipoRenspa,'0'), "', '", CAST(ifnull(if(dte.fechaAlta='0000-00-00 00:00:00',null,dte.fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(dte.idEstado=2,CONCAT("'",dte.fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(dte.fechaModificacion='0000-00-00 00:00:00',null,dte.fechaModificacion),'01-01-2008') as CHAR(19)), "', (select id from parametro where tipo=9 and orden=", (select idProvincia from localidad where idLocalidad=idOrigen), "), (select id from parametro where tipo=9 and orden=", (select idProvincia from localidad where idLocalidad=idDestino), "), 'Algo', 'Algo', 1;")
 FROM dte
-LEFT JOIN localidad as l1 on dte.idOrigen=l1.idLocalidad
-LEFT JOIN provincias as p1 on l1.idProvincia=p1.idProvincia
-LEFT JOIN localidad as l2 on dte.idDestino=l2.idLocalidad
-LEFT JOIN provincias as p2 on l2.idProvincia=p2.idProvincia
 
 
 select CONCAT("INSERT INTO numerodte (id, numero, dte_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idNumDte as CHAR(4)), ", '", descripcion, "', ", idDte, ", '01-01-2008', null, '01-01-2008', 'Algo', 'Algo', 1);")
@@ -44,47 +40,47 @@ FROM numerodte
 
 
 
-select CONCAT("INSERT INTO productor (id, nombre, celular, telefono, cuil, domicilio, email, condicion_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idProductor as CHAR(4)), ", '", descripcion, "', '", celular, "', '", telefono, "', '", cuit, "', '", domicilio, "', '", email, "', ", idCondicion, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO productor (id, nombre, celular, telefono, cuil, domicilio, email, condicion_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idProductor as CHAR(4)), ", '", descripcion, "', '", celular, "', '", telefono, "', '", cuit, "', '", domicilio, "', '", email, "', ", idCondicion, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM productor;
 
 
 
 
 
-select CONCAT("INSERT INTO renspa (id, descripcion, productor_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idRenspa as CHAR(4)), ", '", descripcion, "', ", idProductor, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO renspa (id, descripcion, productor_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idRenspa as CHAR(4)), ", '", descripcion, "', ", idProductor, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM renspa
 
 
 
 
 
-select CONCAT("INSERT INTO dtedetallecategoria (id, cantidad, categoria_id, kgcarne, kgvivo, preciokgvivo, porcentajecomision, dte_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idDteDetCat as CHAR(4)), ", ", cantidad, ", ", idCategorias, ", ", kgCarne, ", ", ksVivo, ", ", precioKgVivo, ", ", porcentaje, ", ", idDte,", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO dtedetallecategoria (id, cantidad, categoria_id, kgcarne, kgvivo, preciokgvivo, porcentajecomision, dte_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idDteDetCat as CHAR(4)), ", ", cantidad, ", ", idCategorias, ", ", kgCarne, ", ", ksVivo, ", ", precioKgVivo, ", ", porcentaje, ", ", idDte,", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM dtedetcat
 
 
 
 
 
-select CONCAT("INSERT INTO dtedetalleimpuesto (id, saldo, impuesto_id, dte_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idDteDetImp as CHAR(4)), ", ", saldo, ", ", idImpuesto, ", ", idDte,", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO dtedetalleimpuesto (id, saldo, impuesto_id, dte_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idDteDetImp as CHAR(4)), ", ", saldo, ", ", idImpuesto, ", ", idDte,", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM dtedetimp
 
 
 
 
 
-select CONCAT("INSERT INTO dtedetalleinsumo (id, cantidad, precio, insumo_id, dte_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idDteDet as CHAR(4)), ", ", cantidad, ", ", precio, ", ", idInsumo, ", ", idDte, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO dtedetalleinsumo (id, cantidad, precio, insumo_id, dte_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idDteDet as CHAR(4)), ", ", cantidad, ", ", precio, ", ", idInsumo, ", ", idDte, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM dtedet
 
 
 
 
 
-select CONCAT("INSERT INTO licencia (id, licenciacarga, tipolicencia_id, vencimiento, vencimientocurso, vencimientonac, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idLicencias as CHAR(4)), ", '", if(licenciacarga='SI','1','0'), "', ", idTipoLicencias, ", '", CAST(ifnull(vencimiento,'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(vencimientocurso,'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(vencimientonac,'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO licencia (id, licenciacarga, tipolicencia_id, vencimiento, vencimientocurso, vencimientonac, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idLicencias as CHAR(4)), ", '", if(licenciacarga='SI','1','0'), "', ", idTipoLicencias, ", '", CAST(ifnull(vencimiento,'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(vencimientocurso,'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(vencimientonac,'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM licencias
 
 
 
-select CONCAT("INSERT INTO documento (id, descripcion, nombreArchivo, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idDocumento as CHAR(4)), ", '", descripcion, "', '", nombre , "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO documento (id, descripcion, nombreArchivo, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idDocumento as CHAR(4)), ", '", descripcion, "', '", nombre , "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM documento
 
 
@@ -94,27 +90,28 @@ FROM xdtedocumento
 
 
 
-select CONCAT("INSERT INTO facturacostovehiculo (id, movil_id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(codigocostovehiculo.idCodigoCostoVehiculo as CHAR(4)), ", ", costovehiculo.idMovil, ", '", CAST(ifnull(if(codigocostovehiculo.fecha='0000-00-00 00:00:00',null,codigocostovehiculo.fecha),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(codigocostovehiculo.fechaAlta='0000-00-00 00:00:00',null,codigocostovehiculo.fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(codigocostovehiculo.idEstado=2,codigocostovehiculo.fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(codigocostovehiculo.fechaModificacion='0000-00-00 00:00:00',null,codigocostovehiculo.fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO facturacostovehiculo (id, movil_id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(codigocostovehiculo.idCodigoCostoVehiculo as CHAR(4)), ", ", costovehiculo.idMovil, ", '", CAST(ifnull(if(codigocostovehiculo.fecha='0000-00-00 00:00:00',null,codigocostovehiculo.fecha),'01-01-2008') as CHAR(19)), "', '", CAST(ifnull(if(codigocostovehiculo.fechaAlta='0000-00-00 00:00:00',null,codigocostovehiculo.fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(codigocostovehiculo.idEstado=2,CONCAT("'",codigocostovehiculo.fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(codigocostovehiculo.fechaModificacion='0000-00-00 00:00:00',null,codigocostovehiculo.fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM codigocostovehiculo
 INNER JOIN costovehiculo on codigocostovehiculo.idCodigoCostoVehiculo=costovehiculo.idCodigoCostoVehiculo
 GROUP BY codigocostovehiculo.idCodigoCostoVehiculo
 
 
 
-select CONCAT("INSERT INTO insumocostovehiculo (id, cantidad, precio, facturaCostoVehiculo_id, insumo_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idCostoVehiculo as CHAR(4)), ", ", cantidad, ", ", precio , ", ", idCodigoCostoVehiculo, ", ", idInsumo, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO insumocostovehiculo (id, cantidad, precio, facturaCostoVehiculo_id, insumo_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idCostoVehiculo as CHAR(4)), ", ", cantidad, ", ", precio , ", ", idCodigoCostoVehiculo, ", ", idInsumo, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM costovehiculo
 
 
 
-select CONCAT("INSERT INTO impuestocostovehiculo (id, saldo, impuesto_id, insumocostovehiculo_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idCostoVehiculoDet as CHAR(4)), ", ", saldo, ", ", idImpuesto , ", ", idCostoVehiculo, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', '", CAST(if(idEstado=2,fechaBaja,'null') as CHAR(19)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO impuestocostovehiculo (id, saldo, impuesto_id, insumocostovehiculo_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idCostoVehiculoDet as CHAR(4)), ", ", saldo, ", ", idImpuesto , ", ", idCostoVehiculo, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'01-01-2008') as CHAR(19)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(19)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'01-01-2008') as CHAR(19)), "', 'Algo', 'Algo', 1);")
 FROM costovehiculodet
 
 
-select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idProvincia+35000),"), 'UNKNOW', 'UNKNOW', 'PROVINCIA', '", descripcion,"', ", idProvincia,", 9, 1);")
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idProvincia+9000),"), 'UNKNOW', 'UNKNOW', 'PROVINCIA', '", descripcion,"', ", idProvincia,", 9, 1);")
 FROM provincias
 
 
-select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((", (idLocalidad+10000),"), 'UNKNOW', 'UNKNOW', 'LOCALIDAD', '", nombre,"', ", idLocalidad,", 10, ", idProvincia,", false,  1);")
+CREATE SEQUENCE idloc START 1;
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorstr, version) SELECT ", (idLocalidad+10000),", 'UNKNOW', 'UNKNOW', 'LOCALIDAD', '", nombre,"', nextval('idloc'), 10, id, ", idLocalidad,", 1 FROM parametro WHERE clase='PROVINCIA' and orden=", idProvincia,";")
 FROM localidad
 INNER JOIN dte ON localidad.idLocalidad=dte.idOrigen or localidad.idLocalidad=dte.idDestino
 GROUP BY idLocalidad
