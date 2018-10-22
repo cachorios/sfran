@@ -30,5 +30,6 @@ public enum ETipoParametro {
     TIPO_INSUMO,        //18
     TIPO_VEHICULO,      //19
     IMPUESTO,           //20
-    ESPECIE,            //21
+    ESPECIES,           //21
+    TIPO_LICENCIA,      //22
 }
