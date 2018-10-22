@@ -8,13 +8,13 @@ import org.apache.deltaspike.data.api.*;
 @Repository
 public interface ConductorRepositorio extends EntityRepository<Conductor, Long>, EntityManagerDelegate<Conductor> {
 
-    @Query("SELECT u FROM Conductor u WHERE u.nombre like :filter")
+    @Query("SELECT e FROM Conductor e WHERE e.nombre like :filter")
     QueryResult<Conductor> findFiltered(
             @FirstResult int offset,
             @MaxResults int limit,
             @QueryParam("filter") String filter);
 
-    @Query("SELECT COUNT(u) FROM Conductor u WHERE u.nombre like :filter")
+    @Query("SELECT COUNT(e) FROM Conductor e WHERE e.nombre like :filter")
     Long countFiltered(
            @QueryParam("filter") String filter);
 }

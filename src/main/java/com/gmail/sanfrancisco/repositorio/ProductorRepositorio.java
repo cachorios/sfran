@@ -7,13 +7,13 @@ import org.apache.deltaspike.data.api.*;
 @Repository
 public interface ProductorRepositorio extends EntityRepository<Productor, Long>, EntityManagerDelegate<Productor> {
 
-    @Query("SELECT u FROM Productor u WHERE u.nombre like :filter")
+    @Query("SELECT e FROM Productor e WHERE e.nombre like :filter")
     QueryResult<Productor> findFiltered(
             @FirstResult int offset,
             @MaxResults int limit,
             @QueryParam("filter") String filter);
 
-    @Query("SELECT COUNT(u) FROM Productor u WHERE u.nombre like :filter")
+    @Query("SELECT COUNT(e) FROM Productor e WHERE e.nombre like :filter")
     Long countFiltered(
             @QueryParam("filter") String filter);
 }

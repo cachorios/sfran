@@ -7,13 +7,13 @@ import org.apache.deltaspike.data.api.*;
 @Repository
 public interface NumeroDteRepositorio extends EntityRepository<NumeroDte, Long>, EntityManagerDelegate<NumeroDte> {
 
-    @Query("SELECT u FROM NumeroDte")
+    @Query("SELECT e FROM NumeroDte")
     QueryResult<NumeroDte> findFiltered(
             @FirstResult int offset,
             @MaxResults int limit,
             @QueryParam("filter") String filter);
 
-    @Query("SELECT COUNT(u) FROM NumeroDte")
+    @Query("SELECT COUNT(e) FROM NumeroDte")
     Long countFiltered(
             @QueryParam("filter") String filter);
 }

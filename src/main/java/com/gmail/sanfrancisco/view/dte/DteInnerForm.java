@@ -100,9 +100,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 
 
-
-
-
      /*   entrega = textField("Entrega en efectivo");
         total = textField("Total de factura");
         ajustes = textField("Ajustes");
@@ -194,9 +191,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         binder.bind(localidadDestino, Dte::getLocalidadDestino, Dte::setLocalidadDestino);
 
         binder.bind(vehiculoComboBox, Dte::getVehiculo, Dte::setVehiculo);
-
-
-
 
 
 //        binder.forField(fechaCarga)

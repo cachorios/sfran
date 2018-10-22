@@ -7,14 +7,14 @@ import org.apache.deltaspike.data.api.*;
 @Repository
 public interface FacturaCostoVehiculoRepositorio extends EntityRepository<FacturaCostoVehiculo, Long>, EntityManagerDelegate<FacturaCostoVehiculo> {
 
-    @Query("SELECT u FROM FacturaCostoVehiculo u")
+    @Query("SELECT e FROM FacturaCostoVehiculo e")
     QueryResult<FacturaCostoVehiculo> findFiltered(
             @FirstResult int offset,
             @MaxResults int limit,
             @QueryParam("filter") String filter);
 
 
-    @Query("SELECT COUNT(u) FROM FacturaCostoVehiculo u")
+    @Query("SELECT COUNT(e) FROM FacturaCostoVehiculo e")
     Long countFiltered(
             @QueryParam("filter") String filter);
 }

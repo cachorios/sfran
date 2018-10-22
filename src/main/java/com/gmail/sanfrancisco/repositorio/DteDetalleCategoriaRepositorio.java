@@ -8,13 +8,13 @@ import org.apache.deltaspike.data.api.*;
 @Repository
 public interface DteDetalleCategoriaRepositorio extends EntityRepository<DteDetalleCategoria, Long>, EntityManagerDelegate<DteDetalleCategoria> {
 
-    @Query("SELECT u FROM DteDetalleCategoria u")
+    @Query("SELECT e FROM DteDetalleCategoria e")
     QueryResult<DteDetalleCategoria> findFiltered(
             @FirstResult int offset,
             @MaxResults int limit,
             @QueryParam("filter") String filter);
 
-    @Query("SELECT COUNT(u) FROM DteDetalleCategoria u")
+    @Query("SELECT COUNT(e) FROM DteDetalleCategoria e")
     Long countFiltered(
             @QueryParam("filter") String filter);
 }

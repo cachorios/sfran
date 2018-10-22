@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.serviciosModelo;
 
 import com.gmail.cacho.backend.jpa.ServicioModelo;
+import com.gmail.cacho.slapi.comunes.QueryHelper;
 import com.gmail.sanfrancisco.entidad.Vehiculo;
 import com.gmail.sanfrancisco.repositorio.VehiculoRepositorio;
 import com.vaadin.flow.data.provider.QuerySortOrder;
@@ -18,8 +19,7 @@ public class VehiculoService extends ServicioModelo<Vehiculo> {
     public Stream<Vehiculo> findAnyMatching(Object padre, String filtro, int offset, int limit, List<QuerySortOrder> sortOrders) {
         QueryResult<Vehiculo> result = ((VehiculoRepositorio)repo).findFiltered(offset, limit, likePattern(filtro));
 
-        return result.getResultList().stream();
-                //QueryHelper.applyLimitsAndSortOrder(result, offset, limit, sortOrders).getResultList().stream();
+        return QueryHelper.applyLimitsAndSortOrder(result, offset, limit, sortOrders).getResultList().stream();
     }
 
     @Override
