@@ -38,7 +38,7 @@ public class ConsignatarioCS extends AbstractCustomSelect {
 
     @Override
     protected String getListTitulo() {
-        return "Lista de Consignatarioes";
+        return "Lista de Consignatarios";
     }
 
     @Override

@@ -33,7 +33,6 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
     private TextField alto;
     private TextField largo;
     private TextField ancho;
-    private TextField volumen;
     private TextField numeroMotor;
     private TextField numeroChasis;
     private ComboBox marca;

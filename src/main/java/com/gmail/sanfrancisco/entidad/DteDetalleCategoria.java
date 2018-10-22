@@ -12,6 +12,12 @@ public class DteDetalleCategoria extends AbstractEntidad {
     @ManyToOne
     private Dte dte;
 
+    @ManyToOne
+    private Productor productor;
+
+    @ManyToOne
+    private Renspa renspa;
+
     @NotNull
     @ManyToOne
     private Parametro categoria;
@@ -37,6 +43,22 @@ public class DteDetalleCategoria extends AbstractEntidad {
 
     public void setDte(Dte dte) {
         this.dte = dte;
+    }
+
+    public Productor getProductor() {
+        return productor;
+    }
+
+    public void setProductor(Productor productor) {
+        this.productor = productor;
+    }
+
+    public Renspa getRenspa() {
+        return renspa;
+    }
+
+    public void setRenspa(Renspa renspa) {
+        this.renspa = renspa;
     }
 
     public Parametro getCategoria() {
