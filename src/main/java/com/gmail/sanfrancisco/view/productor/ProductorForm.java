@@ -3,6 +3,7 @@ package com.gmail.sanfrancisco.view.productor;
 import com.gmail.cacho.slapi.view.AbstractForm;
 import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerForm;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterForm;
+import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
 import com.gmail.sanfrancisco.entidad.Productor;
 import com.vaadin.flow.component.Focusable;
 
@@ -12,6 +13,11 @@ public class ProductorForm extends AbstractForm<Productor> {
 
     @Inject
     public ProductorForm(IPresenterForm<Productor> presenter) { super(presenter); }
+
+    public ProductorForm(IPresenterForm<Productor> presenter, IVisualizable padre) {
+        super(presenter);
+        setPadre(padre);
+    }
 
     @Override
     protected ILayoutInnerForm<Productor> generarLayout(AbstractForm<Productor> padre, String titulo){

@@ -1,11 +1,14 @@
 package com.gmail.sanfrancisco.view.productor;
 
+import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.entidad.Comisionista;
 import com.gmail.sanfrancisco.entidad.Productor;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
@@ -24,6 +27,7 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
     private TextField telefono;
     private TextField domicilio;
     private TextField email;
+    private ComboBox condicion;
 
     public ProductorInnerForm(IPresentableForm<Productor> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -32,10 +36,10 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("504px");
+//        setHeight("504px");
         setWidth("700px");
 
-        id = textField("ID");
+        id = textField("ID","20em");
         id.setPreventInvalidInput(true);
         nombre = textField("Nombre");
         apellido = textField("Apellido");
@@ -45,14 +49,21 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
         domicilio = textField("Domicilio");
         email = textField("Correo electronico");
 
+        condicion = new ComboBox("Condicion frente al iva");
+        condicion.setWidth("100%");
+        ParametroVarioDataProvider dpCondicion = getObject(ParametroVarioDataProvider.class);
+        dpCondicion.setTipo(ETipoParametro.CONDICION_IVA);
+        condicion.setDataProvider(dpCondicion);
+
 
         form.add(
-                envolver(id, "30%"),
+                envolver(id),
 
                 envolver(nombre,"48%"),
                 envolver(apellido,"48%"),
 
-                envolver(cuil,"50%"),
+                envolver(cuil,"48%"),
+                envolver(condicion,"48%"),
 
                 envolver(celular,"48%"),
                 envolver(telefono,"48%"),
@@ -74,6 +85,8 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
                 .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
                 .withNullRepresentation(0l)
                 .bind(Productor::getId, null);
+
+        binder.bind(condicion, Productor::getCondicion, Productor::setCondicion);
 
         binder.bindInstanceFields( this);
     }

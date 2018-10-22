@@ -34,10 +34,10 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("588px");
+//        setHeight("588px");
         setWidth("700px");
 
-        id = textField("ID");
+        id = textField("ID","20em");
         id.setPreventInvalidInput(true);
         nombre = textField("Nombre");
         apellido = textField("Apellido");
@@ -49,7 +49,7 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
         saldoInicial = textField("Saldo inicial");
 
         form.add(
-                envolver(id, "30%"),
+                envolver(id),
 
                 envolver(nombre,"48%"),
                 envolver(apellido,"48%"),
