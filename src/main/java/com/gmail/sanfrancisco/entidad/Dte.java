@@ -35,9 +35,6 @@ public class Dte extends AbstractEntidad {
     private Parametro localidadDestino;
 
     @ManyToOne
-    private Renspa renspa;
-
-    @ManyToOne
     private Conductor conductor;
 
     @ManyToOne
@@ -78,10 +75,6 @@ public class Dte extends AbstractEntidad {
     @ManyToOne
     private Comisionista comisionista;
 
-
-    @ManyToOne
-    private Productor productor;
-
     @NotNull
     private Double kmSalida;
 
@@ -91,15 +84,6 @@ public class Dte extends AbstractEntidad {
     private String patenteJaula;
 
     private String titular;
-
-
-    public Renspa getRenspa() {
-        return renspa;
-    }
-
-    public void setRenspa(Renspa renspa) {
-        this.renspa = renspa;
-    }
 
     public Conductor getConductor() {
         return conductor;
@@ -139,14 +123,6 @@ public class Dte extends AbstractEntidad {
 
     public void setComisionista(Comisionista comisionista) {
         this.comisionista = comisionista;
-    }
-
-    public Productor getProductor() {
-        return productor;
-    }
-
-    public void setProductor(Productor productor) {
-        this.productor = productor;
     }
 
     public String getPatenteJaula() {

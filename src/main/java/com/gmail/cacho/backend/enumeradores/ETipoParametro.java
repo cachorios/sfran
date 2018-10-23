@@ -24,7 +24,7 @@ public enum ETipoParametro {
     COLOR,              //12
     CONDICION_IVA,      //13
     ESTADO_VEHICULO,    //14
-    MARCA_VEHICUO,      //15
+    MARCA_VEHICULO,     //15
     OPERADORA_TEL,      //16
     TIPO_COMBUSTIBLE,   //17
     TIPO_INSUMO,        //18

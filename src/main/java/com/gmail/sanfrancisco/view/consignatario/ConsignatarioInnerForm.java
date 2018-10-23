@@ -32,10 +32,10 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("504px");
+//        setHeight("504px");
         setWidth("700px");
 
-        id = textField("ID");
+        id = textField("ID","20em");
         id.setPreventInvalidInput(true);
         nombre = textField("Nombre");
         apellido = textField("Apellido");
@@ -46,7 +46,7 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
         email = textField("Correo electronico");
 
         form.add(
-                envolver(id, "20%"),
+                envolver(id),
                 envolver(nombre,"48%"),
                 envolver(apellido, "48%"),
 

@@ -1,10 +1,13 @@
 package com.gmail.sanfrancisco.view.vehiculo;
 
+import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.entidad.Vehiculo;
 import com.vaadin.flow.component.Focusable;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
@@ -18,11 +21,11 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
     private TextField id;
-    private TextField tipoVehiculo;
+    private ComboBox tipoVehiculo;
     private TextField modelo;
     private TextField dominio;
-    private TextField tipoCombustible;
-    private TextField color;
+    private ComboBox tipoCombustible;
+    private ComboBox color;
     private TextField maxCabezas;
     private TextField tara;
     private TextField cargaMax;
@@ -30,12 +33,11 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
     private TextField alto;
     private TextField largo;
     private TextField ancho;
-    private TextField volumen;
     private TextField numeroMotor;
     private TextField numeroChasis;
-    private TextField marca;
+    private ComboBox marca;
     private DatePicker anno;
-    private TextField estadoVehiculo;
+    private ComboBox estadoVehiculo;
     private DatePicker fecha;
 
 
@@ -46,16 +48,34 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("672px");
-//        setWidth("700px");
+//        setHeight("672px");
+        setWidth("700px");
 
-        id = textField("ID");
+        id = textField("ID","20em");
         id.setPreventInvalidInput(true);
-        tipoVehiculo = textField("Tipo de vehiculo");
+
+        tipoVehiculo = new ComboBox("Tipo vehiculo");
+        tipoVehiculo.setWidth("100%");
+        ParametroVarioDataProvider dpTipoVehiculo = getObject(ParametroVarioDataProvider.class);
+        dpTipoVehiculo.setTipo(ETipoParametro.TIPO_VEHICULO);
+        tipoVehiculo.setDataProvider(dpTipoVehiculo);
+
         modelo = textField("Modelo");
         dominio = textField("Dominio");
-        tipoCombustible = textField("Tipo de combustible");
-        color = textField("Color");
+
+        tipoCombustible = new ComboBox("Tipo combustible");
+        tipoCombustible.setWidth("100%");
+        ParametroVarioDataProvider dpTipoCombustible = getObject(ParametroVarioDataProvider.class);
+        dpTipoCombustible.setTipo(ETipoParametro.TIPO_COMBUSTIBLE);
+        tipoCombustible.setDataProvider(dpTipoCombustible);
+
+        color = new ComboBox("Color");
+        color.setWidth("100%");
+        ParametroVarioDataProvider dpColor = getObject(ParametroVarioDataProvider.class);
+        dpColor.setTipo(ETipoParametro.COLOR);
+        color.setDataProvider(dpColor);
+
+
         maxCabezas = textField("Maximo de cabezas");
         tara = textField("Tara");
         cargaMax = textField("Carga maxima");
@@ -65,20 +85,29 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
         ancho = textField("Ancho");
         numeroMotor = textField("Numero de motor");
         numeroChasis = textField("Numero de chasis");
-        marca = textField("Marca");
+
+        marca = new ComboBox("Marca");
+        marca.setWidth("100%");
+        ParametroVarioDataProvider dpMarca = getObject(ParametroVarioDataProvider.class);
+        dpMarca.setTipo(ETipoParametro.MARCA_VEHICULO);
+        marca.setDataProvider(dpMarca);
 
         anno = dateField("Año");
         anno.setWidth("100%");
         anno.setRequired(true);
 
-        estadoVehiculo = textField("Estado del vehiculo");
+        estadoVehiculo = new ComboBox("Estado de vehiculo");
+        estadoVehiculo.setWidth("100%");
+        ParametroVarioDataProvider dpEstadoVehiculo = getObject(ParametroVarioDataProvider.class);
+        dpEstadoVehiculo.setTipo(ETipoParametro.ESTADO_VEHICULO);
+        estadoVehiculo.setDataProvider(dpEstadoVehiculo);
 
         fecha = dateField("Fecha de cambio de estado");
         fecha.setWidth("100%");
         fecha.setRequired(true);
 
         form.add(
-                envolver(id,            "30%"),
+                envolver(id),
 
                 envolver(tipoVehiculo,     "32%"),
                 envolver(modelo,        "32%"),
@@ -118,9 +147,19 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
                 .withNullRepresentation(0l)
                 .bind(Vehiculo::getId, null);
 
+        binder.bind(tipoVehiculo, Vehiculo::getTipoVehiculo, Vehiculo::setTipoVehiculo);
+
+        binder.bind(tipoCombustible, Vehiculo::getTipoCombustible, Vehiculo::setTipoCombustible);
+
+        binder.bind(color, Vehiculo::getColor, Vehiculo::setColor);
+
+        binder.bind(marca, Vehiculo::getMarca, Vehiculo::setMarca);
+
         binder.forField(anno)
                 .withConverter(new LocalDateADateConverter())
                 .bind(Vehiculo::getAnno, Vehiculo::setAnno);
+
+        binder.bind(estadoVehiculo, Vehiculo::getEstadoVehiculo, Vehiculo::setEstadoVehiculo);
 
         binder.forField(fecha)
                 .withConverter(new LocalDateADateConverter())

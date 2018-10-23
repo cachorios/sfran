@@ -1,13 +1,16 @@
 package com.gmail.sanfrancisco.view.licencia;
 
+import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.entidad.Conductor;
 import com.gmail.sanfrancisco.entidad.Licencia;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
@@ -21,7 +24,7 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
 
     private TextField id;
-    private TextField tipoLicencia;
+    private ComboBox tipoLicencia;
     private DatePicker vencimiento;
     private DatePicker vencimientoNac;
     private DatePicker vencimientoCurso;
@@ -36,7 +39,12 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
 
         id = textField("ID","20em");
         id.setPreventInvalidInput(true);
-        tipoLicencia = textField("Tipo licencia");
+
+        tipoLicencia = new ComboBox("Tipo licencia");
+        tipoLicencia.setWidth("100%");
+        ParametroVarioDataProvider dpTipoLicencia = getObject(ParametroVarioDataProvider.class);
+        dpTipoLicencia.setTipo(ETipoParametro.TIPO_LICENCIA);
+        tipoLicencia.setDataProvider(dpTipoLicencia);
 
         vencimiento = dateField("Vencimiento");
         vencimiento.setWidth("100%");
@@ -75,6 +83,8 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
                 .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
                 .withNullRepresentation(0l)
                 .bind(Licencia::getId, null);
+
+        binder.bind(tipoLicencia, Licencia::getTipoLicencia, Licencia::setTipoLicencia);
 
         binder.forField(vencimiento)
                 .withConverter(new LocalDateADateConverter())

@@ -11,6 +11,7 @@ import com.gmail.sanfrancisco.dataProvider.VehiculolDataProvider;
 import com.gmail.sanfrancisco.entidad.Dte;
 import com.gmail.sanfrancisco.entidad.Vehiculo;
 import com.gmail.sanfrancisco.view.comisionista.ComisionistaCS;
+import com.gmail.sanfrancisco.view.consignatario.ConsignatarioCS;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -38,6 +39,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private TextField titular;
 
     private ComisionistaCS comisionistaCS;
+
+    private ConsignatarioCS consignatarioCS;
 
     private TextField cantidad;
     private ComboBox especie;
@@ -89,6 +92,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         comisionistaCS = new ComisionistaCS("Comisionista", getPresentable(),true,true, true);
 
+        consignatarioCS = new ConsignatarioCS("Consignatario", getPresentable(),true,true, true);
+
         especie = new ComboBox("Especie");
         especie.setWidth("100%");
         ParametroVarioDataProvider dpEspecie = getObject(ParametroVarioDataProvider.class);
@@ -134,6 +139,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 envolver(titular, "49%"),
 
                 envolver(comisionistaCS),
+
+                envolver(consignatarioCS),
 
                 envolver(cantidad, "32%"),
                 envolver(especie, "32%"),

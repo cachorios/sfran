@@ -16,7 +16,7 @@ public class Vehiculo extends AbstractEntidad {
     private Parametro tipoVehiculo;
 
     @NotNull
-    @Size(min=3, max=100, message="El serviciosModelo debe contener entre 3 y 100 caracteres.")
+    @Size(min=3, max=100, message="El modelo debe contener entre 3 y 100 caracteres.")
     private String modelo;
 
     @NotNull
@@ -44,8 +44,6 @@ public class Vehiculo extends AbstractEntidad {
     private Double largo;
 
     private Double ancho;
-
-    private Double volumen;
 
     @NotNull
     @Size(min=5, max=60, message="El numero de motor debe contener entre 5 y 60 caracteres.")
@@ -139,14 +137,6 @@ public class Vehiculo extends AbstractEntidad {
 
     public void setAncho(Double ancho) {
         this.ancho = ancho;
-    }
-
-    public Double getVolumen() {
-        return volumen;
-    }
-
-    public void setVolumen(Double volumen) {
-        this.volumen = volumen;
     }
 
     public String getNumeroMotor() {

@@ -43,7 +43,7 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("420px");
+//        setHeight("420px");
         setWidth("700px");
 
         id = textField("ID","20em");
