@@ -95,6 +95,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         dpEspecie.setTipo(ETipoParametro.ESPECIES);
         especie.setDataProvider(dpEspecie);
 
+
+        
         cantidad = textField("Cantidad");
         peso = textField("Peso");
 
