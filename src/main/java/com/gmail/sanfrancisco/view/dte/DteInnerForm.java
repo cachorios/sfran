@@ -49,7 +49,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 //    private TextField entrega;
 
-    /*private TextField total;
+    /*private TextField totalComisionista;
     private TextField ajustes;
 
     private DatePicker fechaCarga;
@@ -106,7 +106,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 
      /*   entrega = textField("Entrega en efectivo");
-        total = textField("Total de factura");
+        totalComisionista = textField("Total a comisionista");
         ajustes = textField("Ajustes");
 
         fechaCarga = new DatePicker("Fecha de carga");
@@ -147,7 +147,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 
            /*     envolver(entrega,"32%"),
-                envolver(total,"32%"),
+                envolver(totalComisionista,"32%"),
                 envolver(ajustes,"32%"),
 
 

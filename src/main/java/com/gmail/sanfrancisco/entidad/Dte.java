@@ -54,7 +54,7 @@ public class Dte extends AbstractEntidad {
     private Double importeEntrega;
 
     @NotNull
-    private Double total;
+    private Double totalComisionista;
 
     @NotNull
     private Double ajustes;
@@ -159,11 +159,11 @@ public class Dte extends AbstractEntidad {
     }
 
     public Double getTotal() {
-        return total;
+        return totalComisionista;
     }
 
     public void setTotal(Double total) {
-        this.total = total;
+        this.totalComisionista = totalComisionista;
     }
 
     public Double getAjustes() {
