@@ -14,8 +14,11 @@ import com.gmail.sanfrancisco.view.comisionista.ComisionistaCS;
 import com.gmail.sanfrancisco.view.consignatario.ConsignatarioCS;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
@@ -45,6 +48,9 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private TextField cantidad;
     private ComboBox especie;
     private TextField peso;
+
+    private VerticalLayout detalle =  new VerticalLayout();
+    private Button btnAdd;
 
 
 //    private TextField entrega;
@@ -103,7 +109,12 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         cantidad = textField("Cantidad");
         peso = textField("Peso");
 
+        btnAdd = new Button(VaadinIcon.PLUS.create());
+        btnAdd.addClickListener(e->{
+            detalle.add(new DteDetalle());
+        });
 
+        detalle.add(new DteDetalle());
 
      /*   entrega = textField("Entrega en efectivo");
         totalComisionista = textField("Total a comisionista");
