@@ -9,12 +9,16 @@ import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.dataProvider.ConsignatarioDataProvider;
 import com.gmail.sanfrancisco.entidad.Consignatario;
 import com.gmail.sanfrancisco.serviciosModelo.ConsignatarioService;
+import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.textfield.TextField;
 
 import javax.enterprise.inject.spi.CDI;
 import java.util.Arrays;
 import java.util.List;
 
 public class ConsignatarioCS extends AbstractCustomSelect {
+    ComboBox comboBox = new ComboBox();
+    TextField tf;
     public ConsignatarioCS(String caption, IVisualizable padre, boolean conBuscar, boolean conVer, boolean conAdd) {
         super(caption, conBuscar, conVer, conAdd, padre);
     }

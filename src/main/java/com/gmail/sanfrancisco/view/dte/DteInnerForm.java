@@ -2,6 +2,7 @@ package com.gmail.sanfrancisco.view.dte;
 
 import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.backend.enumeradores.ETipoParametro;
+import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.backend.views.csselect.LocalidadCS;
 import com.gmail.cacho.slapi.view.customs.params.ParamCSDataProvider;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
@@ -15,9 +16,11 @@ import com.gmail.sanfrancisco.view.consignatario.ConsignatarioCS;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.converter.StringToDoubleConverter;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 
 import javax.enterprise.inject.spi.CDI;
@@ -46,16 +49,19 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private ComboBox especie;
     private TextField peso;
 
+    private TextField kmSalida;
+    private TextField kmLlegada;
+
+    private DatePicker fechaCarga;
+    private DatePicker fechaVencimiento;
 
 //    private TextField entrega;
 
     /*private TextField total;
     private TextField ajustes;
 
-    private DatePicker fechaCarga;
-    private DatePicker fechaVencimiento;
-    private TextField kmSalida;
-    private TextField kmLlegada;
+
+
     private TextField patenteJaula; */
 
 
@@ -63,13 +69,9 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         super(presentable, elTitulo);
     }
 
-
-
     @Override
     protected void generarForm(Div form) {
-
-//        setHeight("672px");
-        setWidth("800px");
+        setWidth("700px");
 
         numeroTropa = textField("Numero de tropa","30%");
 
@@ -92,7 +94,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         comisionistaCS = new ComisionistaCS("Comisionista", getPresentable(),true,true, true);
 
-        consignatarioCS = new ConsignatarioCS("Consignatario", getPresentable(),true,true, true);
 
         especie = new ComboBox("Especie");
         especie.setWidth("100%");
@@ -100,16 +101,11 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         dpEspecie.setTipo(ETipoParametro.ESPECIES);
         especie.setDataProvider(dpEspecie);
 
-
-        
         cantidad = textField("Cantidad");
         peso = textField("Peso");
 
-
-
-     /*   entrega = textField("Entrega en efectivo");
-        total = textField("Total de factura");
-        ajustes = textField("Ajustes");
+        kmSalida = textField("Kilometros salida");
+        kmLlegada = textField("Kilometros llegada");
 
         fechaCarga = new DatePicker("Fecha de carga");
         fechaCarga.setWidth("100%");
@@ -119,11 +115,24 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         fechaVencimiento.setWidth("100%");
         fechaVencimiento.setRequired(true);
 
-        kmSalida = textField("Kilometros de salida");
-        kmLlegada = textField("Kilometros de llegada");
-        patenteJaula = textField("Patente de jaula");
-        titular = textField("Titular");*/
+        consignatarioCS = new ConsignatarioCS("Consignatario", getPresentable(),true,true, true);
 
+     /*   entrega = textField("Entrega en efectivo");
+        total = textField("Total de factura");
+        ajustes = textField("Ajustes");
+
+
+        ;
+
+
+
+
+
+        patenteJaula = textField("Patente de jaula");
+
+        */
+
+        consignatarioCS = new ConsignatarioCS("Consignatario", getPresentable(),true,true, true);
         form.add(
                 envolver(numeroTropa, "100%"),
 
@@ -146,23 +155,20 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 envolver(especie, "32%"),
                 envolver(peso, "32%")
 
-
+//                envolver(kmSalida,"48%"),
+//                envolver(kmLlegada,"48%")
+//
+//                envolver(fechaCarga,"48%"),
+//                envolver(fechaVencimiento,"48%"),
 
            /*     envolver(entrega,"32%"),
                 envolver(total,"32%"),
                 envolver(ajustes,"32%"),
 
 
-                envolver(fechaCarga,"48%"),
-                envolver(fechaVencimiento,"48%"),
-
-                envolver(kmSalida,"48"),
-                envolver(kmLlegada,"48%"),
-
                 envolver(patenteJaula,"48%"),
                 envolver(titular,"48%")*/
         );
-
     }
 
     private void pciaChanged(HasValue.ValueChangeEvent<?> e, LocalidadCS localidadCS) {
@@ -179,6 +185,11 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     @Override
     public void bindFormFields(BeanValidationBinder<Dte> binder) {
+        binder.bind(pciaOrigen, Dte::getProvinciaOrigen, Dte::setProvinciaOrigen);
+        binder.bind(localidadOrigen, Dte::getLocalidadOrigen, Dte::setLocalidadOrigen);
+
+        binder.bind(pciaDestino, Dte::getProvinciaDestino, Dte::setProvinciaDestino);
+        binder.bind(localidadDestino, Dte::getLocalidadDestino, Dte::setLocalidadDestino);
 
         binder.forField(cantidad)
                 .withConverter(new StringToIntegerConverter("No es un nro válido."))
@@ -193,13 +204,17 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         binder.bind(especie, Dte::getEspecie, Dte::setEspecie);
 
-        binder.bind(pciaOrigen, Dte::getProvinciaOrigen, Dte::setProvinciaOrigen);
-        binder.bind(localidadOrigen, Dte::getLocalidadOrigen, Dte::setLocalidadOrigen);
-
-        binder.bind(pciaDestino, Dte::getProvinciaDestino, Dte::setProvinciaDestino);
-        binder.bind(localidadDestino, Dte::getLocalidadDestino, Dte::setLocalidadDestino);
-
         binder.bind(vehiculoComboBox, Dte::getVehiculo, Dte::setVehiculo);
+
+        binder.forField(kmSalida)
+                .withConverter(new StringToDoubleConverter("No es un nro. válido" ))
+                .withNullRepresentation(0.0)
+                .bind( Dte::getKmSalida, Dte::setKmSalida);
+
+        binder.forField(kmLlegada)
+                .withConverter(new StringToDoubleConverter("No es un nro. válido" ))
+                .withNullRepresentation(0.0)
+                .bind( Dte::getKmSalida, Dte::setKmSalida);
 
 
 //        binder.forField(fechaCarga)
