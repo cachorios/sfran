@@ -1,0 +1,70 @@
+<!--<link rel="import" href="../../../bower_components/polymer/polymer-element.html">-->
+
+<link rel="import" href="/frontend/styles/shared-styles.html">
+<link rel="import" href="/frontend/src/components/crud/tool-bar.html">
+<link rel="import" href="/frontend/src/components/crud/list-preview.html">
+
+<dom-module id="grid-view">
+    <template>
+        <style include="shared-styles">
+            :host {
+                --lumo-font-size-m: 10px;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .header{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            #titulo {
+                font-size: calc(var(--lumo-font-size-m) * 1.5);
+            }
+
+
+            .list-container {
+                display: inline-flex;
+                /*flex-flow: row wrap;*/
+
+                /*height: 250px;*/
+            /*calc(100vh - 150px);*/
+
+            }
+
+
+        </style>
+
+        <div class="header">
+            <h2 id="titulo" class="row"></h2>
+            <tool-bar id="toolbar"></tool-bar>
+        </div>
+
+        <!--<vaadin-horizontal-layout id="toolbar"></vaadin-horizontal-layout>-->
+        <!--list-container row-->
+        <vaadin-grid class="" id="grid" theme="crud" ></vaadin-grid>
+    </template>
+</dom-module>
+
+<script>
+    class ViewGrid extends Polymer.Element {
+        static get is() { return 'grid-view'; }
+    }
+
+    customElements.define(ViewGrid.is, ViewGrid);
+</script>
+
+<custom-style>
+    <style>
+        /*#titulo{*/
+        /*border: 1px red solid;*/
+        /*margin: 2em;*/
+        /*background-color: #ef6c00;*/
+        /*}*/
+        /*#grid{*/
+        /*background-color: #5c1974;*/
+        /*}*/
+    </style>
+</custom-style>

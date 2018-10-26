@@ -1,0 +1,71 @@
+<link rel="import" href="/frontend/styles/shared-styles.html">
+
+<dom-module id="select-custom">
+    <template>
+        <style include="shared-styles">
+
+        </style>
+        <div class="sciolar-select-field">
+            <label part="label"  on-click="focus">[[label]]</label>
+            <div part="input">
+                <slot name="prefix"></slot>
+                <vaadin-text-field id="field" class="field" placeholder="[[fieldPlaceholder]]" value="{{value}}"
+                            on-focus="_onFieldFocus" on-blur="_onFieldBlur" theme="white">
+                            <!--<iron-icon icon$="[[fieldIcon]]" slot="prefix"></iron-icon>-->
+                            <label part="descripcion" slot="suffix" >Descripcion</label>
+                            <!--
+                            <iron-icon slot="suffix" icon="vaadin:minus" on-click="_minus" disabled$="[[_minusDisabled(value, min, max, disabled, readOnly)]]"></iron-icon>
+                            <iron-icon slot="suffix" icon="vaadin:plus" on-click="_plus" disabled$="[[_plusDisabled(value, min, max, disabled, readOnly)]]"></iron-icon>
+                            -->
+
+                        </vaadin-text-field>
+                <slot name="suffix"></slot>
+            </div>
+        </div>
+    </template>
+    <script>
+    class SelectCustom extends Polymer.Element {
+        static get is() {
+            return 'select-custom';
+        }
+          static get properties() {
+                return {
+                  fieldPlaceholder: {
+                    type: String
+                  },
+                  value: {
+                    type: String,
+                    notify: true
+                  },
+                  fieldIcon: {
+                    type: String,
+                    value: 'vaadin:search'
+                  },
+
+                  buttonIcon: {
+                    type: String,
+                    value: 'vaadin:plus'
+                  },
+
+
+                  _isSafari: {
+                    type: Boolean,
+                    value: function() {
+                      return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+                    }
+                  }
+                };
+              }
+
+               _plus() {
+
+                      }
+
+              _minus() {
+
+              }
+      }
+       window.customElements.define(SelectCustom.is, SelectCustom);
+    </script>
+</dom-module>
+<!-- aaa -->

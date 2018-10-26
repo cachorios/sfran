@@ -1,58 +1,53 @@
-
 <link rel="import" href="/frontend/styles/shared-styles.html">
 
 <dom-module id="form-dialog">
     <template>
         <style include="shared-styles">
             :host {
-                --lumo-font-size-m: 0.8em;
+                --lumo-font-size-s: 0.8em;
                 display: flex;
                 flex-direction: column;
                 padding: 0.5em;
                 flex-wrap: nowrap;
+
             }
+
             label{
                 font-size: 0.7em;
             }
             #titulo{
                 padding: 0;
                 margin: 0;
-                font-size: calc(var(--lumo-font-size-m) * 1.5);
+                font-size: calc(var(--lumo-font-size-m) * 1.0);
             }
 
             #contenido {
                 height: 100%;
-                display: flex;
+                /*display: inline-flex;*/
                 flex-wrap: wrap;
+                display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 padding-bottom: var(--lumo-space-s);
-
+                align-items: flex-end;
             }
             vaadin-checkbox{
                 --lumo-font-size-m: 0.7em !important;
-                width: 100%;
             }
-            vaadin-combo-box {
-                width: 100%;
-            }
-
             vaadin-text-field{
                 --lumo-disabled-text-color: #90a4cb;
             }
+
             .envolver {
-                display: flex;
-                flex-direction: row;
+                /*display: flex;*/
+                /*flex-direction: column;*/
                 /*box-sizing: border-box;*/
                 /*flex: auto;*/
-
             }
 
             #botonera{
                 /*align-items: flex-end;*/
-                /*flex-grow: 1;*/
             }
-
 
             .crud_btn{
 
@@ -63,51 +58,47 @@
                 display: flex;
                 flex: fit-content;
                 justify-content: space-between;
+                border-bottom: thin #3c3f41 solid;
             }
+
             #tabs-container{
                 display: flex;
                 flex-direction: row;
                 flex-wrap: nowrap;
             }
 
+
             .row {
                 width: 100%;
-                max-width: 1200px;
+                max-width: 1000px;
                 margin: 0 auto;
                 height: 80px;
             }
-
             .seccion{
                 font-size: var(--lumo-font-size-s);
                 border-bottom: #c4cad1 solid thin;
                 width: 100%;
-                font-weight: bold;
             }
 
             .lbl-caption{
                 --lumo-font-size-m: 0.6em !important;
-                margin-top: 0.3em;
             }
 
-            .cselect{
-                padding-top: calc(var(--lumo-space-m) - 0.7em);
-            }
+
 
         </style>
+
         <div id="header">
             <h2 id="titulo" class=""></h2>
             <div id="botonera" class=""></div>
         </div>
-
         <div id="contenido" class=""></div>
         <div id="tabs-container" class="row"></div>
-
-
     </template>
 </dom-module>
 
 <script>
-    class FormDialog extends Polymer.Element{
+    class FormDialog extends Polymer.Element {
         static get is() {
             return "form-dialog";
         }

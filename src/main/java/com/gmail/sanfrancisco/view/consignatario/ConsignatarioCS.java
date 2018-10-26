@@ -17,8 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ConsignatarioCS extends AbstractCustomSelect {
-    ComboBox comboBox = new ComboBox();
-    TextField tf;
+
     public ConsignatarioCS(String caption, IVisualizable padre, boolean conBuscar, boolean conVer, boolean conAdd) {
         super(caption, conBuscar, conVer, conAdd, padre);
     }

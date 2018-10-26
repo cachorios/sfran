@@ -8,21 +8,22 @@
     <template>
         <style include="shared-styles">
             :host {
-                --lumo-font-size-m: 10px;
+                --lumo-font-size-m: 0.7em;
                 display: flex;
                 flex-direction: column;
             }
 
-            #titulo{
+            #titulo {
                 font-size: calc(var(--lumo-font-size-m) * 1.5);
             }
 
             @media (min-width: 600px) {
                 .row {
                     width: 100%;
-                    max-width: 1200px;
+                    max-width: 1000px;
                     margin: 0 auto;
                 }
+
                 .list-container {
                     display: none;
                 }
@@ -38,14 +39,15 @@
                 height: 100%;
             }
         </style>
+        <header>
+            <h2 id="titulo" class="row"></h2>
+            <tool-bar id="toolbar"></tool-bar>
+        </header>
 
-        <h2 id="titulo" class="row"></h2>
-        <tool-bar id="toolbar"></tool-bar>
         <div class="list-container row">
             <vaadin-grid id="grid" theme="crud" style="width: 400px" ></vaadin-grid>
             <list-preview id="list-preview"></list-preview>
         </div>
-
     </template>
 </dom-module>
 
@@ -60,12 +62,12 @@
 <custom-style>
     <style>
         /*#titulo{*/
-        /*border: 1px red solid;*/
-        /*margin: 2em;*/
-        /*background-color: #ef6c00;*/
+            /*border: 1px red solid;*/
+            /*margin: 2em;*/
+            /*background-color: #ef6c00;*/
         /*}*/
         /*#grid{*/
-        /*background-color: #5c1974;*/
+            /*background-color: #5c1974;*/
         /*}*/
     </style>
 </custom-style>

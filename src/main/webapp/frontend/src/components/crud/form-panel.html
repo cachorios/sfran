@@ -1,0 +1,73 @@
+<link rel="import" href="/frontend/styles/shared-styles.html">
+
+<dom-module id="form-panel">
+    <template>
+        <style include="shared-styles">
+            :host {
+                --lumo-font-size-m: 10px;
+                display: flex;
+                flex-direction: column;
+                padding: 0.5em;
+            }
+
+            #titulo {
+                padding: 0;
+                margin: 0;
+                font-size: calc(var(--lumo-font-size-m) * 1.5);
+            }
+
+            #contenido {
+                /*height: 100%;*/
+                display: inline-flex;
+                flex-wrap: wrap;
+                /*!*display: flex;*!*/
+                /*!*flex-direction: row;*!*/
+                justify-content: space-between;
+                padding-bottom: var(--lumo-space-s);
+
+                display: inline-flex;
+                /*flex-flow: row wrap;*/
+                /*height: calc(100vh - 400px);*/
+            }
+
+            #botonera {
+                /*justify-content: flex-end;*/
+                align-items: flex-end;
+            }
+
+            @media (min-width: 600px) {
+                .row {
+                    width: 100%;
+                    max-width: 1000px;
+                    margin: 0 auto;
+                }
+
+            }
+
+            #header{
+                display: flex;
+                flex: fit-content;
+                justify-content: space-between;
+            }
+
+
+
+        </style>
+
+        <div id="header" class="row">
+            <h2 id="titulo" class=""></h2>
+            <div id="botonera" class=""></div>
+        </div>
+        <div id="contenido" class="row"></div>
+        <div id="tabs-container" class="row"></div>
+    </template>
+</dom-module>
+
+<script>
+    class FormPanel extends Polymer.Element {
+        static get is() {
+            return "form-panel";
+        }
+    }
+    customElements.define(FormPanel.is, FormPanel);
+</script>

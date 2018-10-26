@@ -1,11 +1,12 @@
 package com.gmail.cacho.backend.entidad;
 
+import com.gmail.cacho.backend.jpa.convert.LocalDateConverter;
 import com.gmail.cacho.slapi.comunes.C;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @MappedSuperclass
@@ -19,23 +20,26 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     @Version
     private int version;
 
-    @Column(name = "fechabaja")
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date fechabaja;
+    @Column
+//    @Temporal(value = TemporalType.TIMESTAMP)
+    @Convert(converter = LocalDateConverter.class)
+    private LocalDate fechabaja;
 
-    @Column(name = "usuarioalta")
+    @Column
     private String usuarioalta;
 
-    @Column(name = "fechaalta")
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date fechaalta;
+    @Column
+//    @Temporal(value = TemporalType.TIMESTAMP)
+    @Convert(converter = LocalDateConverter.class)
+    private LocalDate fechaalta;
 
-    @Column(name = "usuarioumod")
+    @Column
     private String usuarioumod;
 
-    @Column(name = "fechaumod")
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date fechaumod;
+    @Column
+//    @Temporal(value = TemporalType.TIMESTAMP)
+    @Convert(converter = LocalDateConverter.class)
+    private LocalDate fechaumod;
 
     public Long getId() {
         return id;
@@ -44,8 +48,6 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     protected void setId(Long id) {
         this.id = id;
     }
-
-
 
 
 //    @Override
@@ -82,14 +84,14 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     protected void setAltaData() {
         String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod = "TEST"; //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
-        fechaalta = fechaumod = Date.from(Instant.now());
+        fechaalta = fechaumod = LocalDate.from(Instant.now());
     }
 
     @PreUpdate
     protected void setUmodData() {
         String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod =  "TEST";  //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
-        fechaumod = Date.from(Instant.now());
+        fechaumod = LocalDate.from(Instant.now());
     }
 
     public boolean isNew() {
@@ -100,11 +102,11 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
         return (isNew() ? C.SYS_CAD_NEW : toString());
     }
 
-    public Date getFechaumod() {
+    public LocalDate getFechaumod() {
         return fechaumod;
     }
 
-    public void setFechaumod(Date fechaumod) {
+    public void setFechaumod(LocalDate fechaumod) {
         this.fechaumod = fechaumod;
     }
 }
