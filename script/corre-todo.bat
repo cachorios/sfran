@@ -46,6 +46,7 @@ psql -d sfran -U postgres -f "TIPOCOMBUSTIBLE.sql"
 psql -d sfran -U postgres -f "TIPOINSUMO.sql"
 psql -d sfran -U postgres -f "TIPOMOVIL.sql"
 psql -d sfran -U postgres -f "IMPUESTO.sql"
+psql -d sfran -U postgres -f "UNIDAD.sql"
 
 psql -d sfran -U postgres -f "COMISIONISTA.sql"
 psql -d sfran -U postgres -f "CONDUCTOR.sql"

@@ -32,4 +32,5 @@ public enum ETipoParametro {
     IMPUESTO,           //20
     ESPECIES,           //21
     TIPO_LICENCIA,      //22
+    UNIDAD              //23
 }
