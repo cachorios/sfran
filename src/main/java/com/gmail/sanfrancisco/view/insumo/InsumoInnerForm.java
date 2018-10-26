@@ -21,7 +21,7 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
     private TextField id;
     private TextField descripcion;
     private ComboBox tipoInsumo;
-    private TextField unidad;
+    private ComboBox unidad;
 
     public InsumoInnerForm(IPresentableForm<Insumo> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -43,7 +43,11 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
         dpTipoInsumo.setTipo(ETipoParametro.TIPO_INSUMO);
         tipoInsumo.setDataProvider(dpTipoInsumo);
 
-        unidad = textField("Unidad");
+        unidad = new ComboBox("Unidad");
+        unidad.setWidth("100%");
+        ParametroVarioDataProvider dpUnidad = getObject(ParametroVarioDataProvider.class);
+        dpUnidad.setTipo(ETipoParametro.UNIDAD);
+        unidad.setDataProvider(dpUnidad);
 
 
         form.add(
@@ -69,9 +73,7 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
 
         binder.bind(tipoInsumo, Insumo::getTipoInsumo, Insumo::setTipoInsumo);
 
-        binder.forField(unidad)
-                .withConverter(new StringToLongConverter("No es un nro válido."))
-                .bind(Insumo::getUnidad, Insumo::setUnidad);
+        binder.bind(unidad, Insumo::getUnidad, Insumo::setUnidad);
 
         binder.bindInstanceFields(this);
     }

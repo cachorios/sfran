@@ -19,7 +19,8 @@ public class Insumo extends AbstractEntidad {
     private Parametro tipoInsumo;
 
     @NotNull
-    private long unidad;
+    @ManyToOne
+    private Parametro unidad;
 
     public String getDescripcion() {
         return descripcion;
@@ -37,11 +38,11 @@ public class Insumo extends AbstractEntidad {
         this.tipoInsumo = tipoInsumo;
     }
 
-    public long getUnidad() {
+    public Parametro getUnidad() {
         return unidad;
     }
 
-    public void setUnidad(long unidad) {
+    public void setUnidad(Parametro unidad) {
         this.unidad = unidad;
     }
 }
