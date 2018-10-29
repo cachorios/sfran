@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="comisionistas" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vehiculos" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<queryString>
@@ -56,7 +56,7 @@ ON v.tipocombustible_id=tc.id AND tc.tipo=17]]>
 	<columnHeader>
 		<band height="25" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="230" height="20" uuid="c664df7f-2d90-4dbb-ad07-25c0e102becb">
+				<reportElement x="0" y="0" width="120" height="20" uuid="c664df7f-2d90-4dbb-ad07-25c0e102becb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -65,7 +65,7 @@ ON v.tipocombustible_id=tc.id AND tc.tipo=17]]>
 				<text><![CDATA[Dominio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="230" y="0" width="180" height="20" uuid="c4f09ba7-0a73-4b2c-a57d-93bae8e01e10">
+				<reportElement x="120" y="0" width="170" height="20" uuid="c4f09ba7-0a73-4b2c-a57d-93bae8e01e10">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -74,7 +74,7 @@ ON v.tipocombustible_id=tc.id AND tc.tipo=17]]>
 				<text><![CDATA[Tipo de vehiculo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="416" y="0" width="70" height="20" uuid="252a2682-1d59-413a-999a-b53ed100b4e3">
+				<reportElement x="290" y="0" width="150" height="20" uuid="252a2682-1d59-413a-999a-b53ed100b4e3">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9aed832b-3057-48fc-8946-6c7a2ff6b198"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -83,7 +83,7 @@ ON v.tipocombustible_id=tc.id AND tc.tipo=17]]>
 				<text><![CDATA[Modelo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="486" y="0" width="59" height="20" uuid="21452103-fc28-4d9c-81f3-9a93314e0a6a">
+				<reportElement x="440" y="0" width="105" height="20" uuid="21452103-fc28-4d9c-81f3-9a93314e0a6a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ffff912-42e3-42d8-ba55-2c36c4cf6143"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -123,7 +123,7 @@ ON v.tipocombustible_id=tc.id AND tc.tipo=17]]>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="ContainerHeight" x="0" y="0" width="230" height="15" isRemoveLineWhenBlank="true" uuid="7616b065-fddc-4a3d-8c95-7248f5ff807c">
+				<reportElement stretchType="ContainerHeight" x="0" y="0" width="120" height="15" isRemoveLineWhenBlank="true" uuid="7616b065-fddc-4a3d-8c95-7248f5ff807c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -133,7 +133,7 @@ ON v.tipocombustible_id=tc.id AND tc.tipo=17]]>
 				<textFieldExpression><![CDATA[$F{dominio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="ContainerHeight" x="230" y="0" width="177" height="15" isRemoveLineWhenBlank="true" uuid="9a770571-c6c7-40e0-a250-ee5b74bd5eac">
+				<reportElement stretchType="ContainerHeight" x="120" y="0" width="170" height="15" isRemoveLineWhenBlank="true" uuid="9a770571-c6c7-40e0-a250-ee5b74bd5eac">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -143,7 +143,7 @@ ON v.tipocombustible_id=tc.id AND tc.tipo=17]]>
 				<textFieldExpression><![CDATA[$F{desctipomovil}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="ContainerHeight" x="410" y="0" width="76" height="15" isRemoveLineWhenBlank="true" uuid="c1ad5f7d-949e-4460-8588-bba4fb637bb7">
+				<reportElement stretchType="ContainerHeight" x="290" y="0" width="150" height="15" isRemoveLineWhenBlank="true" uuid="c1ad5f7d-949e-4460-8588-bba4fb637bb7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9aed832b-3057-48fc-8946-6c7a2ff6b198"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -153,7 +153,7 @@ ON v.tipocombustible_id=tc.id AND tc.tipo=17]]>
 				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="ContainerHeight" x="486" y="0" width="59" height="15" isRemoveLineWhenBlank="true" uuid="dac0c1b4-3c1a-4c20-bfe5-914f16a986f9">
+				<reportElement stretchType="ContainerHeight" x="440" y="0" width="105" height="15" isRemoveLineWhenBlank="true" uuid="dac0c1b4-3c1a-4c20-bfe5-914f16a986f9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ffff912-42e3-42d8-ba55-2c36c4cf6143"/>
 				</reportElement>
 				<box rightPadding="3"/>
