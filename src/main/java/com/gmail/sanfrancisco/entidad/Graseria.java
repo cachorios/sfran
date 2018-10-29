@@ -5,17 +5,19 @@ import com.gmail.cacho.backend.entidad.Usuario;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 public class Graseria extends AbstractEntidad {
-    @ManyToOne
-    private Usuario usuario;
+    @NotNull
+    private Date fecha;
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }

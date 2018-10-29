@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class GraseriaDetalle extends AbstractEntidad {
+public class GraseriaDetalleInsumo extends AbstractEntidad {
     @ManyToOne
     private Graseria graseria;
 
@@ -19,9 +19,6 @@ public class GraseriaDetalle extends AbstractEntidad {
 
     @NotNull
     private Double precio;
-
-    @NotNull
-    private Double subtotal;
 
     public Graseria getGraseria() {
         return graseria;
@@ -53,13 +50,5 @@ public class GraseriaDetalle extends AbstractEntidad {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
-    }
-
-    public Double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
     }
 }
