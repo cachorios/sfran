@@ -18,7 +18,6 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
 
     private TextField id;
     private TextField nombre;
-    private TextField apellido;
     private TextField cuil;
     private TextField celular;
     private TextField telefono;
@@ -37,8 +36,7 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
 
         id = textField("ID","20em");
         id.setPreventInvalidInput(true);
-        nombre = textField("Nombre");
-        apellido = textField("Apellido");
+        nombre = textField("Rázon social");
         cuil = textField("Cuil");
         celular = textField("Celular");
         telefono = textField("Telefono");
@@ -47,8 +45,7 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
 
         form.add(
                 envolver(id),
-                envolver(nombre,"48%"),
-                envolver(apellido, "48%"),
+                envolver(nombre),
 
                 envolver(cuil,"50%"),
 
