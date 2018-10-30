@@ -11,20 +11,22 @@
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <!--<non-jta-data-source>jdbc/sfnontjta</non-jta-data-source>-->
 
-        <validation-mode>CALLBACK</validation-mode>
+        <!--<validation-mode>CALLBACK</validation-mode>-->
         <!-- CALLBACK O AUTO -->
         <properties>
 
-
             <property name="hibernate.show_sql" value="true"/>
 
-            <!--<property name="openjpa.Log" value="Enhance=TRACE, DefaultLevel=WARN, Runtime=WARN, Tool=INFO, SQL=TRACE"/>-->
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='add,deleteTableContents')"/>
 
-            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+            <property name="openjpa.Log" value="Enhance=TRACE, DefaultLevel=WARN, Runtime=WARN, Tool=INFO, SQL=TRACE"/>
+
+
 
             <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>  &lt;!&ndash; none create  drop-and-create drop &ndash;&gt;-->
 
-            <property name="openjpa.jdbc.SynchronizeMappings"  value="buildSchema(ForeignKeys=true)"/>
+            <!--<property name="openjpa.jdbc.SynchronizeMappings"  value="buildSchema(ForeignKeys=true)"/>-->
             <!--buildSchema-->
             <!--buildSchema(ForeignKeys=true)-->
             <!--buildSchema(SchemaAction='add,deleteTableContents')-->
@@ -37,7 +39,7 @@
                       <!--value="org.postgresql.Driver"/>-->
 
 
-            <!--<property name="openjpa.MetaDataRepository" value="Preload=true"/>-->
+            <property name="openjpa.MetaDataRepository" value="Preload=true"/>
         </properties>
     </persistence-unit>
 </persistence>

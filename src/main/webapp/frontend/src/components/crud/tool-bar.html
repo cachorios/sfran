@@ -41,7 +41,9 @@
         display: none;
       }
 
-
+      .action-btn{
+          margin: 0.1em;
+      }
 
       :host([show-extra-filters]) .clear-btn {
         display: block;
@@ -118,7 +120,22 @@
         </vaadin-button>
 
         <div id="botonera">
-
+        <vaadin-button id="verButton" class="action-btn" theme="primary" >
+            <iron-icon icon$="[[verIcon]]" slot="prefix"></iron-icon>
+            [[verText]]
+        </vaadin-button>
+        <vaadin-button id="nuevoButton" class="action-btn" theme="primary">
+            <iron-icon icon$="[[nuevoIcon]]" slot="prefix"></iron-icon>
+            [[nuevoText]]
+        </vaadin-button>
+        <vaadin-button id="editarButton" class="action-btn" theme="primary">
+            <iron-icon icon$="[[editarIcon]]" slot="prefix"></iron-icon>
+            [[editarText]]
+        </vaadin-button>
+        <vaadin-button id="borrarButton" class="action-btn" theme="primary" >
+            <iron-icon icon$="[[borrarIcon]]" slot="prefix"></iron-icon>
+            [[borrarText]]
+        </vaadin-button>
         </div>
     </div>
 

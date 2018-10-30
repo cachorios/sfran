@@ -1,12 +1,13 @@
 package com.gmail.cacho.backend.entidad;
 
-import com.gmail.cacho.backend.jpa.convert.LocalDateConverter;
+
 import com.gmail.cacho.slapi.comunes.C;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 @MappedSuperclass
@@ -20,25 +21,25 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     @Version
     private int version;
 
-    @Column
+    @Column(name="fechabaja")
 //    @Temporal(value = TemporalType.TIMESTAMP)
-    @Convert(converter = LocalDateConverter.class)
+//    @Convert(converter = LocalDateConverter.class)
     private LocalDate fechabaja;
 
     @Column
     private String usuarioalta;
 
-    @Column
+    @Column(name="fechaalta")
 //    @Temporal(value = TemporalType.TIMESTAMP)
-    @Convert(converter = LocalDateConverter.class)
+//    @Convert(converter = LocalDateConverter.class)
     private LocalDate fechaalta;
 
     @Column
     private String usuarioumod;
 
-    @Column
-//    @Temporal(value = TemporalType.TIMESTAMP)
-    @Convert(converter = LocalDateConverter.class)
+    @Column(name="fechaumod")
+    //@Temporal(value = TemporalType.TIMESTAMP)
+//    @Convert(converter = LocalDateConverter.class)
     private LocalDate fechaumod;
 
     public Long getId() {
@@ -80,6 +81,7 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
         return hash;
     }
 
+    /*
     @PrePersist
     protected void setAltaData() {
         String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
@@ -92,7 +94,7 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
         String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod =  "TEST";  //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
         fechaumod = LocalDate.from(Instant.now());
-    }
+    }*/
 
     public boolean isNew() {
         return (id == null);
