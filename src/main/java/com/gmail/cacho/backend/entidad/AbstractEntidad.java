@@ -24,7 +24,7 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     @Column(name="fechabaja")
 //    @Temporal(value = TemporalType.TIMESTAMP)
 //    @Convert(converter = LocalDateConverter.class)
-    private LocalDate fechabaja;
+    private Date fechabaja;
 
     @Column
     private String usuarioalta;
@@ -32,7 +32,7 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     @Column(name="fechaalta")
 //    @Temporal(value = TemporalType.TIMESTAMP)
 //    @Convert(converter = LocalDateConverter.class)
-    private LocalDate fechaalta;
+    private Date fechaalta;
 
     @Column
     private String usuarioumod;
@@ -40,7 +40,7 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     @Column(name="fechaumod")
     //@Temporal(value = TemporalType.TIMESTAMP)
 //    @Convert(converter = LocalDateConverter.class)
-    private LocalDate fechaumod;
+    private Date fechaumod;
 
     public Long getId() {
         return id;
@@ -86,14 +86,14 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     protected void setAltaData() {
         String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod = "TEST"; //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
-        fechaalta = fechaumod = LocalDate.from(Instant.now());
+        fechaalta = fechaumod = Date.from(Instant.now());
     }
 
     @PreUpdate
     protected void setUmodData() {
         String username = "TEST"; //Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod =  "TEST";  //(username == null) ? Constantes.SYS_CAD_UNSESION : username;
-        fechaumod = LocalDate.from(Instant.now());
+        fechaumod = Date.from(Instant.now());
     }*/
 
     public boolean isNew() {
@@ -104,11 +104,11 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
         return (isNew() ? C.SYS_CAD_NEW : toString());
     }
 
-    public LocalDate getFechaumod() {
+    public Date getFechaumod() {
         return fechaumod;
     }
 
-    public void setFechaumod(LocalDate fechaumod) {
+    public void setFechaumod(Date fechaumod) {
         this.fechaumod = fechaumod;
     }
 }
