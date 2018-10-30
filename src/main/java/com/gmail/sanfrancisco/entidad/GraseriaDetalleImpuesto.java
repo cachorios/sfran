@@ -3,9 +3,11 @@ package com.gmail.sanfrancisco.entidad;
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.backend.entidad.Parametro;
 
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class GraseriaDetalleImpuesto extends AbstractEntidad {
     @ManyToOne
     private GraseriaDetalleInsumo graseriaDetalleInsumo;
