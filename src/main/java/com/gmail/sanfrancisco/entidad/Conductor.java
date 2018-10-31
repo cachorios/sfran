@@ -21,10 +21,6 @@ public @Data class Conductor extends AbstractEntidad {
     private String nombre;
 
     @NotNull
-    @Size(min=3, max=60, message="El apellido debe contener entre 3 y 60 caracteres.")
-    private String apellido;
-
-    @NotNull
     @Size(min=11, max=11, message="El cuil debe contener entre 11 caracteres.")
     private String cuil;
 
@@ -60,8 +56,14 @@ public @Data class Conductor extends AbstractEntidad {
     public String toString() {
         String leyenda = "Nuevo Conductor";
         if(!isNew()){
-            leyenda = getApellido() + ", " + getNombre();
+            leyenda = getNombreCompleto();
         }
+        return leyenda;
+    }
+
+    public String getNombreCompleto() {
+        String leyenda = getNombre();
+
         return leyenda;
     }
 }

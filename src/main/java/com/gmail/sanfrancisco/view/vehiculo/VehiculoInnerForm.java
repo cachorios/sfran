@@ -115,16 +115,17 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
                 envolver(modelo,        "32%"),
                 envolver(dominio,       "32%"),
 
-                envolver(tara, "48%"),
                 envolver(maxCabezas,"48%"),
+                envolver(cargaMax, "48%"),
 
-                envolver(cargaMax, "32%"),
-                envolver(tipoCombustible, "32%"),
-                envolver(consumoCombustible, "32%"),
+                envolver(tipoCombustible, "48%"),
+                envolver(consumoCombustible, "48%"),
 
                 envolver(alto, "32%"),
                 envolver(largo, "32%"),
                 envolver(ancho, "32%"),
+
+                envolver(tara, "28%"),
 
                 envolver(numeroMotor,"48%"),
                 envolver(numeroChasis,"48%"),

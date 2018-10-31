@@ -24,7 +24,6 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
 
     private TextField id;
-    private TextField apellido;
     private TextField nombre;
     private TextField dni;
     private TextField cuil;
@@ -48,7 +47,6 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
 
         id = textField("ID","20em");
         id.setPreventInvalidInput(true);
-        apellido = textField("Apellido");
         nombre = textField("Nombre");
         dni = textField("DNI");
         cuil = textField("CUIL");
@@ -73,8 +71,7 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
         form.add(
                 envolver(id),
 
-                envolver(apellido, "48%"),
-                envolver(nombre, "48%"),
+                envolver(nombre),
 
                 envolver(dni,"48%"),
                 envolver(cuil, "48%"),
@@ -92,7 +89,7 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
 
     @Override
     public Focusable getPrimerElementoForm() {
-        return apellido;
+        return nombre;
     }
 
     @Override
