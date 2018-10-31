@@ -31,4 +31,9 @@ public class Renspa extends AbstractEntidad {
     public void setProductor(Productor productor) {
         this.productor = productor;
     }
+
+    @Override
+    public String toString() {
+        return getDescripcion();
+    }
 }

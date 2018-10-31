@@ -109,3 +109,8 @@ INSERT INTO dtedetallecategoria (id, cantidad, categoria_id, kgcarne, kgvivo, pr
 INSERT INTO dtedetallecategoria (id, cantidad, categoria_id, kgcarne, kgvivo, preciokgvivo, porcentajecomision, dte_id, productor_id, renspa_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (114, 52, (SELECT id from parametro where tipo=8 and orden=2), 1.00, 21785.00, 36.00, 2.00, 80, 7, '15', '2018-10-09 10:46:12', null, '2008-01-01', 'Algo', 'Algo', 1);
 INSERT INTO dtedetallecategoria (id, cantidad, categoria_id, kgcarne, kgvivo, preciokgvivo, porcentajecomision, dte_id, productor_id, renspa_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (115, 34, (SELECT id from parametro where tipo=8 and orden=2), 0.00, 13819.00, 37.00, 2.00, 81, 2, '3', '2018-10-09 18:27:07', null, '2008-01-01', 'Algo', 'Algo', 1);
 INSERT INTO dtedetallecategoria (id, cantidad, categoria_id, kgcarne, kgvivo, preciokgvivo, porcentajecomision, dte_id, productor_id, renspa_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (116, 1, (SELECT id from parametro where tipo=8 and orden=3), 1.00, 508.00, 26.00, 2.00, 81, 2, '3', '2018-10-09 18:27:07', null, '2008-01-01', 'Algo', 'Algo', 1);
+
+/*
+insert into dte_dtedetallecategoria
+select dte_id, id from dtedetallecategoria;
+*/

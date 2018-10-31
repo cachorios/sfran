@@ -2,7 +2,6 @@ package com.gmail.sanfrancisco.view.dte;
 
 import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.backend.enumeradores.ETipoParametro;
-import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.backend.views.csselect.LocalidadCS;
 import com.gmail.cacho.slapi.view.customs.params.ParamCSDataProvider;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
@@ -10,23 +9,27 @@ import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.dataProvider.VehiculolDataProvider;
 import com.gmail.sanfrancisco.entidad.Dte;
+import com.gmail.sanfrancisco.entidad.DteDetalleCategoria;
 import com.gmail.sanfrancisco.entidad.Vehiculo;
 import com.gmail.sanfrancisco.view.comisionista.ComisionistaCS;
 import com.gmail.sanfrancisco.view.consignatario.ConsignatarioCS;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
-import com.vaadin.flow.component.button.Button;
+
 import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.datepicker.DatePicker;
+
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+
+
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
-import com.vaadin.flow.data.converter.StringToDoubleConverter;
+
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 
 import javax.enterprise.inject.spi.CDI;
+
+import java.util.List;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.generarTituloSeccion;
@@ -71,8 +74,11 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     private TextField patenteJaula; */
 
-    private VerticalLayout detalle;
-    private Button btnAdd;
+//    private DteDetalleCategoriaList dteDetalleCategoriaList;
+    private Grid<DteDetalleCategoria> categoriaGrid;
+
+//    private VerticalLayout detalle;
+//    private Button btnAdd;
 
     public DteInnerForm(IPresentableForm<Dte> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -80,7 +86,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     @Override
     protected void generarForm(Div form) {
-        setWidth("900px");
+        setWidth("1100px");
 
         numeroTropa = textField("Numero de tropa","30%");
 
@@ -117,13 +123,16 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 //        kmSalida = textField("Kilometros salida");
 //        kmLlegada = textField("Kilometros llegada");
 
-        detalle =  new VerticalLayout();
-        btnAdd = new Button(VaadinIcon.PLUS.create());
-        btnAdd.addClickListener(e->{
-            detalle.add(new DteDetalle());
-        });
-//
-        detalle.add(btnAdd,new DteDetalle());
+//        dteDetalleCategoriaList = CDI.current().select(DteDetalleCategoriaList.class).get();
+//        dteDetalleCategoriaList.iniciar(EModoVista.EDITAR, null);
+
+
+//        btnAdd = new Button(VaadinIcon.PLUS.create());
+//        btnAdd.addClickListener(e->{
+//            detalle.add(new DteDetalle());
+//        });
+////
+//        detalle.add(btnAdd,new DteDetalle());
 
      /*   entrega = textField("Entrega en efectivo");
         totalComisionista = textField("Total a comisionista");
@@ -155,6 +164,10 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         */
 
+
+
+
+
         consignatarioCS = new ConsignatarioCS("Consignatario", getPresentable(),true,true, true);
         form.add(
                 envolver(numeroTropa, "100%"),
@@ -170,13 +183,12 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 envolver(vehiculoComboBox, "49%"),
                 envolver(titular, "49%"),
 
-                envolver(comisionistaCS),
-
-                envolver(consignatarioCS),
+                envolver(comisionistaCS,"49%"),
+                envolver(consignatarioCS,"49%"),
 
                 envolver(cantidad, "32%"),
                 envolver(especie, "32%"),
-                envolver(peso, "32%"),
+                envolver(peso, "32%")
 
 //                envolver(kmSalida,"48%"),
 //                envolver(kmLlegada,"48%")
@@ -191,10 +203,40 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
                 envolver(patenteJaula,"48%"),
                 envolver(titular,"48%")*/
-                detalle
+            , getCategoriaGrid()
+
         );
+
+//        form.add(envolver(dteDetalleCategoriaList.getViewComponent()));
     }
 
+    private Grid getCategoriaGrid(){
+        categoriaGrid = new Grid<>();
+        categoriaGrid.addColumn(DteDetalleCategoria::getProductor)
+                .setHeader("Prodcutor")
+                .setWidth("20%")
+                .setFlexGrow(1)
+                .setKey("productor");
+
+        categoriaGrid.addColumn(DteDetalleCategoria::getRenspa)
+                .setHeader("RENSPA")
+                .setWidth("8%")
+                .setKey("renspa");
+        categoriaGrid.addColumn(DteDetalleCategoria::getCategoria)
+                .setHeader("Categoria")
+                .setWidth("15%");
+
+        categoriaGrid.addColumn(DteDetalleCategoria::getKgVivo)
+                .setHeader("Kg Vivo")
+                .setWidth("10%");
+
+        List a = this.getPresentable().getObjetoActivo().getCategorias();
+        categoriaGrid.setItems(this.getPresentable().getObjetoActivo().getCategorias());
+
+        return categoriaGrid;
+
+
+    }
     private void pciaChanged(HasValue.ValueChangeEvent<?> e, LocalidadCS localidadCS) {
         if( e.getValue() != null){
             Long grupo = ((Parametro) e.getValue()).getOrden().longValue();
