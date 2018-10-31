@@ -8,6 +8,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.converter.StringToDoubleConverter;
+import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.data.converter.StringToLongConverter;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
@@ -53,6 +54,11 @@ public class InsumoCostoVehiculoInnerForm extends DefaultInnerDialog<InsumoCosto
                 .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
                 .withNullRepresentation(0l)
                 .bind(InsumoCostoVehiculo::getId, null);
+
+        binder.forField(cantidad)
+                .withConverter(new StringToIntegerConverter("No es un nro válido."))
+                .withNullRepresentation(0)
+                .bind(InsumoCostoVehiculo::getCantidad, InsumoCostoVehiculo::setCantidad);
 
         binder.forField(precio)
                 .withConverter(new StringToDoubleConverter("No es un nro válido."))

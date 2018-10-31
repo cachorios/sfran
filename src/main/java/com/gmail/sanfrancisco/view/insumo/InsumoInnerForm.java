@@ -73,7 +73,7 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
 
         binder.bind(tipoInsumo, Insumo::getTipoInsumo, Insumo::setTipoInsumo);
 
-        binder.bind(unidad, Insumo::getUnidad, Insumo::setUnidad);
+        binder.bind(unidad, Insumo::getUnidadMedida, Insumo::setUnidadMedida);
 
         binder.bindInstanceFields(this);
     }

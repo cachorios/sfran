@@ -22,7 +22,7 @@ public @Data class  Dte extends AbstractEntidad {
 
     @NotNull
     @Size(min=4, max=4, message="El numero de tropa debe contener 4 caracteres.")
-    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
+//    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
     private String numeroTropa;
 
     @NotNull
