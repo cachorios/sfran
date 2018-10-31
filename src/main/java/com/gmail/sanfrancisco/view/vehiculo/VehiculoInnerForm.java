@@ -12,6 +12,8 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.converter.StringToDoubleConverter;
+import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.data.converter.StringToLongConverter;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.dateField;
@@ -151,9 +153,45 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
 
         binder.bind(tipoCombustible, Vehiculo::getTipoCombustible, Vehiculo::setTipoCombustible);
 
-        binder.bind(color, Vehiculo::getColor, Vehiculo::setColor);
 
+        binder.bind(color, Vehiculo::getColor, Vehiculo::setColor);
         binder.bind(marca, Vehiculo::getMarca, Vehiculo::setMarca);
+
+        binder.forField(maxCabezas)
+                .withConverter(new StringToIntegerConverter("Debe ser un nro entero"))
+                .withNullRepresentation(0)
+                .bind(Vehiculo::getMaxCabezas, Vehiculo::setMaxCabezas);
+
+        binder.forField(tara)
+                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getTara, Vehiculo::setTara);
+
+        binder.forField(cargaMax)
+                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getCargaMax, Vehiculo::setCargaMax);
+
+        binder.forField(consumo)
+                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getConsumo, Vehiculo::setConsumo);
+
+        binder.forField(alto)
+                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getAlto, Vehiculo::setAlto);
+
+        binder.forField(largo)
+                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getLargo, Vehiculo::setLargo);
+
+        binder.forField(ancho)
+                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getAncho, Vehiculo::setAncho);
+
 
         binder.forField(anno)
                 .withConverter(new LocalDateADateConverter())

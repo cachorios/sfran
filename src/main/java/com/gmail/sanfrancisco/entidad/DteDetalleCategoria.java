@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class DteDetalleCategoria extends AbstractEntidad {
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     private Dte dte;
 
     @ManyToOne

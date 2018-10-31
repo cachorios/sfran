@@ -26,8 +26,7 @@ select * from dte
 where not provinciaorigen_id in(select id from parametro where tipo=9);
 
 select * from dte
-where not vehiculo_id in(select id from vehiculo);
-
+where not vehiculo_id in(select id from vehiculo)
 
 -- Control de DteDetalleCategoria --
 select * from dtedetallecategoria
