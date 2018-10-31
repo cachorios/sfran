@@ -11,10 +11,11 @@ public interface DteDetalleCategoriaRepositorio extends EntityRepository<DteDeta
     @Query("SELECT e FROM DteDetalleCategoria e")
     QueryResult<DteDetalleCategoria> findFiltered(
             @FirstResult int offset,
-            @MaxResults int limit,
-            @QueryParam("filter") String filter);
+            @MaxResults int limit //,
+//            @QueryParam("filter") String filter
+    ) ;
 
     @Query("SELECT COUNT(e) FROM DteDetalleCategoria e")
-    Long countFiltered(
-            @QueryParam("filter") String filter);
+    Long countFiltered();
+            //@QueryParam("filter") String filter);
 }

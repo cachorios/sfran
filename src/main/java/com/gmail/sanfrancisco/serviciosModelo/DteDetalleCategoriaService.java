@@ -21,7 +21,7 @@ public class DteDetalleCategoriaService extends ServicioModelo<DteDetalleCategor
 
     @Override
     public Stream<DteDetalleCategoria> findAnyMatching(Object padre, String filtro, int offset, int limit, List<QuerySortOrder> sortOrders) {
-        QueryResult<DteDetalleCategoria> result = ((DteDetalleCategoriaRepositorio)repo).findFiltered( offset, limit, likePattern(filtro));
+        QueryResult<DteDetalleCategoria> result = ((DteDetalleCategoriaRepositorio)repo).findFiltered( offset, limit);
 
 
         return result.getResultList().stream();
@@ -31,7 +31,7 @@ public class DteDetalleCategoriaService extends ServicioModelo<DteDetalleCategor
     @Override
     public long countAnyMatching(Object padre, String filtro) {
         Long cnt = null;
-        cnt = ((DteDetalleCategoriaRepositorio) repo).countFiltered(likePattern(filtro));
+        cnt = ((DteDetalleCategoriaRepositorio) repo).countFiltered();
         return cnt;
     }
 }

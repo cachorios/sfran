@@ -10,7 +10,7 @@ public class DteDetalleCategoriaListPrever extends AbstractPreview<DteDetalleCat
 
     @Override
     public void crearElementos() {
-        addItem("id", new PreviewItem<>(textField("ID"), DteDetalleCategoria::getId));
+
         addItem("categoria", new PreviewItem<>(textField("Categoria"), DteDetalleCategoria::getCategoria));
         addItem("cantidad", new PreviewItem<>(textField("Cantidad"), DteDetalleCategoria::getCantidad));
         addItem("kilogramos vivos", new PreviewItem<>(textField("Kilogramos vivos"), DteDetalleCategoria::getKgVivo));

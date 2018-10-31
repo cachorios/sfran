@@ -176,6 +176,21 @@
 
 </dom-module>
 
+<dom-module id="app-menu-for-sfran" theme-for="app-menu">
+    <template>
+        <style>
+            :host{
+                --app-menu-background-color: red!important;
+                background-color: #ef6c00;
+            }
+
+
+        </style>
+    </template>
+
+</dom-module>
+
+
 <!-- shared styles for all views -->
 <dom-module id="shared-styles">
     <template>
@@ -379,6 +394,8 @@
             /*--lumo-primary-color-10pct: #90a4cb !important;*/
             /*--lumo-body-text-color: #fff;*/
             /*--lumo-primary-text-color: #1676f3;*/
+
+
         }
 
         .custom-select{
@@ -412,6 +429,9 @@
             font-size: 5px;
         }
 
+        app-menu{
+            --app-menu-background-color: #cb695d;
+        }
 
 
     </style>

@@ -136,7 +136,9 @@ public abstract class AbstractCustomSelect<T extends AbstractEntidad>
         return ver;
     }
 
-    protected String getCodigo() { return valor.getId().toString(); }
+    protected String getCodigo() {
+        return valor.getId().toString();
+    }
 
     protected String getDescripcion() { return valor.toSimpleString(); }
 
