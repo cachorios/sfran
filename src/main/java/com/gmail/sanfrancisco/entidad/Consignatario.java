@@ -1,15 +1,20 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Consignatario extends AbstractEntidad {
+public @Data class Consignatario extends AbstractEntidad {
     @NotNull
     @Size(min=5, max=50, message="La nombre debe contener entre 5 y 50 caracteres.")
+//    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
     private String nombre;
 
     @NotNull
@@ -31,57 +36,4 @@ public class Consignatario extends AbstractEntidad {
     @NotNull
     @Size(min=10, max=50, message="El correo electronico debe contener entre 10 y 50 caracteres.")
     private String email;
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCuil() {
-        return cuil;
-    }
-
-    public void setCuil(String cuil) {
-        this.cuil = cuil;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getDomicilio() {
-        return domicilio;
-    }
-
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return getNombre();
-    }
 }

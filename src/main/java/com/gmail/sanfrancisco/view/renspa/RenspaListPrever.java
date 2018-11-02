@@ -14,6 +14,6 @@ public class RenspaListPrever extends AbstractPreview<Renspa> {
     @Override
     public void crearElementos() {
         addItem("id", new PreviewItem<>(textField("ID"),Renspa::getId));
-        addItem("id", new PreviewItem<>(textField("Descripción"),Renspa::getDescripcion));
+        addItem("id", new PreviewItem<>(textField("Numero renspa"),Renspa::getNumeroRenspa));
     }
 }

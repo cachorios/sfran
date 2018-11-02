@@ -14,7 +14,6 @@ public class ConductorList extends AbstractList<Conductor> {
     public ConductorList(IPresenterList<Conductor> presenter) {
         super(presenter);
         setListaCols(Arrays.asList(
-                new ColumnList<>(Conductor::getApellido, "Apellido", "apellido", true),
                 new ColumnList<>(Conductor::getNombre, "Nombre", "nombre", true),
                 new ColumnList<>(Conductor::getCuil, "C.U.I.L.", "cuil", true)
         ));

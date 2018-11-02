@@ -2,6 +2,10 @@ package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.backend.entidad.Parametro;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -10,9 +14,10 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-public class Vehiculo extends AbstractEntidad {
+public @Data class Vehiculo extends AbstractEntidad {
     @NotNull
     @ManyToOne
+    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
     private Parametro tipoVehiculo;
 
     @NotNull
@@ -37,7 +42,7 @@ public class Vehiculo extends AbstractEntidad {
 
     private Double cargaMax;
 
-    private Double consumo;
+    private Double consumoCombustible;
 
     private Double alto;
 
@@ -58,7 +63,7 @@ public class Vehiculo extends AbstractEntidad {
     private Parametro marca;
 
     @NotNull
-    private Date anno;
+    private Integer anio;
 
     @NotNull
     @ManyToOne
@@ -66,150 +71,6 @@ public class Vehiculo extends AbstractEntidad {
 
     @NotNull
     private Date fecha;
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getDominio() {
-        return dominio;
-    }
-
-    public void setDominio(String dominio) {
-        this.dominio = dominio;
-    }
-
-    public Integer getMaxCabezas() {
-        return maxCabezas;
-    }
-
-    public void setMaxCabezas(Integer maxCabezas) {
-        this.maxCabezas = maxCabezas;
-    }
-
-    public Double getTara() {
-        return tara;
-    }
-
-    public void setTara(Double tara) {
-        this.tara = tara;
-    }
-
-    public Double getCargaMax() {
-        return cargaMax;
-    }
-
-    public void setCargaMax(Double cargaMax) {
-        this.cargaMax = cargaMax;
-    }
-
-    public Double getConsumo() {
-        return consumo;
-    }
-
-    public void setConsumo(Double consumo) {
-        this.consumo = consumo;
-    }
-
-    public Double getAlto() {
-        return alto;
-    }
-
-    public void setAlto(Double alto) {
-        this.alto = alto;
-    }
-
-    public Double getLargo() {
-        return largo;
-    }
-
-    public void setLargo(Double largo) {
-        this.largo = largo;
-    }
-
-    public Double getAncho() {
-        return ancho;
-    }
-
-    public void setAncho(Double ancho) {
-        this.ancho = ancho;
-    }
-
-    public String getNumeroMotor() {
-        return numeroMotor;
-    }
-
-    public void setNumeroMotor(String numeroMotor) {
-        this.numeroMotor = numeroMotor;
-    }
-
-    public String getNumeroChasis() {
-        return numeroChasis;
-    }
-
-    public void setNumeroChasis(String numeroChasis) {
-        this.numeroChasis = numeroChasis;
-    }
-
-    public Date getAnno() {
-        return anno;
-    }
-
-    public void setAnno(Date anno) {
-        this.anno = anno;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public Parametro getTipoVehiculo() {
-        return tipoVehiculo;
-    }
-
-    public void setTipoVehiculo(Parametro tipoVehiculo) {
-        this.tipoVehiculo = tipoVehiculo;
-    }
-
-    public Parametro getTipoCombustible() {
-        return tipoCombustible;
-    }
-
-    public void setTipoCombustible(Parametro tipoCombustible) {
-        this.tipoCombustible = tipoCombustible;
-    }
-
-    public Parametro getColor() {
-        return color;
-    }
-
-    public void setColor(Parametro color) {
-        this.color = color;
-    }
-
-    public Parametro getMarca() {
-        return marca;
-    }
-
-    public void setMarca(Parametro marca) {
-        this.marca = marca;
-    }
-
-    public Parametro getEstadoVehiculo() {
-        return estadoVehiculo;
-    }
-
-    public void setEstadoVehiculo(Parametro estadoVehiculo) {
-        this.estadoVehiculo = estadoVehiculo;
-    }
 
     @Override
     public String toString() {

@@ -1,13 +1,17 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Comisionista extends AbstractEntidad {
+public @Data class Comisionista extends AbstractEntidad {
 
     @NotNull
     @Size(min=11, max=11, message="El cuil debe contener 11 caracteres.")
@@ -35,62 +39,6 @@ public class Comisionista extends AbstractEntidad {
 
     @NotNull
     private Double saldoInicial;
-
-    public String getCuil() {
-        return cuil;
-    }
-
-    public void setCuil(String cuil) {
-        this.cuil = cuil;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getDomicilio() {
-        return domicilio;
-    }
-
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Double getSaldoInicial() {
-        return saldoInicial;
-    }
-
-    public void setSaldoInicial(Double saldoInicial) {
-        this.saldoInicial = saldoInicial;
-    }
 
     @Override
     public String toString() {

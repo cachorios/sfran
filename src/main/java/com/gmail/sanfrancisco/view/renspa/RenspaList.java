@@ -13,7 +13,7 @@ public class RenspaList extends AbstractList<Renspa> {
     public RenspaList(IPresenterList<Renspa> presenter) {
         super(presenter);
         setListaCols(Arrays.asList(
-                new ColumnList<>(Renspa::getDescripcion, "Numero de Renspa", "descripcion", true)
+                new ColumnList<>(Renspa::getNumeroRenspa, "Numero de Renspa", "numeroRenspa", true)
         ));
     }
 

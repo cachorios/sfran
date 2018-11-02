@@ -31,14 +31,14 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
     private TextField maxCabezas;
     private TextField tara;
     private TextField cargaMax;
-    private TextField consumo;
+    private TextField consumoCombustible;
     private TextField alto;
     private TextField largo;
     private TextField ancho;
     private TextField numeroMotor;
     private TextField numeroChasis;
     private ComboBox marca;
-    private DatePicker anno;
+    private TextField anio;
     private ComboBox estadoVehiculo;
     private DatePicker fecha;
 
@@ -81,7 +81,7 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
         maxCabezas = textField("Maximo de cabezas");
         tara = textField("Tara");
         cargaMax = textField("Carga maxima");
-        consumo = textField("Consumo");
+        consumoCombustible = textField("Consumo");
         alto = textField("Alto");
         largo = textField("Largo");
         ancho = textField("Ancho");
@@ -94,9 +94,9 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
         dpMarca.setTipo(ETipoParametro.MARCA_VEHICULO);
         marca.setDataProvider(dpMarca);
 
-        anno = dateField("Año");
-        anno.setWidth("100%");
-        anno.setRequired(true);
+        anio = textField("Año");
+        anio.setWidth("100%");
+        anio.setRequired(true);
 
         estadoVehiculo = new ComboBox("Estado de vehiculo");
         estadoVehiculo.setWidth("100%");
@@ -115,23 +115,24 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
                 envolver(modelo,        "32%"),
                 envolver(dominio,       "32%"),
 
-                envolver(tara, "48%"),
                 envolver(maxCabezas,"48%"),
+                envolver(cargaMax, "48%"),
 
-                envolver(cargaMax, "32%"),
-                envolver(tipoCombustible, "32%"),
-                envolver(consumo, "32%"),
+                envolver(tipoCombustible, "48%"),
+                envolver(consumoCombustible, "48%"),
 
                 envolver(alto, "32%"),
                 envolver(largo, "32%"),
                 envolver(ancho, "32%"),
+
+                envolver(tara, "28%"),
 
                 envolver(numeroMotor,"48%"),
                 envolver(numeroChasis,"48%"),
 
                 envolver(color, "32%"),
                 envolver(marca, "32%"),
-                envolver(anno, "32%"),
+                envolver(anio, "32%"),
 
                 envolver(estadoVehiculo, "48%"),
                 envolver(fecha, "48%")
@@ -154,6 +155,7 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
         binder.bind(tipoCombustible, Vehiculo::getTipoCombustible, Vehiculo::setTipoCombustible);
 
 
+<<<<<<< HEAD
         binder.bind(color, Vehiculo::getColor, Vehiculo::setColor);
         binder.bind(marca, Vehiculo::getMarca, Vehiculo::setMarca);
 
@@ -196,6 +198,49 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
         binder.forField(anno)
                 .withConverter(new LocalDateADateConverter())
                 .bind(Vehiculo::getAnno, Vehiculo::setAnno);
+=======
+        binder.forField(maxCabezas)
+                .withConverter(new StringToIntegerConverter( "No es un nro válido."))
+                .withNullRepresentation(0)
+                .bind(Vehiculo::getMaxCabezas, Vehiculo::setMaxCabezas);
+
+        binder.forField(tara)
+                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getTara, Vehiculo::setTara);
+
+        binder.forField(cargaMax)
+                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getCargaMax, Vehiculo::setCargaMax);
+
+        binder.forField(consumoCombustible)
+                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getConsumoCombustible, Vehiculo::setConsumoCombustible);
+
+        binder.forField(alto)
+                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getAlto, Vehiculo::setAlto);
+
+        binder.forField(largo)
+                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getLargo, Vehiculo::setLargo);
+
+        binder.forField(ancho)
+                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
+                .withNullRepresentation(0.0)
+                .bind(Vehiculo::getAncho, Vehiculo::setAncho);
+
+        binder.bind(marca, Vehiculo::getMarca, Vehiculo::setMarca);
+
+        binder.forField(anio)
+                .withConverter(new StringToIntegerConverter( "No es un nro válido."))
+                .withNullRepresentation(0)
+                .bind(Vehiculo::getAnio, Vehiculo::setAnio);
+>>>>>>> 1f00f061af3894bbb73889147e2959c4c921f24e
 
         binder.bind(estadoVehiculo, Vehiculo::getEstadoVehiculo, Vehiculo::setEstadoVehiculo);
 
