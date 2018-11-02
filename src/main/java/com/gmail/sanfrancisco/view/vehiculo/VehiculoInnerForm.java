@@ -155,50 +155,6 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
         binder.bind(tipoCombustible, Vehiculo::getTipoCombustible, Vehiculo::setTipoCombustible);
 
 
-<<<<<<< HEAD
-        binder.bind(color, Vehiculo::getColor, Vehiculo::setColor);
-        binder.bind(marca, Vehiculo::getMarca, Vehiculo::setMarca);
-
-        binder.forField(maxCabezas)
-                .withConverter(new StringToIntegerConverter("Debe ser un nro entero"))
-                .withNullRepresentation(0)
-                .bind(Vehiculo::getMaxCabezas, Vehiculo::setMaxCabezas);
-
-        binder.forField(tara)
-                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getTara, Vehiculo::setTara);
-
-        binder.forField(cargaMax)
-                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getCargaMax, Vehiculo::setCargaMax);
-
-        binder.forField(consumo)
-                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getConsumo, Vehiculo::setConsumo);
-
-        binder.forField(alto)
-                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getAlto, Vehiculo::setAlto);
-
-        binder.forField(largo)
-                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getLargo, Vehiculo::setLargo);
-
-        binder.forField(ancho)
-                .withConverter(new StringToDoubleConverter("Debe ser un nro., con maximo de dos decimales"))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getAncho, Vehiculo::setAncho);
-
-
-        binder.forField(anno)
-                .withConverter(new LocalDateADateConverter())
-                .bind(Vehiculo::getAnno, Vehiculo::setAnno);
-=======
         binder.forField(maxCabezas)
                 .withConverter(new StringToIntegerConverter( "No es un nro válido."))
                 .withNullRepresentation(0)
@@ -240,7 +196,7 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
                 .withConverter(new StringToIntegerConverter( "No es un nro válido."))
                 .withNullRepresentation(0)
                 .bind(Vehiculo::getAnio, Vehiculo::setAnio);
->>>>>>> 1f00f061af3894bbb73889147e2959c4c921f24e
+
 
         binder.bind(estadoVehiculo, Vehiculo::getEstadoVehiculo, Vehiculo::setEstadoVehiculo);
 
