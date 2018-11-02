@@ -12,6 +12,7 @@ import com.gmail.sanfrancisco.entidad.Dte;
 import com.gmail.sanfrancisco.entidad.DteDetalleCategoria;
 import com.gmail.sanfrancisco.entidad.Vehiculo;
 import com.gmail.sanfrancisco.view.comisionista.ComisionistaCS;
+import com.gmail.sanfrancisco.view.conductor.ConductorCS;
 import com.gmail.sanfrancisco.view.consignatario.ConsignatarioCS;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
@@ -25,6 +26,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 
+import com.vaadin.flow.data.converter.StringToDoubleConverter;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 
 import javax.enterprise.inject.spi.CDI;
@@ -45,6 +47,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private LocalidadCS localidadDestino;
 
     private ComboBox<Vehiculo> vehiculoComboBox;
+    private ConductorCS conductorCS;
+
     private TextField titular;
 
     private ComisionistaCS comisionistaCS;
@@ -56,8 +60,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private TextField peso;
 
 
-//    private TextField kmSalida;
-//    private TextField kmLlegada;
+    private TextField kmSalida;
+    private TextField kmLlegada;
 
 //    private DatePicker fechaCarga;
 //    private DatePicker fechaVencimiento;
@@ -93,18 +97,22 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         ParametroVarioDataProvider dpPcia= getObject(ParametroVarioDataProvider.class);
         dpPcia.setTipo(ETipoParametro.PROVINCIA);
 
-        pciaOrigen = new ComboBox("Provincia");
+        pciaOrigen = new ComboBox("Provincia Origen");
         pciaOrigen.setDataProvider(dpPcia);
         pciaOrigen.addValueChangeListener(e-> {this.pciaChanged(e, localidadOrigen);});
         localidadOrigen = new LocalidadCS("Localidad", getPresentable());
 
-        pciaDestino = new ComboBox("Provincia");
+        pciaDestino = new ComboBox("Provincia Destino");
         pciaDestino.setDataProvider(dpPcia);
         pciaDestino.addValueChangeListener(e-> {this.pciaChanged(e, localidadDestino);});
         localidadDestino = new LocalidadCS("Localidad", getPresentable());
 
         vehiculoComboBox = new ComboBox<>("Vehiculo");
         vehiculoComboBox.setDataProvider(CDI.current().select(VehiculolDataProvider.class).get() );
+        conductorCS = new ConductorCS("Conductor", getPresentable(), true, true, true);
+
+
+
         titular = textField("Titular");
 
         comisionistaCS = new ComisionistaCS("Comisionista", getPresentable(),true,true, true);
@@ -120,8 +128,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         peso = textField("Peso");
 
 
-//        kmSalida = textField("Kilometros salida");
-//        kmLlegada = textField("Kilometros llegada");
+        kmSalida = textField("Kilometros salida");
+        kmLlegada = textField("Kilometros llegada");
 
 //        dteDetalleCategoriaList = CDI.current().select(DteDetalleCategoriaList.class).get();
 //        dteDetalleCategoriaList.iniciar(EModoVista.EDITAR, null);
@@ -172,15 +180,17 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         form.add(
                 envolver(numeroTropa, "100%"),
 
-                generarTituloSeccion("Origen"),
-                envolver(pciaOrigen, "40%"),
-                envolver(localidadOrigen, "58%"),
+                //generarTituloSeccion("Origen"),
+                envolver(pciaOrigen, "20%"),
+                envolver(localidadOrigen, "29%"),
 
-                generarTituloSeccion("Destino"),
-                envolver(pciaDestino, "40%"),
-                envolver(localidadDestino, "58%"),
+                //generarTituloSeccion("Destino"),
+                envolver(pciaDestino, "20%"),
+                envolver(localidadDestino, "29%"),
 
-                envolver(vehiculoComboBox, "49%"),
+                envolver(vehiculoComboBox, "20%"),
+                envolver(conductorCS, "29%"),
+
                 envolver(titular, "49%"),
 
                 envolver(comisionistaCS,"49%"),
@@ -188,10 +198,10 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
                 envolver(cantidad, "32%"),
                 envolver(especie, "32%"),
-                envolver(peso, "32%")
+                envolver(peso, "32%"),
 
-//                envolver(kmSalida,"48%"),
-//                envolver(kmLlegada,"48%")
+                envolver(kmSalida,"48%"),
+                envolver(kmLlegada,"48%")
 //
 //                envolver(fechaCarga,"48%"),
 //                envolver(fechaVencimiento,"48%"),
@@ -238,9 +248,11 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     }
     private void pciaChanged(HasValue.ValueChangeEvent<?> e, LocalidadCS localidadCS) {
-        if( e.getValue() != null){
-            Long grupo = ((Parametro) e.getValue()).getOrden().longValue();
-            ((ParamCSDataProvider)localidadCS.getDataProvider()).setGrupo( grupo );
+        if( e.getValue() != null) {
+            Long grupo = ((Parametro) e.getValue()).getId();                    //getOrden().longValue();
+            ((ParamCSDataProvider) localidadCS.getDataProvider()).setGrupo(grupo);
+        }else{
+            ((ParamCSDataProvider)localidadCS.getDataProvider()).setGrupo( null );
         }
     }
 
@@ -251,36 +263,35 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     @Override
     public void bindFormFields(BeanValidationBinder<Dte> binder) {
-        binder.bind(pciaOrigen, Dte::getProvinciaOrigen, Dte::setProvinciaOrigen);
-        binder.bind(localidadOrigen, Dte::getLocalidadOrigen, Dte::setLocalidadOrigen);
-
-        binder.bind(pciaDestino, Dte::getProvinciaDestino, Dte::setProvinciaDestino);
-        binder.bind(localidadDestino, Dte::getLocalidadDestino, Dte::setLocalidadDestino);
-
+        //integer
         binder.forField(cantidad)
                 .withConverter(new StringToIntegerConverter("No es un nro válido."))
                 .withNullRepresentation(0)
                 .bind(Dte::getCantidad, Dte::setCantidad);
-
         binder.forField(peso)
                 .withConverter(new StringToIntegerConverter( "No es un nro válido."))
                 .withNullRepresentation(0)
                 .bind(Dte::getPeso, Dte::setPeso);
 
 
-        binder.bind(especie, Dte::getEspecie, Dte::setEspecie);
 
+        //combos o multiples
+        binder.bind(pciaOrigen, Dte::getProvinciaOrigen, Dte::setProvinciaOrigen);
+        binder.bind(localidadOrigen, Dte::getLocalidadOrigen, Dte::setLocalidadOrigen);
+        binder.bind(pciaDestino, Dte::getProvinciaDestino, Dte::setProvinciaDestino);
+        binder.bind(localidadDestino, Dte::getLocalidadDestino, Dte::setLocalidadDestino);
+        binder.bind(especie, Dte::getEspecie, Dte::setEspecie);
         binder.bind(vehiculoComboBox, Dte::getVehiculo, Dte::setVehiculo);
 
-//        binder.forField(kmSalida)
-//                .withConverter(new StringToDoubleConverter("No es un nro. válido" ))
-//                .withNullRepresentation(0.0)
-//                .bind( Dte::getKmSalida, Dte::setKmSalida);
-//
-//        binder.forField(kmLlegada)
-//                .withConverter(new StringToDoubleConverter("No es un nro. válido" ))
-//                .withNullRepresentation(0.0)
-//                .bind( Dte::getKmSalida, Dte::setKmSalida);
+        binder.forField(kmSalida)
+                .withConverter(new StringToDoubleConverter("No es un nro. válido" ))
+                .withNullRepresentation(0.0)
+                .bind( Dte::getKmSalida, Dte::setKmSalida);
+
+        binder.forField(kmLlegada)
+                .withConverter(new StringToDoubleConverter("No es un nro. válido" ))
+                .withNullRepresentation(0.0)
+                .bind( Dte::getKmSalida, Dte::setKmSalida);
 
 
 //        binder.forField(fechaCarga)
