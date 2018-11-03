@@ -11,7 +11,7 @@
             [part="overlay"] {
                 display: flex;
                 animation: none !important;
-                min-width: 300px;
+                min-width: 24rem;
                 outline: none;
             }
 
@@ -21,7 +21,7 @@
                 flex: 1 1 auto;
                 display: flex;
                 flex-direction: column;
-                padding: 10px !important;
+                padding: 0.8rem !important;
             }
 
             :host([theme="left"]) {
@@ -113,6 +113,7 @@
                 /*--_lumo-grid-selected-row-color: #89cee8 !important;*/
                 /*--_lumo-grid-secondary-border-color: #cb695d;*/
                 --_lumo-grid-selected-row-color: #e8ebef;
+                /*--lumo-size-xl: 3rem;*/
             }
 
             [part~="row"]:last-child [part~="header-cell"],
@@ -122,7 +123,7 @@
 
                 font-size: var(--lumo-font-size-s);
                 border-bottom: 1px solid var(--lumo-shade-5pct);
-                --lumo-font-size-s: 10px;
+
             }
 
             :host(:not([theme~="no-row-borders"])) [part~="cell"]:not([part~="details-cell"]) {
@@ -168,28 +169,13 @@
     <template>
         <style>
             [part="label"]:not([empty]) {
-               --lumo-font-size-m: 0.8em;
-               font-size: 0.7em;
+               --lumo-font-size-m: 0.8rem;
+               font-size: 0.7rem;
             }
         </style>
     </template>
 
 </dom-module>
-
-<dom-module id="app-menu-for-sfran" theme-for="app-menu">
-    <template>
-        <style>
-            :host{
-                --app-menu-background-color: red!important;
-                background-color: #ef6c00;
-            }
-
-
-        </style>
-    </template>
-
-</dom-module>
-
 
 <!-- shared styles for all views -->
 <dom-module id="shared-styles">
@@ -281,11 +267,11 @@
                 flex: auto;
             }
             vaadin-tabs.row {
-            margin-top: 20px;
+            margin-top: 1rem;
             background-color: #e8ebef !important;
 
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
+            border-top-left-radius: 0.2rem;
+            border-top-right-radius: 0.2rem;
 
 
             }
@@ -337,11 +323,11 @@
         .v-system-error .caption,
         .v-system-error .message,
         .v-reconnect-dialog .text {
-            width: 30em;
+            width: 1.8rem;
             max-width: 100%;
             padding: var(--lumo-space-xl);
             background: var(--lumo-base-color);
-            border-radius: 4px;
+            border-radius: .25rem;
             text-align: center;
         }
 
@@ -363,7 +349,7 @@
             position: fixed !important;
             width: 50%;
             opacity: 0.6;
-            height: 4px;
+            height: 0.25rem;
             background: var(--lumo-primary-color);
             transition: none;
             animation: v-progress-start 1000ms 200ms both;
@@ -383,19 +369,23 @@
 
             /*--lumo-base-color: #efefef;*/
             /*--lumo-font-family: 'Open Sans', 'Trebuchet MS', arial, sans-serif !important;*/
-            --lumo-font-size: 1em;
-            --lumo-font-size-s: 0.8em !important;
-            --lumo-font-size-m: 0.9em !important;
-            --lumo-font-size-l: 1.1em !important;
-            --lumo-font-size-xl: 1.2em !important;
-            --lumo-size-m: 18px;
-            --lumo-text-field-size: 100px;
-            --lumo-icon-size-m: 1.2em !important;
+
+            --lumo-font-size: 0.8rem !important;
+
+            --lumo-font-size-s: 0.70rem !important;
+            --lumo-font-size-m: 0.75rem !important;
+            --lumo-font-size-l: 0.85rem !important;
+            --lumo-font-size-xl: 1.0rem !important;
+
+            --lumo-line-height-m: 1.2rem!important;
+
+            --lumo-size-m: 1.4rem!important;
+            --lumo-text-field-size: 12rem!important;
+            --lumo-icon-size-m: 1.2rem !important;
+
             /*--lumo-primary-color-10pct: #90a4cb !important;*/
             /*--lumo-body-text-color: #fff;*/
             /*--lumo-primary-text-color: #1676f3;*/
-
-
         }
 
         .custom-select{
@@ -420,18 +410,15 @@
 
         .custom-select-titulo{
             font-weight: bold;
-            font-size: 14px;
+            font-size: 0.9rem;
             border-bottom: thin #3c3f41 solid;
             width: 100%;
 
         }
         vaadin-checkbox{
-            font-size: 5px;
+            font-size: 0.5rem;
         }
 
-        app-menu{
-            --app-menu-background-color: #cb695d;
-        }
 
 
     </style>

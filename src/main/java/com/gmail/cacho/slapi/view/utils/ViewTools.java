@@ -53,6 +53,7 @@ public class ViewTools {
         t.setEnabled(enabled);
         //t.setHeight(alto);
         t.setClassName("text");
+        t.setRequiredIndicatorVisible(true);
 
         return t;
     }

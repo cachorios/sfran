@@ -6,6 +6,7 @@ import com.gmail.cacho.slbase.core.Constantes;
 import com.gmail.cacho.slbase.view.excepciones.DataErrorException;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
+import javax.persistence.OptimisticLockException;
 import javax.validation.ConstraintViolationException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ public class PersistenceExceptionUtil {
      */
     public static boolean isOptimisticLockingException(Exception exception) {
         return ((ExceptionUtils.indexOfThrowable(exception, javax.persistence.OptimisticLockException.class) != -1) || (
-                ExceptionUtils.indexOfThrowable(exception, org.apache.openjpa.persistence.OptimisticLockException.class)
+                ExceptionUtils.indexOfThrowable(exception, OptimisticLockException.class)
                         != -1));
     }
 

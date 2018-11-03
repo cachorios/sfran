@@ -119,11 +119,11 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.openjpa/openjpa-all -->
-        <dependency>
-            <groupId>org.apache.openjpa</groupId>
-            <artifactId>openjpa-all</artifactId>
-            <version>LATEST</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.openjpa</groupId>-->
+            <!--<artifactId>openjpa-all</artifactId>-->
+            <!--<version>LATEST</version>-->
+        <!--</dependency>-->
 
         <dependency><!-- manejo de eventos google guava -->
             <groupId>com.google.guava</groupId>
@@ -192,12 +192,12 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
         </dependency>
-        <!--No incluido en java 9-->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.0</version>
-        </dependency>
+        <!--&lt;!&ndash;No incluido en java 9&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>javax.xml.bind</groupId>-->
+            <!--<artifactId>jaxb-api</artifactId>-->
+            <!--<version>2.3.0</version>-->
+        <!--</dependency>-->
 
         <!-- Getter Setter -->
         <dependency>

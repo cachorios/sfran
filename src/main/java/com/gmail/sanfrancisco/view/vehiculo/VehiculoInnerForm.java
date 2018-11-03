@@ -109,30 +109,33 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
         fecha.setRequired(true);
 
         form.add(
-                envolver(id),
+                envolver(id, "75%"),
+                envolver(dominio, "10%"),
+                envolver(anio, "10%"),
 
-                envolver(tipoVehiculo,     "32%"),
-                envolver(modelo,        "32%"),
-                envolver(dominio,       "32%"),
+                envolver(tipoVehiculo,     "30%"),
+                envolver(marca, "32%"),
+                envolver(modelo,        "35%"),
 
-                envolver(maxCabezas,"48%"),
-                envolver(cargaMax, "48%"),
+
+
+                envolver(numeroMotor,"40%"),
+                envolver(numeroChasis,"40%"),
+                envolver(color, "17%"),
+
+                envolver(tara, "14%"),
+                envolver(alto, "14%"),
+                envolver(largo, "14%"),
+                envolver(ancho, "14%"),
+                envolver(maxCabezas,"14%"),
+                envolver(cargaMax, "14%"),
+
+
+
+
 
                 envolver(tipoCombustible, "48%"),
                 envolver(consumoCombustible, "48%"),
-
-                envolver(alto, "32%"),
-                envolver(largo, "32%"),
-                envolver(ancho, "32%"),
-
-                envolver(tara, "28%"),
-
-                envolver(numeroMotor,"48%"),
-                envolver(numeroChasis,"48%"),
-
-                envolver(color, "32%"),
-                envolver(marca, "32%"),
-                envolver(anio, "32%"),
 
                 envolver(estadoVehiculo, "48%"),
                 envolver(fecha, "48%")
@@ -149,6 +152,11 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
                 .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
                 .withNullRepresentation(0l)
                 .bind(Vehiculo::getId, null);
+
+        binder.forField(anio)
+                .withConverter(new StringToIntegerConverter( "No es un nro válido."))
+                .withNullRepresentation(0)
+                .bind(Vehiculo::getAnio, Vehiculo::setAnio);
 
         binder.bind(tipoVehiculo, Vehiculo::getTipoVehiculo, Vehiculo::setTipoVehiculo);
 
@@ -190,12 +198,12 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
                 .withNullRepresentation(0.0)
                 .bind(Vehiculo::getAncho, Vehiculo::setAncho);
 
+
+        binder.bind(color, Vehiculo::getColor, Vehiculo::setColor);
+
         binder.bind(marca, Vehiculo::getMarca, Vehiculo::setMarca);
 
-        binder.forField(anio)
-                .withConverter(new StringToIntegerConverter( "No es un nro válido."))
-                .withNullRepresentation(0)
-                .bind(Vehiculo::getAnio, Vehiculo::setAnio);
+
 
 
         binder.bind(estadoVehiculo, Vehiculo::getEstadoVehiculo, Vehiculo::setEstadoVehiculo);

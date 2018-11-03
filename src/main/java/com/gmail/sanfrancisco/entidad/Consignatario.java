@@ -36,4 +36,8 @@ public @Data class Consignatario extends AbstractEntidad {
     @NotNull
     @Size(min=10, max=50, message="El correo electronico debe contener entre 10 y 50 caracteres.")
     private String email;
+
+    public String toString() {
+        return getNombre();
+    }
 }

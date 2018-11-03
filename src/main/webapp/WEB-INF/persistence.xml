@@ -5,7 +5,7 @@
 
     <persistence-unit name="default" transaction-type="JTA">
 
-        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+        <!--<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>-->
         <jta-data-source>jdbc/PostgreDS</jta-data-source>
 
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
