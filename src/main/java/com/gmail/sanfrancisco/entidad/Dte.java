@@ -2,10 +2,9 @@ package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.backend.entidad.Parametro;
-import lombok.AccessLevel;
+
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,13 +15,13 @@ import java.util.List;
 
 
 @Entity
-public @Data class  Dte extends AbstractEntidad {
+public  @Data class  Dte extends AbstractEntidad {
 
 
 
     @NotNull
     @Size(min=4, max=4, message="El numero de tropa debe contener 4 caracteres.")
-//    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
+
     private String numeroTropa;
 
     @NotNull

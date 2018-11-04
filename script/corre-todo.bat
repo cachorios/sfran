@@ -31,6 +31,9 @@ rem -- MIGRACION DE LOS DATOS      --
 rem ---------------------------------
 rem psql -d sfran -U postgres -f "db-pgsql-common.sql"
 
+psql -d sfran -U postgres -f "USUARIOS.sql"
+
+
 psql -d sfran -U postgres -f "db-pgsql-data.sql"
 psql -d sfran -U postgres -f "MENU.sql"
 psql -d sfran -U postgres -f "PROVINCIASNUEVO.sql"
@@ -48,8 +51,8 @@ psql -d sfran -U postgres -f "TIPOMOVIL.sql"
 psql -d sfran -U postgres -f "IMPUESTO.sql"
 psql -d sfran -U postgres -f "UNIDAD.sql"
 
-psql -d sfran -U postgres -f "COMISIONISTA.sql"
 psql -d sfran -U postgres -f "CONDUCTOR.sql"
+psql -d sfran -U postgres -f "COMISIONISTA.sql"
 psql -d sfran -U postgres -f "CONSIGNATARIO.sql"
 psql -d sfran -U postgres -f "INSUMO.sql"
 
@@ -73,8 +76,8 @@ psql -d sfran -U postgres -f "IMPUESTOCOSTOVEHICULO.sql"
 
 
 rem ---------------------------------
-psql -d sfran -U postgres -f "USUARIOS.sql"
-psql -d sfran -U postgres -f "AFIP.sql"
+
+rem psql -d sfran -U postgres -f "AFIP.sql"
 
 
 rem ---------------------------------

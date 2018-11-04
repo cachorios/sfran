@@ -2,15 +2,22 @@ package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.backend.entidad.Parametro;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
+
+
 @Data
+@EqualsAndHashCode(exclude="dte")
 public class DteDetalleCategoria extends AbstractEntidad {
 
     @ManyToOne
@@ -40,6 +47,5 @@ public class DteDetalleCategoria extends AbstractEntidad {
 
     @NotNull
     private Double porcentajeComision;
-
 
 }

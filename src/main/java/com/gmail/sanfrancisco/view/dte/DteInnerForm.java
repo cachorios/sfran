@@ -241,6 +241,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .setWidth("10%");
 
         List a = this.getPresentable().getObjetoActivo().getCategorias();
+
         categoriaGrid.setItems(this.getPresentable().getObjetoActivo().getCategorias());
 
         return categoriaGrid;

@@ -15,6 +15,8 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 
+import javax.persistence.Persistence;
+
 import static com.gmail.cacho.slapi.view.utils.ViewTools.capitalize;
 
 /**
@@ -70,6 +72,7 @@ public abstract class AbstractForm<T extends AbstractEntidad> extends AbstractPr
 
     private void bindearCampos() {
         if (getBinder() != null) {
+
             layout.bindFormFields(getBinder());
             getBinder().readBean(editItem);
         }

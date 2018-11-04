@@ -8,6 +8,7 @@ import com.gmail.cacho.slbase.core.Constantes;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,14 +17,14 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
 
     @Id
     @TableGenerator(name = "tabgen", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "tabgen")
     private Long id;
 
     @Version
     private int version;
 
     @Column(name="fechabaja")
-//    @Temporal(value = TemporalType.TIMESTAMP)
+    @Temporal(value = TemporalType.TIMESTAMP)
 //    @Convert(converter = LocalDateConverter.class)
     private Date fechabaja;
 
@@ -31,7 +32,7 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     private String usuarioalta;
 
     @Column(name="fechaalta")
-//    @Temporal(value = TemporalType.TIMESTAMP)
+    @Temporal(value = TemporalType.TIMESTAMP)
 //    @Convert(converter = LocalDateConverter.class)
     private Date fechaalta;
 
@@ -39,7 +40,7 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     private String usuarioumod;
 
     @Column(name="fechaumod")
-    //@Temporal(value = TemporalType.TIMESTAMP)
+    @Temporal(value = TemporalType.TIMESTAMP)
 //    @Convert(converter = LocalDateConverter.class)
     private Date fechaumod;
 
@@ -52,22 +53,6 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     }
 
 
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) {
-//            return true;
-//        }
-//        if(this.id == null) {
-//            return false;
-//        }
-//
-//        if (obj instanceof AbstractEntidad && obj.getClass().equals(getClass())) {
-//            return this.id.equals(((AbstractEntidad) obj).id);
-//        }
-//
-//        return false;
-//    }
-
     @Override
     public boolean equals(Object other) {
         return ((id == null) ? super.equals(other)
@@ -75,22 +60,21 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     }
 
 
-    @Override
+
+
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + Objects.hashCode(this.id);
-        return hash;
+        return (43 * 5 + (getId() == null ? 0 : getId().hashCode()));
     }
 
 
-    @PrePersist
+//    @PrePersist
     protected void setAltaData() {
         String username = Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod = (username == null) ? Constantes.SYS_CAD_UNSESION : username;
         fechaalta = fechaumod = Date.from(Instant.now());
     }
 
-    @PreUpdate
+//    @PreUpdate
     protected void setUmodData() {
         String username = Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod =  (username == null) ? Constantes.SYS_CAD_UNSESION : username;

@@ -11,35 +11,20 @@
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <!--<non-jta-data-source>jdbc/sfnontjta</non-jta-data-source>-->
 
-        <!--<validation-mode>CALLBACK</validation-mode>-->
+        <!--<validation-mode>AUTO</validation-mode>-->
         <!-- CALLBACK O AUTO -->
         <properties>
 
             <property name="hibernate.show_sql" value="true"/>
-
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
-            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='add,deleteTableContents')"/>
 
+            <property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict"/>
             <property name="openjpa.Log" value="Enhance=TRACE, DefaultLevel=WARN, Runtime=WARN, Tool=INFO, SQL=TRACE"/>
-
-
-
-            <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>  &lt;!&ndash; none create  drop-and-create drop &ndash;&gt;-->
-
-            <!--<property name="openjpa.jdbc.SynchronizeMappings"  value="buildSchema(ForeignKeys=true)"/>-->
-            <!--buildSchema-->
-            <!--buildSchema(ForeignKeys=true)-->
-            <!--buildSchema(SchemaAction='add,deleteTableContents')-->
-
-            <!--<property name="openjpa.jdbc.SynchronizeMappings" value="validate"/>-->
-
-            <!--<property name="openjpa.ConnectionURL"-->
-                      <!--value="jdbc:jdbc:postgresql://127.0.0.1/sfran"/>-->
-            <!--<property name="openjpa.ConnectionDriverName"-->
-                      <!--value="org.postgresql.Driver"/>-->
-
-
             <property name="openjpa.MetaDataRepository" value="Preload=true"/>
+
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="sFranCreate.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="sFranDrop.ddl"/>
+
         </properties>
     </persistence-unit>
 </persistence>

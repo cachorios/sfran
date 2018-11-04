@@ -1,11 +1,11 @@
-
+/*
 INSERT INTO roles (id, fechabaja, fechaumod, usuarioalta, usuarioumod, activo, descripcion, nombre, version)
 VALUES
   (1, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', TRUE, 'Rol para Administradores',     'ADMIN',     1),
   (2, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', TRUE, 'Rol para Contadores',          'CHOFER',  1),
   (3, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', TRUE, 'Rol para Usuarios Gestores',   'USUARIO',    1);
 
-
+*/
 
 
 INSERT INTO usuario
@@ -17,9 +17,10 @@ VALUES
 
 
 
-
+/*
 INSERT INTO usuario_roles (usuario, rol)
 VALUES
   (1, 1),
   (2, 2),
   (3, 3);
+*/
