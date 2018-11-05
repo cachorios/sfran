@@ -173,29 +173,16 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
         binder.forField(tara).withConverter(new DoubleConverter()).bind("tara");
 
         binder.forField(cargaMax).withConverter(new DoubleConverter()).bind("cargaMax");
-//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-//                .withNullRepresentation(0.0)
-//                .bind(Vehiculo::getCargaMax, Vehiculo::setCargaMax);
 
         binder.forField(consumoCombustible).withConverter(new DoubleConverter()).bind("consumoCombustible");
-//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-//                .withNullRepresentation(0.0)
-//                .bind(Vehiculo::getConsumoCombustible, Vehiculo::setConsumoCombustible);
 
         binder.forField(alto).withConverter(new DoubleConverter()).bind("alto");
-//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-//                .withNullRepresentation(0.0)
-//                .bind(Vehiculo::getAlto, Vehiculo::setAlto);
+
 
         binder.forField(largo).withConverter(new DoubleConverter()).bind("largo");
-//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-//                .withNullRepresentation(0.0)
-//                .bind(Vehiculo::getLargo, Vehiculo::setLargo);
 
         binder.forField(ancho).withConverter(new DoubleConverter()).bind("ancho");
-//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-//                .withNullRepresentation(0.0)
-//                .bind(Vehiculo::getAncho, Vehiculo::setAncho);
+
 
 
         binder.bind(color, "color");
