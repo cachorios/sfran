@@ -2,6 +2,7 @@ package com.gmail.cacho.slapi.view.controllers;
 
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.backend.jpa.PersistenceExceptionUtil;
 import com.gmail.cacho.backend.jpa.ServicioModelo;
 import com.gmail.cacho.slapi.Sistema;
 import com.gmail.cacho.slapi.comunes.C;
@@ -13,6 +14,7 @@ import com.gmail.cacho.slbase.core.enums.ENivelAplicacion;
 import com.gmail.cacho.slbase.logging.L;
 import com.gmail.cacho.slbase.persist.excepciones.UserFriendlyDataException;
 import com.gmail.cacho.slbase.view.excepciones.VistaErrorException;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.binder.ValidationResult;
@@ -93,8 +95,24 @@ public abstract class AbstractPresenterForm<T extends AbstractEntidad, S extends
                 Sistema.getSistema().mostrarMensaje(ENivelAplicacion.ERROR, C.MSJ_ERR_DB_VERIFYFIELD, e.getMessage());
                 L.info(C.MSJ_ERR_DB_VERIFYFIELD, item.getClass().getName().concat(C.SYS_CAD_LOGSEP).concat(e.getMessage()));
             } catch (Exception e) {
-                Sistema.getSistema().mostrarMensaje(ENivelAplicacion.ERROR, C.MSJ_ERR_DB_ATSAVEDATA, e.getMessage());
-                L.info(C.MSJ_ERR_DB_ATSAVEDATA, item.getClass().getName().concat(C.SYS_CAD_LOGSEP).concat(e.getMessage()));
+                if (PersistenceExceptionUtil.isOptimisticLockingException(e)) {
+                    Sistema.getSistema().mostrarMensaje(ENivelAplicacion.ERROR, C.MSJ_ERR_DB_ATSAVEDATA, "Alguien más pudo haber actualizado los datos. Actualiza e inténtalo de nuevo.");
+                    L.info(C.MSJ_ERR_DB_ATSAVEDATA, "Optimistic locking error while saving entity of type " + item.getClass().getName() );
+                    //"Optimistic locking error while saving entity of type " + editItem.getClass().getName()
+
+                } else if (PersistenceExceptionUtil.isConstraintViolationException(e)) {
+                    // Should not get here if validation is setup properly
+                    Sistema.getSistema().mostrarMensaje(ENivelAplicacion.ERROR, C.MSJ_ERR_DB_ATSAVEDATA, "Compruebe el contenido de los campos: " + e.getMessage());
+                    L.info(C.MSJ_ERR_DB_ATSAVEDATA, "Error de violación de restricción durante el salvado de la entidad " + item.getClass().getName()+" | " + e.getLocalizedMessage());
+
+                } else {
+                    // Something went wrong, no idea what
+                    Sistema.getSistema().mostrarMensaje(ENivelAplicacion.ERROR, C.MSJ_ERR_DB_ATSAVEDATA, "Se ha producido un problema al guardar los datos. Por favor verifique los campos"  );
+                    L.info(C.MSJ_ERR_DB_ATSAVEDATA, "Se ha producido un problema al guardar los datos. Por favor verifique los campos  " + item.getClass().getName()+" | " + e.getLocalizedMessage());
+
+                }
+
+
             }
         }
 

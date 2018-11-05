@@ -53,21 +53,7 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     }
 
 
-    @Override
-    public boolean equals(Object other) {
-        return ((id == null) ? super.equals(other)
-                : (this == other || ((other instanceof AbstractEntidad) && id.equals(((AbstractEntidad) other).getId()))));
-    }
-
-
-
-
-    public int hashCode() {
-        return (43 * 5 + (getId() == null ? 0 : getId().hashCode()));
-    }
-
-
-//    @PrePersist
+    //    @PrePersist
     protected void setAltaData() {
         String username = Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod = (username == null) ? Constantes.SYS_CAD_UNSESION : username;

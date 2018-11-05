@@ -21,7 +21,6 @@ public @Data class Vehiculo extends AbstractEntidad {
     @Size(min=3, max=50, message="El dominio debe contener entre 3 y 50 caracteres.")
     private String dominio;
 
-    @NotBlank
     @NotNull(message = "El año es obligatorio")
     private Integer anio;
 

@@ -90,7 +90,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     @Override
     protected void generarForm(Div form) {
-        setWidth("1100px");
+        setWidth("900px");
 
         numeroTropa = textField("Numero de tropa","30%");
 

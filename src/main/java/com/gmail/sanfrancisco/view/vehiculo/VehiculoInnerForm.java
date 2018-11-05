@@ -4,6 +4,8 @@ import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.converter.DoubleConverter;
+import com.gmail.sanfrancisco.converter.IntegerConverter;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.entidad.Vehiculo;
 import com.vaadin.flow.component.Focusable;
@@ -12,9 +14,11 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
+
 import com.vaadin.flow.data.converter.StringToDoubleConverter;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.data.converter.StringToLongConverter;
+
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.dateField;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
@@ -148,65 +152,55 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
 
     @Override
     public void bindFormFields(BeanValidationBinder<Vehiculo> binder) {
+
         binder.forField(id)
                 .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
                 .withNullRepresentation(0l)
                 .bind(Vehiculo::getId, null);
 
-        binder.forField(anio)
-                .withConverter(new StringToIntegerConverter( "No es un nro válido."))
-                .withNullRepresentation(0)
-                .bind(Vehiculo::getAnio, Vehiculo::setAnio);
 
-        binder.bind(tipoVehiculo, Vehiculo::getTipoVehiculo, Vehiculo::setTipoVehiculo);
+        binder.forField(anio).withConverter(new IntegerConverter())
+                .asRequired("Este dato es requerido")
+                .bind("anio");
 
-        binder.bind(tipoCombustible, Vehiculo::getTipoCombustible, Vehiculo::setTipoCombustible);
+        anio.setPreventInvalidInput(true);
 
-
-        binder.forField(maxCabezas)
-                .withConverter(new StringToIntegerConverter( "No es un nro válido."))
-                .withNullRepresentation(0)
-                .bind(Vehiculo::getMaxCabezas, Vehiculo::setMaxCabezas);
-
-        binder.forField(tara)
-                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getTara, Vehiculo::setTara);
-
-        binder.forField(cargaMax)
-                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getCargaMax, Vehiculo::setCargaMax);
-
-        binder.forField(consumoCombustible)
-                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getConsumoCombustible, Vehiculo::setConsumoCombustible);
-
-        binder.forField(alto)
-                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getAlto, Vehiculo::setAlto);
-
-        binder.forField(largo)
-                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getLargo, Vehiculo::setLargo);
-
-        binder.forField(ancho)
-                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-                .withNullRepresentation(0.0)
-                .bind(Vehiculo::getAncho, Vehiculo::setAncho);
+        binder.bind(tipoVehiculo,"tipoVehiculo");
+        binder.bind(tipoCombustible, "tipoCombustible");
+        binder.forField(maxCabezas).withConverter(new IntegerConverter()).bind("maxCabezas");
 
 
-        binder.bind(color, Vehiculo::getColor, Vehiculo::setColor);
+        binder.forField(tara).withConverter(new DoubleConverter()).bind("tara");
 
-        binder.bind(marca, Vehiculo::getMarca, Vehiculo::setMarca);
+        binder.forField(cargaMax).withConverter(new DoubleConverter()).bind("cargaMax");
+//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
+//                .withNullRepresentation(0.0)
+//                .bind(Vehiculo::getCargaMax, Vehiculo::setCargaMax);
+
+        binder.forField(consumoCombustible).withConverter(new DoubleConverter()).bind("consumoCombustible");
+//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
+//                .withNullRepresentation(0.0)
+//                .bind(Vehiculo::getConsumoCombustible, Vehiculo::setConsumoCombustible);
+
+        binder.forField(alto).withConverter(new DoubleConverter()).bind("alto");
+//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
+//                .withNullRepresentation(0.0)
+//                .bind(Vehiculo::getAlto, Vehiculo::setAlto);
+
+        binder.forField(largo).withConverter(new DoubleConverter()).bind("largo");
+//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
+//                .withNullRepresentation(0.0)
+//                .bind(Vehiculo::getLargo, Vehiculo::setLargo);
+
+        binder.forField(ancho).withConverter(new DoubleConverter()).bind("ancho");
+//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
+//                .withNullRepresentation(0.0)
+//                .bind(Vehiculo::getAncho, Vehiculo::setAncho);
 
 
-
-
-        binder.bind(estadoVehiculo, Vehiculo::getEstadoVehiculo, Vehiculo::setEstadoVehiculo);
+        binder.bind(color, "color");
+        binder.bind(marca, "marca");
+        binder.bind(estadoVehiculo, "estadoVehiculo");
 
         binder.forField(fecha)
                 .withConverter(new LocalDateADateConverter())
