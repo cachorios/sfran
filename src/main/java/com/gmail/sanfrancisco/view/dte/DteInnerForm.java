@@ -6,6 +6,7 @@ import com.gmail.cacho.backend.views.csselect.LocalidadCS;
 import com.gmail.cacho.slapi.view.customs.params.ParamCSDataProvider;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.cacho.slapi.view.utils.ViewTools;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.dataProvider.VehiculolDataProvider;
 import com.gmail.sanfrancisco.entidad.Dte;
@@ -213,6 +214,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
                 envolver(patenteJaula,"48%"),
                 envolver(titular,"48%")*/
+            , generarTituloSeccion("Categoria//s")
             , getCategoriaGrid()
 
         );
@@ -222,6 +224,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     private Grid getCategoriaGrid(){
         categoriaGrid = new Grid<>();
+        categoriaGrid.setHeight("8rem");
         categoriaGrid.addColumn(DteDetalleCategoria::getProductor)
                 .setHeader("Prodcutor")
                 .setWidth("20%")
