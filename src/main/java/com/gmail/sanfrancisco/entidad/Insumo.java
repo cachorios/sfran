@@ -26,4 +26,9 @@ public @Data class Insumo extends AbstractEntidad {
     @NotNull
     @ManyToOne
     private Parametro unidadMedida;
+
+    @Override
+    public String toString() {
+        return getDescripcion();
+    }
 }

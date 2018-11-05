@@ -117,15 +117,16 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
                 envolver(dominio, "10%"),
                 envolver(anio, "10%"),
 
+
                 envolver(tipoVehiculo,     "30%"),
                 envolver(marca, "32%"),
                 envolver(modelo,        "35%"),
 
 
-
                 envolver(numeroMotor,"40%"),
                 envolver(numeroChasis,"40%"),
                 envolver(color, "17%"),
+
 
                 envolver(tara, "14%"),
                 envolver(alto, "14%"),
@@ -135,11 +136,9 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
                 envolver(cargaMax, "14%"),
 
 
-
-
-
                 envolver(tipoCombustible, "48%"),
                 envolver(consumoCombustible, "48%"),
+
 
                 envolver(estadoVehiculo, "48%"),
                 envolver(fecha, "48%")
@@ -162,49 +161,33 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
         binder.forField(anio).withConverter(new IntegerConverter())
                 .asRequired("Este dato es requerido")
                 .bind("anio");
-
         anio.setPreventInvalidInput(true);
 
+
         binder.bind(tipoVehiculo,"tipoVehiculo");
-        binder.bind(tipoCombustible, "tipoCombustible");
-        binder.forField(maxCabezas).withConverter(new IntegerConverter()).bind("maxCabezas");
-
-
-        binder.forField(tara).withConverter(new DoubleConverter()).bind("tara");
-
-        binder.forField(cargaMax).withConverter(new DoubleConverter()).bind("cargaMax");
-//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-//                .withNullRepresentation(0.0)
-//                .bind(Vehiculo::getCargaMax, Vehiculo::setCargaMax);
-
-        binder.forField(consumoCombustible).withConverter(new DoubleConverter()).bind("consumoCombustible");
-//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-//                .withNullRepresentation(0.0)
-//                .bind(Vehiculo::getConsumoCombustible, Vehiculo::setConsumoCombustible);
-
-        binder.forField(alto).withConverter(new DoubleConverter()).bind("alto");
-//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-//                .withNullRepresentation(0.0)
-//                .bind(Vehiculo::getAlto, Vehiculo::setAlto);
-
-        binder.forField(largo).withConverter(new DoubleConverter()).bind("largo");
-//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-//                .withNullRepresentation(0.0)
-//                .bind(Vehiculo::getLargo, Vehiculo::setLargo);
-
-        binder.forField(ancho).withConverter(new DoubleConverter()).bind("ancho");
-//                .withConverter(new StringToDoubleConverter( "No es un nro válido."))
-//                .withNullRepresentation(0.0)
-//                .bind(Vehiculo::getAncho, Vehiculo::setAncho);
+        binder.bind(marca, "marca");
 
 
         binder.bind(color, "color");
-        binder.bind(marca, "marca");
-        binder.bind(estadoVehiculo, "estadoVehiculo");
 
+
+        binder.forField(tara).withConverter(new DoubleConverter()).bind("tara");
+        binder.forField(alto).withConverter(new DoubleConverter()).bind("alto");
+        binder.forField(largo).withConverter(new DoubleConverter()).bind("largo");
+        binder.forField(ancho).withConverter(new DoubleConverter()).bind("ancho");
+        binder.forField(maxCabezas).withConverter(new IntegerConverter()).bind("maxCabezas");
+        binder.forField(cargaMax).withConverter(new DoubleConverter()).bind("cargaMax");
+
+
+        binder.bind(tipoCombustible, "tipoCombustible");
+        binder.forField(consumoCombustible).withConverter(new DoubleConverter()).bind("consumoCombustible");
+
+
+        binder.bind(estadoVehiculo, "estadoVehiculo");
         binder.forField(fecha)
                 .withConverter(new LocalDateADateConverter())
                 .bind(Vehiculo::getFecha, Vehiculo::setFecha);
+
 
         binder.bindInstanceFields(this);
     }
