@@ -8,7 +8,7 @@
 v.dominio,
 tv.nombre AS descTipoMovil,
 v.modelo,
-v.anno,
+v.anio,
 tc.nombre AS descTipoCombustible,
 v.maxcabezas,
 v.cargamax
@@ -27,8 +27,8 @@ ON v.tipocombustible_id=tc.id AND tc.tipo=17]]>
 	<field name="modelo" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="modelo"/>
 	</field>
-	<field name="anno" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="anno"/>
+	<field name="anio" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="anio"/>
 	</field>
 	<field name="desctipocombustible" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="desctipocombustible"/>
@@ -160,7 +160,7 @@ ON v.tipocombustible_id=tc.id AND tc.tipo=17]]>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{anno}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement stretchType="ContainerHeight" x="545" y="0" width="100" height="15" isRemoveLineWhenBlank="true" uuid="e46d6a9f-6cbd-48b6-8804-582ea9002cb0">

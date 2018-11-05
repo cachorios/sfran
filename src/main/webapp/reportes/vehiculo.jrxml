@@ -15,11 +15,11 @@ v.dominio,
 v.modelo,
 c.nombre AS color,
 tc.nombre AS tipoCombustible,
-v.anno,
+v.anio,
 v.maxcabezas,
 v.tara,
 v.cargamax,
-v.consumo,
+v.consumoCombustible,
 v.alto,
 v.ancho,
 v.numeromotor,
@@ -58,8 +58,8 @@ WHERE
 	<field name="tipocombustible" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="tipocombustible"/>
 	</field>
-	<field name="anno" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="anno"/>
+	<field name="anio" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="anio"/>
 	</field>
 	<field name="maxcabezas" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="maxcabezas"/>
@@ -70,8 +70,8 @@ WHERE
 	<field name="cargamax" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="cargamax"/>
 	</field>
-	<field name="consumo" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="consumo"/>
+	<field name="consumocombustible" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="consumocombustible"/>
 	</field>
 	<field name="alto" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="alto"/>
@@ -190,7 +190,7 @@ WHERE
 				<textElement verticalAlignment="Middle" markup="styled">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{consumo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{consumocombustible}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="280" y="237" width="160" height="19" uuid="285ceb42-05c3-446c-94f3-e620eb4af309"/>
@@ -211,7 +211,7 @@ WHERE
 				<textElement verticalAlignment="Middle" markup="styled">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{anno}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="256" width="100" height="19" uuid="8ff8ab9e-571d-4512-b8a3-b579773fe0f8"/>

@@ -38,6 +38,6 @@ public class VehiculoInnerList extends DefaultInnerListPolymer<Vehiculo> {
     }
 
     private StreamResource createPdf() {
-        return new ReporteCreator().streamResourceReport("/consignatarios.jrxml", crearMapaFechas(), "consignatarios");
+        return new ReporteCreator().streamResourceReport("/vehiculos.jrxml", crearMapaFechas(), "vehiculos");
     }
 }

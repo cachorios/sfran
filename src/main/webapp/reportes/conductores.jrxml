@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="conductores" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sfran"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<queryString>
 		<![CDATA[SELECT
 c.nombre,
-c.apellido,
 c.dni,
 c.cuil,
 c.fechanacimiento,
@@ -14,14 +13,10 @@ c.fechaingreso,
 c.telefono,
 c.celular
 FROM
-public.conductor AS c
-]]>
+public.conductor AS c]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
-	</field>
-	<field name="apellido" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="apellido"/>
 	</field>
 	<field name="dni" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="dni"/>
@@ -133,7 +128,7 @@ public.conductor AS c
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre} + " " + $F{apellido}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="240" y="0" width="80" height="15" uuid="5e18d6bd-8a64-4a35-8ce2-d158f81f5807">

@@ -13,7 +13,7 @@ insumo AS i
 INNER JOIN parametro AS t
 ON i.tipoinsumo_id=t.id AND t.tipo=18
 INNER JOIN parametro AS u
-ON i.unidad_id=u.id AND u.tipo=23]]>
+ON i.unidadmedida_id=u.id AND u.tipo=23]]>
 	</queryString>
 	<field name="descripcion" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>

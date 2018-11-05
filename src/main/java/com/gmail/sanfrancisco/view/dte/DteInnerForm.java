@@ -2,11 +2,14 @@ package com.gmail.sanfrancisco.view.dte;
 
 import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.backend.enumeradores.ETipoParametro;
+import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.backend.views.csselect.LocalidadCS;
 import com.gmail.cacho.slapi.view.customs.params.ParamCSDataProvider;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.cacho.slapi.view.utils.ViewTools;
+import com.gmail.sanfrancisco.converter.DoubleConverter;
+import com.gmail.sanfrancisco.converter.IntegerConverter;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.dataProvider.VehiculolDataProvider;
 import com.gmail.sanfrancisco.entidad.Dte;
@@ -20,6 +23,7 @@ import com.vaadin.flow.component.HasValue;
 
 import com.vaadin.flow.component.combobox.ComboBox;
 
+import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 
@@ -47,13 +51,14 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private LocalidadCS localidadOrigen;
     private LocalidadCS localidadDestino;
 
-    private ComboBox<Vehiculo> vehiculoComboBox;
     private ConductorCS conductorCS;
+    private ComboBox<Vehiculo> vehiculoComboBox;
+    private TextField patenteJaula;
+
 
     private TextField titular;
 
     private ComisionistaCS comisionistaCS;
-
     private ConsignatarioCS consignatarioCS;
 
     private TextField cantidad;
@@ -64,20 +69,16 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private TextField kmSalida;
     private TextField kmLlegada;
 
-//    private DatePicker fechaCarga;
-//    private DatePicker fechaVencimiento;
+    private DatePicker fechaCarga;
+    private DatePicker fechaVencimiento;
 
-
-
-
-//    private TextField entrega;
-
-    /*private TextField totalComisionista;
+    private TextField entrega;
+    private TextField totalComisionista;
     private TextField ajustes;
 
 
 
-    private TextField patenteJaula; */
+
 
 //    private DteDetalleCategoriaList dteDetalleCategoriaList;
     private Grid<DteDetalleCategoria> categoriaGrid;
@@ -95,42 +96,60 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         numeroTropa = textField("Numero de tropa","30%");
 
-        ParametroVarioDataProvider dpPcia= getObject(ParametroVarioDataProvider.class);
+        ParametroVarioDataProvider dpPcia = getObject(ParametroVarioDataProvider.class);
         dpPcia.setTipo(ETipoParametro.PROVINCIA);
 
         pciaOrigen = new ComboBox("Provincia Origen");
         pciaOrigen.setDataProvider(dpPcia);
         pciaOrigen.addValueChangeListener(e-> {this.pciaChanged(e, localidadOrigen);});
-        localidadOrigen = new LocalidadCS("Localidad", getPresentable());
+        localidadOrigen = new LocalidadCS("Localidad origen", getPresentable());
 
         pciaDestino = new ComboBox("Provincia Destino");
         pciaDestino.setDataProvider(dpPcia);
         pciaDestino.addValueChangeListener(e-> {this.pciaChanged(e, localidadDestino);});
-        localidadDestino = new LocalidadCS("Localidad", getPresentable());
+        localidadDestino = new LocalidadCS("Localidad destino", getPresentable());
+
+
+        conductorCS = new ConductorCS("Conductor", getPresentable(), true, true, true);
 
         vehiculoComboBox = new ComboBox<>("Vehiculo");
         vehiculoComboBox.setDataProvider(CDI.current().select(VehiculolDataProvider.class).get() );
-        conductorCS = new ConductorCS("Conductor", getPresentable(), true, true, true);
 
+        patenteJaula = textField("Patente de jaula");
 
 
         titular = textField("Titular");
 
+
         comisionistaCS = new ComisionistaCS("Comisionista", getPresentable(),true,true, true);
+        consignatarioCS = new ConsignatarioCS("Consignatario", getPresentable(),true,true, true);
 
 
+        cantidad = textField("Cantidad");
         especie = new ComboBox("Especie");
         especie.setWidth("100%");
         ParametroVarioDataProvider dpEspecie = getObject(ParametroVarioDataProvider.class);
         dpEspecie.setTipo(ETipoParametro.ESPECIES);
         especie.setDataProvider(dpEspecie);
-
-        cantidad = textField("Cantidad");
         peso = textField("Peso");
 
 
         kmSalida = textField("Kilometros salida");
         kmLlegada = textField("Kilometros llegada");
+
+
+        fechaCarga = new DatePicker("Fecha de carga");
+        fechaCarga.setWidth("48%");
+        fechaCarga.setRequired(true);
+
+        fechaVencimiento = new DatePicker("Fecha de vencimiento");
+        fechaVencimiento.setWidth("48%");
+        fechaVencimiento.setRequired(true);
+
+
+        entrega = textField("Entrega en efectivo");
+        totalComisionista = textField("Total de comisionista");
+        ajustes = textField("Ajustes");
 
 //        dteDetalleCategoriaList = CDI.current().select(DteDetalleCategoriaList.class).get();
 //        dteDetalleCategoriaList.iniciar(EModoVista.EDITAR, null);
@@ -143,79 +162,43 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 ////
 //        detalle.add(btnAdd,new DteDetalle());
 
-     /*   entrega = textField("Entrega en efectivo");
-        totalComisionista = textField("Total a comisionista");
-        ajustes = textField("Ajustes");
-
-
-        fechaCarga = new DatePicker("Fecha de carga");
-        fechaCarga.setWidth("100%");
-        fechaCarga.setRequired(true);
-
-        fechaVencimiento = new DatePicker("Fecha de vencimiento");
-        fechaVencimiento.setWidth("100%");
-        fechaVencimiento.setRequired(true);
-
-        consignatarioCS = new ConsignatarioCS("Consignatario", getPresentable(),true,true, true);
-
-     /*   entrega = textField("Entrega en efectivo");
-        total = textField("Total de factura");
-        ajustes = textField("Ajustes");
-
-
-        ;
-
-
-
-
-
-        patenteJaula = textField("Patente de jaula");
-
-        */
-
-
-
-
-
-        consignatarioCS = new ConsignatarioCS("Consignatario", getPresentable(),true,true, true);
         form.add(
                 envolver(numeroTropa, "100%"),
 
                 //generarTituloSeccion("Origen"),
-                envolver(pciaOrigen, "20%"),
-                envolver(localidadOrigen, "29%"),
+                envolver(pciaOrigen, "18%"),
+                envolver(localidadOrigen, "32%"),
 
                 //generarTituloSeccion("Destino"),
-                envolver(pciaDestino, "20%"),
-                envolver(localidadDestino, "29%"),
+                envolver(pciaDestino, "18%"),
+                envolver(localidadDestino, "32%"),
 
-                envolver(vehiculoComboBox, "20%"),
-                envolver(conductorCS, "29%"),
+                envolver(conductorCS, "56%"),
+                envolver(vehiculoComboBox, "22%"),
+                envolver(patenteJaula,"22%"),
 
-                envolver(titular, "49%"),
 
-                envolver(comisionistaCS,"49%"),
-                envolver(consignatarioCS,"49%"),
+                envolver(titular, "100%"),
+
+                envolver(comisionistaCS,"56%"),
+                envolver(consignatarioCS,"44%"),
 
                 envolver(cantidad, "32%"),
                 envolver(especie, "32%"),
                 envolver(peso, "32%"),
 
                 envolver(kmSalida,"48%"),
-                envolver(kmLlegada,"48%")
-//
-//                envolver(fechaCarga,"48%"),
-//                envolver(fechaVencimiento,"48%"),
+                envolver(kmLlegada,"48%"),
 
-           /*     envolver(entrega,"32%"),
+                envolver(fechaCarga,"48%"),
+                envolver(fechaVencimiento,"48%"),
+
+                envolver(entrega,"32%"),
                 envolver(totalComisionista,"32%"),
                 envolver(ajustes,"32%"),
 
-
-                envolver(patenteJaula,"48%"),
-                envolver(titular,"48%")*/
-            , generarTituloSeccion("Categoria//s")
-            , getCategoriaGrid()
+                generarTituloSeccion("Categoria//s"),
+                getCategoriaGrid()
 
         );
 
@@ -227,21 +210,32 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         categoriaGrid.setHeight("8rem");
         categoriaGrid.addColumn(DteDetalleCategoria::getProductor)
                 .setHeader("Prodcutor")
-                .setWidth("20%")
+                .setWidth("22%")
                 .setFlexGrow(1)
                 .setKey("productor");
 
         categoriaGrid.addColumn(DteDetalleCategoria::getRenspa)
                 .setHeader("RENSPA")
-                .setWidth("8%")
+                .setWidth("12%")
                 .setKey("renspa");
         categoriaGrid.addColumn(DteDetalleCategoria::getCategoria)
                 .setHeader("Categoria")
-                .setWidth("15%");
-
+                .setWidth("14%");
+        categoriaGrid.addColumn(DteDetalleCategoria::getCantidad)
+                .setHeader("Cantidad")
+                .setWidth("8%");
         categoriaGrid.addColumn(DteDetalleCategoria::getKgVivo)
                 .setHeader("Kg Vivo")
-                .setWidth("10%");
+                .setWidth("12%");
+        categoriaGrid.addColumn(DteDetalleCategoria::getPrecioKgVivo)
+                .setHeader("Precio Kg Vivo")
+                .setWidth("8%");
+        categoriaGrid.addColumn(DteDetalleCategoria::getKgCarne)
+                .setHeader("Kg Carne")
+                .setWidth("12%");
+        categoriaGrid.addColumn(DteDetalleCategoria::getPorcentajeComision)
+                .setHeader("Porcentaje comision")
+                .setWidth("12%");
 
         List a = this.getPresentable().getObjetoActivo().getCategorias();
 
@@ -267,44 +261,37 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     @Override
     public void bindFormFields(BeanValidationBinder<Dte> binder) {
-        //integer
-        binder.forField(cantidad)
-                .withConverter(new StringToIntegerConverter("No es un nro válido."))
-                .withNullRepresentation(0)
-                .bind(Dte::getCantidad, Dte::setCantidad);
-        binder.forField(peso)
-                .withConverter(new StringToIntegerConverter( "No es un nro válido."))
-                .withNullRepresentation(0)
-                .bind(Dte::getPeso, Dte::setPeso);
 
-
-
-        //combos o multiples
         binder.bind(pciaOrigen, Dte::getProvinciaOrigen, Dte::setProvinciaOrigen);
         binder.bind(localidadOrigen, Dte::getLocalidadOrigen, Dte::setLocalidadOrigen);
         binder.bind(pciaDestino, Dte::getProvinciaDestino, Dte::setProvinciaDestino);
         binder.bind(localidadDestino, Dte::getLocalidadDestino, Dte::setLocalidadDestino);
-        binder.bind(especie, Dte::getEspecie, Dte::setEspecie);
+
+
         binder.bind(vehiculoComboBox, Dte::getVehiculo, Dte::setVehiculo);
 
-        binder.forField(kmSalida)
-                .withConverter(new StringToDoubleConverter("No es un nro. válido" ))
-                .withNullRepresentation(0.0)
-                .bind( Dte::getKmSalida, Dte::setKmSalida);
-
-        binder.forField(kmLlegada)
-                .withConverter(new StringToDoubleConverter("No es un nro. válido" ))
-                .withNullRepresentation(0.0)
-                .bind( Dte::getKmSalida, Dte::setKmSalida);
+        //integer
+        binder.forField(cantidad).withConverter(new IntegerConverter()).bind("cantidad");
+        binder.bind(especie, Dte::getEspecie, Dte::setEspecie);
+        binder.forField(peso).withConverter(new IntegerConverter()).bind("peso");
 
 
-//        binder.forField(fechaCarga)
-//                .withConverter(new LocalDateADateConverter())
-//                .bind(Dte::getFechaCarga, Dte::setFechaCarga);
-//
-//        binder.forField(fechaVencimiento)
-//                .withConverter(new LocalDateADateConverter())
-//                .bind(Dte::getFechaVencimiento, Dte::setFechaVencimiento);
+        binder.forField(kmSalida).withConverter(new DoubleConverter()).bind("kmSalida");
+        binder.forField(kmLlegada).withConverter(new DoubleConverter()).bind("kmLlegada");
+
+
+        binder.forField(fechaCarga)
+                .withConverter(new LocalDateADateConverter())
+                .bind("fechaCarga");
+
+        binder.forField(fechaVencimiento)
+                .withConverter(new LocalDateADateConverter())
+                .bind("fechaVencimiento");
+
+
+        binder.forField(entrega).withConverter(new DoubleConverter()).bind("importeEntrega");
+        binder.forField(totalComisionista).withConverter(new DoubleConverter()).bind("totalComisionista");
+        binder.forField(ajustes).withConverter(new DoubleConverter()).bind("ajustes");
 
         binder.bindInstanceFields(this);
     }

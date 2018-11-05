@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consignatario" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b30e4fb3-3197-4928-b100-9db8c3bca0e8">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sfran"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="p_Id" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
@@ -9,7 +9,6 @@
 	<queryString>
 		<![CDATA[SELECT
 c.nombre,
-c.apellido,
 c.domicilio,
 c.cuil,
 c.email,
@@ -18,13 +17,10 @@ c.celular
 FROM
 consignatario AS c
 WHERE 
-c.id = $P{p_Id} ]]>
+c.id = $P{p_Id}]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
-	</field>
-	<field name="apellido" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="apellido"/>
 	</field>
 	<field name="domicilio" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="domicilio"/>
@@ -82,7 +78,7 @@ c.id = $P{p_Id} ]]>
 				<textElement verticalAlignment="Middle" markup="styled">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre} + " " + $F{apellido}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="82" width="200" height="19" uuid="5cff82ce-c67d-4d06-a291-3218082b37db"/>

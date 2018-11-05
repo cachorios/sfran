@@ -20,4 +20,8 @@ public @Data class Documento extends AbstractEntidad {
     @NotNull
     @Size(min=5, max=100, message="La descripción debe contener entre 5 y 100 caracteres.")
     private String descripcion;
+
+    public String toString() {
+        return getDescripcion();
+    }
 }
