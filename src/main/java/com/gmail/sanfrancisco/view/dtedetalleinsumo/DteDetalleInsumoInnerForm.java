@@ -3,6 +3,8 @@ package com.gmail.sanfrancisco.view.dtedetalleinsumo;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.converter.DoubleConverter;
+import com.gmail.sanfrancisco.converter.IntegerConverter;
 import com.gmail.sanfrancisco.entidad.DteDetalleInsumo;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
@@ -56,15 +58,9 @@ public class DteDetalleInsumoInnerForm extends DefaultInnerDialog<DteDetalleInsu
                 .withNullRepresentation(0l)
                 .bind(DteDetalleInsumo::getId, null);
 
-        binder.forField(cantidad)
-                .withConverter(new StringToIntegerConverter("No es un nro válido."))
-                .withNullRepresentation(0)
-                .bind(DteDetalleInsumo::getCantidad, DteDetalleInsumo::setCantidad);
+        binder.forField(cantidad).withConverter(new IntegerConverter()).bind("cantidad");
 
-        binder.forField(precio)
-                .withConverter(new StringToDoubleConverter("No es un nro válido."))
-                .withNullRepresentation(0.0)
-                .bind(DteDetalleInsumo::getPrecio, DteDetalleInsumo::setPrecio);
+        binder.forField(precio).withConverter(new DoubleConverter()).bind("precio");
 
         binder.bindInstanceFields(this);
     }

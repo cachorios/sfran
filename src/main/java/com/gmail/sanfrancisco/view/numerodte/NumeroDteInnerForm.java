@@ -16,7 +16,7 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 public class NumeroDteInnerForm extends DefaultInnerDialog<NumeroDte> {
 
     private TextField id;
-    private TextField descripcion;
+    private TextField numero;
 
     public NumeroDteInnerForm(IPresentableForm<NumeroDte> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -26,16 +26,16 @@ public class NumeroDteInnerForm extends DefaultInnerDialog<NumeroDte> {
     protected void generarForm(Div form) {
         id = textField("ID");
         id.setPreventInvalidInput(true);
-        descripcion = textField("Descripción");
+        numero = textField("Numero");
 
         form.add(
                 envolver(id, "30%"),
-                envolver(descripcion, "50%")
+                envolver(numero, "50%")
         );
     }
 
     @Override
-    public Focusable getPrimerElementoForm() { return descripcion; }
+    public Focusable getPrimerElementoForm() { return numero; }
 
     @Override
     public void bindFormFields(BeanValidationBinder<NumeroDte> binder) {

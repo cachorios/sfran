@@ -16,7 +16,7 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 public class RenspaInnerForm extends DefaultInnerDialog<Renspa> {
 
     private TextField id;
-    private TextField descripcion;
+    private TextField numeroRenspa;
 
     public RenspaInnerForm(IPresentableForm<Renspa> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -26,18 +26,18 @@ public class RenspaInnerForm extends DefaultInnerDialog<Renspa> {
     protected void generarForm(Div form) {
         id = textField("ID");
         id.setPreventInvalidInput(true);
-        descripcion = textField("Descripción");
+        numeroRenspa = textField("Numero");
 
 
         form.add(
                 envolver(id, "30%"),
-                envolver(descripcion, "50%")
+                envolver(numeroRenspa, "50%")
         );
 
     }
 
     @Override
-    public Focusable getPrimerElementoForm() { return descripcion; }
+    public Focusable getPrimerElementoForm() { return numeroRenspa; }
 
     @Override
     public void bindFormFields(BeanValidationBinder<Renspa> binder) {

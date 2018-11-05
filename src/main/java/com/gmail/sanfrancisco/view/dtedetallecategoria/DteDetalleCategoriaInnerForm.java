@@ -2,6 +2,8 @@ package com.gmail.sanfrancisco.view.dtedetallecategoria;
 
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.converter.DoubleConverter;
+import com.gmail.sanfrancisco.converter.IntegerConverter;
 import com.gmail.sanfrancisco.entidad.DteDetalleCategoria;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.html.Div;
@@ -62,6 +64,13 @@ public class DteDetalleCategoriaInnerForm extends DefaultInnerDialog<DteDetalleC
                 .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
                 .withNullRepresentation(0l)
                 .bind(DteDetalleCategoria::getId, null);
+
+        binder.bind(categoria, "categoria");
+        binder.forField(cantidad).withConverter(new IntegerConverter()).bind("cantidad");
+        binder.forField(precioKgVivo).withConverter(new DoubleConverter()).bind("precioKgVivo");
+        binder.forField(kgVivo).withConverter(new DoubleConverter()).bind("kgVivo");
+        binder.forField(kgCarne).withConverter(new DoubleConverter()).bind("kgCarne");
+        binder.forField(porcentajeComision).withConverter(new DoubleConverter()).bind("porcentajeComision");
 
         binder.bindInstanceFields(this);
     }

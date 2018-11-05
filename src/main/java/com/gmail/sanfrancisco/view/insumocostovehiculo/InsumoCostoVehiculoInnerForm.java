@@ -2,6 +2,8 @@ package com.gmail.sanfrancisco.view.insumocostovehiculo;
 
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.converter.DoubleConverter;
+import com.gmail.sanfrancisco.converter.IntegerConverter;
 import com.gmail.sanfrancisco.entidad.InsumoCostoVehiculo;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.html.Div;
@@ -55,15 +57,9 @@ public class InsumoCostoVehiculoInnerForm extends DefaultInnerDialog<InsumoCosto
                 .withNullRepresentation(0l)
                 .bind(InsumoCostoVehiculo::getId, null);
 
-        binder.forField(cantidad)
-                .withConverter(new StringToIntegerConverter("No es un nro válido."))
-                .withNullRepresentation(0)
-                .bind(InsumoCostoVehiculo::getCantidad, InsumoCostoVehiculo::setCantidad);
+        binder.forField(cantidad).withConverter(new IntegerConverter()).bind("cantidad");
 
-        binder.forField(precio)
-                .withConverter(new StringToDoubleConverter("No es un nro válido."))
-                .withNullRepresentation(0.0)
-                .bind(InsumoCostoVehiculo::getPrecio, InsumoCostoVehiculo::setPrecio);
+        binder.forField(precio).withConverter(new DoubleConverter()).bind("precio");
 
 
         binder.bindInstanceFields( this);

@@ -2,6 +2,7 @@ package com.gmail.sanfrancisco.view.impuestocostovehiculo;
 
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.converter.DoubleConverter;
 import com.gmail.sanfrancisco.entidad.ImpuestoCostoVehiculo;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.html.Div;
@@ -51,10 +52,7 @@ public class ImpuestoCostoVehiculoInnerForm extends DefaultInnerDialog<ImpuestoC
                 .withNullRepresentation(0l)
                 .bind(ImpuestoCostoVehiculo::getId, null);
 
-        binder.forField(saldo)
-                .withConverter(new StringToDoubleConverter("No es un nro válido."))
-                .withNullRepresentation(0.0)
-                .bind(ImpuestoCostoVehiculo::getSaldo, ImpuestoCostoVehiculo::setSaldo);
+        binder.forField(saldo).withConverter(new DoubleConverter()).bind("saldo");
 
 
         binder.bindInstanceFields( this);

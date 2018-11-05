@@ -2,6 +2,7 @@ package com.gmail.sanfrancisco.view.dtedetalleimpuesto;
 
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.converter.DoubleConverter;
 import com.gmail.sanfrancisco.entidad.DteDetalleImpuesto;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.html.Div;
@@ -49,10 +50,7 @@ public class DteDetalleImpuestoInnerForm extends DefaultInnerDialog<DteDetalleIm
                 .withNullRepresentation(0l)
                 .bind(DteDetalleImpuesto::getId, null);
 
-        binder.forField(saldo)
-                .withConverter(new StringToDoubleConverter("No es un nro válido."))
-                .withNullRepresentation(0.0)
-                .bind(DteDetalleImpuesto::getSaldo, DteDetalleImpuesto::setSaldo);
+        binder.forField(saldo).withConverter(new DoubleConverter()).bind("saldo");
 
         binder.bindInstanceFields(this);
     }
