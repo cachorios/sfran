@@ -208,7 +208,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private Grid getCategoriaGrid(){
         categoriaGrid = new Grid<>();
         categoriaGrid.setHeight("8rem");
-        categoriaGrid.addColumn(DteDetalleCategoria::getProductor)
+        /*categoriaGrid.addColumn(DteDetalleCategoria::getProductor)
                 .setHeader("Prodcutor")
                 .setWidth("22%")
                 .setFlexGrow(1)
@@ -217,7 +217,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         categoriaGrid.addColumn(DteDetalleCategoria::getRenspa)
                 .setHeader("RENSPA")
                 .setWidth("12%")
-                .setKey("renspa");
+                .setKey("renspa");*/
         categoriaGrid.addColumn(DteDetalleCategoria::getCategoria)
                 .setHeader("Categoria")
                 .setWidth("14%");
@@ -233,8 +233,11 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         categoriaGrid.addColumn(DteDetalleCategoria::getKgCarne)
                 .setHeader("Kg Carne")
                 .setWidth("12%");
-        categoriaGrid.addColumn(DteDetalleCategoria::getPorcentajeComision)
+        /*categoriaGrid.addColumn(DteDetalleCategoria::getPorcentajeComision)
                 .setHeader("Porcentaje comision")
+                .setWidth("12%");*/
+        categoriaGrid.addColumn(DteDetalleCategoria::getSaldoComision)
+                .setHeader("Comision")
                 .setWidth("12%");
 
         List a = this.getPresentable().getObjetoActivo().getCategorias();

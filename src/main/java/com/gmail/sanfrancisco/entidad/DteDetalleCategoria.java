@@ -48,4 +48,7 @@ public class DteDetalleCategoria extends AbstractEntidad {
     @NotNull
     private Double porcentajeComision;
 
+    public Double getSaldoComision() {
+        return (kgVivo*precioKgVivo*porcentajeComision)/100;
+    }
 }
