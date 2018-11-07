@@ -40,9 +40,11 @@ public  @Data class  Dte extends AbstractEntidad {
     @ManyToOne
     private Parametro localidadDestino;
 
+    @NotNull
     @ManyToOne
     private Conductor conductor;
 
+    @NotNull
     @ManyToOne
     private Vehiculo vehiculo;
 
@@ -75,9 +77,11 @@ public  @Data class  Dte extends AbstractEntidad {
     @NotNull
     private Date fechaVencimiento;
 
+    @NotNull
     @ManyToOne
     private Consignatario consignatario;
 
+    @NotNull
     @ManyToOne
     private Comisionista comisionista;
 
@@ -87,6 +91,8 @@ public  @Data class  Dte extends AbstractEntidad {
     @NotNull
     private Double kmLlegada;
 
+    @NotNull
+    @Size(min=4, max=10, message="La patente de jaula debe contener entre 4 y 10 caracteres.")
     private String patenteJaula;
 
     private String titular;

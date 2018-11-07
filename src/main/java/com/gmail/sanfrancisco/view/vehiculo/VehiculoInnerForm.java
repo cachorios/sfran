@@ -186,7 +186,7 @@ public class VehiculoInnerForm extends DefaultInnerDialog<Vehiculo> {
         binder.bind(estadoVehiculo, "estadoVehiculo");
         binder.forField(fecha)
                 .withConverter(new LocalDateADateConverter())
-                .bind(Vehiculo::getFecha, Vehiculo::setFecha);
+                .bind("fecha");
 
 
         binder.bindInstanceFields(this);

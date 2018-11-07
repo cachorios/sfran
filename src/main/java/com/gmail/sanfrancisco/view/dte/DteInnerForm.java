@@ -265,22 +265,22 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     @Override
     public void bindFormFields(BeanValidationBinder<Dte> binder) {
 
-        binder.bind(pciaOrigen, Dte::getProvinciaOrigen, Dte::setProvinciaOrigen);
-        binder.bind(localidadOrigen, Dte::getLocalidadOrigen, Dte::setLocalidadOrigen);
-        binder.bind(pciaDestino, Dte::getProvinciaDestino, Dte::setProvinciaDestino);
-        binder.bind(localidadDestino, Dte::getLocalidadDestino, Dte::setLocalidadDestino);
+        binder.bind(pciaOrigen, "provinciaOrigen");
+        binder.bind(localidadOrigen, "localidadOrigen");
+        binder.bind(pciaDestino, "provinciaDestino");
+        binder.bind(localidadDestino, "localidadDestino");
 
 
-        binder.bind(conductorCS, Dte::getConductor, Dte::setConductor);
-        binder.bind(vehiculoComboBox, Dte::getVehiculo, Dte::setVehiculo);
+        binder.bind(conductorCS, "conductor");
+        binder.bind(vehiculoComboBox, "vehiculo");
 
 
-        binder.bind(comisionistaCS, Dte::getComisionista, Dte::setComisionista);
-        binder.bind(consignatarioCS, Dte::getConsignatario, Dte::setConsignatario);
+        binder.bind(comisionistaCS, "comisionista");
+        binder.bind(consignatarioCS, "consignatario");
 
         //integer
         binder.forField(cantidad).withConverter(new IntegerConverter()).bind("cantidad");
-        binder.bind(especie, Dte::getEspecie, Dte::setEspecie);
+        binder.bind(especie, "especie");
         binder.forField(peso).withConverter(new IntegerConverter()).bind("peso");
 
 
