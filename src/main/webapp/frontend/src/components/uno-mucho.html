@@ -1,0 +1,62 @@
+<link rel="import" href="/frontend/bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="/frontend/src/components/crud/tool-bar.html">
+<link rel="import" href="/frontend/bower_components/vaadin-grid/src/vaadin-grid.html">
+<link rel="import" href="/frontend/styles/shared-styles.html">
+
+<dom-module id="uno-mucho">
+<template>
+    <style include="shared-styles">
+      :host {
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            flex: auto;
+            height: auto;
+            /*height: 15rem;*/
+            /*width: 100%; */
+            --tool-bar-color: #fff;
+
+      }
+
+        .main-row {
+            flex: 1;
+        }
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: var(--lumo-space-s);
+            height: 15rem;
+        }
+
+        .scrollable::-webkit-scrollbar{
+            width: 1rem;
+        }
+
+        @media (min-width: 600px) {
+            .main-row {
+            /*padding: var(--lumo-space-l);*/
+            /*flex-basis: auto;*/
+            }
+        }
+    </style>
+
+    <div id="header">
+        <h4 id="titulo"></h4>
+        <tool-bar id="toolbar" part="uno-mucho" ></tool-bar>
+    </div>
+
+    <div class="scrollable main-row">
+        <vaadin-grid id="grid" theme="crud"></vaadin-grid>
+    </div>
+
+</template>
+<script>
+    class UnoaMucho extends Polymer.Element {
+         static get is() {
+           return 'uno-mucho';
+         }
+     }
+     window.customElements.define(UnoaMucho.is, UnoaMucho);
+</script>
+</dom-module>
