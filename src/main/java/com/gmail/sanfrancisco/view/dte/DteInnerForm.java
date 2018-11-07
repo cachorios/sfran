@@ -268,7 +268,12 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         binder.bind(localidadDestino, Dte::getLocalidadDestino, Dte::setLocalidadDestino);
 
 
+        binder.bind(conductorCS, Dte::getConductor, Dte::setConductor);
         binder.bind(vehiculoComboBox, Dte::getVehiculo, Dte::setVehiculo);
+
+
+        binder.bind(comisionistaCS, Dte::getComisionista, Dte::setComisionista);
+        binder.bind(consignatarioCS, Dte::getConsignatario, Dte::setConsignatario);
 
         //integer
         binder.forField(cantidad).withConverter(new IntegerConverter()).bind("cantidad");
