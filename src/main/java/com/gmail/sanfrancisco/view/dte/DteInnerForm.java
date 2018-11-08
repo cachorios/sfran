@@ -55,9 +55,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private ComboBox<Vehiculo> vehiculoComboBox;
     private TextField patenteJaula;
 
-
-    private TextField titular;
-
     private ComisionistaCS comisionistaCS;
     private ConsignatarioCS consignatarioCS;
 
@@ -118,9 +115,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         patenteJaula = textField("Patente de jaula");
 
 
-        titular = textField("Titular");
-
-
         comisionistaCS = new ComisionistaCS("Comisionista", getPresentable(),true,true, true);
         consignatarioCS = new ConsignatarioCS("Consignatario", getPresentable(),true,true, true);
 
@@ -177,8 +171,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 envolver(vehiculoComboBox, "22%"),
                 envolver(patenteJaula,"22%"),
 
-
-                envolver(titular, "100%"),
 
                 envolver(comisionistaCS,"56%"),
                 envolver(consignatarioCS,"44%"),

@@ -91,6 +91,7 @@ public abstract class ServicioModelo<U extends AbstractEntidad>  {
 
     protected String likePattern(String filter) {
         if(filter == null) filter = "";
+        filter.toUpperCase();
         return "%" +filter + "%";
     }
 

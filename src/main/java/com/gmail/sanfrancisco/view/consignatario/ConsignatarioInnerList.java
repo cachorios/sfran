@@ -1,6 +1,8 @@
 package com.gmail.sanfrancisco.view.consignatario;
 
+import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableList;
+import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerListPolymer;
 import com.gmail.cacho.slreport.jasper.ReporteCreator;
 import com.gmail.cacho.slreport.view.DefaultPDFViewDialog;
@@ -16,6 +18,7 @@ import java.util.Map;
 public class ConsignatarioInnerList extends DefaultInnerListPolymer<Consignatario> {
 
     private Button pdfBtn;
+    private String filtro;
 
     public ConsignatarioInnerList(IPresentableList<Consignatario> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -33,7 +36,10 @@ public class ConsignatarioInnerList extends DefaultInnerListPolymer<Consignatari
         view.open();
     }
     private Map<String, Object> crearMapaFechas() {
+        filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();
+
         Map<String, Object> mapa = new HashMap<String, Object>();
+        mapa.put(C.SYS_REP_PARAM_ID, filtro);
         return mapa;
     }
 

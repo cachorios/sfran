@@ -95,8 +95,6 @@ public  @Data class  Dte extends AbstractEntidad {
     @Size(min=4, max=10, message="La patente de jaula debe contener entre 4 y 10 caracteres.")
     private String patenteJaula;
 
-    private String titular;
-
     //@NotNull
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dte", fetch = FetchType.LAZY)
     private List<DteDetalleCategoria> categorias;

@@ -89,9 +89,6 @@ WHERE
 	<field name="peso" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="peso"/>
 	</field>
-	<field name="titular" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="titular"/>
-	</field>
 	<field name="totalcomisionista" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="totalcomisionista"/>
 	</field>
@@ -125,22 +122,22 @@ WHERE
 	<field name="vehiculo_id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="vehiculo_id"/>
 	</field>
-	<field name="COLUMN_29" class="java.lang.Long">
+	<field name="COLUMN_28" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
 	</field>
-	<field name="COLUMN_30" class="java.sql.Timestamp">
+	<field name="COLUMN_29" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
 	</field>
-	<field name="COLUMN_31" class="java.sql.Timestamp">
+	<field name="COLUMN_30" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
 	</field>
-	<field name="COLUMN_32" class="java.sql.Timestamp">
+	<field name="COLUMN_31" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaumod"/>
 	</field>
-	<field name="COLUMN_33" class="java.lang.String">
+	<field name="COLUMN_32" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
 	</field>
-	<field name="COLUMN_34" class="java.lang.String">
+	<field name="COLUMN_33" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
 	</field>
 	<field name="celular" class="java.lang.String">
@@ -164,31 +161,31 @@ WHERE
 	<field name="telefono" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
 	</field>
-	<field name="COLUMN_42" class="java.lang.Integer">
+	<field name="COLUMN_41" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="version"/>
 	</field>
-	<field name="COLUMN_43" class="java.lang.Long">
+	<field name="COLUMN_42" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
 	</field>
-	<field name="COLUMN_44" class="java.sql.Timestamp">
+	<field name="COLUMN_43" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
 	</field>
-	<field name="COLUMN_45" class="java.sql.Timestamp">
+	<field name="COLUMN_44" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
 	</field>
-	<field name="COLUMN_46" class="java.sql.Timestamp">
+	<field name="COLUMN_45" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaumod"/>
 	</field>
-	<field name="COLUMN_47" class="java.lang.String">
+	<field name="COLUMN_46" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
 	</field>
-	<field name="COLUMN_48" class="java.lang.String">
+	<field name="COLUMN_47" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
 	</field>
-	<field name="COLUMN_49" class="java.lang.String">
+	<field name="COLUMN_48" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="celular"/>
 	</field>
-	<field name="COLUMN_50" class="java.lang.String">
+	<field name="COLUMN_49" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="cuil"/>
 	</field>
 	<field name="dni" class="java.lang.String">
@@ -200,13 +197,13 @@ WHERE
 	<field name="fechanacimiento" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechanacimiento"/>
 	</field>
-	<field name="COLUMN_54" class="java.lang.String">
+	<field name="COLUMN_53" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
 	</field>
-	<field name="COLUMN_55" class="java.lang.String">
+	<field name="COLUMN_54" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
 	</field>
-	<field name="COLUMN_56" class="java.lang.Integer">
+	<field name="COLUMN_55" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="version"/>
 	</field>
 	<field name="operadoratelefonica_id" class="java.lang.Long">
@@ -215,61 +212,61 @@ WHERE
 	<field name="usuario_id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="usuario_id"/>
 	</field>
-	<field name="COLUMN_59" class="java.lang.Long">
+	<field name="COLUMN_58" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
+	</field>
+	<field name="COLUMN_59" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
 	</field>
 	<field name="COLUMN_60" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
 	</field>
 	<field name="COLUMN_61" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
-	</field>
-	<field name="COLUMN_62" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaumod"/>
+	</field>
+	<field name="COLUMN_62" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
 	</field>
 	<field name="COLUMN_63" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
-	</field>
-	<field name="COLUMN_64" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
 	</field>
-	<field name="COLUMN_65" class="java.lang.String">
+	<field name="COLUMN_64" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="celular"/>
 	</field>
-	<field name="COLUMN_66" class="java.lang.String">
+	<field name="COLUMN_65" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="cuil"/>
 	</field>
-	<field name="COLUMN_67" class="java.lang.String">
+	<field name="COLUMN_66" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="domicilio"/>
 	</field>
-	<field name="COLUMN_68" class="java.lang.String">
+	<field name="COLUMN_67" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="email"/>
 	</field>
-	<field name="COLUMN_69" class="java.lang.String">
+	<field name="COLUMN_68" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
 	</field>
-	<field name="COLUMN_70" class="java.lang.String">
+	<field name="COLUMN_69" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
 	</field>
-	<field name="COLUMN_71" class="java.lang.Integer">
+	<field name="COLUMN_70" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="version"/>
 	</field>
-	<field name="COLUMN_72" class="java.lang.Long">
+	<field name="COLUMN_71" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
 	</field>
-	<field name="COLUMN_73" class="java.sql.Timestamp">
+	<field name="COLUMN_72" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
 	</field>
-	<field name="COLUMN_74" class="java.sql.Timestamp">
+	<field name="COLUMN_73" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
 	</field>
-	<field name="COLUMN_75" class="java.sql.Timestamp">
+	<field name="COLUMN_74" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaumod"/>
 	</field>
-	<field name="COLUMN_76" class="java.lang.String">
+	<field name="COLUMN_75" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
 	</field>
-	<field name="COLUMN_77" class="java.lang.String">
+	<field name="COLUMN_76" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
 	</field>
 	<field name="alto" class="java.lang.Double">
@@ -311,7 +308,7 @@ WHERE
 	<field name="tara" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="tara"/>
 	</field>
-	<field name="COLUMN_91" class="java.lang.Integer">
+	<field name="COLUMN_90" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="version"/>
 	</field>
 	<field name="color_id" class="java.lang.Long">
@@ -329,28 +326,28 @@ WHERE
 	<field name="tipovehiculo_id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="tipovehiculo_id"/>
 	</field>
-	<field name="COLUMN_97" class="java.lang.Long">
+	<field name="COLUMN_96" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
 	</field>
-	<field name="COLUMN_98" class="java.sql.Timestamp">
+	<field name="COLUMN_97" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
 	</field>
-	<field name="COLUMN_99" class="java.sql.Timestamp">
+	<field name="COLUMN_98" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
 	</field>
-	<field name="COLUMN_100" class="java.sql.Timestamp">
+	<field name="COLUMN_99" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaumod"/>
 	</field>
-	<field name="COLUMN_101" class="java.lang.String">
+	<field name="COLUMN_100" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
 	</field>
-	<field name="COLUMN_102" class="java.lang.String">
+	<field name="COLUMN_101" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
 	</field>
 	<field name="clase" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="clase"/>
 	</field>
-	<field name="COLUMN_104" class="java.lang.String">
+	<field name="COLUMN_103" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
 	</field>
 	<field name="orden" class="java.lang.Integer">
@@ -377,211 +374,211 @@ WHERE
 	<field name="valorstr" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="valorstr"/>
 	</field>
-	<field name="COLUMN_113" class="java.lang.Integer">
+	<field name="COLUMN_112" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="version"/>
 	</field>
-	<field name="COLUMN_114" class="java.lang.Long">
+	<field name="COLUMN_113" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
+	</field>
+	<field name="COLUMN_114" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
 	</field>
 	<field name="COLUMN_115" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
 	</field>
 	<field name="COLUMN_116" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
-	</field>
-	<field name="COLUMN_117" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaumod"/>
+	</field>
+	<field name="COLUMN_117" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
 	</field>
 	<field name="COLUMN_118" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
+		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
 	</field>
 	<field name="COLUMN_119" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
+		<property name="com.jaspersoft.studio.field.label" value="clase"/>
 	</field>
 	<field name="COLUMN_120" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="clase"/>
-	</field>
-	<field name="COLUMN_121" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+	</field>
+	<field name="COLUMN_121" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="orden"/>
 	</field>
 	<field name="COLUMN_122" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="orden"/>
-	</field>
-	<field name="COLUMN_123" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
 	</field>
-	<field name="COLUMN_124" class="java.lang.Boolean">
+	<field name="COLUMN_123" class="java.lang.Boolean">
 		<property name="com.jaspersoft.studio.field.label" value="valorbol"/>
 	</field>
-	<field name="COLUMN_125" class="java.lang.String">
+	<field name="COLUMN_124" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="valorchr"/>
 	</field>
-	<field name="COLUMN_126" class="java.sql.Timestamp">
+	<field name="COLUMN_125" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="valordat"/>
 	</field>
-	<field name="COLUMN_127" class="java.lang.Double">
+	<field name="COLUMN_126" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="valordob"/>
 	</field>
-	<field name="COLUMN_128" class="java.lang.Long">
+	<field name="COLUMN_127" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="valorint"/>
 	</field>
-	<field name="COLUMN_129" class="java.lang.String">
+	<field name="COLUMN_128" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="valorstr"/>
 	</field>
-	<field name="COLUMN_130" class="java.lang.Integer">
+	<field name="COLUMN_129" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="version"/>
 	</field>
-	<field name="COLUMN_131" class="java.lang.Long">
+	<field name="COLUMN_130" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
+	</field>
+	<field name="COLUMN_131" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
 	</field>
 	<field name="COLUMN_132" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
 	</field>
 	<field name="COLUMN_133" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
-	</field>
-	<field name="COLUMN_134" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaumod"/>
+	</field>
+	<field name="COLUMN_134" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
 	</field>
 	<field name="COLUMN_135" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
+		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
 	</field>
 	<field name="COLUMN_136" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
+		<property name="com.jaspersoft.studio.field.label" value="clase"/>
 	</field>
 	<field name="COLUMN_137" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="clase"/>
-	</field>
-	<field name="COLUMN_138" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+	</field>
+	<field name="COLUMN_138" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="orden"/>
 	</field>
 	<field name="COLUMN_139" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="orden"/>
-	</field>
-	<field name="COLUMN_140" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
 	</field>
-	<field name="COLUMN_141" class="java.lang.Boolean">
+	<field name="COLUMN_140" class="java.lang.Boolean">
 		<property name="com.jaspersoft.studio.field.label" value="valorbol"/>
 	</field>
-	<field name="COLUMN_142" class="java.lang.String">
+	<field name="COLUMN_141" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="valorchr"/>
 	</field>
-	<field name="COLUMN_143" class="java.sql.Timestamp">
+	<field name="COLUMN_142" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="valordat"/>
 	</field>
-	<field name="COLUMN_144" class="java.lang.Double">
+	<field name="COLUMN_143" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="valordob"/>
 	</field>
-	<field name="COLUMN_145" class="java.lang.Long">
+	<field name="COLUMN_144" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="valorint"/>
 	</field>
-	<field name="COLUMN_146" class="java.lang.String">
+	<field name="COLUMN_145" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="valorstr"/>
 	</field>
-	<field name="COLUMN_147" class="java.lang.Integer">
+	<field name="COLUMN_146" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="version"/>
 	</field>
-	<field name="COLUMN_148" class="java.lang.Long">
+	<field name="COLUMN_147" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
+	</field>
+	<field name="COLUMN_148" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
 	</field>
 	<field name="COLUMN_149" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
 	</field>
 	<field name="COLUMN_150" class="java.sql.Timestamp">
-		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
-	</field>
-	<field name="COLUMN_151" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaumod"/>
+	</field>
+	<field name="COLUMN_151" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
 	</field>
 	<field name="COLUMN_152" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
+		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
 	</field>
 	<field name="COLUMN_153" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
+		<property name="com.jaspersoft.studio.field.label" value="clase"/>
 	</field>
 	<field name="COLUMN_154" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="clase"/>
-	</field>
-	<field name="COLUMN_155" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+	</field>
+	<field name="COLUMN_155" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="orden"/>
 	</field>
 	<field name="COLUMN_156" class="java.lang.Integer">
-		<property name="com.jaspersoft.studio.field.label" value="orden"/>
-	</field>
-	<field name="COLUMN_157" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
 	</field>
-	<field name="COLUMN_158" class="java.lang.Boolean">
+	<field name="COLUMN_157" class="java.lang.Boolean">
 		<property name="com.jaspersoft.studio.field.label" value="valorbol"/>
 	</field>
-	<field name="COLUMN_159" class="java.lang.String">
+	<field name="COLUMN_158" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="valorchr"/>
 	</field>
-	<field name="COLUMN_160" class="java.sql.Timestamp">
+	<field name="COLUMN_159" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="valordat"/>
 	</field>
-	<field name="COLUMN_161" class="java.lang.Double">
+	<field name="COLUMN_160" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="valordob"/>
 	</field>
-	<field name="COLUMN_162" class="java.lang.Long">
+	<field name="COLUMN_161" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="valorint"/>
 	</field>
-	<field name="COLUMN_163" class="java.lang.String">
+	<field name="COLUMN_162" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="valorstr"/>
 	</field>
-	<field name="COLUMN_164" class="java.lang.Integer">
+	<field name="COLUMN_163" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="version"/>
 	</field>
-	<field name="COLUMN_165" class="java.lang.Long">
+	<field name="COLUMN_164" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
 	</field>
-	<field name="COLUMN_166" class="java.sql.Timestamp">
+	<field name="COLUMN_165" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaalta"/>
 	</field>
-	<field name="COLUMN_167" class="java.sql.Timestamp">
+	<field name="COLUMN_166" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechabaja"/>
 	</field>
-	<field name="COLUMN_168" class="java.sql.Timestamp">
+	<field name="COLUMN_167" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechaumod"/>
 	</field>
-	<field name="COLUMN_169" class="java.lang.String">
+	<field name="COLUMN_168" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="usuarioalta"/>
 	</field>
-	<field name="COLUMN_170" class="java.lang.String">
+	<field name="COLUMN_169" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="usuarioumod"/>
 	</field>
-	<field name="COLUMN_171" class="java.lang.String">
+	<field name="COLUMN_170" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="clase"/>
 	</field>
-	<field name="COLUMN_172" class="java.lang.String">
+	<field name="COLUMN_171" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
 	</field>
-	<field name="COLUMN_173" class="java.lang.Integer">
+	<field name="COLUMN_172" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="orden"/>
 	</field>
-	<field name="COLUMN_174" class="java.lang.Integer">
+	<field name="COLUMN_173" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
 	</field>
-	<field name="COLUMN_175" class="java.lang.Boolean">
+	<field name="COLUMN_174" class="java.lang.Boolean">
 		<property name="com.jaspersoft.studio.field.label" value="valorbol"/>
 	</field>
-	<field name="COLUMN_176" class="java.lang.String">
+	<field name="COLUMN_175" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="valorchr"/>
 	</field>
-	<field name="COLUMN_177" class="java.sql.Timestamp">
+	<field name="COLUMN_176" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="valordat"/>
 	</field>
-	<field name="COLUMN_178" class="java.lang.Double">
+	<field name="COLUMN_177" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="valordob"/>
 	</field>
-	<field name="COLUMN_179" class="java.lang.Long">
+	<field name="COLUMN_178" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="valorint"/>
 	</field>
-	<field name="COLUMN_180" class="java.lang.String">
+	<field name="COLUMN_179" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="valorstr"/>
 	</field>
-	<field name="COLUMN_181" class="java.lang.Integer">
+	<field name="COLUMN_180" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="version"/>
 	</field>
 	<field name="desccomisionista" class="java.lang.String">
@@ -590,7 +587,7 @@ WHERE
 	<field name="descconductor" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="descconductor"/>
 	</field>
-	<field name="COLUMN_184" class="java.lang.String">
+	<field name="COLUMN_183" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="dominio"/>
 	</field>
 	<field name="descconsignatario" class="java.lang.String">
