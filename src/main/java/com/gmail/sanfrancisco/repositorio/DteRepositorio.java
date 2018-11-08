@@ -16,4 +16,8 @@ public interface DteRepositorio extends EntityRepository<Dte, Long>, EntityManag
     @Query("SELECT  COUNT(e) FROM Dte e WHERE e.numeroTropa like :filter")
     Long countFiltered(
             @QueryParam("filter") String filter);
+
+    @Query("SELECT  COUNT(e) FROM Dte e WHERE e.id = :filter")
+    Long countFiltered(
+            @QueryParam("filter") Long filter);
 }

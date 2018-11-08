@@ -83,7 +83,7 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
                 .withNullRepresentation(0l)
                 .bind(Productor::getId, null);
 
-        binder.bind(condicion, Productor::getCondicion, Productor::setCondicion);
+        binder.bind(condicion, "condicion");
 
         binder.bindInstanceFields( this);
     }

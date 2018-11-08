@@ -5,6 +5,7 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="593"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="393"/>
+	<parameter name="p_Id" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 c.nombre,
@@ -14,7 +15,8 @@ c.email,
 c.telefono,
 c.celular
 FROM
-consignatario AS c]]>
+consignatario AS c
+WHERE c.nombre like '%'||'$P!{p_Id}'||'%']]>
 	</queryString>
 	<field name="nombre" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>

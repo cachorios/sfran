@@ -102,13 +102,13 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
 
         binder.forField(fechaNacimiento)
                 .withConverter(new LocalDateADateConverter())
-                .bind(Conductor::getFechaNacimiento, Conductor::setFechaNacimiento);
+                .bind("fechaNacimiento");
 
         binder.forField(fechaIngreso)
                 .withConverter(new LocalDateADateConverter())
-                .bind(Conductor::getFechaIngreso, Conductor::setFechaIngreso);
+                .bind("fechaIngreso");
 
-        binder.bind(operadoraTelefonica, conductor -> conductor.getOperadoraTelefonica(), (conductor, parametro) -> conductor.setOperadoraTelefonica(parametro));
+        binder.bind(operadoraTelefonica, "operadoraTelefonica");
 
 
         binder.bindInstanceFields(this);

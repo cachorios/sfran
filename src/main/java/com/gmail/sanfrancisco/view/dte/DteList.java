@@ -41,6 +41,11 @@ public class DteList  extends AbstractList<Dte> {
         return "Lista de DTE's";
     }
 
+    @Override
+    protected ILayoutInnerList<Dte> generarLayout(AbstractList<Dte> padre, String titulo) {
+        return new DteInnerList(padre, getTitulo());
+    }
+
 
 //    public void setCols(Grid<Dte> grilla) {
 //        grilla.addColumn(Dte::getNumeroTropa)
