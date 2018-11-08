@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 public abstract class FilterablePageableDataProvider<U extends AbstractEntidad, TKI extends Serializable, F>   extends AbstractBackEndDataProvider<U, F> {
     private Object padre = null;
-    private String filtro = null;
+    private String filtro = "%";
     private ServicioModelo<U> servicio;
     private List<QuerySortOrder> defaultSortOrders;
 
@@ -63,7 +63,7 @@ public abstract class FilterablePageableDataProvider<U extends AbstractEntidad, 
     public Object getPadre() { return padre; }
 
     public void setFiltro(String filtro) {
-        this.filtro = filtro;
+        this.filtro = filtro.toUpperCase();
         refreshAll();
     }
 

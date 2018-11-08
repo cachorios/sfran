@@ -39,10 +39,6 @@ public class VehiculoInnerList extends DefaultInnerListPolymer<Vehiculo> {
     private Map<String, Object> crearMapaFechas() {
         filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();
 
-        if(filtro == null){
-            filtro = "%";
-        }
-
         Map<String, Object> mapa = new HashMap<String, Object>();
         mapa.put(C.SYS_REP_PARAM_ID, filtro);
         return mapa;
