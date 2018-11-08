@@ -154,4 +154,8 @@ public class ToolBar extends PolymerTemplate<ToolBar.Model> {
     public Div getBotonera() {
         return botonera;
     }
+
+    public void setFilterVisible(Boolean visible){
+        textField.setVisible(visible);
+    }
 }

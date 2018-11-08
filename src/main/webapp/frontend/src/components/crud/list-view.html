@@ -10,6 +10,7 @@
             :host {
                 display: flex;
                 flex-direction: column;
+                --tool-bar-color: --lumo-base-color
             }
 
             #titulo {
@@ -29,9 +30,12 @@
             }
 
             .list-container {
-                display: inline-flex;
+                display: flex;
                 /*flex-flow: row wrap;*/
+                flex-direction: row;
                 height: calc(100vh - 150px);
+                overflow: auto;
+
             }
 
             #grid{
@@ -43,8 +47,8 @@
             <tool-bar id="toolbar"></tool-bar>
         </header>
 
-        <div class="list-container row">
-            <vaadin-grid id="grid" theme="crud" style="width: 400px" ></vaadin-grid>
+        <div class="list-container row scrollable">
+            <vaadin-grid id="grid" theme="crud"></vaadin-grid>
             <list-preview id="list-preview"></list-preview>
         </div>
     </template>

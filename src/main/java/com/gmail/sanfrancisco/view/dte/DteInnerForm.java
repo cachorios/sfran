@@ -4,6 +4,7 @@ import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.backend.views.csselect.LocalidadCS;
+import com.gmail.cacho.slapi.view.componentes.UnoAMuchoGrid;
 import com.gmail.cacho.slapi.view.customs.params.ParamCSDataProvider;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
@@ -18,6 +19,7 @@ import com.gmail.sanfrancisco.entidad.Vehiculo;
 import com.gmail.sanfrancisco.view.comisionista.ComisionistaCS;
 import com.gmail.sanfrancisco.view.conductor.ConductorCS;
 import com.gmail.sanfrancisco.view.consignatario.ConsignatarioCS;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
 
@@ -75,10 +77,9 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 
 
-
-
 //    private DteDetalleCategoriaList dteDetalleCategoriaList;
     private Grid<DteDetalleCategoria> categoriaGrid;
+    private UnoAMuchoGrid<Dte, DteDetalleCategoria> categorias;
 
 //    private VerticalLayout detalle;
 //    private Button btnAdd;
@@ -188,58 +189,50 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 envolver(entrega,"32%"),
                 envolver(totalComisionista,"32%"),
                 envolver(ajustes,"32%"),
-
-                generarTituloSeccion("Categoria//s"),
-                getCategoriaGrid()
+                getCategorias()
 
         );
 
 //        form.add(envolver(dteDetalleCategoriaList.getViewComponent()));
     }
 
-    private Grid getCategoriaGrid(){
-        categoriaGrid = new Grid<>();
-        categoriaGrid.setHeight("8rem");
-        /*categoriaGrid.addColumn(DteDetalleCategoria::getProductor)
+
+    private Component getCategorias() {
+        categorias = new UnoAMuchoGrid<>("Categorias", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getCategorias());
+
+        categorias.getGrid().addColumn(DteDetalleCategoria::getProductor)
                 .setHeader("Prodcutor")
                 .setWidth("22%")
                 .setFlexGrow(1)
                 .setKey("productor");
 
-        categoriaGrid.addColumn(DteDetalleCategoria::getRenspa)
+        categorias.getGrid().addColumn(DteDetalleCategoria::getRenspa)
                 .setHeader("RENSPA")
                 .setWidth("12%")
-                .setKey("renspa");*/
-        categoriaGrid.addColumn(DteDetalleCategoria::getCategoria)
+                .setKey("renspa");
+        categorias.getGrid().addColumn(DteDetalleCategoria::getCategoria)
                 .setHeader("Categoria")
                 .setWidth("14%");
-        categoriaGrid.addColumn(DteDetalleCategoria::getCantidad)
+        categorias.getGrid().addColumn(DteDetalleCategoria::getCantidad)
                 .setHeader("Cantidad")
                 .setWidth("8%");
-        categoriaGrid.addColumn(DteDetalleCategoria::getKgVivo)
+        categorias.getGrid().addColumn(DteDetalleCategoria::getKgVivo)
                 .setHeader("Kg Vivo")
                 .setWidth("12%");
-        categoriaGrid.addColumn(DteDetalleCategoria::getPrecioKgVivo)
+        categorias.getGrid().addColumn(DteDetalleCategoria::getPrecioKgVivo)
                 .setHeader("Precio Kg Vivo")
                 .setWidth("8%");
-        categoriaGrid.addColumn(DteDetalleCategoria::getKgCarne)
+        categorias.getGrid().addColumn(DteDetalleCategoria::getKgCarne)
                 .setHeader("Kg Carne")
                 .setWidth("12%");
-        /*categoriaGrid.addColumn(DteDetalleCategoria::getPorcentajeComision)
+        categorias.getGrid().addColumn(DteDetalleCategoria::getPorcentajeComision)
                 .setHeader("Porcentaje comision")
-                .setWidth("12%");*/
-        categoriaGrid.addColumn(DteDetalleCategoria::getSaldoComision)
-                .setHeader("Comision")
                 .setWidth("12%");
 
-        List a = this.getPresentable().getObjetoActivo().getCategorias();
-
-        categoriaGrid.setItems(this.getPresentable().getObjetoActivo().getCategorias());
-
-        return categoriaGrid;
-
-
+        categorias.getGrid().setHeight("10rem");
+        return categorias.iniciar();
     }
+
     private void pciaChanged(HasValue.ValueChangeEvent<?> e, LocalidadCS localidadCS) {
         if( e.getValue() != null) {
             Long grupo = ((Parametro) e.getValue()).getId();                    //getOrden().longValue();
