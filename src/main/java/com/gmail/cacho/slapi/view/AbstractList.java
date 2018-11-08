@@ -187,4 +187,6 @@ public abstract class AbstractList<T extends AbstractEntidad> extends AbstractPr
     public boolean isVisible() {
         return getViewComponent().isVisible();
     }
+
+
 }

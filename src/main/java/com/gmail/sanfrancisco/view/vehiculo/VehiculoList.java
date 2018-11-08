@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.view.vehiculo;
 
 import com.gmail.cacho.slapi.view.AbstractList;
+import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.entidad.Vehiculo;
@@ -27,4 +28,9 @@ public class VehiculoList extends AbstractList<Vehiculo> {
 
     @Override
     public String getTitulo() { return "Lista de Vehiculos"; }
+
+    @Override
+    protected ILayoutInnerList<Vehiculo> generarLayout(AbstractList<Vehiculo> padre, String titulo) {
+        return new VehiculoInnerList(padre, getTitulo());
+    }
 }

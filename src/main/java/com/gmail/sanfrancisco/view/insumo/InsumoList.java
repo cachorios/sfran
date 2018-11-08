@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.view.insumo;
 
 import com.gmail.cacho.slapi.view.AbstractList;
+import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.entidad.Insumo;
@@ -27,4 +28,9 @@ public class InsumoList extends AbstractList<Insumo> {
 
     @Override
     public String getTitulo() { return "Lista de Insumos"; }
+
+    @Override
+    protected ILayoutInnerList<Insumo> generarLayout(AbstractList<Insumo> padre, String titulo) {
+        return new InsumoInnerList(padre, getTitulo());
+    }
 }

@@ -82,7 +82,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 //    private DteDetalleCategoriaList dteDetalleCategoriaList;
     private Grid<DteDetalleCategoria> categoriaGrid;
-    private UnoAMuchoGrid<DteDetalleCategoria> categorias;
+    private UnoAMuchoGrid<Dte, DteDetalleCategoria> categorias;
 
 //    private VerticalLayout detalle;
 //    private Button btnAdd;
@@ -204,8 +204,9 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 //        form.add(envolver(dteDetalleCategoriaList.getViewComponent()));
     }
 
+
     private Component getCategorias() {
-        categorias = new UnoAMuchoGrid<>("Categorias", this.getPresentable().getObjetoActivo().getCategorias());
+        categorias = new UnoAMuchoGrid<>("Categorias", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getCategorias());
 
         categorias.getGrid().addColumn(DteDetalleCategoria::getProductor)
                 .setHeader("Prodcutor")
@@ -240,7 +241,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         return categorias.iniciar();
     }
 
-
     private void pciaChanged(HasValue.ValueChangeEvent<?> e, LocalidadCS localidadCS) {
         if( e.getValue() != null) {
             Long grupo = ((Parametro) e.getValue()).getId();                    //getOrden().longValue();
@@ -264,7 +264,12 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         binder.bind(localidadDestino, Dte::getLocalidadDestino, Dte::setLocalidadDestino);
 
 
+        binder.bind(conductorCS, Dte::getConductor, Dte::setConductor);
         binder.bind(vehiculoComboBox, Dte::getVehiculo, Dte::setVehiculo);
+
+
+        binder.bind(comisionistaCS, Dte::getComisionista, Dte::setComisionista);
+        binder.bind(consignatarioCS, Dte::getConsignatario, Dte::setConsignatario);
 
         //integer
         binder.forField(cantidad).withConverter(new IntegerConverter()).bind("cantidad");
