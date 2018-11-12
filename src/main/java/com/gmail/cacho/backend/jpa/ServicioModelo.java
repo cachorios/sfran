@@ -91,8 +91,8 @@ public abstract class ServicioModelo<U extends AbstractEntidad>  {
 
     protected String likePattern(String filter) {
         if(filter == null) filter = "";
-        filter.toUpperCase();
-        return "%" +filter + "%";
+        filter = filter.toUpperCase();
+        return "%" + filter + "%";
     }
 
     public  QueryResult<U> applySortOrder(QueryResult<U> result, List<QuerySortOrder> sortOrders) {

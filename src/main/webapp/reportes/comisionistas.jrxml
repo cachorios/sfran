@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="comisionistas" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="p_Id" class="java.lang.String"/>
 	<queryString>
@@ -15,7 +15,7 @@ c.saldoinicial,
 c.telefono
 FROM
 comisionista AS c
-WHERE c.nombre like '%'||'$P!{p_Id}'||'%']]>
+WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 	</queryString>
 	<field name="celular" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="celular"/>
