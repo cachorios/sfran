@@ -90,6 +90,12 @@ public abstract class AbstractCustomSelect<T extends AbstractEntidad> extends Ab
         return content;
     }
 
+    private void avisarAlPadre() {
+        if (getPadre() instanceof IPresentableForm) {
+     ///       ((IPresentableForm) getPadre()).marcarUnsavedChanges();
+        }
+    }
+
     protected Button completarBuscar(Button find) {
         find.getElement().setProperty("title", C.CRUD_MSG_BUSCAR);
         find.setIcon(VaadinIcon.SEARCH.create());
@@ -153,6 +159,7 @@ public abstract class AbstractCustomSelect<T extends AbstractEntidad> extends Ab
                 T val = getElemento(valor);
                 if (val != null) {
                     setValue(val);
+                    this.setModelValue(val,true);
                     return;
                 }
             }

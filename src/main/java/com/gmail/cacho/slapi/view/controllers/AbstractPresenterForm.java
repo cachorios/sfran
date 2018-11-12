@@ -111,8 +111,6 @@ public abstract class AbstractPresenterForm<T extends AbstractEntidad, S extends
                     L.info(C.MSJ_ERR_DB_ATSAVEDATA, "Se ha producido un problema al guardar los datos. Por favor verifique los campos  " + item.getClass().getName()+" | " + e.getLocalizedMessage());
 
                 }
-
-
             }
         }
 

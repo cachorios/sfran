@@ -58,8 +58,10 @@ public class DteDetalleCategoriaInnerForm extends DefaultInnerDialog<DteDetalleC
         });
 
         if(this.getPresentable().getObjetoActivo() != null) {
-            List<Renspa> lista = this.getPresentable().getObjetoActivo().getProductor().getRenspas();
-            renspaCombo.setItems(lista);
+            if(this.getPresentable().getObjetoActivo().getProductor()!= null) {
+                List<Renspa> lista = this.getPresentable().getObjetoActivo().getProductor().getRenspas();
+                renspaCombo.setItems(lista);
+            }
         }
 
         categoria = new ParamCSComponent("Categoria", getPresentable(), true, true, "Categorias", ETipoParametro.CATEGORIA_ANIMAL);

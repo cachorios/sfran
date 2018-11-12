@@ -17,8 +17,6 @@ import java.util.List;
 @Entity
 public  @Data class  Dte extends AbstractEntidad {
 
-
-
     @NotNull
     @Size(min=4, max=4, message="El numero de tropa debe contener 4 caracteres.")
 
@@ -105,5 +103,23 @@ public  @Data class  Dte extends AbstractEntidad {
 
     public String toString() {
         return "DTE(" + this.getNumeroTropa() + ")";
+    }
+
+    public List<DteDetalleCategoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<DteDetalleCategoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void preUpdate(){
+        for(DteDetalleCategoria cat: categorias){
+            if(cat.getDte() == null){
+                cat.setDte(this);
+            }
+        }
     }
 }

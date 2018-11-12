@@ -223,7 +223,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         categorias
             .withForm(DteDetalleCategoriaForm.class)
             .withVer()
-            .withNuevo()
+            .withNuevo(DteDetalleCategoria.class)
             .withEditar()
             .withBorrar()
         ;

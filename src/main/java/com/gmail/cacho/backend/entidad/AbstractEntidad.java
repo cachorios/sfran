@@ -53,7 +53,7 @@ public abstract class AbstractEntidad implements Serializable, Cloneable {
     }
 
 
-    //    @PrePersist
+//    @PrePersist
     protected void setAltaData() {
         String username = Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
         usuarioalta = usuarioumod = (username == null) ? Constantes.SYS_CAD_UNSESION : username;

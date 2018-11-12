@@ -2,12 +2,14 @@ package com.gmail.cacho.slapi.view.componentes;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 
+
 import com.gmail.cacho.slapi.comunes.R;
 import com.gmail.cacho.slapi.view.AbstractForm;
 
 import com.gmail.cacho.slapi.view.enums.EModoVista;
 
 import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
+
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
@@ -25,7 +27,9 @@ import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
 import javax.enterprise.inject.spi.CDI;
+
 import java.util.List;
+
 
 @Tag("uno-mucho")
 @HtmlImport("src/components/uno-mucho.html")
@@ -55,20 +59,19 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
     @Id("grid")
     private Grid<T> grid;
 
-    //private List<T> items;
-    DataProvider dp;
+    List<T> items;
 
     private Class formClass;
+    private Class itemClass;
     private AbstractForm  form;
 
 
     public UnoaMuchoGrid(String titulo, S padre, List items ) {
         this.titulo.setText(titulo);
-        //this.items = items;
         this.padre = padre;
+        this.items = items;
         toolBar.setFilterVisible(false);
 
-        dp = DataProvider.ofCollection(items);
 
         verButton = toolBar.getVerButton();
         nuevoButton = toolBar.getNuevoButton();
@@ -118,9 +121,10 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
         return this;
     }
 
-    public UnoaMuchoGrid withNuevo(){
+    public UnoaMuchoGrid withNuevo(Class<T> itemClass){
         if(formClass != null){
             nuevoButton.setVisible(true);
+            this.itemClass = itemClass;
         }else{
             Notification.show("No se ha definido un formClass para mostrar los datos");
         }
@@ -142,11 +146,9 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
     }
 
     public UnoaMuchoGrid iniciar(){
-        this.grid.setDataProvider(dp);
+        this.grid.setItems(items);
+                //setDataProvider(dp);
         this.acciones();
-
-//                setItems(items);
-
         return this;
     }
 
@@ -167,17 +169,33 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
             editarButton.addClickListener(e -> editarAcction(e));
         }
 
-
-
+        if(nuevoButton.isVisible()){
+            nuevoButton.addClickListener(e -> nuevoAcction(e));
+        }
     }
+
 
     private void verAcction(ClickEvent<Button> e) {
         AbstractForm frm = getForm();
         frm.setPadre(this);
         modo = EModoVista.VER;
         frm.iniciar(modo, registroActivo  );
-//        new ComisionistaForm(new ComisionistaFormPresenter(CDI.current().select(ComisionistaService.class).get()), this.getPadre())
-//                .iniciar(EModoVista.VER, getValue());
+    }
+
+    private void nuevoAcction(ClickEvent<Button> e)  {
+        AbstractForm frm = getForm();
+        modo = EModoVista.NUEVO;
+        frm.setPadre(this);
+        generarNuevo(itemClass);
+        frm.iniciar(modo, registroActivo);
+    }
+
+    private void generarNuevo( Class<T> cls) {
+        try {
+            registroActivo = cls.newInstance();  // use reflection to create instance
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     private void editarAcction(ClickEvent<Button> e) {
@@ -186,19 +204,22 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
         frm.setPadre(this);
         frm.iniciar(modo, registroActivo  );
 
-//        new ComisionistaForm(new ComisionistaFormPresenter(CDI.current().select(ComisionistaService.class).get()), this.getPadre())
-//                .iniciar(EModoVista.VER, getValue());
     }
 
 
     private void onFormSaveOK() {
         ////AbstractForm<T> form = (AbstractForm<T>) ((IPresentableList<T>) getPresentable()).getForm();
         if (form.getModoVista().equals(EModoVista.NUEVO)) {
-            dp.refreshAll();
-            this.getGrid().setDataProvider(dp);
+            items.add(registroActivo);
+            this.getGrid().setItems(items);
         } else {
-            dp.refreshItem(registroActivo);
-            this.getGrid().setDataProvider(dp);
+            for(T item: items){
+                if(item.getId() == registroActivo.getId()){
+                    items.remove(item);
+                    items.add(registroActivo);
+                }
+            }
+            this.getGrid().setItems(items);
         }
     }
 
