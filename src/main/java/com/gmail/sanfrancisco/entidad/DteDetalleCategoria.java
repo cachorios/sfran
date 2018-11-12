@@ -51,4 +51,11 @@ public class DteDetalleCategoria extends AbstractEntidad {
     public Double getSaldoComision() {
         return (kgVivo*precioKgVivo*porcentajeComision)/100;
     }
+
+    @Override
+    public String toString() {
+        return "(" + productor +
+                ", " + renspa +
+                '}';
+    }
 }

@@ -24,8 +24,7 @@ import java.util.List;
 
 @HtmlImport("frontend://src/components/crud/custom-select.html")
 @Tag("custom-select")
-public abstract class AbstractCustomSelect<T extends AbstractEntidad>
-        extends AbstractCompositeField<Div, AbstractCustomSelect<T>, T> {
+public abstract class AbstractCustomSelect<T extends AbstractEntidad> extends AbstractCompositeField<Div, AbstractCustomSelect<T>, T> {
     private IVisualizable padre;
     private T valor, itemAdd;
     private String titulo;
@@ -38,6 +37,7 @@ public abstract class AbstractCustomSelect<T extends AbstractEntidad>
     private boolean conBuscar, conVer, conAdd;
     private FilterablePageableDataProvider<T, Long, String> dataProvider;
     private String anchoCodigo = "15%";
+
     public AbstractCustomSelect(String caption, boolean conBuscar, boolean conVer, boolean conAdd, IVisualizable padre) {
         super(null);
 
@@ -50,8 +50,6 @@ public abstract class AbstractCustomSelect<T extends AbstractEntidad>
         this.conAdd = conAdd;
         this.padre = padre;
         this.titulo = caption;
-
-        //this.getContent().setAlignItems(FlexComponent.Alignment.BASELINE);
     }
 
     @Override

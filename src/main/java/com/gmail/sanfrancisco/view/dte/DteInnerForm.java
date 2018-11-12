@@ -4,11 +4,10 @@ import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.backend.views.csselect.LocalidadCS;
-import com.gmail.cacho.slapi.view.componentes.UnoAMuchoGrid;
+import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
 import com.gmail.cacho.slapi.view.customs.params.ParamCSDataProvider;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
-import com.gmail.cacho.slapi.view.utils.ViewTools;
 import com.gmail.sanfrancisco.converter.DoubleConverter;
 import com.gmail.sanfrancisco.converter.IntegerConverter;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
@@ -19,6 +18,7 @@ import com.gmail.sanfrancisco.entidad.Vehiculo;
 import com.gmail.sanfrancisco.view.comisionista.ComisionistaCS;
 import com.gmail.sanfrancisco.view.conductor.ConductorCS;
 import com.gmail.sanfrancisco.view.consignatario.ConsignatarioCS;
+import com.gmail.sanfrancisco.view.dtedetallecategoria.DteDetalleCategoriaForm;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
@@ -33,15 +33,9 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 
-import com.vaadin.flow.data.converter.StringToDoubleConverter;
-import com.vaadin.flow.data.converter.StringToIntegerConverter;
-
 import javax.enterprise.inject.spi.CDI;
 
-import java.util.List;
-
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
-import static com.gmail.cacho.slapi.view.utils.ViewTools.generarTituloSeccion;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class DteInnerForm extends DefaultInnerDialog<Dte> {
@@ -75,11 +69,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private TextField totalComisionista;
     private TextField ajustes;
 
-
-
-//    private DteDetalleCategoriaList dteDetalleCategoriaList;
     private Grid<DteDetalleCategoria> categoriaGrid;
-    private UnoAMuchoGrid<Dte, DteDetalleCategoria> categorias;
+    private UnoaMuchoGrid<Dte, DteDetalleCategoria> categorias;
 
 //    private VerticalLayout detalle;
 //    private Button btnAdd;
@@ -198,7 +189,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 
     private Component getCategorias() {
-        categorias = new UnoAMuchoGrid<>("Categorias", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getCategorias());
+        categorias = new UnoaMuchoGrid<>("Categorias", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getCategorias());
 
         categorias.getGrid().addColumn(DteDetalleCategoria::getProductor)
                 .setHeader("Prodcutor")
@@ -229,6 +220,13 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .setHeader("Porcentaje comision")
                 .setWidth("12%");
 
+        categorias
+            .withForm(DteDetalleCategoriaForm.class)
+            .withVer()
+            .withNuevo()
+            .withEditar()
+            .withBorrar()
+        ;
         categorias.getGrid().setHeight("10rem");
         return categorias.iniciar();
     }

@@ -190,7 +190,7 @@ public class DefaultInnerListPolymer<T extends AbstractEntidad> extends PolymerT
 
     @Override
     public HorizontalLayout getTopBar() {
-        return null; //topbar;
+        return null;
     }
 
     @Override

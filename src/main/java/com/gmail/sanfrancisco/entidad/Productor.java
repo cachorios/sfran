@@ -4,10 +4,10 @@ import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.backend.entidad.Parametro;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Data
@@ -39,6 +39,9 @@ public class Productor extends AbstractEntidad {
     @NotNull
     @ManyToOne
     private Parametro condicion;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productor", fetch = FetchType.LAZY)
+    private List<Renspa> renspas;
 
     @Override
     public String toString() {

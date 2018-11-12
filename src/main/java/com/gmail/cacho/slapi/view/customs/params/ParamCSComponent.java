@@ -18,13 +18,23 @@ import javax.enterprise.inject.spi.CDI;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class ParamCSComponent extends AbstractCustomSelect<Parametro> {
-
+public  class ParamCSComponent extends AbstractCustomSelect<Parametro> {
+    private ETipoParametro tipo;
+    private  String titulo;
     public ParamCSComponent(String caption, IVisualizable padre, boolean conBuscar, boolean conVer) {
         super(caption, conBuscar, conVer, false, padre);
     }
 
-    protected abstract ETipoParametro getTipoParametro();
+    public ParamCSComponent(String caption, IVisualizable padre, boolean conBuscar, boolean conVer, String titulo, ETipoParametro tipo) {
+        super(caption, conBuscar, conVer, false, padre);
+
+        this.tipo = tipo;
+        this.titulo = titulo;
+    }
+
+    protected  ETipoParametro getTipoParametro() {
+        return tipo;
+    };
 
     @Override
     protected FilterablePageableDataProvider<Parametro, Long, String> generarDataProvider() {
@@ -34,11 +44,16 @@ public abstract class ParamCSComponent extends AbstractCustomSelect<Parametro> {
         return pdp;
     }
 
+
+
     @Override
     protected Parametro getElemento(String codigo) {
         Parametro ret;
-        Integer grupo = Math.toIntExact(((ParamCSDataProvider) getDataProvider()).getGrupo());
+        Integer grupo = null;
 
+        if(((ParamCSDataProvider) getDataProvider()).getGrupo() != null) {
+            grupo = Math.toIntExact(((ParamCSDataProvider) getDataProvider()).getGrupo());
+        }
         if( grupo == null)
             ret =  CDI.current().select(ParametroServicio.class).get().findByTipoAndOrden(getTipoParametro(), Integer.valueOf(codigo));
         else{
@@ -65,5 +80,10 @@ public abstract class ParamCSComponent extends AbstractCustomSelect<Parametro> {
         return Arrays.asList(
                 new ColumnList<>(Parametro::getOrden, Parametro.F_PAR_ORDEN, "orden", true),
                 new ColumnList<>(Parametro::getNombre, Parametro.F_PAR_NOMBRE, "nombre", true));
+    }
+
+    @Override
+    protected String getListTitulo() {
+        return "";
     }
 }
