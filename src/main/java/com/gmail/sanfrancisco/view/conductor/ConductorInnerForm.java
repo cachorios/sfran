@@ -2,14 +2,19 @@ package com.gmail.sanfrancisco.view.conductor;
 
 import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
+import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.entidad.Conductor;
+import com.gmail.sanfrancisco.entidad.Licencia;
+import com.gmail.sanfrancisco.view.licencia.LicenciaForm;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
@@ -33,7 +38,8 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
     private ComboBox operadoraTelefonica;
     private DatePicker fechaIngreso;
 
-
+    private Grid<Licencia> licenciaGrid;
+    private UnoaMuchoGrid<Conductor, Licencia> licencias;
 
     public ConductorInnerForm(IPresentableForm<Conductor> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -81,10 +87,42 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
 
                 envolver(telefono,"28%"),
                 envolver(celular,"28%"),
-                envolver(operadoraTelefonica,"40%")
+                envolver(operadoraTelefonica,"40%"),
+
+                envolver(getLicencias())
 
         );
 
+    }
+
+    private Component getLicencias() {
+        licencias = new UnoaMuchoGrid<>("Licencias", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getLicencias());
+
+        licencias.getGrid().addColumn(Licencia::getTipoLicencia)
+                .setHeader("Tipo")
+                .setWidth("20%");
+        licencias.getGrid().addColumn(Licencia::getVencimiento)
+                .setHeader("Vencimiento")
+                .setWidth("12%");
+        licencias.getGrid().addColumn(Licencia::getVencimientoNac)
+                .setHeader("Vencimiento nacional")
+                .setWidth("10%");
+        licencias.getGrid().addColumn(Licencia::getVencimientoCurso)
+                .setHeader("Vencimiento curso")
+                .setWidth("6%");
+        licencias.getGrid().addColumn(Licencia::getLicenciaCarga)
+                .setHeader("Habilitado para cargas")
+                .setWidth("6%");
+
+        licencias
+                .withForm(LicenciaForm.class)
+                .withVer()
+                .withNuevo(Licencia.class)
+                .withEditar()
+                .withBorrar()
+        ;
+        licencias.getGrid().setHeight("10rem");
+        return licencias.iniciar();
     }
 
     @Override

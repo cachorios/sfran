@@ -11,7 +11,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public @Data class Conductor extends AbstractEntidad {
@@ -48,22 +50,37 @@ public @Data class Conductor extends AbstractEntidad {
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date fechaIngreso;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conductor", fetch = FetchType.LAZY)
+    private List<Licencia> licencias;
+
 
     @ManyToOne
     private Usuario usuario;
+
+    public Conductor() {
+        licencias = new ArrayList<>();
+    }
+
+    public void setLicencias(List<Licencia> licencias) {
+        this.licencias = licencias;
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void preUpdate(){
+        for(Licencia lic: licencias){
+            if(lic.getConductor() == null){
+                lic.setConductor(this);
+            }
+        }
+    }
 
     @Override
     public String toString() {
         String leyenda = "Nuevo Conductor";
         if(!isNew()){
-            leyenda = getNombreCompleto();
+            leyenda = getNombre();
         }
-        return leyenda;
-    }
-
-    public String getNombreCompleto() {
-        String leyenda = getNombre();
-
         return leyenda;
     }
 }

@@ -1,14 +1,17 @@
 package com.gmail.sanfrancisco.view.productor;
 
 import com.gmail.cacho.backend.enumeradores.ETipoParametro;
+import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
-import com.gmail.sanfrancisco.entidad.Comisionista;
 import com.gmail.sanfrancisco.entidad.Productor;
+import com.gmail.sanfrancisco.entidad.Renspa;
+import com.gmail.sanfrancisco.view.renspa.RenspaForm;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
@@ -27,6 +30,9 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
     private TextField domicilio;
     private TextField email;
     private ComboBox condicion;
+
+    private Grid<Renspa> renspaGrid;
+    private UnoaMuchoGrid<Productor, Renspa> renspas;
 
     public ProductorInnerForm(IPresentableForm<Productor> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -67,9 +73,29 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
 
                 envolver(domicilio,"100%"),
 
-                envolver(email, "100%")
+                envolver(email, "100%"),
+
+                envolver(getRenspas())
         );
 
+    }
+
+    private Component getRenspas() {
+        renspas = new UnoaMuchoGrid<>("Renspas", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getRenspas());
+
+        renspas.getGrid().addColumn(Renspa::getNumeroRenspa)
+                .setHeader("Numero")
+                .setWidth("50%");
+
+        renspas
+                .withForm(RenspaForm.class)
+                .withVer()
+                .withNuevo(Renspa.class)
+                .withEditar()
+                .withBorrar()
+        ;
+        renspas.getGrid().setHeight("10rem");
+        return renspas.iniciar();
     }
 
     @Override

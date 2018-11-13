@@ -7,6 +7,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -42,6 +43,24 @@ public class Productor extends AbstractEntidad {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productor", fetch = FetchType.LAZY)
     private List<Renspa> renspas;
+
+    public Productor() {
+        renspas = new ArrayList<>();
+    }
+
+    public void setRenspas(List<Renspa> renspas) {
+        this.renspas = renspas;
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void preUpdate(){
+        for(Renspa ren: renspas){
+            if(ren.getProductor() == null){
+                ren.setProductor(this);
+            }
+        }
+    }
 
     @Override
     public String toString() {

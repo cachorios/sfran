@@ -59,15 +59,16 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
         vencimientoCurso.setRequired(true);
 
         licenciaCarga = new Checkbox("Habilitado para carga");
-        licenciaCarga.setEnabled(false);
+        licenciaCarga.setEnabled(true);
 
         form.add(
                 envolver(id),
                 envolver(tipoLicencia, "30%"),
                 envolver(vencimiento, "50%"),
-                envolver(vencimientoNac,"50%"),
-                envolver(vencimientoCurso, "50%"),
-                envolver(licenciaCarga,"50%")
+                envolver(licenciaCarga),
+                envolver(vencimientoNac,"48%"),
+                envolver(vencimientoCurso, "50%")
+
         );
     }
 

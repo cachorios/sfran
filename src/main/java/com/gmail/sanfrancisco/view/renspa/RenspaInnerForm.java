@@ -30,7 +30,7 @@ public class RenspaInnerForm extends DefaultInnerDialog<Renspa> {
 
 
         form.add(
-                envolver(id, "30%"),
+                envolver(id),
                 envolver(numeroRenspa, "50%")
         );
 
