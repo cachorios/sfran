@@ -137,16 +137,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         totalComisionista = textField("Total de comisionista");
         ajustes = textField("Ajustes");
 
-//        dteDetalleCategoriaList = CDI.current().select(DteDetalleCategoriaList.class).get();
-//        dteDetalleCategoriaList.iniciar(EModoVista.EDITAR, null);
-
-
-//        btnAdd = new Button(VaadinIcon.PLUS.create());
-//        btnAdd.addClickListener(e->{
-//            detalle.add(new DteDetalle());
-//        });
-////
-//        detalle.add(btnAdd,new DteDetalle());
 
         form.add(
                 envolver(numeroTropa, "100%"),
