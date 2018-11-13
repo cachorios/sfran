@@ -37,6 +37,6 @@ public class DteDetalleImpuestoForm extends AbstractForm<DteDetalleImpuesto> {
 
     @Override
     public String getTitulo() {
-        return "Categorias de un DTE";
+        return "Impuestos de un DTE";
     }
 }

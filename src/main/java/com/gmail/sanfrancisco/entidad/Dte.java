@@ -97,8 +97,16 @@ public  @Data class  Dte extends AbstractEntidad {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dte", fetch = FetchType.LAZY)
     private List<DteDetalleCategoria> categorias;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dte", fetch = FetchType.LAZY)
+    private List<DteDetalleInsumo> insumos;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dte", fetch = FetchType.LAZY)
+    private List<DteDetalleImpuesto> impuestos;
+
     public Dte() {
         categorias = new ArrayList<>();
+        insumos = new ArrayList<>();
+        impuestos = new ArrayList<>();
     }
 
     public String toString() {
@@ -109,8 +117,22 @@ public  @Data class  Dte extends AbstractEntidad {
         return categorias;
     }
 
+    public List<DteDetalleInsumo> getInsumos() {
+        return insumos;
+    }
+
+    public List<DteDetalleImpuesto> getImpuestos() {
+        return impuestos;
+    }
+
     public void setCategorias(List<DteDetalleCategoria> categorias) {
         this.categorias = categorias;
+    }
+    public void setInsumos(List<DteDetalleInsumo> insumos) {
+        this.insumos = insumos;
+    }
+    public void setImpuestos(List<DteDetalleImpuesto> impuestos) {
+        this.impuestos = impuestos;
     }
 
     @PrePersist

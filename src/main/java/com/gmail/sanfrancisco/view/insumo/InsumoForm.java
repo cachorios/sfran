@@ -3,6 +3,7 @@ package com.gmail.sanfrancisco.view.insumo;
 import com.gmail.cacho.slapi.view.AbstractForm;
 import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerForm;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterForm;
+import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
 import com.gmail.sanfrancisco.entidad.Insumo;
 import com.vaadin.flow.component.Focusable;
 
@@ -12,6 +13,11 @@ public class InsumoForm extends AbstractForm<Insumo> {
 
     @Inject
     public InsumoForm(IPresenterForm<Insumo> presenter) { super(presenter); }
+
+    public InsumoForm(IPresenterForm<Insumo> presenter, IVisualizable padre) {
+        super(presenter);
+        setPadre(padre);
+    }
 
     @Override
     protected ILayoutInnerForm<Insumo> generarLayout(AbstractForm<Insumo> padre, String titulo) {

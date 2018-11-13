@@ -52,6 +52,10 @@ public class DteDetalleCategoria extends AbstractEntidad {
         return (kgVivo*precioKgVivo*porcentajeComision)/100;
     }
 
+    public Double getImporte() {
+        return kgVivo*precioKgVivo;
+    }
+
     @Override
     public String toString() {
         return "(" + productor +

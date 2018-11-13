@@ -1,5 +1,7 @@
 package com.gmail.sanfrancisco.view.dtedetalleimpuesto;
 
+import com.gmail.cacho.backend.enumeradores.ETipoParametro;
+import com.gmail.cacho.slapi.view.customs.params.ParamCSComponent;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.converter.DoubleConverter;
@@ -17,6 +19,7 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 public class DteDetalleImpuestoInnerForm extends DefaultInnerDialog<DteDetalleImpuesto> {
 
     private TextField id;
+    private ParamCSComponent impuesto;
     private TextField saldo;
 
     public DteDetalleImpuestoInnerForm(IPresentableForm<DteDetalleImpuesto> presentable, String elTitulo) {
@@ -28,10 +31,13 @@ public class DteDetalleImpuestoInnerForm extends DefaultInnerDialog<DteDetalleIm
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
+
+        impuesto = new ParamCSComponent("Impuesto", getPresentable(), true, true, "Impuestos", ETipoParametro.IMPUESTO);
+
         saldo = textField("Saldo");
 
         form.add(
-                envolver(id, "30%"),
+                envolver(impuesto, "65%"),
                 envolver(saldo, "32%")
         );
 
@@ -49,6 +55,8 @@ public class DteDetalleImpuestoInnerForm extends DefaultInnerDialog<DteDetalleIm
                 .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
                 .withNullRepresentation(0l)
                 .bind(DteDetalleImpuesto::getId, null);
+
+        binder.bind(impuesto, "impuesto");
 
         binder.forField(saldo).withConverter(new DoubleConverter()).bind("saldo");
 

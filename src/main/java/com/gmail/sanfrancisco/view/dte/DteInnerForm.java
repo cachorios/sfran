@@ -12,13 +12,13 @@ import com.gmail.sanfrancisco.converter.DoubleConverter;
 import com.gmail.sanfrancisco.converter.IntegerConverter;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.dataProvider.VehiculolDataProvider;
-import com.gmail.sanfrancisco.entidad.Dte;
-import com.gmail.sanfrancisco.entidad.DteDetalleCategoria;
-import com.gmail.sanfrancisco.entidad.Vehiculo;
+import com.gmail.sanfrancisco.entidad.*;
 import com.gmail.sanfrancisco.view.comisionista.ComisionistaCS;
 import com.gmail.sanfrancisco.view.conductor.ConductorCS;
 import com.gmail.sanfrancisco.view.consignatario.ConsignatarioCS;
 import com.gmail.sanfrancisco.view.dtedetallecategoria.DteDetalleCategoriaForm;
+import com.gmail.sanfrancisco.view.dtedetalleimpuesto.DteDetalleImpuestoForm;
+import com.gmail.sanfrancisco.view.dtedetalleinsumo.DteDetalleInsumoForm;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
@@ -71,6 +71,12 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     private Grid<DteDetalleCategoria> categoriaGrid;
     private UnoaMuchoGrid<Dte, DteDetalleCategoria> categorias;
+
+    private Grid<DteDetalleCategoria> insumoGrid;
+    private UnoaMuchoGrid<Dte, DteDetalleInsumo> insumos;
+
+    private Grid<DteDetalleImpuesto> impuestoGrid;
+    private UnoaMuchoGrid<Dte, DteDetalleImpuesto> impuestos;
 
 //    private VerticalLayout detalle;
 //    private Button btnAdd;
@@ -170,7 +176,9 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 envolver(entrega,"32%"),
                 envolver(totalComisionista,"32%"),
                 envolver(ajustes,"32%"),
-                getCategorias()
+                envolver(getCategorias()),
+                envolver(getInsumos()),
+                envolver(getImpuestos())
 
         );
 
@@ -183,7 +191,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         categorias.getGrid().addColumn(DteDetalleCategoria::getProductor)
                 .setHeader("Prodcutor")
-                .setWidth("22%")
+                .setWidth("20%")
                 .setFlexGrow(1)
                 .setKey("productor");
 
@@ -193,22 +201,28 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .setKey("renspa");
         categorias.getGrid().addColumn(DteDetalleCategoria::getCategoria)
                 .setHeader("Categoria")
-                .setWidth("14%");
+                .setWidth("10%");
         categorias.getGrid().addColumn(DteDetalleCategoria::getCantidad)
                 .setHeader("Cantidad")
-                .setWidth("8%");
+                .setWidth("6%");
         categorias.getGrid().addColumn(DteDetalleCategoria::getKgVivo)
                 .setHeader("Kg Vivo")
-                .setWidth("12%");
+                .setWidth("6%");
         categorias.getGrid().addColumn(DteDetalleCategoria::getPrecioKgVivo)
                 .setHeader("Precio Kg Vivo")
-                .setWidth("8%");
+                .setWidth("10%");
         categorias.getGrid().addColumn(DteDetalleCategoria::getKgCarne)
                 .setHeader("Kg Carne")
-                .setWidth("12%");
+                .setWidth("7%");
         categorias.getGrid().addColumn(DteDetalleCategoria::getPorcentajeComision)
                 .setHeader("Porcentaje comision")
-                .setWidth("12%");
+                .setWidth("11%");
+        categorias.getGrid().addColumn(DteDetalleCategoria::getSaldoComision)
+                .setHeader("Saldo comision")
+                .setWidth("9%");
+        categorias.getGrid().addColumn(DteDetalleCategoria::getImporte)
+                .setHeader("Importe")
+                .setWidth("6%");
 
         categorias
             .withForm(DteDetalleCategoriaForm.class)
@@ -219,6 +233,63 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         ;
         categorias.getGrid().setHeight("10rem");
         return categorias.iniciar();
+    }
+
+    private Component getInsumos() {
+        insumos = new UnoaMuchoGrid<>("Insumos", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos());
+
+        insumos.getGrid().addColumn(DteDetalleInsumo::getInsumo)
+                .setHeader("Insumo")
+                .setWidth("20%")
+                .setFlexGrow(1)
+                .setKey("insumo");
+
+        insumos.getGrid().addColumn(DteDetalleInsumo::getPrecio)
+                .setHeader("Precio")
+                .setWidth("12%")
+                .setKey("precio");
+        insumos.getGrid().addColumn(DteDetalleInsumo::getCantidad)
+                .setHeader("Cantidad")
+                .setWidth("10%");
+        insumos.getGrid().addColumn(DteDetalleInsumo::getImporte)
+                .setHeader("Importe")
+                .setWidth("6%");
+
+        insumos
+                .withForm(DteDetalleInsumoForm.class)
+                .withVer()
+                .withNuevo(DteDetalleInsumo.class)
+                .withEditar()
+                .withBorrar()
+        ;
+        insumos.getGrid().setHeight("10rem");
+        return insumos.iniciar();
+    }
+
+    private Component getImpuestos() {
+        impuestos = new UnoaMuchoGrid<>("Impuestos", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos());
+
+        impuestos.getGrid().addColumn(DteDetalleImpuesto::getImpuesto)
+                .setHeader("Impuesto")
+                .setWidth("50%")
+                .setFlexGrow(1)
+                .setKey("impuesto");
+
+        impuestos.getGrid().addColumn(DteDetalleImpuesto::getSaldo)
+                .setHeader("Saldo")
+                .setWidth("50%")
+                .setKey("saldo");
+
+
+        impuestos
+                .withForm(DteDetalleImpuestoForm.class)
+                .withVer()
+                .withNuevo(DteDetalleImpuesto.class)
+                .withEditar()
+                .withBorrar()
+        ;
+        impuestos.getGrid().setHeight("10rem");
+        return impuestos.iniciar();
     }
 
     private void pciaChanged(HasValue.ValueChangeEvent<?> e, LocalidadCS localidadCS) {

@@ -1,11 +1,14 @@
 package com.gmail.sanfrancisco.view.dtedetalleinsumo;
 
+import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
+import com.gmail.cacho.slapi.view.customs.params.ParamCSComponent;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.converter.DoubleConverter;
 import com.gmail.sanfrancisco.converter.IntegerConverter;
 import com.gmail.sanfrancisco.entidad.DteDetalleInsumo;
+import com.gmail.sanfrancisco.view.insumo.InsumoCS;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -21,7 +24,7 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class DteDetalleInsumoInnerForm extends DefaultInnerDialog<DteDetalleInsumo> {
 
-    private TextField id;
+    private InsumoCS insumoCS;
     private TextField cantidad;
     private TextField precio;
 
@@ -32,15 +35,15 @@ public class DteDetalleInsumoInnerForm extends DefaultInnerDialog<DteDetalleInsu
     @Override
     protected void generarForm(Div form) {
 
-        id = textField("ID");
-        id.setPreventInvalidInput(true);
+        insumoCS = new InsumoCS("Insumo", getPresentable(), true, true, true);
+
         cantidad = textField("Cantidad");
         precio = textField("Precio");
 
         form.add(
-                envolver(id, "30%"),
-                envolver(cantidad),
-                envolver(precio)
+                envolver(insumoCS),
+                envolver(cantidad, "48%"),
+                envolver(precio, "48%")
         );
 
     }
@@ -53,10 +56,7 @@ public class DteDetalleInsumoInnerForm extends DefaultInnerDialog<DteDetalleInsu
     @Override
     public void bindFormFields(BeanValidationBinder<DteDetalleInsumo> binder) {
 
-        binder.forField(id)
-                .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(DteDetalleInsumo::getId, null);
+        binder.bind(insumoCS, "insumo");
 
         binder.forField(cantidad).withConverter(new IntegerConverter()).bind("cantidad");
 
