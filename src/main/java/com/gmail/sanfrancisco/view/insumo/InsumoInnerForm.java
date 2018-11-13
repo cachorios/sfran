@@ -18,7 +18,6 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
 
-    private TextField id;
     private TextField descripcion;
     private ComboBox tipoInsumo;
     private ComboBox unidad;
@@ -33,8 +32,6 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
 //        setHeight("252px");
         setWidth("700px");
 
-        id = textField("ID","20em");
-        id.setPreventInvalidInput(true);
         descripcion = textField("Descripción");
 
         tipoInsumo = new ComboBox("Tipo insumo");
@@ -51,8 +48,6 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
 
 
         form.add(
-                envolver(id),
-
                 envolver(descripcion),
 
                 envolver(tipoInsumo,    "48%"),
@@ -66,10 +61,6 @@ public class InsumoInnerForm extends DefaultInnerDialog<Insumo> {
     @Override
     public void bindFormFields(BeanValidationBinder<Insumo> binder) {
 
-        binder.forField(id)
-                .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(Insumo::getId, null);
 
         binder.bind(tipoInsumo, "tipoInsumo");
 
