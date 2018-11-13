@@ -25,6 +25,8 @@ public class DteDetalleImpuesto extends AbstractEntidad {
 
     @Override
     public String toString() {
-        return impuesto == null ? "Nuevo impuesto" : impuesto.toString();
+
+        return impuesto==null ? "Nuevo Det. Imp." : impuesto.toString();
+
     }
 }
