@@ -143,5 +143,17 @@ public  @Data class  Dte extends AbstractEntidad {
                 cat.setDte(this);
             }
         }
+
+        for(DteDetalleInsumo ins: insumos){
+            if(ins.getDte() == null){
+                ins.setDte(this);
+            }
+        }
+
+        for(DteDetalleImpuesto imp: impuestos){
+            if(imp.getDte() == null){
+                imp.setDte(this);
+            }
+        }
     }
 }
