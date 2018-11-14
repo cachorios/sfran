@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="comisionistas" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -44,7 +44,7 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 	<pageHeader>
 		<band height="50" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="300" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="230" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
@@ -53,7 +53,7 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="24" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="230" height="20" uuid="c664df7f-2d90-4dbb-ad07-25c0e102becb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
@@ -111,7 +111,7 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="18" splitType="Stretch">
+		<band height="15" splitType="Stretch">
 			<textField>
 				<reportElement stretchType="ContainerHeight" x="0" y="0" width="230" height="15" isRemoveLineWhenBlank="true" uuid="7616b065-fddc-4a3d-8c95-7248f5ff807c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
@@ -177,7 +177,7 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 	<pageFooter>
 		<band height="15" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="630" y="0" width="110" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="640" y="0" width="100" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
 				<box rightPadding="5"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
