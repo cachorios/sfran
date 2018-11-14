@@ -32,6 +32,7 @@ import com.vaadin.flow.component.html.Div;
 
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
+import org.vaadin.tabs.PagedTabs;
 
 import javax.enterprise.inject.spi.CDI;
 
@@ -143,6 +144,14 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         totalComisionista = textField("Total de comisionista");
         ajustes = textField("Ajustes");
 
+        PagedTabs tabs = new PagedTabs();
+        tabs.setWidth("100%");
+        tabs.add(getCategorias(), "Categorias");
+        tabs.add(getInsumos(), "Insumos");
+        tabs.add(getImpuestos(), "Impuestos");
+
+
+
 
         form.add(
                 envolver(numeroTropa, "100%"),
@@ -176,9 +185,10 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 envolver(entrega,"32%"),
                 envolver(totalComisionista,"32%"),
                 envolver(ajustes,"32%"),
-                envolver(getCategorias()),
-                envolver(getInsumos()),
-                envolver(getImpuestos())
+                envolver(tabs)
+//                envolver(getCategorias()),
+//                envolver(getInsumos()),
+//                envolver(getImpuestos())
 
         );
 
@@ -187,7 +197,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 
     private Component getCategorias() {
-        categorias = new UnoaMuchoGrid<>("Categorias", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getCategorias());
+        categorias = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getCategorias());
 
         categorias.getGrid().addColumn(DteDetalleCategoria::getProductor)
                 .setHeader("Prodcutor")
@@ -231,12 +241,13 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
             .withEditar()
             .withBorrar()
         ;
-        categorias.getGrid().setHeight("10rem");
+        categorias.getGrid().setHeight("9rem");
+
         return categorias.iniciar();
     }
 
     private Component getInsumos() {
-        insumos = new UnoaMuchoGrid<>("Insumos", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos());
+        insumos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos());
 
         insumos.getGrid().addColumn(DteDetalleInsumo::getInsumo)
                 .setHeader("Insumo")
@@ -262,12 +273,12 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .withEditar()
                 .withBorrar()
         ;
-        insumos.getGrid().setHeight("10rem");
+        insumos.getGrid().setHeight("9rem");
         return insumos.iniciar();
     }
 
     private Component getImpuestos() {
-        impuestos = new UnoaMuchoGrid<>("Impuestos", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos());
+        impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos());
 
         impuestos.getGrid().addColumn(DteDetalleImpuesto::getImpuesto)
                 .setHeader("Impuesto")
@@ -288,7 +299,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .withEditar()
                 .withBorrar()
         ;
-        impuestos.getGrid().setHeight("10rem");
+        impuestos.getGrid().setHeight("9rem");
         return impuestos.iniciar();
     }
 

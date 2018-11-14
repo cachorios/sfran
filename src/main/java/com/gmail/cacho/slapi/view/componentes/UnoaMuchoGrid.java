@@ -69,7 +69,12 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
 
 
     public UnoaMuchoGrid(String titulo, S padre, List items ) {
-        this.titulo.setText(titulo);
+        if(titulo == null || titulo.isEmpty()){
+            this.titulo.setVisible(false);
+        }else{
+            this.titulo.setText(titulo);
+        }
+
         this.padre = padre;
         this.items = items;
         toolBar.setFilterVisible(false);

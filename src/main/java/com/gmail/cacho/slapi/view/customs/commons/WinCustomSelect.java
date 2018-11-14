@@ -74,11 +74,14 @@ public class WinCustomSelect<T extends AbstractEntidad> extends Dialog {
             padre.setValue(registroSeleccionado);
             close();
         });
+        seleccionar.getElement().setAttribute("theme", "primary");
         seleccionar.setWidth("120px");
         seleccionar.setEnabled(false);
 
         cancelar = new Button(C.CRUD_FORM_BTN_CANCELAR, clickEvent -> close());
         cancelar.setWidth("12px%");
+        cancelar.getElement().setAttribute("theme", "primary");
+
 
         HorizontalLayout botonera = new HorizontalLayout();
         botonera.setWidth("100%");
@@ -88,6 +91,7 @@ public class WinCustomSelect<T extends AbstractEntidad> extends Dialog {
             agregar = new Button(C.CRUD_MSG_AGREGAR, e -> agregarElemento());
             agregar.setWidth("120px");
             agregar.setEnabled(true);
+            agregar.getElement().setAttribute("theme", "primary");
 
             botonera.add(agregar, seleccionar, cancelar);
             botonera.setAlignSelf(FlexComponent.Alignment.END, agregar);
