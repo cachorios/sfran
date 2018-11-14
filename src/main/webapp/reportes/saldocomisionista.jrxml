@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="saldocomisionista" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="563"/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="423"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="451"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="535"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -33,24 +33,45 @@
 		</box>
 	</style>
 	<parameter name="p_Id" class="java.lang.Long"/>
+	<parameter name="p_FechaInicial" class="java.sql.Date"/>
+	<parameter name="p_FechaFinal" class="java.sql.Date"/>
 	<queryString>
-		<![CDATA[SELECT
+		<![CDATA[((SELECT
+dte.fechacarga,
+dte.numerotropa,
+' - ' AS descCategoria,
+0.0 AS kgvivo,
+0.0 AS preciokgvivo,
+0.0 AS comision,
+dte.importeentrega,
+dte.totalComisionista,
+dte.ajustes,
+com.saldoinicial
+FROM dte
+JOIN comisionista AS com
+ON dte.comisionista_id=com.id
+WHERE dte.comisionista_id=$P{p_Id})
+UNION ALL
+(SELECT
 dte.fechacarga,
 dte.numerotropa,
 c.nombre AS descCategoria,
 ddc.kgvivo,
 ddc.preciokgvivo,
 ((ddc.kgvivo*ddc.preciokgvivo*ddc.porcentajecomision)/100) AS comision,
-dte.importeentrega,
-dte.totalComisionista,
-dte.ajustes
+0.0 AS importeentrega,
+0.0 AS totalComisionista,
+0.0 AS ajustes,
+com.saldoinicial
 FROM dte
+JOIN comisionista AS com
+ON dte.comisionista_id=com.id
 LEFT JOIN dtedetallecategoria AS ddc
 ON dte.id=ddc.dte_id
 LEFT JOIN parametro AS c
 ON ddc.categoria_id=c.id and c.tipo=8
-WHERE dte.comisionista_id=$P{p_Id}
-ORDER BY dte.fechacarga]]>
+WHERE dte.comisionista_id=$P{p_Id}))
+ORDER BY fechacarga, numerotropa, descCategoria]]>
 	</queryString>
 	<field name="fechacarga" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.label" value="fechacarga"/>
@@ -79,23 +100,12 @@ ORDER BY dte.fechacarga]]>
 	<field name="ajustes" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="ajustes"/>
 	</field>
-	<variable name="v_Debe" class="java.lang.Double" resetType="None">
-		<variableExpression><![CDATA[IF($F{ajustes}>0.0,$F{ajustes},0.0)]]></variableExpression>
-		<initialValueExpression><![CDATA[0.0]]></initialValueExpression>
-	</variable>
-	<variable name="v_Haber" class="java.lang.Double" resetType="None">
-		<variableExpression><![CDATA[Double.valueOf($F{importeentrega}.doubleValue()
-	+$F{totalcomisionista}.doubleValue()
-	+ABS(MIN($F{ajustes},0)).doubleValue()
-)]]></variableExpression>
-		<initialValueExpression><![CDATA[0.0]]></initialValueExpression>
-	</variable>
-	<variable name="v_Saldo" class="java.lang.Double" resetType="None">
-		<variableExpression><![CDATA[$V{v_Debe}-$V{v_Haber}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
-	</variable>
-	<variable name="v_DebeDetalle" class="java.lang.Double" resetType="None">
-		<variableExpression><![CDATA[IF(Double.valueOf(
+	<field name="saldoinicial" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="saldoinicial"/>
+	</field>
+	<variable name="v_Debe" class="java.lang.Double">
+		<variableExpression><![CDATA[(Double)IF($F{ajustes}>0.0,$F{ajustes},0.0) 
++ (Double)IF(Double.valueOf(
 	($F{preciokgvivo}.doubleValue()
 		*$F{kgvivo}.doubleValue()
 	)
@@ -109,164 +119,32 @@ ORDER BY dte.fechacarga]]>
 	)]]></variableExpression>
 		<initialValueExpression><![CDATA[0.0]]></initialValueExpression>
 	</variable>
-	<variable name="v_DebeDetalleTotal" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[$V{v_DebeDetalle}]]></variableExpression>
+	<variable name="v_Haber" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{importeentrega}.doubleValue()
+	+$F{totalcomisionista}.doubleValue()
+	+ABS(MIN($F{ajustes},0)).doubleValue()
+)]]></variableExpression>
 		<initialValueExpression><![CDATA[0.0]]></initialValueExpression>
 	</variable>
-	<variable name="v_DebeTotal" class="java.lang.Double" resetType="None" calculation="Sum">
+	<variable name="v_DebeTotal" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$V{v_Debe}]]></variableExpression>
 		<initialValueExpression><![CDATA[0.0]]></initialValueExpression>
 	</variable>
-	<variable name="v_HaberTotal" class="java.lang.Double" resetType="None" calculation="Sum">
+	<variable name="v_HaberTotal" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$V{v_Haber}]]></variableExpression>
 		<initialValueExpression><![CDATA[0.0]]></initialValueExpression>
 	</variable>
-	<group name="numerotropa">
-		<groupExpression><![CDATA[$F{numerotropa}]]></groupExpression>
-		<groupHeader>
-			<band height="16">
-				<textField>
-					<reportElement stretchType="ContainerHeight" mode="Opaque" x="60" y="0" width="60" height="16" isRemoveLineWhenBlank="true" backcolor="#E8E8E8" uuid="7616b065-fddc-4a3d-8c95-7248f5ff807c">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
-					</reportElement>
-					<box rightPadding="3">
-						<pen lineWidth="1.0" lineStyle="Solid"/>
-						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{numerotropa}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement stretchType="ContainerHeight" mode="Opaque" x="390" y="0" width="70" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#BBFAC5" uuid="529c3ef7-d853-4533-b199-022643ff747e">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ffff912-42e3-42d8-ba55-2c36c4cf6143"/>
-					</reportElement>
-					<box rightPadding="3">
-						<pen lineWidth="1.0" lineStyle="Solid"/>
-						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{importeentrega}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement stretchType="ContainerHeight" mode="Opaque" x="460" y="0" width="70" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#BBFAC5" uuid="9e064705-7967-423a-be34-4444e56b9ded">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ffff912-42e3-42d8-ba55-2c36c4cf6143"/>
-					</reportElement>
-					<box rightPadding="3">
-						<pen lineWidth="1.0" lineStyle="Solid"/>
-						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{totalcomisionista}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement stretchType="ContainerHeight" mode="Opaque" x="530" y="0" width="70" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#BBFAC5" uuid="e46d6a9f-6cbd-48b6-8804-582ea9002cb0">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bed66a8e-a8bd-47f2-97e3-877428fdf871"/>
-					</reportElement>
-					<box rightPadding="3">
-						<pen lineWidth="1.0" lineStyle="Solid"/>
-						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{ajustes}]]></textFieldExpression>
-				</textField>
-				<textField pattern="###0.##;###0.##">
-					<reportElement stretchType="ContainerHeight" mode="Transparent" x="600" y="0" width="60" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="26166300-5881-49ee-8c09-fc908ae9e9b9">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c244b971-5df4-4a44-8250-69368b298194"/>
-					</reportElement>
-					<box rightPadding="3">
-						<pen lineWidth="1.0" lineStyle="Solid"/>
-						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{v_Debe}]]></textFieldExpression>
-				</textField>
-				<textField pattern="###0.##;###0.##">
-					<reportElement stretchType="ContainerHeight" mode="Transparent" x="660" y="0" width="70" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="c67b4846-2164-41d1-a19c-dd2e9e77e202">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c244b971-5df4-4a44-8250-69368b298194"/>
-					</reportElement>
-					<box rightPadding="3">
-						<pen lineWidth="1.0" lineStyle="Solid"/>
-						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{v_Haber}]]></textFieldExpression>
-				</textField>
-				<textField pattern="###0.##;###0.##">
-					<reportElement stretchType="ElementGroupHeight" mode="Transparent" x="730" y="0" width="72" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="94a49f2e-c9a1-4f45-a470-362a0a2fd092">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c244b971-5df4-4a44-8250-69368b298194"/>
-					</reportElement>
-					<box rightPadding="3">
-						<pen lineWidth="1.0" lineStyle="Solid"/>
-						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{v_Saldo}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="60" height="16" isRemoveLineWhenBlank="true" backcolor="#E8E8E8" uuid="36d6aa2e-29cb-4317-be73-0297158884a9">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
-					</reportElement>
-					<box rightPadding="3">
-						<pen lineWidth="1.0" lineStyle="Solid"/>
-						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{fechacarga}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupHeader>
-	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
 		<band height="50" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="290" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="270" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Saldo de la tropa]]></text>
+				<text><![CDATA[Saldo del comisionista]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -456,6 +334,7 @@ ORDER BY dte.fechacarga]]>
 	</columnHeader>
 	<detail>
 		<band height="16" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{fechacarga}.before($P{p_FechaFinal}) && $F{fechacarga}.after($P{p_FechaInicial})]]></printWhenExpression>
 			<textField>
 				<reportElement stretchType="ContainerHeight" x="120" y="0" width="90" height="16" isRemoveLineWhenBlank="true" uuid="c1ad5f7d-949e-4460-8588-bba4fb637bb7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9aed832b-3057-48fc-8946-6c7a2ff6b198"/>
@@ -534,7 +413,7 @@ ORDER BY dte.fechacarga]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{v_DebeDetalle}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{v_Debe}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.##;###0.##">
 				<reportElement stretchType="ContainerHeight" mode="Transparent" x="660" y="0" width="70" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="2f6cf2a0-3856-48b2-83a6-57ead7b4770b">
@@ -550,7 +429,7 @@ ORDER BY dte.fechacarga]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[0.0]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{v_Haber}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.##;###0.##">
 				<reportElement stretchType="ContainerHeight" mode="Transparent" x="730" y="0" width="72" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="dddf766a-b9c6-48db-a2f8-c59cb2320a44">
@@ -566,20 +445,100 @@ ORDER BY dte.fechacarga]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{v_Saldo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{saldoinicial}+$V{v_DebeTotal}-$V{v_HaberTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="60" height="16" isRemoveLineWhenBlank="true" backcolor="#E8E8E8" uuid="36d6aa2e-29cb-4317-be73-0297158884a9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
+				</reportElement>
+				<box rightPadding="3">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechacarga}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" isPrintRepeatedValues="false" mode="Opaque" x="60" y="0" width="60" height="16" isRemoveLineWhenBlank="true" backcolor="#E8E8E8" uuid="7616b065-fddc-4a3d-8c95-7248f5ff807c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
+				</reportElement>
+				<box rightPadding="3">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numerotropa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="390" y="0" width="70" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#E8E8E8" uuid="529c3ef7-d853-4533-b199-022643ff747e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ffff912-42e3-42d8-ba55-2c36c4cf6143"/>
+				</reportElement>
+				<box rightPadding="3">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{importeentrega}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="460" y="0" width="70" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#E8E8E8" uuid="9e064705-7967-423a-be34-4444e56b9ded">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ffff912-42e3-42d8-ba55-2c36c4cf6143"/>
+				</reportElement>
+				<box rightPadding="3">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalcomisionista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="530" y="0" width="70" height="16" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#E8E8E8" uuid="e46d6a9f-6cbd-48b6-8804-582ea9002cb0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bed66a8e-a8bd-47f2-97e3-877428fdf871"/>
+				</reportElement>
+				<box rightPadding="3">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ajustes}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="96" splitType="Stretch">
+		<band height="28" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="630" y="81" width="110" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="600" y="13" width="130" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
 				<box rightPadding="5"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="740" y="81" width="62" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
+				<reportElement x="730" y="13" width="72" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
