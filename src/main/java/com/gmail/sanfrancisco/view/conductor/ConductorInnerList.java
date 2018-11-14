@@ -8,6 +8,10 @@ import com.gmail.cacho.slreport.jasper.ReporteCreator;
 import com.gmail.cacho.slreport.view.DefaultPDFViewDialog;
 import com.gmail.sanfrancisco.entidad.Conductor;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.contextmenu.ContextMenu;
+import com.vaadin.flow.component.html.Anchor;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.server.StreamResource;
 import org.vaadin.alejandro.PdfBrowserViewer;
@@ -19,13 +23,30 @@ public class ConductorInnerList extends DefaultInnerListPolymer<Conductor> {
 
     private Button pdfBtn;
     private String filtro;
+    private Anchor xlsBtn;
 
     public ConductorInnerList(IPresentableList<Conductor> presentable, String elTitulo) {
         super(presentable, elTitulo);
+
         pdfBtn = new Button(VaadinIcon.PRINT.create());
-        pdfBtn.addClickListener((e) -> genPdf());
+
+        final ContextMenu contextMenu = new ContextMenu(pdfBtn);
+        contextMenu.setOpenOnClick(true);
+        contextMenu.addItem("PDF", (e) -> genPdf());
+        contextMenu.addItem("XLS", (e) -> genXLS());
 
         getToolBar().getBotonera().add(pdfBtn);
+    }
+
+    private void genXLS() {
+        DefaultPDFViewDialog view = new DefaultPDFViewDialog();
+        Span label = new Span("Descargar Archivo :");
+
+        xlsBtn = new Anchor(createXls(), "");
+        xlsBtn.add(new Button("excel"));
+
+        view.getDialog().add(label, xlsBtn );
+        view.open();
     }
 
     private void genPdf() {
@@ -35,6 +56,7 @@ public class ConductorInnerList extends DefaultInnerListPolymer<Conductor> {
         view.getDialog().add(viewer);
         view.open();
     }
+
     private Map<String, Object> crearMapaFechas() {
         filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();
 
@@ -45,6 +67,12 @@ public class ConductorInnerList extends DefaultInnerListPolymer<Conductor> {
 
     private StreamResource createPdf() {
         return new ReporteCreator().streamResourceReport("/conductores.jrxml", crearMapaFechas(), "conductores");
+    }
+
+    private StreamResource createXls() {
+        Map mapa = crearMapaFechas();
+        mapa.put("IS_IGNORE_PAGINATION", Boolean.TRUE);
+        return new ReporteCreator().createXlsResource("/conductores.jrxml", mapa, "conductores");
     }
 
 }

@@ -149,7 +149,7 @@ public class ReporteFactory {
 
             configuration.setAutoFitPageHeight(true);
             configuration.setWrapText(true);
-            configuration.setFreezeRow(6);
+//            configuration.setFreezeRow(6);
             configuration.setFitHeight(10);
             configuration.setFreezeColumn("A;B");
             configuration.setIgnorePageMargins(true);

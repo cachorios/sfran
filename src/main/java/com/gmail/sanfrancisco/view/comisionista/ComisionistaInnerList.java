@@ -8,6 +8,9 @@ import com.gmail.cacho.slreport.jasper.ReporteCreator;
 import com.gmail.cacho.slreport.view.DefaultPDFViewDialog;
 import com.gmail.sanfrancisco.entidad.Comisionista;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.contextmenu.ContextMenu;
+import com.vaadin.flow.component.html.Anchor;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.server.StreamResource;
 import org.vaadin.alejandro.PdfBrowserViewer;
@@ -18,11 +21,16 @@ import java.util.Map;
 public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista> {
     private Button pdfBtn;
     private String filtro;
+    private Anchor xlsBtn;
 
     public ComisionistaInnerList(IPresentableList<Comisionista> presentable, String elTitulo) {
         super(presentable, elTitulo);
         pdfBtn = new Button(VaadinIcon.PRINT.create());
-        pdfBtn.addClickListener((e) -> genPdf());
+
+        final ContextMenu contextMenu = new ContextMenu(pdfBtn);
+        contextMenu.setOpenOnClick(true);
+        contextMenu.addItem("PDF", (e) -> genPdf());
+        contextMenu.addItem("XLS", (e) -> genXLS());
 
         getToolBar().getBotonera().add(pdfBtn);
     }
@@ -34,6 +42,18 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
         view.getDialog().add(viewer);
         view.open();
     }
+
+    private void genXLS() {
+        DefaultPDFViewDialog view = new DefaultPDFViewDialog();
+        Span label = new Span("Descargar Archivo :");
+
+        xlsBtn = new Anchor(createXls(), "");
+        xlsBtn.add(new Button("excel"));
+
+        view.getDialog().add(label, xlsBtn );
+        view.open();
+    }
+
     private Map<String, Object> crearMapaFechas() {
         filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();
 
@@ -46,4 +66,9 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
         return new ReporteCreator().streamResourceReport("/comisionistas.jrxml", crearMapaFechas(), "comisionistas");
     }
 
+    private StreamResource createXls() {
+        Map mapa = crearMapaFechas();
+        mapa.put("IS_IGNORE_PAGINATION", Boolean.TRUE);
+        return new ReporteCreator().createXlsResource("/comisionistas.jrxml", mapa, "comisionistas");
+    }
 }
