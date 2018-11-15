@@ -31,15 +31,6 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
 
         pdfBtn.add("Listado", "comisionistas.jrxml", this::crearParametroReporte);
 
-        /*
-        pdfBtn = new Button(VaadinIcon.PRINT.create());
-
-        final ContextMenu contextMenu = new ContextMenu(pdfBtn);
-        contextMenu.setOpenOnClick(true);
-
-        contextMenu.addItem("PDF", (e) -> genPdf());
-        contextMenu.addItem("XLS", (e) -> genXLS());
-        */
 
         getToolBar().getBotonera().add(pdfBtn);
     }
