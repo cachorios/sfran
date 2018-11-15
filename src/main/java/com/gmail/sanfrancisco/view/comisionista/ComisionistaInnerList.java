@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.view.comisionista;
 
 import com.gmail.cacho.slapi.comunes.C;
+import com.gmail.cacho.slapi.view.componentes.ReportSelector;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerListPolymer;
@@ -19,22 +20,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista> {
-    private Button pdfBtn;
+    private ReportSelector pdfBtn;
     private String filtro;
     private Anchor xlsBtn;
 
     public ComisionistaInnerList(IPresentableList<Comisionista> presentable, String elTitulo) {
         super(presentable, elTitulo);
+
+        pdfBtn = new ReportSelector("Imprimir", VaadinIcon.PRINT.create());
+
+        pdfBtn.add("Listado", "comisionistas.jrxml", this::crearParametroReporte);
+
+        /*
         pdfBtn = new Button(VaadinIcon.PRINT.create());
 
         final ContextMenu contextMenu = new ContextMenu(pdfBtn);
         contextMenu.setOpenOnClick(true);
+
         contextMenu.addItem("PDF", (e) -> genPdf());
         contextMenu.addItem("XLS", (e) -> genXLS());
+        */
 
         getToolBar().getBotonera().add(pdfBtn);
     }
 
+    /*
     private void genPdf() {
         DefaultPDFViewDialog view = new DefaultPDFViewDialog();
         PdfBrowserViewer viewer = new PdfBrowserViewer(createPdf());
@@ -54,13 +64,7 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
         view.open();
     }
 
-    private Map<String, Object> crearMapaFechas() {
-        filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();
 
-        Map<String, Object> mapa = new HashMap<String, Object>();
-        mapa.put(C.SYS_REP_PARAM_ID, filtro);
-        return mapa;
-    }
 
     private StreamResource createPdf() {
         return new ReporteCreator().streamResourceReport("/comisionistas.jrxml", crearMapaFechas(), "comisionistas");
@@ -70,5 +74,13 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
         Map mapa = crearMapaFechas();
         mapa.put("IS_IGNORE_PAGINATION", Boolean.TRUE);
         return new ReporteCreator().createXlsResource("/comisionistas.jrxml", mapa, "comisionistas");
+    }*/
+
+    private Map<String, Object> crearParametroReporte() {
+        filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();
+
+        Map<String, Object> mapa = new HashMap<String, Object>();
+        mapa.put(C.SYS_REP_PARAM_ID, filtro);
+        return mapa;
     }
 }
