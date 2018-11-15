@@ -1,0 +1,16 @@
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (1, '2018-08-10 00:00:00', '2018-10-29 15:16:40', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (10, '1970-01-01 00:00:00', '2018-11-03 13:56:05', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (11, '1970-01-01 00:00:00', '2018-11-03 13:56:08', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (12, '1970-01-01 00:00:00', '2018-11-03 13:56:11', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (13, '1970-01-01 00:00:00', '2018-11-03 13:56:14', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (14, '1970-01-01 00:00:00', '2018-11-03 13:56:17', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (15, '1970-01-01 00:00:00', '2018-11-03 13:56:20', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (16, '1970-01-01 00:00:00', '2018-11-03 13:56:23', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (2, '2018-05-10 00:00:00', '2018-10-30 12:09:32', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (3, '2018-08-09 00:00:00', '2018-10-30 13:59:32', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (4, '2018-08-08 00:00:00', '2018-10-30 13:59:42', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (5, '2018-05-09 00:00:00', '2018-10-30 13:59:52', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (6, '2000-08-09 00:00:00', '2018-10-30 14:00:00', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (7, '1970-01-01 00:00:00', '2018-11-03 13:55:55', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (8, '1970-01-01 00:00:00', '2018-11-03 13:55:59', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+INSERT INTO graseria (id, fecha, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (9, '1970-01-01 00:00:00', '2018-11-03 13:56:02', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);

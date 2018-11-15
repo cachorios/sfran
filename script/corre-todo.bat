@@ -73,6 +73,9 @@ psql -d sfran -U postgres -f "DOCUMENTODTE.sql"
 psql -d sfran -U postgres -f "FACTURACOSTOVEHICULO.sql"
 psql -d sfran -U postgres -f "INSUMOCOSTOVEHICULO.sql"
 psql -d sfran -U postgres -f "IMPUESTOCOSTOVEHICULO.sql"
+psql -d sfran -U postgres -f "GRASERIA.sql"
+psql -d sfran -U postgres -f "GRASERIADETALLEINSUMO.sql"
+psql -d sfran -U postgres -f "GRASERIADETALLEIMPUESTO.sql"
 
 
 rem ---------------------------------
