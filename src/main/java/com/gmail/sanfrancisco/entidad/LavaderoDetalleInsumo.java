@@ -1,20 +1,17 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public @Data class DespoteDetalle extends AbstractEntidad {
+@Data
+public class LavaderoDetalleInsumo extends AbstractEntidad {
     @ManyToOne
-//    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
-    private Desposte desposte;
+    private Lavadero lavadero;
 
     @ManyToOne
     private Insumo insumo;
@@ -24,7 +21,4 @@ public @Data class DespoteDetalle extends AbstractEntidad {
 
     @NotNull
     private Double precio;
-
-    @NotNull
-    private Double subtotal;
 }

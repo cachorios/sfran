@@ -23,7 +23,4 @@ public class VentasDetalle extends AbstractEntidad {
 
     @NotNull
     private Double precio;
-
-    @NotNull
-    private Double subtotal;
 }
