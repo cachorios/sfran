@@ -55,7 +55,7 @@ public class VehiculoInnerList extends DefaultInnerListPolymer<Vehiculo> {
         filtroFechaInicial = new Date();
 
         Map<String, Object> mapa = new HashMap<String, Object>();
-        mapa.put(C.SYS_REP_PARAM_ID, filtro);
+        mapa.put(C.SYS_REP_PARAM_ID, filtroLong);
         mapa.put(C.SYS_REP_PARAM_TIPO_INSUMO, filtroTipoInsumo);
         mapa.put(C.SYS_REP_PARAM_FECHA_INICIAL, filtroFechaInicial);
         mapa.put(C.SYS_REP_PARAM_FECHA_FINAL, filtroFechaFinal);
