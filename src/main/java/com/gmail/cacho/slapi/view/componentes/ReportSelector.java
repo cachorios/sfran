@@ -22,24 +22,23 @@ import java.util.concurrent.Callable;
 
 public class ReportSelector extends Button {
     private  ContextMenu contextMenu;
+
     public ReportSelector() {
         this.getElement().setAttribute("theme", "primary");
+        this.setClassName("action-btn");
     }
 
     public ReportSelector(String text) {
         super(text);
         this.getElement().setAttribute("theme", "primary");
+        this.setClassName("action-btn");
     }
 
     public ReportSelector(String text, Component icon) {
         super(text, icon);
         this.getElement().setAttribute("theme", "primary");
-
+        this.setClassName("action-btn");
     }
-
-
-
-
 
 
     public ReportSelector add(String label, String repFile, Callable<Map<String, Object>> getParm){
@@ -49,9 +48,9 @@ public class ReportSelector extends Button {
         }
 
         Image pdfImage = new Image("frontend/images/pdf.png", "pdf");
-        pdfImage.setHeight("25px");
+        pdfImage.setHeight("20px");
         Image xlsImage = new Image("frontend/images/xls.jpg", "xls");
-        xlsImage.setHeight("25px");
+        xlsImage.setHeight("20px");
 
         contextMenu.addItem(new ItemMenu(label, pdfImage),e -> genPdf(repFile, label, getParm) );
         contextMenu.addItem(new ItemMenu(label, xlsImage),e -> genXls(repFile, label, getParm) );
