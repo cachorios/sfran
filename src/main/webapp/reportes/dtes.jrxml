@@ -106,14 +106,18 @@ ORDER BY dte.fechaCarga DESC]]>
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="50" splitType="Stretch">
+		<band height="76" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="300" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="240" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Lista de DTEs]]></text>
 			</staticText>
+			<image hAlign="Right">
+				<reportElement x="532" y="0" width="270" height="50" uuid="0ceb6b7b-1ec2-41a0-a4df-b777943f43c6"/>
+				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -258,15 +262,15 @@ ORDER BY dte.fechaCarga DESC]]>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="15" splitType="Stretch">
+		<band height="26" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="630" y="0" width="110" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="602" y="11" width="100" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
 				<box rightPadding="5"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="740" y="0" width="62" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
+				<reportElement x="702" y="11" width="100" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

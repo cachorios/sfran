@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="conductores" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="p_Id" class="java.lang.String"/>
 	<queryString>
@@ -15,7 +15,8 @@ c.telefono,
 c.celular
 FROM
 public.conductor AS c
-WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
+WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%'
+AND fechabaja IS NULL]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
@@ -39,7 +40,7 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 		<property name="com.jaspersoft.studio.field.label" value="celular"/>
 	</field>
 	<pageHeader>
-		<band height="50" splitType="Stretch">
+		<band height="76" splitType="Stretch">
 			<staticText>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="320" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -47,6 +48,10 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 				</textElement>
 				<text><![CDATA[Lista de Conductores]]></text>
 			</staticText>
+			<image hAlign="Right">
+				<reportElement x="500" y="0" width="300" height="50" uuid="2de323ce-4c35-48cb-b42c-21d08fe12f4b"/>
+				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -192,15 +197,15 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="15" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="640" y="0" width="100" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="600" y="10" width="100" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
 				<box rightPadding="5"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="740" y="0" width="60" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
+				<reportElement x="700" y="10" width="100" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

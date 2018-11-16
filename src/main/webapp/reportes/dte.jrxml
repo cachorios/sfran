@@ -635,10 +635,10 @@ WHERE
 				<text><![CDATA[Provincia origen:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="40" width="569" height="1" uuid="f15e5c1d-ed02-450c-8927-47e5e037ee00"/>
+				<reportElement x="0" y="51" width="569" height="1" uuid="f15e5c1d-ed02-450c-8927-47e5e037ee00"/>
 			</line>
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="300" height="40" uuid="60716ce3-d00e-47b6-84da-d157cf2ce27b"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="280" height="50" uuid="60716ce3-d00e-47b6-84da-d157cf2ce27b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
@@ -897,12 +897,16 @@ WHERE
 				<text><![CDATA[Total de comisionista:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="440" y="360" width="120" height="19" uuid="f12bbb22-9fc1-4f18-8e30-eb22abc92cc1"/>
+				<reportElement x="440" y="360" width="110" height="19" uuid="f12bbb22-9fc1-4f18-8e30-eb22abc92cc1"/>
 				<textElement verticalAlignment="Middle" markup="styled">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{totalcomisionista}]]></textFieldExpression>
 			</textField>
+			<image hAlign="Right">
+				<reportElement x="280" y="0" width="270" height="50" uuid="371ec1e1-54e2-41cd-a76e-8c37e7b07832"/>
+				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 </jasperReport>
