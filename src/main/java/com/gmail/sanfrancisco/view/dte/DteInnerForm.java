@@ -203,7 +203,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .setHeader("Prodcutor")
                 .setWidth("20%")
                 .setFlexGrow(1)
-                .setKey("productor");
+                .setKey("productor")
+                .setFooter("Total");
 
         categorias.getGrid().addColumn(DteDetalleCategoria::getRenspa)
                 .setHeader("RENSPA")
@@ -232,7 +233,9 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .setWidth("9%");
         categorias.getGrid().addColumn(DteDetalleCategoria::getImporte)
                 .setHeader("Importe")
-                .setWidth("6%");
+                .setWidth("6%")
+                .setFooter(this.getCategiaTotal());
+
 
         categorias
             .withForm(DteDetalleCategoriaForm.class)
@@ -253,7 +256,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .setHeader("Insumo")
                 .setWidth("20%")
                 .setFlexGrow(1)
-                .setKey("insumo");
+                .setKey("insumo")
+                .setFooter("Total");
 
         insumos.getGrid().addColumn(DteDetalleInsumo::getPrecio)
                 .setHeader("Precio")
@@ -264,7 +268,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .setWidth("10%");
         insumos.getGrid().addColumn(DteDetalleInsumo::getImporte)
                 .setHeader("Importe")
-                .setWidth("6%");
+                .setWidth("6%")
+                .setFooter(this.getImporteTotal());
 
         insumos
                 .withForm(DteDetalleInsumoForm.class)
@@ -277,6 +282,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         return insumos.iniciar();
     }
 
+
+
     private Component getImpuestos() {
         impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos());
 
@@ -284,13 +291,14 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .setHeader("Impuesto")
                 .setWidth("50%")
                 .setFlexGrow(1)
-                .setKey("impuesto");
+                .setKey("impuesto")
+                .setFooter("Total");
 
         impuestos.getGrid().addColumn(DteDetalleImpuesto::getSaldo)
                 .setHeader("Saldo")
                 .setWidth("50%")
-                .setKey("saldo");
-
+                .setKey("saldo")
+                .setFooter(this.getImpuestoTotal());
 
         impuestos
                 .withForm(DteDetalleImpuestoForm.class)
@@ -298,9 +306,33 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .withNuevo(DteDetalleImpuesto.class)
                 .withEditar()
                 .withBorrar()
+
         ;
         impuestos.getGrid().setHeight("9rem");
         return impuestos.iniciar();
+    }
+
+    private String getCategiaTotal() {
+        Double total = 0.0;
+        for(DteDetalleCategoria d :  this.getPresentable().getObjetoActivo().getCategorias()){
+            total += d.getImporte();
+        }
+        return total.toString();
+    }
+
+    private String getImporteTotal() {
+        Double total = 0.0;
+        for(DteDetalleInsumo i :  this.getPresentable().getObjetoActivo().getInsumos()){
+            total += i.getImporte();
+        }
+        return total.toString();
+    }
+    private String getImpuestoTotal() {
+        Double total = 0.0;
+        for(DteDetalleImpuesto i :  this.getPresentable().getObjetoActivo().getImpuestos()){
+            total += i.getSaldo();
+        }
+        return total.toString();
     }
 
     private void pciaChanged(HasValue.ValueChangeEvent<?> e, LocalidadCS localidadCS) {
