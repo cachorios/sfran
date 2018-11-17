@@ -23,7 +23,7 @@ public @Data class Conductor extends AbstractEntidad {
     private String nombre;
 
     @NotNull
-    @Size(min=11, max=11, message="El cuil debe contener entre 11 caracteres.")
+    @Size(min=11, max=11, message="El cuil debe contener 11 caracteres.")
     private String cuil;
 
     @NotNull

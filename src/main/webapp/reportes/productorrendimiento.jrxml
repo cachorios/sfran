@@ -97,14 +97,18 @@ ORDER BY ddc.productor_id]]>
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="50" splitType="Stretch">
+		<band height="76" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="290" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="190" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Saldo de la tropa]]></text>
+				<text><![CDATA[Rendimiento de productores]]></text>
 			</staticText>
+			<image hAlign="Right">
+				<reportElement x="190" y="0" width="362" height="50" uuid="84eccca4-b508-49fd-bb47-43ed5a5d7cb8"/>
+				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -193,15 +197,15 @@ ORDER BY ddc.productor_id]]>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="96" splitType="Stretch">
+		<band height="37" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="380" y="80" width="110" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="190" y="22" width="250" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
 				<box rightPadding="5"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="490" y="80" width="62" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
+				<reportElement x="440" y="22" width="112" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

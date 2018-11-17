@@ -38,14 +38,18 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="50" splitType="Stretch">
+		<band height="76" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="300" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="230" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Lista de Productores]]></text>
 			</staticText>
+			<image hAlign="Right">
+				<reportElement x="407" y="0" width="395" height="50" uuid="810faad3-ff87-4cfb-92d0-8b4e4e215985"/>
+				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -60,7 +64,7 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 				<text><![CDATA[Nombre y Apellido]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="230" y="0" width="180" height="20" uuid="c4f09ba7-0a73-4b2c-a57d-93bae8e01e10">
+				<reportElement x="230" y="0" width="177" height="20" uuid="c4f09ba7-0a73-4b2c-a57d-93bae8e01e10">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -69,7 +73,7 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 				<text><![CDATA[domicilio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="416" y="0" width="70" height="20" uuid="252a2682-1d59-413a-999a-b53ed100b4e3">
+				<reportElement x="407" y="0" width="79" height="20" uuid="252a2682-1d59-413a-999a-b53ed100b4e3">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9aed832b-3057-48fc-8946-6c7a2ff6b198"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -129,7 +133,7 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 				<textFieldExpression><![CDATA[$F{domicilio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="ContainerHeight" x="410" y="0" width="76" height="15" isRemoveLineWhenBlank="true" uuid="c1ad5f7d-949e-4460-8588-bba4fb637bb7">
+				<reportElement stretchType="ContainerHeight" x="407" y="0" width="79" height="15" isRemoveLineWhenBlank="true" uuid="c1ad5f7d-949e-4460-8588-bba4fb637bb7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9aed832b-3057-48fc-8946-6c7a2ff6b198"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -173,7 +177,7 @@ WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%']]>
 	<pageFooter>
 		<band height="15" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="630" y="0" width="110" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="640" y="0" width="100" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
 				<box rightPadding="5"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>

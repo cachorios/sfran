@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vehiculos" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="p_Id" class="java.lang.String"/>
 	<queryString>
@@ -18,7 +18,8 @@ INNER JOIN parametro AS tv
 ON v.tipovehiculo_id=tv.id AND tv.tipo=19
 INNER JOIN parametro AS tc
 ON v.tipocombustible_id=tc.id AND tc.tipo=17
-WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
+WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%'
+AND v.fechabaja IS NULL]]>
 	</queryString>
 	<field name="dominio" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="dominio"/>
@@ -45,14 +46,18 @@ WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="50" splitType="Stretch">
+		<band height="76" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="300" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="290" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Lista de Vehiculos]]></text>
 			</staticText>
+			<image hAlign="Right">
+				<reportElement x="530" y="0" width="270" height="50" uuid="063ccb3e-c53b-4b7a-b445-00c8e9c47b0e"/>
+				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -85,7 +90,7 @@ WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
 				<text><![CDATA[Modelo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="440" y="0" width="105" height="20" uuid="21452103-fc28-4d9c-81f3-9a93314e0a6a">
+				<reportElement x="440" y="0" width="90" height="20" uuid="21452103-fc28-4d9c-81f3-9a93314e0a6a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ffff912-42e3-42d8-ba55-2c36c4cf6143"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -94,7 +99,7 @@ WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
 				<text><![CDATA[Año]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="545" y="0" width="100" height="20" uuid="993f2216-f532-496e-9169-83884ec7fa0a">
+				<reportElement x="530" y="0" width="100" height="20" uuid="993f2216-f532-496e-9169-83884ec7fa0a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bed66a8e-a8bd-47f2-97e3-877428fdf871"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -103,7 +108,7 @@ WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
 				<text><![CDATA[Combustible]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="645" y="0" width="85" height="20" uuid="f2ebbb3c-7257-4474-863f-09133be24b96">
+				<reportElement x="630" y="0" width="85" height="20" uuid="f2ebbb3c-7257-4474-863f-09133be24b96">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c244b971-5df4-4a44-8250-69368b298194"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -112,7 +117,7 @@ WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
 				<text><![CDATA[Max. Cabezas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="730" y="0" width="85" height="20" uuid="c6ed0760-6709-4d95-ae0d-659d6d6fb952">
+				<reportElement x="715" y="0" width="85" height="20" uuid="c6ed0760-6709-4d95-ae0d-659d6d6fb952">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c244b971-5df4-4a44-8250-69368b298194"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -155,7 +160,7 @@ WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
 				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="ContainerHeight" x="440" y="0" width="105" height="15" isRemoveLineWhenBlank="true" uuid="dac0c1b4-3c1a-4c20-bfe5-914f16a986f9">
+				<reportElement stretchType="ContainerHeight" x="440" y="0" width="90" height="15" isRemoveLineWhenBlank="true" uuid="dac0c1b4-3c1a-4c20-bfe5-914f16a986f9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ffff912-42e3-42d8-ba55-2c36c4cf6143"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -165,7 +170,7 @@ WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
 				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="ContainerHeight" x="545" y="0" width="100" height="15" isRemoveLineWhenBlank="true" uuid="e46d6a9f-6cbd-48b6-8804-582ea9002cb0">
+				<reportElement stretchType="ContainerHeight" x="530" y="0" width="100" height="15" isRemoveLineWhenBlank="true" uuid="e46d6a9f-6cbd-48b6-8804-582ea9002cb0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bed66a8e-a8bd-47f2-97e3-877428fdf871"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -175,7 +180,7 @@ WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
 				<textFieldExpression><![CDATA[$F{desctipocombustible}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="ContainerHeight" x="645" y="0" width="85" height="15" isRemoveLineWhenBlank="true" uuid="26166300-5881-49ee-8c09-fc908ae9e9b9">
+				<reportElement stretchType="ContainerHeight" x="630" y="0" width="85" height="15" isRemoveLineWhenBlank="true" uuid="26166300-5881-49ee-8c09-fc908ae9e9b9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c244b971-5df4-4a44-8250-69368b298194"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -185,7 +190,7 @@ WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
 				<textFieldExpression><![CDATA[$F{maxcabezas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="ContainerHeight" x="730" y="0" width="85" height="15" isRemoveLineWhenBlank="true" uuid="09859e69-2e42-41f1-aa5d-5f6188bcfb65">
+				<reportElement stretchType="ContainerHeight" x="715" y="0" width="85" height="15" isRemoveLineWhenBlank="true" uuid="09859e69-2e42-41f1-aa5d-5f6188bcfb65">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c244b971-5df4-4a44-8250-69368b298194"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -199,13 +204,13 @@ WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
 	<pageFooter>
 		<band height="15" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="630" y="0" width="110" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
+				<reportElement stretchType="RelativeToBandHeight" x="630" y="0" width="85" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
 				<box rightPadding="5"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="740" y="0" width="62" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
+				<reportElement x="715" y="0" width="85" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

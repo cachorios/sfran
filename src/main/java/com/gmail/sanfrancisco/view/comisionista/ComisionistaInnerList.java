@@ -16,12 +16,16 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.server.StreamResource;
 import org.vaadin.alejandro.PdfBrowserViewer;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista> {
     private ReportSelector pdfBtn;
     private String filtro;
+    private Long filtroLong;
+    private Date filtroFechaInicial;
+    private Date filtroFechaFinal;
     private Anchor xlsBtn;
 
     public ComisionistaInnerList(IPresentableList<Comisionista> presentable, String elTitulo) {
@@ -30,9 +34,31 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
         pdfBtn = new ReportSelector("Imprimir", VaadinIcon.PRINT.create());
 
         pdfBtn.add("Listado", "comisionistas.jrxml", this::crearParametroReporte);
+        pdfBtn.add("Rendimiento", "productorrendimiento.jrxml", this::crearParametroReporteConFechas);
+        pdfBtn.add("Saldo", "saldocomisionista.jrxml", this::crearParametroReporteConFechas);
 
 
         getToolBar().getBotonera().add(pdfBtn);
+    }
+
+    private Map<String, Object> crearParametroReporte() {
+        filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();
+
+        Map<String, Object> mapa = new HashMap<String, Object>();
+        mapa.put(C.SYS_REP_PARAM_ID, filtro);
+        return mapa;
+    }
+
+    private Map<String, Object> crearParametroReporteConFechas() {
+        filtroLong = this.getPresentable().getObjetoActivo().getId();
+        filtroFechaInicial = new Date();
+        filtroFechaFinal = new Date();
+
+        Map<String, Object> mapa = new HashMap<String, Object>();
+        mapa.put(C.SYS_REP_PARAM_ID, filtro);
+        mapa.put(C.SYS_REP_PARAM_FECHA_INICIAL, filtroFechaInicial);
+        mapa.put(C.SYS_REP_PARAM_FECHA_FINAL, filtroFechaFinal);
+        return mapa;
     }
 
     /*
@@ -66,12 +92,4 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
         mapa.put("IS_IGNORE_PAGINATION", Boolean.TRUE);
         return new ReporteCreator().createXlsResource("/comisionistas.jrxml", mapa, "comisionistas");
     }*/
-
-    private Map<String, Object> crearParametroReporte() {
-        filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();
-
-        Map<String, Object> mapa = new HashMap<String, Object>();
-        mapa.put(C.SYS_REP_PARAM_ID, filtro);
-        return mapa;
-    }
 }

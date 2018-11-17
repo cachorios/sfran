@@ -127,10 +127,10 @@ WHERE
 				<text><![CDATA[Modelo:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="40" width="569" height="1" uuid="f15e5c1d-ed02-450c-8927-47e5e037ee00"/>
+				<reportElement x="0" y="52" width="569" height="1" uuid="f15e5c1d-ed02-450c-8927-47e5e037ee00"/>
 			</line>
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="300" height="40" uuid="60716ce3-d00e-47b6-84da-d157cf2ce27b"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="280" height="50" uuid="60716ce3-d00e-47b6-84da-d157cf2ce27b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
@@ -381,6 +381,10 @@ WHERE
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numerochasis}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="310" y="0" width="240" height="50" uuid="84b85eb6-cb74-4d69-bd3f-69e385b9336e"/>
+				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 </jasperReport>

@@ -67,10 +67,10 @@ WHERE c.id = $P{p_Id}]]>
 				<text><![CDATA[CUIL:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="40" width="569" height="1" uuid="f15e5c1d-ed02-450c-8927-47e5e037ee00"/>
+				<reportElement x="0" y="51" width="569" height="1" uuid="f15e5c1d-ed02-450c-8927-47e5e037ee00"/>
 			</line>
 			<staticText>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="300" height="40" uuid="60716ce3-d00e-47b6-84da-d157cf2ce27b"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="300" height="50" uuid="60716ce3-d00e-47b6-84da-d157cf2ce27b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
@@ -140,6 +140,10 @@ WHERE c.id = $P{p_Id}]]>
 				</textElement>
 				<text><![CDATA[Saldo Inicial]]></text>
 			</staticText>
+			<image hAlign="Right">
+				<reportElement x="300" y="0" width="250" height="50" uuid="6b788fa1-a045-4070-b5da-4ff08919731d"/>
+				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 </jasperReport>

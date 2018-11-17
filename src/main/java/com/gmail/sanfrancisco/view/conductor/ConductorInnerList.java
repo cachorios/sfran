@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.view.conductor;
 
 import com.gmail.cacho.slapi.comunes.C;
+import com.gmail.cacho.slapi.view.componentes.ReportSelector;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerListPolymer;
@@ -21,7 +22,30 @@ import java.util.Map;
 
 public class ConductorInnerList extends DefaultInnerListPolymer<Conductor> {
 
-    private Button pdfBtn;
+    private ReportSelector pdfBtn;
+    private String filtro;
+    private Anchor xlsBtn;
+
+    public ConductorInnerList(IPresentableList<Conductor> presentable, String elTitulo) {
+        super(presentable, elTitulo);
+
+        pdfBtn = new ReportSelector("Imprimir", VaadinIcon.PRINT.create());
+
+        pdfBtn.add("Listado", "conductores.jrxml", this::crearParametroReporte);
+
+
+        getToolBar().getBotonera().add(pdfBtn);
+    }
+
+    private Map<String, Object> crearParametroReporte() {
+        filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();
+
+        Map<String, Object> mapa = new HashMap<String, Object>();
+        mapa.put(C.SYS_REP_PARAM_ID, filtro);
+        return mapa;
+    }
+
+    /*private Button pdfBtn;
     private String filtro;
     private Anchor xlsBtn;
 
@@ -73,6 +97,6 @@ public class ConductorInnerList extends DefaultInnerListPolymer<Conductor> {
         Map mapa = crearMapaFechas();
         mapa.put("IS_IGNORE_PAGINATION", Boolean.TRUE);
         return new ReporteCreator().createXlsResource("/conductores.jrxml", mapa, "conductores");
-    }
+    }*/
 
 }

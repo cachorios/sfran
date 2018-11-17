@@ -3,19 +3,21 @@ package com.gmail.cacho.slapi.view.componentes;
 import com.gmail.cacho.slreport.jasper.ReporteCreator;
 import com.gmail.cacho.slreport.view.DefaultPDFViewDialog;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.contextmenu.ContextMenu;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.html.*;
 
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.server.StreamResource;
 import org.vaadin.alejandro.PdfBrowserViewer;
 
 import javax.annotation.PostConstruct;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -58,7 +60,7 @@ public class ReportSelector extends Button {
         return this;
     }
 
-    private StreamResource genXls(String repFile, String label, Callable<Map<String, Object>> getParm) {
+    private void genXls(String repFile, String label, Callable<Map<String, Object>> getParm) {
         Map<String, Object> parm =new HashMap<String, Object>();
 
         try {
@@ -68,7 +70,24 @@ public class ReportSelector extends Button {
         }
 
         parm.put("IS_IGNORE_PAGINATION", Boolean.TRUE);
-        return new ReporteCreator().createXlsResource("/"+repFile, parm, label);
+
+        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        Anchor downloadLink = new Anchor(new ReporteCreator().createXlsResource("/"+repFile, parm, label), "download");
+        downloadLink.setId(timeStamp);
+        downloadLink.getElement().getStyle().set("display", "none");
+        downloadLink.getElement().setAttribute("download", true);
+
+        final Dialog dialog = new Dialog();
+        dialog.removeAll();
+
+        dialog.add(downloadLink );
+        dialog.open();
+        dialog.setHeight("0px");
+        dialog.setWidth("0px");
+
+        Page page = UI.getCurrent().getPage();
+        page.executeJavaScript("document.getElementById('"+timeStamp+"').click();");
+
     }
 
     private void genPdf(String repFile, String label, Callable<Map<String, Object>> getParm) {

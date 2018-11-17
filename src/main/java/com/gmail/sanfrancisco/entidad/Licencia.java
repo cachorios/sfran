@@ -20,13 +20,10 @@ public class Licencia extends AbstractEntidad {
     @ManyToOne
     private Parametro tipoLicencia;
 
-    @NotNull
     private Date vencimiento;
 
-    @NotNull
     private Date vencimientoNac;
 
-    @NotNull
     private Date vencimientoCurso;
 
     @NotNull
