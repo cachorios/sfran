@@ -26,6 +26,8 @@ public class DteInnerList extends DefaultInnerListPolymer<Dte> {
         pdfBtn.addClickListener((e) -> genPdf());
 
         getToolBar().getBotonera().add(pdfBtn);
+
+
     }
 
     private void genPdf() {
