@@ -201,18 +201,11 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         categorias.getGrid().addColumn(DteDetalleCategoria::getProductor)
                 .setHeader("Prodcutor")
-                .setWidth("20%")
+                .setWidth("24%")
                 .setFlexGrow(1)
                 .setKey("productor")
                 .setFooter("Total");
 
-        categorias.getGrid().addColumn(DteDetalleCategoria::getRenspa)
-                .setHeader("RENSPA")
-                .setWidth("12%")
-                .setKey("renspa");
-        categorias.getGrid().addColumn(DteDetalleCategoria::getCategoria)
-                .setHeader("Categoria")
-                .setWidth("10%");
         categorias.getGrid().addColumn(DteDetalleCategoria::getCantidad)
                 .setHeader("Cantidad")
                 .setWidth("6%");

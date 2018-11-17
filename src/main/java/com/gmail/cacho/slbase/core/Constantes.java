@@ -193,7 +193,7 @@ public abstract class Constantes {
     public static final String CRUD_MSG_ASOC_PROV = "Asociar Prov.";
     public static final String CRUD_MSG_QUITAR = "Quitar";
     public static final String CRUD_MSG_BUSCAR = "Buscar";
-    public static final String CRUD_MSG_LIMPIAR = "Buscar";
+    public static final String CRUD_MSG_LIMPIAR = "Limpiar";
     public static final String CRUD_MSG_CAMBIAR = "Cambiar";
     public static final String CRUD_MSG_CONFIG = "Configurar (F5)";
 
