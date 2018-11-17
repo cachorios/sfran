@@ -317,7 +317,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         for(DteDetalleCategoria d :  this.getPresentable().getObjetoActivo().getCategorias()){
             total += d.getImporte();
         }
-        return total.toString();
+        return String.format("%.2f", total);
     }
 
     private String getImporteTotal() {
@@ -325,14 +325,14 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         for(DteDetalleInsumo i :  this.getPresentable().getObjetoActivo().getInsumos()){
             total += i.getImporte();
         }
-        return total.toString();
+        return String.format("%.2f", total);
     }
     private String getImpuestoTotal() {
         Double total = 0.0;
         for(DteDetalleImpuesto i :  this.getPresentable().getObjetoActivo().getImpuestos()){
             total += i.getSaldo();
         }
-        return total.toString();
+        return String.format("%.2f", total);
     }
 
     private void pciaChanged(HasValue.ValueChangeEvent<?> e, LocalidadCS localidadCS) {

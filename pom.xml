@@ -222,11 +222,7 @@
             <version> 1.1.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-list-box</artifactId>
-            <version> RELEASE</version>
-        </dependency>
+
     </dependencies>
 
 
@@ -236,10 +232,28 @@
             <plugin>
                 <groupId>org.apache.tomee.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
-                <version>7.0.4</version>
+                <version>8.0.0-M1</version>
                 <configuration>
-                    <tomeeClassifier>webprofile</tomeeClassifier>
-                    <context>ROOT</context>
+                    <tomeeClassifier>plus</tomeeClassifier>
+                    <debug>false</debug>
+                    <debugPort>5005</debugPort>
+                    <args>-Dvaadin.productionMode</args>
+                    <config>${project.basedir}/src/test/tomee/conf</config>
+                    <!--<libs>-->
+                        <!--<lib>mysql:mysql-connector-java:5.1.20</lib>-->
+                    <!--</libs>-->
+                    <webapps>
+                        <webapp>org.superbiz:myapp:4.3?name=ROOT</webapp>
+                        <webapp>org.superbiz:api:1.1</webapp>
+                    </webapps>
+                    <apps>
+                        <app>org.superbiz:mybugapp:3.2:ear</app>
+                    </apps>
+                    <libs>
+                        <!--<lib>pgsql:mysql-connector-java:5.1.21</lib>-->
+                        <!--<lib>unzip:org.superbiz:hibernate-bundle:4.1.0.Final:zip</lib>-->
+                        <!--<lib>remove:openjpa-</lib>-->
+                    </libs>
                 </configuration>
             </plugin>
 
@@ -262,43 +276,33 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>productionMode</id>
-            <activation>
-                <property>
-                    <name>vaadin.productionMode</name>
-                </property>
-            </activation>
+    <profile>
+        <id>production</id>
 
-            <dependencies>
-                <dependency>
+        <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>flow-server-production-mode</artifactId>
+            </dependency>
+        </dependencies>
+
+        <build>
+            <plugins>
+                <plugin>
                     <groupId>com.vaadin</groupId>
-                    <artifactId>flow-server-production-mode</artifactId>
-                </dependency>
-            </dependencies>
-
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.vaadin</groupId>
-                        <artifactId>vaadin-maven-plugin</artifactId>
-                        <version>10.0.5</version>
-                        <executions>
-                            <execution>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>copy-production-files</goal>
-                                    <goal>package-for-production</goal>
-                                </goals>
-                                <configuration>
-                                    <transpileOutputDirectory>${webapp.directory}</transpileOutputDirectory>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                </plugins>
-            </build>
-        </profile>
+                    <artifactId>vaadin-maven-plugin</artifactId>
+                    <version>10.0.0.rc5</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>copy-production-files</goal>
+                                <goal>package-for-production</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
     </profiles>
 </project>
