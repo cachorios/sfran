@@ -10,6 +10,7 @@ import com.gmail.sanfrancisco.entidad.Conductor;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.server.StreamResource;
+import com.vaadin.flow.server.VaadinServlet;
 import org.vaadin.alejandro.PdfBrowserViewer;
 
 import java.util.HashMap;
@@ -60,8 +61,11 @@ public class ConductorListPrever extends AbstractPreview<Conductor> {
 
     }
     private Map<String, Object> crearMapaFechas() {
+        String directorio = VaadinServlet.getCurrent().getServletContext().getRealPath("/frontend/images");
+
         Map<String, Object> mapa = new HashMap<String, Object>();
         mapa.put(C.SYS_REP_PARAM_ID, idComp);
+        mapa.put(C.SYS_REP_PARAM_DIRECTORIO, directorio);
         return mapa;
     }
 

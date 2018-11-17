@@ -12,6 +12,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.server.StreamResource;
+import com.vaadin.flow.server.VaadinServlet;
 import org.vaadin.alejandro.PdfBrowserViewer;
 
 import java.util.HashMap;
@@ -36,8 +37,10 @@ public class InsumoInnerList extends DefaultInnerListPolymer<Insumo> {
 
     private Map<String, Object> crearParametroReporte() {
         filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();
+        String directorio = VaadinServlet.getCurrent().getServletContext().getRealPath("/frontend/images");
 
         Map<String, Object> mapa = new HashMap<String, Object>();
+        mapa.put(C.SYS_REP_PARAM_DIRECTORIO, directorio);
         mapa.put(C.SYS_REP_PARAM_ID, filtro);
         return mapa;
     }

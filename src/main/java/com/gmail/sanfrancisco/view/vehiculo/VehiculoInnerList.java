@@ -52,12 +52,14 @@ public class VehiculoInnerList extends DefaultInnerListPolymer<Vehiculo> {
     }
 
     private Map<String, Object> crearParametroReporteConFechas() {
+        String directorio = VaadinServlet.getCurrent().getServletContext().getRealPath("/frontend/images");
         filtroLong = this.getPresentable().getObjetoActivo().getId();
         filtroTipoInsumo = new Long(0);
         filtroFechaInicial = new Date();
         filtroFechaInicial = new Date();
 
         Map<String, Object> mapa = new HashMap<String, Object>();
+        mapa.put(C.SYS_REP_PARAM_DIRECTORIO, directorio);
         mapa.put(C.SYS_REP_PARAM_ID, filtroLong);
         mapa.put(C.SYS_REP_PARAM_TIPO_INSUMO, filtroTipoInsumo);
         mapa.put(C.SYS_REP_PARAM_FECHA_INICIAL, filtroFechaInicial);
