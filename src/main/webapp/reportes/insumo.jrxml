@@ -8,6 +8,7 @@
 	<parameter name="p_Id" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
+	<parameter name="p_Directorio" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT 
 i.descripcion,
@@ -89,7 +90,7 @@ WHERE
 			</textField>
 			<image hAlign="Right">
 				<reportElement x="280" y="0" width="270" height="50" uuid="01791174-7f9c-4c0e-8fb4-facfd32d65bf"/>
-				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{p_Directorio}+"/logosf.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>

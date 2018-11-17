@@ -117,6 +117,7 @@ GROUP BY v.id, tv.nombre]]>
 	<parameter name="p_FechaFinal" class="java.sql.Date"/>
 	<parameter name="p_TipoInsumo" class="java.lang.Long"/>
 	<parameter name="p_FechaInicial" class="java.sql.Date"/>
+	<parameter name="p_Directorio" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 v.id,
@@ -134,7 +135,9 @@ INNER JOIN insumo AS i
 ON icv.insumo_id=i.id 
 INNER JOIN parametro AS ti
 ON i.tipoinsumo_id=ti.id
-WHERE tm.id in ($P{p_Id}) and i.tipoinsumo_id in ($P{p_TipoInsumo}) 
+WHERE tm.id IN ($P{p_Id}) and i.tipoinsumo_id IN ($P{p_TipoInsumo}) 
+AND v.fechabaja IS NULL AND tm.fechabaja IS NULL AND fcv.fechabaja IS NULL
+AND i.fechabaja IS NULL AND ti.fechabaja IS NULL
 AND fcv.fecha BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}
 GROUP BY v.id, tm.nombre]]>
 	</queryString>
@@ -164,7 +167,7 @@ GROUP BY v.id, tm.nombre]]>
 			</staticText>
 			<image hAlign="Right">
 				<reportElement x="370" y="0" width="380" height="50" uuid="7d7cc2db-c6df-4885-afe1-78c56fadf744"/>
-				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{p_Directorio}+"/logosf.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>

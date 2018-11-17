@@ -4,11 +4,13 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="p_Tipo" class="java.lang.Integer"/>
+	<parameter name="p_Directorio" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 p.nombre
 FROM parametro AS p
-WHERE p.tipo=$P{p_Tipo}]]>
+WHERE p.tipo=$P{p_Tipo}
+AND p.fechabaja IS NULL]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
@@ -27,7 +29,7 @@ WHERE p.tipo=$P{p_Tipo}]]>
 			</staticText>
 			<image hAlign="Right">
 				<reportElement x="477" y="0" width="325" height="50" uuid="93c63b24-20e3-4f34-ba3d-aae4b9352dc0"/>
-				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{p_Directorio}+"/logosf.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>

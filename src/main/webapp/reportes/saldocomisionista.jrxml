@@ -35,6 +35,7 @@
 	<parameter name="p_Id" class="java.lang.Long"/>
 	<parameter name="p_FechaInicial" class="java.sql.Date"/>
 	<parameter name="p_FechaFinal" class="java.sql.Date"/>
+	<parameter name="p_Directorio" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[((SELECT
 dte.fechacarga,
@@ -148,7 +149,7 @@ ORDER BY fechacarga, numerotropa, descCategoria]]>
 			</staticText>
 			<image hAlign="Right">
 				<reportElement x="530" y="0" width="272" height="50" uuid="50dee3e0-7bc7-4f81-9b97-4867f0b63b82"/>
-				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{p_Directorio}+"/logosf.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>
