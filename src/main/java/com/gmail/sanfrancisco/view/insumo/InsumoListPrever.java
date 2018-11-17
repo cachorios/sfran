@@ -11,6 +11,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.server.StreamResource;
+import com.vaadin.flow.server.VaadinServlet;
 import org.vaadin.alejandro.PdfBrowserViewer;
 
 import java.util.HashMap;
@@ -61,6 +62,9 @@ public class InsumoListPrever extends AbstractPreview<Insumo> {
 
     private Map<String, Object> crearMapaFechas() {
         Map<String, Object> mapa = new HashMap<String, Object>();
+        String directorio = VaadinServlet.getCurrent().getServletContext().getRealPath("/frontend/images");
+
+        mapa.put(C.SYS_REP_PARAM_DIRECTORIO, directorio);
         mapa.put(C.SYS_REP_PARAM_ID, idComp);
         return mapa;
     }

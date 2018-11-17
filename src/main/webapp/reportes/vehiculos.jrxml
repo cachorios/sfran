@@ -4,6 +4,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="p_Id" class="java.lang.String"/>
+	<parameter name="p_Directorio" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 v.dominio,
@@ -14,12 +15,11 @@ tc.nombre AS descTipoCombustible,
 v.maxcabezas,
 v.cargamax
 FROM vehiculo AS v
-INNER JOIN parametro AS tv
+JOIN parametro AS tv
 ON v.tipovehiculo_id=tv.id AND tv.tipo=19
-INNER JOIN parametro AS tc
+JOIN parametro AS tc
 ON v.tipocombustible_id=tc.id AND tc.tipo=17
-WHERE UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%'
-AND v.fechabaja IS NULL]]>
+WHERE v.fechabaja IS NULL AND UPPER(v.dominio) like '%'||'$P!{p_Id}'||'%']]>
 	</queryString>
 	<field name="dominio" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="dominio"/>
@@ -56,7 +56,7 @@ AND v.fechabaja IS NULL]]>
 			</staticText>
 			<image hAlign="Right">
 				<reportElement x="530" y="0" width="270" height="50" uuid="063ccb3e-c53b-4b7a-b445-00c8e9c47b0e"/>
-				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{p_Directorio}+"/logosf.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>

@@ -33,6 +33,7 @@
 		</box>
 	</style>
 	<parameter name="p_Id" class="java.lang.Long"/>
+	<parameter name="p_Directorio" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 dte.numerotropa,
@@ -245,7 +246,7 @@ WHERE dte.id=$P{p_Id}]]>
 			</staticText>
 			<image hAlign="Right">
 				<reportElement x="540" y="0" width="262" height="50" uuid="587edad5-d387-4562-8748-e9f7256149b6"/>
-				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{p_Directorio}+"/logosf.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>

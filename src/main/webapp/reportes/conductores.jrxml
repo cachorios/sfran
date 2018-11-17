@@ -4,6 +4,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="p_Id" class="java.lang.String"/>
+	<parameter name="p_Directorio" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 c.nombre,
@@ -13,10 +14,9 @@ c.fechanacimiento,
 c.fechaingreso,
 c.telefono,
 c.celular
-FROM
-public.conductor AS c
+FROM conductor AS c
 WHERE UPPER(c.nombre) like '%'||'$P!{p_Id}'||'%'
-AND fechabaja IS NULL]]>
+AND c.fechabaja IS NULL]]>
 	</queryString>
 	<field name="nombre" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
@@ -50,7 +50,7 @@ AND fechabaja IS NULL]]>
 			</staticText>
 			<image hAlign="Right">
 				<reportElement x="500" y="0" width="300" height="50" uuid="2de323ce-4c35-48cb-b42c-21d08fe12f4b"/>
-				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{p_Directorio}+"/logosf.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>

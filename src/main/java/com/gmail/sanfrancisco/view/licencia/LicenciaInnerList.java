@@ -1,5 +1,6 @@
 package com.gmail.sanfrancisco.view.licencia;
 
+import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableList;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerListPolymer;
 import com.gmail.cacho.slreport.jasper.ReporteCreator;
@@ -8,6 +9,7 @@ import com.gmail.sanfrancisco.entidad.Licencia;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.server.StreamResource;
+import com.vaadin.flow.server.VaadinServlet;
 import org.vaadin.alejandro.PdfBrowserViewer;
 
 import java.util.HashMap;
@@ -33,7 +35,10 @@ public class LicenciaInnerList extends DefaultInnerListPolymer<Licencia> {
         view.open();
     }
     private Map<String, Object> crearMapaFechas() {
+        String directorio = VaadinServlet.getCurrent().getServletContext().getRealPath("/frontend/images");
+
         Map<String, Object> mapa = new HashMap<String, Object>();
+        mapa.put(C.SYS_REP_PARAM_DIRECTORIO, directorio);
         return mapa;
     }
 

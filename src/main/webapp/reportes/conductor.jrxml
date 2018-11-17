@@ -6,6 +6,7 @@
 	<parameter name="p_Id" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
+	<parameter name="p_Directorio" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 c.nombre,
@@ -156,7 +157,7 @@ WHERE c.id = $P{p_Id}]]>
 			</staticText>
 			<image hAlign="Right">
 				<reportElement x="300" y="0" width="250" height="50" uuid="e93ef0f3-083a-4e36-8470-0f539f03653d"/>
-				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{p_Directorio}+"/logosf.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>

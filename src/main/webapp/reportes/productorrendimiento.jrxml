@@ -44,11 +44,12 @@
 	<parameter name="p_Id" class="java.lang.Long"/>
 	<parameter name="p_FechaFinal" class="java.sql.Date"/>
 	<parameter name="p_FechaInicial" class="java.sql.Date"/>
+	<parameter name="p_Directorio" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 p.nombre as descProductor,
 c.nombre as descCategoria,
-AVG(ddc.kgvivo/kgcarne) as rinde
+AVG(kgcarne/ddc.kgvivo) as rinde
 FROM dte
 JOIN dtedetallecategoria AS ddc
 ON dte.id = ddc.dte_id
@@ -57,6 +58,7 @@ ON ddc.productor_id = p.id
 JOIN parametro AS c
 ON ddc.categoria_id = c.id and c.tipo=8
 WHERE dte.comisionista_id = $P{p_Id}
+AND p.fechabaja IS NULL AND c.fechabaja IS NULL
 AND dte.fechacarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}
 GROUP BY p.nombre, ddc.productor_id, c.nombre
 ORDER BY ddc.productor_id]]>
@@ -107,7 +109,7 @@ ORDER BY ddc.productor_id]]>
 			</staticText>
 			<image hAlign="Right">
 				<reportElement x="190" y="0" width="362" height="50" uuid="84eccca4-b508-49fd-bb47-43ed5a5d7cb8"/>
-				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{p_Directorio}+"/logosf.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>

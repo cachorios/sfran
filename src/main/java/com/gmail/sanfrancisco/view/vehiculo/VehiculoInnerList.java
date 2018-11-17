@@ -12,6 +12,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.server.StreamResource;
+import com.vaadin.flow.server.VaadinServlet;
 import org.vaadin.alejandro.PdfBrowserViewer;
 
 import java.util.Date;
@@ -42,19 +43,23 @@ public class VehiculoInnerList extends DefaultInnerListPolymer<Vehiculo> {
 
     private Map<String, Object> crearParametroReporte() {
         filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();
+        String directorio = VaadinServlet.getCurrent().getServletContext().getRealPath("/frontend/images");
 
         Map<String, Object> mapa = new HashMap<String, Object>();
         mapa.put(C.SYS_REP_PARAM_ID, filtro);
+        mapa.put(C.SYS_REP_PARAM_DIRECTORIO, directorio);
         return mapa;
     }
 
     private Map<String, Object> crearParametroReporteConFechas() {
+        String directorio = VaadinServlet.getCurrent().getServletContext().getRealPath("/frontend/images");
         filtroLong = this.getPresentable().getObjetoActivo().getId();
         filtroTipoInsumo = new Long(0);
         filtroFechaInicial = new Date();
         filtroFechaInicial = new Date();
 
         Map<String, Object> mapa = new HashMap<String, Object>();
+        mapa.put(C.SYS_REP_PARAM_DIRECTORIO, directorio);
         mapa.put(C.SYS_REP_PARAM_ID, filtroLong);
         mapa.put(C.SYS_REP_PARAM_TIPO_INSUMO, filtroTipoInsumo);
         mapa.put(C.SYS_REP_PARAM_FECHA_INICIAL, filtroFechaInicial);

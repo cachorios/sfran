@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Insumos" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="p_Id" class="java.lang.String"/>
+	<parameter name="p_Directorio" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 i.descripcion,
@@ -15,7 +16,8 @@ INNER JOIN parametro AS t
 ON i.tipoinsumo_id=t.id AND t.tipo=18
 INNER JOIN parametro AS u
 ON i.unidadmedida_id=u.id AND u.tipo=23
-WHERE UPPER(i.descripcion) like '%'||'$P!{p_Id}'||'%']]>
+WHERE UPPER(i.descripcion) like '%'||'$P!{p_Id}'||'%'
+AND i.fechabaja IS NULL AND t.fechabaja IS NULL AND u.fechabaja IS NULL]]>
 	</queryString>
 	<field name="descripcion" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
@@ -40,7 +42,7 @@ WHERE UPPER(i.descripcion) like '%'||'$P!{p_Id}'||'%']]>
 			</staticText>
 			<image hAlign="Right">
 				<reportElement x="479" y="0" width="322" height="50" uuid="9522b126-8d5c-463f-93c6-761d65dac52e"/>
-				<imageExpression><![CDATA["http://localhost:8080/frontend/images/logosf.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{p_Directorio}+"/logosf.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>
