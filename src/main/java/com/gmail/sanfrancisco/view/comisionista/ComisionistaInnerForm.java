@@ -50,9 +50,9 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
         form.add(
                 envolver(id),
 
-                envolver(nombre),
+                envolver(nombre, "48%"),
 
-                envolver(cuil,"50%"),
+                envolver(cuil, "48%"),
 
                 envolver(celular,"48%"),
                 envolver(telefono,"48%"),

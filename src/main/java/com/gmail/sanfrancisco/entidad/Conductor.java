@@ -34,7 +34,6 @@ public @Data class Conductor extends AbstractEntidad {
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date fechaNacimiento;
 
-    @NotNull
     @Size(min=6, max=20, message="El telefono debe contener entre 6 y 20 caracteres.")
     private String telefono;
 

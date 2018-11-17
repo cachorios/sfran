@@ -31,7 +31,7 @@ public class ConsignatarioListPrever extends AbstractPreview<Consignatario> {
         addItem("celular", new PreviewItem<>(textField("Nro.Cel."), Consignatario::getCelular));
         addItem("telefono", new PreviewItem<>(textField("Nro.Tel."), Consignatario::getTelefono));
         addItem("domicilio", new PreviewItem<>(textField("Domicilio"), Consignatario::getDomicilio));
-        addItem("email", new PreviewItem<>(textField("eMail"), Consignatario::getEmail));
+        addItem("email", new PreviewItem<>(textField("Email"), Consignatario::getEmail));
 
     }
 

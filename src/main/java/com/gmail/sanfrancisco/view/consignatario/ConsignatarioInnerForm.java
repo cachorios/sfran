@@ -38,16 +38,17 @@ public class ConsignatarioInnerForm extends DefaultInnerDialog<Consignatario> {
         id.setPreventInvalidInput(true);
         nombre = textField("Rázon social");
         cuil = textField("Cuil");
+        domicilio = textField("Domicilio");
         celular = textField("Celular");
         telefono = textField("Telefono");
-        domicilio = textField("Domicilio");
+
         email = textField("Correo electronico");
 
         form.add(
                 envolver(id),
-                envolver(nombre),
+                envolver(nombre, "48%"),
 
-                envolver(cuil,"50%"),
+                envolver(cuil, "48%"),
 
                 envolver(celular,"48%"),
                 envolver(telefono,"48%"),

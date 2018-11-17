@@ -25,7 +25,7 @@ public class Productor extends AbstractEntidad {
     @Size(min=6, max=20, message="El celular debe contener entre 6 y 20 caracteres.")
     private String celular;
 
-    @NotNull
+
     @Size(min=6, max=20, message="El telefono debe contener entre 6 y 20 caracteres.")
     private String telefono;
 

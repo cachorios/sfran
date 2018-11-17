@@ -63,10 +63,8 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
         form.add(
                 envolver(id),
 
-                envolver(nombre),
-
+                envolver(nombre, "48%"),
                 envolver(cuil,"48%"),
-                envolver(condicion,"48%"),
 
                 envolver(celular,"48%"),
                 envolver(telefono,"48%"),
@@ -74,6 +72,8 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
                 envolver(domicilio,"100%"),
 
                 envolver(email, "100%"),
+
+                envolver(condicion,"48%"),
 
                 envolver(getRenspas())
         );
