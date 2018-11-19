@@ -141,7 +141,12 @@ public abstract class AbstractCustomSelect<T extends AbstractEntidad> extends Ab
     }
 
     protected String getCodigo() {
-        return valor.getId().toString();
+        try {
+            return valor.getId().toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
     }
 
     protected String getDescripcion() { return valor.toSimpleString(); }

@@ -72,7 +72,11 @@ public  class ParamCSComponent extends AbstractCustomSelect<Parametro> {
 
     @Override
     protected String getCodigo() {
-        return getValue().getOrden().toString();
+        try {
+            return getValue().getOrden().toString();
+        } catch (Exception ex) {
+            return "";
+        }
     }
 
     @Override

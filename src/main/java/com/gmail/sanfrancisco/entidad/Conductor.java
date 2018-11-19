@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +35,6 @@ public @Data class Conductor extends AbstractEntidad {
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date fechaNacimiento;
 
-    @Size(min=6, max=20, message="El telefono debe contener entre 6 y 20 caracteres.")
     private String telefono;
 
     @NotNull
