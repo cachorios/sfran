@@ -5,6 +5,7 @@ import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.entidad.Consignatario;
+import com.vaadin.flow.data.renderer.NumberRenderer;
 
 import javax.inject.Inject;
 import java.util.Arrays;

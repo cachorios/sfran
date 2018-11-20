@@ -61,8 +61,8 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
         fechaNacimiento.setWidth("100%");
         fechaNacimiento.setRequired(true);
 
-        telefono = textField("Nro. Telefono");
         celular = textField("Nro. Celular");
+        telefono = textField("Nro. Telefono");
 
         operadoraTelefonica = new ComboBox("Operadora");
         operadoraTelefonica.setWidth("100%");

@@ -31,8 +31,6 @@ public @Data class Comisionista extends AbstractEntidad {
     @Size(min=4, max=150, message="El domicilio debe contener entre 4 y 150 caracteres.")
     private String domicilio;
 
-    @NotNull
-    @Size(min=10, max=50, message="El correo electronico debe contener entre 10 y 50 caracteres.")
     private String email;
 
     @NotNull
