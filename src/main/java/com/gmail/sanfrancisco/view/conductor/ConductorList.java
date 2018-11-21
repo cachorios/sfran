@@ -3,6 +3,7 @@ package com.gmail.sanfrancisco.view.conductor;
 import com.gmail.cacho.slapi.view.AbstractList;
 import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
+import com.gmail.cacho.slapi.view.renders.DateRenderer;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.entidad.Conductor;
 
@@ -18,7 +19,7 @@ public class ConductorList extends AbstractList<Conductor> {
                 new ColumnList<>(Conductor::getNombre, "Nombre", "nombre", true),
                 new ColumnList<>(Conductor::getDni, "D.N.I.", "dni", true),
                 new ColumnList<>(Conductor::getTelefono, "Telefono", "telefono", true),
-                new ColumnList<>(Conductor::getFechaIngreso, "Fecha de ingreso", "fechaIngreso", true)
+                new ColumnList<>(new DateRenderer<>(Conductor::getFechaIngreso, "dd/MM/yyyy"), "Fecha de ingreso", "fechaIngreso", true)
         ));
     }
 
