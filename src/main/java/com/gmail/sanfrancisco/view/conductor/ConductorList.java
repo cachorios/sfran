@@ -7,6 +7,7 @@ import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.entidad.Conductor;
 
 import javax.inject.Inject;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 public class ConductorList extends AbstractList<Conductor> {
@@ -15,9 +16,10 @@ public class ConductorList extends AbstractList<Conductor> {
         super(presenter);
         setListaCols(Arrays.asList(
                 new ColumnList<>(Conductor::getNombre, "Nombre", "nombre", true),
-                new ColumnList<>(Conductor::getCuil, "C.U.I.L.", "cuil", true)
+                new ColumnList<>(Conductor::getDni, "D.N.I.", "dni", true),
+                new ColumnList<>(Conductor::getTelefono, "Telefono", "telefono", true),
+                new ColumnList<>(Conductor::getFechaIngreso, "Fecha de ingreso", "fechaIngreso", true)
         ));
-
     }
 
     @Override

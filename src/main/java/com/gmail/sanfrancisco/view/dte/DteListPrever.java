@@ -26,9 +26,7 @@ public class DteListPrever extends AbstractPreview<Dte> {
     @Override
     public void crearElementos() {
         addItem("id", new PreviewItem<>(textField("ID"), Dte::getId));
-        addItem("numerotropa", new PreviewItem<>(textField("Numero tropa"), Dte::getNumeroTropa));
-        addItem("origen", new PreviewItem<>(textField("Origen"), Dte::getLocalidadOrigen));
-        addItem("destino", new PreviewItem<>(textField("Destino"), Dte::getLocalidadDestino));
+        addItem("totalcomisionista", new PreviewItem<>(textField("Total factura"), Dte::getTotalComisionista));
         addItem("entrega en efectivo", new PreviewItem<>(textField("Entrega en efectivo"), Dte::getImporteEntrega));
         addItem("ajustes", new PreviewItem<>(textField("Ajustes"), Dte::getAjustes));
     }

@@ -141,7 +141,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 
         entrega = textField("Entrega en efectivo");
-        totalComisionista = textField("Total de comisionista");
+        totalComisionista = textField("Total factura");
         ajustes = textField("Ajustes");
 
         PagedTabs tabs = new PagedTabs();
