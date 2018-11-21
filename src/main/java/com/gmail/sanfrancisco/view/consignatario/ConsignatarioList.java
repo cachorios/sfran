@@ -17,7 +17,7 @@ public class ConsignatarioList extends AbstractList<Consignatario> {
         setListaCols(Arrays.asList(
                 new ColumnList<>(Consignatario::getNombre, "Nombre", "nombre", true),
                 new ColumnList<>(Consignatario::getCuil, "C.U.I.L.", "cuil", true),
-                new ColumnList<>(Consignatario::getEmail, "Correo electronico", "email", true)
+                new ColumnList<>(Consignatario::getCelular, "Celular", "celular", true)
         ));
     }
 

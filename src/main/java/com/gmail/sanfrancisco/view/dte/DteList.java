@@ -8,8 +8,11 @@ import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.entidad.Dte;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.data.renderer.LocalDateRenderer;
+import com.vaadin.flow.data.renderer.LocalDateTimeRenderer;
 
 import javax.inject.Inject;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,15 +21,14 @@ public class DteList  extends AbstractList<Dte> {
     public DteList(IPresenterList<Dte> presenter) {
         super(presenter);
 
-
         setListaCols(Arrays.asList(
             new ColumnList<>(new DateRenderer<>(Dte::getFechaCarga,"dd/MM/yyyy"),"Fecha Carga","fechaCarga", true,"8%"),
             new ColumnList<>(Dte::getNumeroTropa,"Numero tropa","numeroTropa", true,"5%"),
             new ColumnList<>(Dte::getComisionista,"Comisionista","comisionista", true,"25%"),
             new ColumnList<>(Dte::getCantidad,"Cantidad","cantidad", true,"5%"),
-            new ColumnList<>(Dte::getPeso,"Peso","peso", true,"10%")
+            new ColumnList<>(Dte::getPeso,"Peso","peso", true,"10%"),
+            new ColumnList<>(Dte::getTotalComisionista,"Total factura","totalcomisionista", true,"10%")
         ));
-
     }
 
     @Override
