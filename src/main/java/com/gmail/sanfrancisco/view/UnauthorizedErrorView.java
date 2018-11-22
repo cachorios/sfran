@@ -14,7 +14,7 @@ import org.apache.shiro.authz.UnauthorizedException;
 import javax.servlet.http.HttpServletResponse;
 
 @Tag("unauthorized-error-view")
-@HtmlImport("src/views/unauthorized-error-view.html")
+//@HtmlImport("src/views/unauthorized-error-view.html")
 @ParentLayout(MainView.class)
 public class UnauthorizedErrorView
         extends PolymerTemplate<UnauthorizedErrorView.UnauthorizedErrorModel>
