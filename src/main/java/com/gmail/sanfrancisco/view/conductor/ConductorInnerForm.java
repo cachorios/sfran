@@ -5,6 +5,7 @@ import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.cacho.slapi.view.renders.DateRenderer;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.entidad.Conductor;
 import com.gmail.sanfrancisco.entidad.Licencia;
@@ -101,13 +102,13 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
         licencias.getGrid().addColumn(Licencia::getTipoLicencia)
                 .setHeader("Tipo")
                 .setWidth("20%");
-        licencias.getGrid().addColumn(Licencia::getVencimiento)
+        licencias.getGrid().addColumn(new DateRenderer<>(Licencia::getVencimiento,"dd/MM/yyyy"))
                 .setHeader("Vencimiento")
                 .setWidth("12%");
-        licencias.getGrid().addColumn(Licencia::getVencimientoNac)
+        licencias.getGrid().addColumn(new DateRenderer<>(Licencia::getVencimientoNac,"dd/MM/yyyy"))
                 .setHeader("Vencimiento nacional")
                 .setWidth("10%");
-        licencias.getGrid().addColumn(Licencia::getVencimientoCurso)
+        licencias.getGrid().addColumn(new DateRenderer<>(Licencia::getVencimientoCurso,"dd/MM/yyyy"))
                 .setHeader("Vencimiento curso")
                 .setWidth("6%");
         licencias.getGrid().addColumn(Licencia::getLicenciaCarga)
