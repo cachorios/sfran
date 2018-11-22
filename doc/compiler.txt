@@ -1,0 +1,3 @@
+Comando para compilar.
+
+mvn clean package  -P productionMode

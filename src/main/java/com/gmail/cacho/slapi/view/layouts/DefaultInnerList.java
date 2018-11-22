@@ -31,7 +31,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import java.util.Arrays;
 
 @Tag("list-view2")
-@HtmlImport("frontend://src/views/crud/list-preview-styles.html")
+//@HtmlImport("frontend://src/views/crud/list-preview-styles.html")
 public class DefaultInnerList<T extends AbstractEntidad> extends VerticalLayout implements ILayoutInnerList<T> {
     private IPresentableList<T> presentable;
     private H2 titulo;
