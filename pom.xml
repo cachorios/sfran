@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.gmail.luis</groupId>
     <artifactId>san-francisco</artifactId>
@@ -38,8 +38,8 @@
         </repository>
         <!-- Repository used by many Vaadin add-ons -->
         <repository>
-             <id>Vaadin Directory</id>
-             <url>http://maven.vaadin.com/vaadin-addons</url>
+            <id>Vaadin Directory</id>
+            <url>http://maven.vaadin.com/vaadin-addons</url>
         </repository>
         <repository>
             <id>jr-ce-releases</id>
@@ -80,14 +80,14 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>LATEST</version>
+            <version> 8.0</version>
             <scope>provided</scope>
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>javax.persistence</groupId>-->
-            <!--<artifactId>javax.persistence-api</artifactId>-->
-            <!--<version>2.2</version>-->
+        <!--<groupId>javax.persistence</groupId>-->
+        <!--<artifactId>javax.persistence-api</artifactId>-->
+        <!--<version>2.2</version>-->
         <!--</dependency>-->
 
         <!-- Shiro Control de seguridad-->
@@ -183,7 +183,7 @@
         <dependency>
             <groupId>org.vaadin.alejandro</groupId>
             <artifactId>pdf_browser</artifactId>
-            <version>RELEASE</version>
+            <version>1.0.0-alpha1</version>
         </dependency>
 
         <!-- Added to provide logging output as Flow uses -->
@@ -194,9 +194,9 @@
         </dependency>
         <!--&lt;!&ndash;No incluido en java 9&ndash;&gt;-->
         <!--<dependency>-->
-            <!--<groupId>javax.xml.bind</groupId>-->
-            <!--<artifactId>jaxb-api</artifactId>-->
-            <!--<version>2.3.0</version>-->
+        <!--<groupId>javax.xml.bind</groupId>-->
+        <!--<artifactId>jaxb-api</artifactId>-->
+        <!--<version>2.3.0</version>-->
         <!--</dependency>-->
 
         <!-- Getter Setter -->
@@ -216,7 +216,7 @@
             <version>1.1.2</version>
         </dependency>
 
-       <dependency>
+        <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-context-menu-flow</artifactId>
             <version> 1.1.0</version>
@@ -240,7 +240,7 @@
                     <args>-Dvaadin.productionMode</args>
                     <config>${project.basedir}/src/test/tomee/conf</config>
                     <!--<libs>-->
-                        <!--<lib>mysql:mysql-connector-java:5.1.20</lib>-->
+                    <!--<lib>mysql:mysql-connector-java:5.1.20</lib>-->
                     <!--</libs>-->
                     <webapps>
                         <webapp>org.superbiz:myapp:4.3?name=ROOT</webapp>
@@ -277,6 +277,24 @@
 
     <profiles>
         <profile>
+            <id>productionMode</id>
+            <activation>
+                <property>
+                    <name>vaadin.productionMode</name>
+                </property>
+            </activation>
+
+            <properties>
+                <transpilation.output>${project.build.directory}/build</transpilation.output>
+            </properties>
+
+            <dependencies>
+                <dependency>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>flow-server-production-mode</artifactId>
+                </dependency>
+            </dependencies>
+
             <build>
                 <plugins>
                     <plugin>
@@ -310,8 +328,7 @@
                     </plugin>
                 </plugins>
             </build>
-     </profile>
+        </profile>
 
     </profiles>
 </project>
-
