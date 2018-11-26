@@ -2,6 +2,7 @@ package com.gmail.sanfrancisco.view.vehiculo;
 
 import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.AbstractPreview;
+import com.gmail.cacho.slapi.view.renders.DateRenderer;
 import com.gmail.cacho.slapi.view.utils.PreviewItem;
 import com.gmail.cacho.slbase.core.Constantes;
 import com.gmail.cacho.slreport.jasper.ReporteCreator;
@@ -26,12 +27,13 @@ public class VehiculoListPrever extends AbstractPreview<Vehiculo> {
 
     @Override
     public void crearElementos() {
-        addItem("id", new PreviewItem<>(textField("ID"), Vehiculo::getId));
         addItem("dominio", new PreviewItem<>(textField("Dominio"), Vehiculo::getDominio));
 
-        addItem("tipo de vehiculo", new PreviewItem<>(textField("Tipo de vehiculo"), Vehiculo::getTipoVehiculo));
-        addItem("maximo de cabezas", new PreviewItem<>(textField("Maximo de cabezas"), Vehiculo::getMaxCabezas));
-        addItem("tipo de combustible", new PreviewItem<>(textField("Tipo de combustible"), Vehiculo::getTipoCombustible));
+        addItem("Modelo", new PreviewItem<>(textField("Modelo"), Vehiculo::getModelo));
+        addItem("Marca", new PreviewItem<>(textField("Marca"), Vehiculo::getMarca));
+        addItem("Color", new PreviewItem<>(textField("Color"), Vehiculo::getColor));
+        addItem("Estado de vehiculo", new PreviewItem<>(textField("Estado de vehiculo"), Vehiculo::getEstadoVehiculo));
+        addItem("Fecha de ultimo cambio de estado", new PreviewItem<>(textField("Fecha de ultimo cambio de estado"), Vehiculo::getFecha));
     }
 
     @Override

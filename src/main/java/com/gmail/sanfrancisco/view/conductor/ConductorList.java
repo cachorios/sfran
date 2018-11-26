@@ -18,7 +18,7 @@ public class ConductorList extends AbstractList<Conductor> {
         setListaCols(Arrays.asList(
                 new ColumnList<>(Conductor::getNombre, "Nombre", "nombre", true),
                 new ColumnList<>(Conductor::getDni, "D.N.I.", "dni", true),
-                new ColumnList<>(Conductor::getTelefono, "Telefono", "telefono", true),
+                new ColumnList<>(new DateRenderer<>(Conductor::getFechaNacimiento, "dd/MM/yyyy"), "Fecha de nacimiento", "fechaNacimiento", true),
                 new ColumnList<>(new DateRenderer<>(Conductor::getFechaIngreso, "dd/MM/yyyy"), "Fecha de ingreso", "fechaIngreso", true)
         ));
     }

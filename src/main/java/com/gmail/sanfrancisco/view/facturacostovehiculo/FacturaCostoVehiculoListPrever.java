@@ -10,7 +10,6 @@ public class FacturaCostoVehiculoListPrever extends AbstractPreview<FacturaCosto
 
     @Override
     public void crearElementos() {
-        addItem("id", new PreviewItem<>(textField("ID"), FacturaCostoVehiculo::getId));
         addItem("nombre", new PreviewItem<>(textField("Nombre"), FacturaCostoVehiculo::getFecha));
     }
 }

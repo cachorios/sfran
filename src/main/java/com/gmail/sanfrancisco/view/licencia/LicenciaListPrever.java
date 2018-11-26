@@ -28,7 +28,6 @@ public class LicenciaListPrever extends AbstractPreview<Licencia> {
 
     @Override
     public void crearElementos() {
-        addItem("id", new PreviewItem<>(textField("ID"), Licencia::getId));
         addItem("tipo de licencia", new PreviewItem<>(textField("Tipo de licencia"), Licencia::getTipoLicencia));
         addItem("vencimiento", new PreviewItem<>(dateField("Vencimiento"), Licencia::getVencimiento));
         addItem("venimiento del carnet", new PreviewItem<>(dateField("Vencimiento del carnet"), Licencia::getVencimientoNac));

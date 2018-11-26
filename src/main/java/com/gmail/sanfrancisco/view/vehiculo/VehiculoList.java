@@ -16,8 +16,9 @@ public class VehiculoList extends AbstractList<Vehiculo> {
         setListaCols(Arrays.asList(
                 new ColumnList<>(Vehiculo::getDominio, "Dominio","dominio",true),
                 new ColumnList<>(Vehiculo::getTipoVehiculo, "Tipo vehiculo", "tipoVehiculo", true),
+                new ColumnList<>(Vehiculo::getTipoCombustible, "Tipo combustible", "tipoCombustible", true),
                 new ColumnList<>(Vehiculo::getMaxCabezas, "Maximo de cabezas", "maxcabezas", true),
-                new ColumnList<>(Vehiculo::getEstadoVehiculo, "Estado del vehiculo", "estadoVehiculo", true)
+                new ColumnList<>(Vehiculo::getCargaMax, "Carga maxima", "cargaMax", true)
         ));
     }
 

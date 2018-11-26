@@ -10,7 +10,6 @@ public class InsumoCostoVehiculoListPrever extends AbstractPreview<InsumoCostoVe
 
     @Override
     public void crearElementos() {
-        addItem("id", new PreviewItem<>(textField("ID"), InsumoCostoVehiculo::getId));
         addItem("cantidad", new PreviewItem<>(textField("Cantidad"), InsumoCostoVehiculo::getCantidad));
         addItem("precio", new PreviewItem<>(textField("Precio"), InsumoCostoVehiculo::getPrecio));
     }

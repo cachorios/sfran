@@ -24,11 +24,12 @@ public class ConductorListPrever extends AbstractPreview<Conductor> {
 
     @Override
     public void crearElementos() {
-        addItem("id", new PreviewItem<>(textField("ID"), Conductor::getId));
-        addItem("nombre", new PreviewItem<>(textField("Nombre"), Conductor::getNombre));
-        addItem("telefono", new PreviewItem<>(textField("Nro.Tel."), Conductor::getTelefono));
-        addItem("Operadora", new PreviewItem<>(textField("Operadora telefonica"), Conductor::getOperadoraTelefonica));
+        addItem("Nombre", new PreviewItem<>(textField("Nombre"), Conductor::getNombre));
+        addItem("D.N.I.", new PreviewItem<>(textField("DNI"), Conductor::getDni));
+        addItem("C.U.I.L.", new PreviewItem<>(textField("Cuil"), Conductor::getCuil));
         addItem("Celular", new PreviewItem<>(textField("Nro.Cel."), Conductor::getCelular));
+        addItem("Operadora", new PreviewItem<>(textField("Operadora telefonica"), Conductor::getOperadoraTelefonica));
+        addItem("Telefono", new PreviewItem<>(textField("Nro.Tel."), Conductor::getTelefono));
     }
     @Override
     protected void posGenerarVista() {

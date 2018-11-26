@@ -42,6 +42,7 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     private TextField numeroTropa;
+    private TextField numeroTropaFiscal;
     private ComboBox<Parametro> pciaOrigen;
     private ComboBox<Parametro> pciaDestino;
 
@@ -91,6 +92,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         setWidth("980px");
 
         numeroTropa = textField("Numero de tropa","30%");
+        numeroTropaFiscal = textField("Numero de tropa fiscal","30%");
 
         ParametroVarioDataProvider dpPcia = getObject(ParametroVarioDataProvider.class);
         dpPcia.setTipo(ETipoParametro.PROVINCIA);
@@ -154,7 +156,8 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 
         form.add(
-                envolver(numeroTropa, "100%"),
+                envolver(numeroTropa, "48%"),
+                envolver(numeroTropaFiscal, "50%"),
 
                 //generarTituloSeccion("Origen"),
                 envolver(pciaOrigen, "18%"),
