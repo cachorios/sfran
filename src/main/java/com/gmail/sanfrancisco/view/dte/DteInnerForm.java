@@ -180,10 +180,10 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 envolver(peso, "32%"),
 
                 envolver(kmSalida,"48%"),
-                envolver(kmLlegada,"48%"),
+                envolver(kmLlegada,"50%"),
 
                 envolver(fechaCarga,"48%"),
-                envolver(fechaVencimiento,"48%"),
+                envolver(fechaVencimiento,"50%"),
 
                 envolver(entrega,"32%"),
                 envolver(totalComisionista,"32%"),
