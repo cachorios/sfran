@@ -23,6 +23,11 @@ public  @Data class  Dte extends AbstractEntidad {
     private String numeroTropa;
 
     @NotNull
+    @Size(min=4, max=4, message="El numero de tropa fiscal debe contener 4 caracteres.")
+
+    private String numeroTropaFiscal;
+
+    @NotNull
     @ManyToOne
     private Parametro provinciaOrigen;
 

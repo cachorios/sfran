@@ -29,13 +29,10 @@ public class ComisionistaListPrever extends AbstractPreview<Comisionista> {
 
     @Override
     public void crearElementos() {
-        addItem("id", new PreviewItem<>(textField("ID"), Comisionista::getId));
         addItem("nombre", new PreviewItem<>(textField("Rázon social"), Comisionista::getNombre));
         addItem("cuil", new PreviewItem<>(textField("CUIL"), Comisionista::getCuil));
-        addItem("celular", new PreviewItem<>(textField("Nro.Cel."), Comisionista::getCelular));
         addItem("telefono", new PreviewItem<>(textField("Nro.Tel."), Comisionista::getTelefono));
         addItem("domicilio", new PreviewItem<>(textField("Domicilio"), Comisionista::getDomicilio));
-        addItem("celular", new PreviewItem<>(textField("Nro.Cle."), Comisionista::getCelular));
         addItem("email", new PreviewItem<>(textField("Email"), Comisionista::getEmail));
     }
     @Override

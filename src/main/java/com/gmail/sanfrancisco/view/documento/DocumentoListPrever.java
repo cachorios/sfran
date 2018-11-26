@@ -10,7 +10,6 @@ public class DocumentoListPrever extends AbstractPreview<Documento> {
 
     @Override
     public void crearElementos() {
-        addItem("id", new PreviewItem<>(textField("ID"), Documento::getId));
         addItem("nombre de archivo", new PreviewItem<>(textField("Nombre de archivo"), Documento::getNombreArchivo));
         addItem("descripción", new PreviewItem<>(textField("Descripción"), Documento::getDescripcion));
     }

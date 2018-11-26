@@ -25,7 +25,6 @@ public class InsumoListPrever extends AbstractPreview<Insumo> {
 
     @Override
     public void crearElementos() {
-        addItem("id", new PreviewItem<>(textField("ID"), Insumo::getId));
         addItem("descripcion", new PreviewItem<>(textField("Descripción"), Insumo::getDescripcion));
         addItem("tipo de insumo", new PreviewItem<>(textField("Tipo de insumo"), Insumo::getTipoInsumo));
         addItem("unidad", new PreviewItem<>(textField("Unidad"), Insumo::getUnidadMedida));
