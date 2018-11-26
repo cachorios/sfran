@@ -209,6 +209,7 @@
         </dependency>
 
 
+
         <!-- Tabs  -->
         <dependency>
             <groupId>org.vaadin.tabs</groupId>
@@ -222,6 +223,18 @@
             <version> 1.1.0</version>
         </dependency>
 
+        <!-- Calendario -->
+        <dependency>
+            <groupId>org.vaadin.stefan</groupId>
+            <artifactId>fullcalendar-scheduler</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.vaadin.stefan</groupId>
+            <artifactId>fullcalendar</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+        <!-- fin calendar -->
 
     </dependencies>
 
@@ -239,9 +252,7 @@
                     <debugPort>5005</debugPort>
                     <args>-Dvaadin.productionMode</args>
                     <config>${project.basedir}/src/test/tomee/conf</config>
-                    <!--<libs>-->
-                    <!--<lib>mysql:mysql-connector-java:5.1.20</lib>-->
-                    <!--</libs>-->
+
                     <webapps>
                         <webapp>org.superbiz:myapp:4.3?name=ROOT</webapp>
                         <webapp>org.superbiz:api:1.1</webapp>
@@ -250,9 +261,6 @@
                         <app>org.superbiz:mybugapp:3.2:ear</app>
                     </apps>
                     <libs>
-                        <!--<lib>pgsql:mysql-connector-java:5.1.21</lib>-->
-                        <!--<lib>unzip:org.superbiz:hibernate-bundle:4.1.0.Final:zip</lib>-->
-                        <!--<lib>remove:openjpa-</lib>-->
                     </libs>
                 </configuration>
             </plugin>
@@ -275,6 +283,7 @@
         </plugins>
     </build>
 
+    <!--
     <profiles>
         <profile>
             <id>productionMode</id>
@@ -331,4 +340,6 @@
         </profile>
 
     </profiles>
+
+    -->
 </project>
