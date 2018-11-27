@@ -3,9 +3,10 @@ package com.gmail.sanfrancisco.entidad;
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,4 +22,34 @@ public class GraseriaDetalleInsumo extends AbstractEntidad {
 
     @NotNull
     private Double precio;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "graseriaDetalleInsumo", fetch = FetchType.LAZY)
+    private List<GraseriaDetalleImpuesto> impuestos;
+
+    public GraseriaDetalleInsumo() {
+        impuestos = new ArrayList<>();
+    }
+
+    public List<GraseriaDetalleImpuesto> getInsumos() {
+        return impuestos;
+    }
+
+    public void setInsumos(List<GraseriaDetalleImpuesto> impuestos) {
+        this.impuestos = impuestos;
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void preUpdate(){
+
+        for(GraseriaDetalleImpuesto imp: impuestos){
+            if(imp.getGraseriaDetalleInsumo() == null){
+                imp.setGraseriaDetalleInsumo(this);
+            }
+        }
+    }
+
+    public String toString() {
+        return "Insumo(" + this.getInsumo() + ")";
+    }
 }

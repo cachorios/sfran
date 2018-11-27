@@ -1,0 +1,92 @@
+package com.gmail.sanfrancisco.view.graseriadetalleinsumo;
+
+import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
+import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
+import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.converter.DoubleConverter;
+import com.gmail.sanfrancisco.converter.IntegerConverter;
+import com.gmail.sanfrancisco.entidad.GraseriaDetalleImpuesto;
+import com.gmail.sanfrancisco.entidad.GraseriaDetalleInsumo;
+import com.gmail.sanfrancisco.view.graseriadetalleimpuesto.GraseriaDetalleImpuestoForm;
+import com.gmail.sanfrancisco.view.insumo.InsumoCS;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Focusable;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.BeanValidationBinder;
+import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
+import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
+
+public class GraseriaDetalleInsumoInnerForm extends DefaultInnerDialog<GraseriaDetalleInsumo> {
+
+    private InsumoCS insumoCS;
+    private TextField cantidad;
+    private TextField precio;
+
+    private Grid<GraseriaDetalleImpuesto> impuestoGrid;
+    private UnoaMuchoGrid<GraseriaDetalleInsumo, GraseriaDetalleImpuesto> impuestos;
+
+    public GraseriaDetalleInsumoInnerForm(IPresentableForm<GraseriaDetalleInsumo> presentable, String elTitulo) {
+        super(presentable, elTitulo);
+    }
+
+    @Override
+    protected void generarForm(Div form) {
+
+        setWidth("700px");
+
+        insumoCS = new InsumoCS("Insumo", getPresentable(), true, true, true);
+
+        cantidad = textField("Cantidad");
+        precio = textField("Precio");
+
+        form.add(
+                envolver(insumoCS),
+                envolver(cantidad, "48%"),
+                envolver(precio, "48%"),
+                envolver(getImpuestos())
+        );
+    }
+
+    private Component getImpuestos() {
+        impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos());
+
+        impuestos.getGrid().addColumn(GraseriaDetalleImpuesto::getImpuesto)
+                .setHeader("Impuesto")
+                .setWidth("20%")
+                .setFlexGrow(1)
+                .setKey("impuesto")
+                .setFooter("Total");
+
+        impuestos.getGrid().addColumn(GraseriaDetalleImpuesto::getSaldo)
+                .setHeader("Saldo")
+                .setWidth("12%")
+                .setKey("saldo");
+
+        impuestos
+                .withForm(GraseriaDetalleImpuestoForm.class)
+                .withVer()
+                .withNuevo(GraseriaDetalleImpuesto.class)
+                .withEditar()
+                .withBorrar()
+        ;
+        impuestos.getGrid().setHeight("9rem");
+        return impuestos.iniciar();
+    }
+
+    @Override
+    public Focusable getPrimerElementoForm() { return cantidad; }
+
+    @Override
+    public void bindFormFields(BeanValidationBinder<GraseriaDetalleInsumo> binder) {
+
+        binder.bind(insumoCS, "insumo");
+
+        binder.forField(cantidad).withConverter(new IntegerConverter()).bind("cantidad");
+
+        binder.forField(precio).withConverter(new DoubleConverter()).bind("precio");
+
+        binder.bindInstanceFields(this);
+    }
+}
