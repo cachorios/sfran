@@ -2,12 +2,17 @@ package com.gmail.sanfrancisco.view.dte;
 
 import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.AbstractPreview;
+import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
 import com.gmail.cacho.slapi.view.utils.PreviewItem;
 import com.gmail.cacho.slbase.core.Constantes;
 import com.gmail.cacho.slreport.jasper.ReporteCreator;
 import com.gmail.cacho.slreport.view.DefaultPDFViewDialog;
 import com.gmail.sanfrancisco.entidad.Dte;
+import com.gmail.sanfrancisco.entidad.DteDetalleCategoria;
+import com.gmail.sanfrancisco.view.dtedetallecategoria.DteDetalleCategoriaForm;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.VaadinServlet;
