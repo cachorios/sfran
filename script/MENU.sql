@@ -27,6 +27,7 @@
 
            (12, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.COSTO','Costos',                        11, 2, FALSE, NULL,  7,  0,  'Costos', 1),
            (13, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.COSTO','Graseria',                      12, 2, FALSE, NULL,  8,  12, 'com.gmail.sanfrancisco.view.graseria.GraseriaView', 1),
+           (14, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.COSTO','Vehiculo',                      13, 2, FALSE, NULL,  9,  12, 'com.gmail.sanfrancisco.view.facturacostovehiculo.FacturaCostoVehiculoView', 1),
 
 
            (90, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Parametros del Sistema',       900, 2, FALSE, NULL,  8,   0,  'Configuracion General del Sistema', 1),

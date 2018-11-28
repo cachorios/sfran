@@ -24,7 +24,6 @@ public class GraseriaService extends ServicioModelo<Graseria> {
     public Stream<Graseria> findAnyMatching(Object padre, String filtro, int offset, int limit, List<QuerySortOrder> sortOrders) {
         QueryResult<Graseria> result = ((GraseriaRepositorio)repo).findFiltered( offset, limit);
 
-
         return QueryHelper.applyLimitsAndSortOrder(result, offset, limit, sortOrders).getResultList().stream();
     }
 

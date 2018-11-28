@@ -25,7 +25,7 @@ public class GraseriaDetalleImpuestoInnerForm extends DefaultInnerDialog<Graseri
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("252px");
+        setHeight("200px");
         setWidth("700px");
 
         saldo = textField("Saldo");
@@ -34,7 +34,7 @@ public class GraseriaDetalleImpuestoInnerForm extends DefaultInnerDialog<Graseri
 
         form.add(
                 envolver(impuesto),
-                envolver(saldo)
+                envolver(saldo, "32%")
         );
     }
 
@@ -46,7 +46,7 @@ public class GraseriaDetalleImpuestoInnerForm extends DefaultInnerDialog<Graseri
 
         binder.bind(impuesto, "impuesto");
 
-        binder.forField(saldo).withConverter(new DoubleConverter()).bind("Saldo");
+        binder.forField(saldo).withConverter(new DoubleConverter()).bind("saldo");
 
 
         binder.bindInstanceFields( this);
