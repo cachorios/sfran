@@ -1,11 +1,16 @@
 package com.gmail.sanfrancisco.view.facturacostovehiculo;
 
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
+import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.entidad.FacturaCostoVehiculo;
+import com.gmail.sanfrancisco.entidad.InsumoCostoVehiculo;
+import com.gmail.sanfrancisco.view.insumocostovehiculo.InsumoCostoVehiculoForm;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
@@ -19,6 +24,9 @@ public class FacturaCostoVehiculoInnerForm extends DefaultInnerDialog<FacturaCos
 
     private TextField id;
     private DatePicker fecha;
+
+    private Grid<InsumoCostoVehiculo> insumoGrid;
+    private UnoaMuchoGrid<FacturaCostoVehiculo, InsumoCostoVehiculo> insumos;
 
     public FacturaCostoVehiculoInnerForm(IPresentableForm<FacturaCostoVehiculo> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -40,8 +48,38 @@ public class FacturaCostoVehiculoInnerForm extends DefaultInnerDialog<FacturaCos
         form.add(
                 envolver(id, "30%"),
 
-                envolver(fecha,"50%")
+                envolver(fecha,"50%"),
+                envolver(getInsumos())
         );
+    }
+
+    private Component getInsumos() {
+        insumos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos());
+
+        insumos.getGrid().addColumn(InsumoCostoVehiculo::getInsumo)
+                .setHeader("Insumo")
+                .setWidth("20%")
+                .setFlexGrow(1)
+                .setKey("insumo")
+                .setFooter("Total");
+
+        insumos.getGrid().addColumn(InsumoCostoVehiculo::getPrecio)
+                .setHeader("Precio")
+                .setWidth("12%")
+                .setKey("precio");
+        insumos.getGrid().addColumn(InsumoCostoVehiculo::getCantidad)
+                .setHeader("Cantidad")
+                .setWidth("10%");
+
+        insumos
+                .withForm(InsumoCostoVehiculoForm.class)
+                .withVer()
+                .withNuevo(InsumoCostoVehiculo.class)
+                .withEditar()
+                .withBorrar()
+        ;
+        insumos.getGrid().setHeight("9rem");
+        return insumos.iniciar();
     }
 
     @Override

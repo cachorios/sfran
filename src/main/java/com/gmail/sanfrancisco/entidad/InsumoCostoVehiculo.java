@@ -2,6 +2,7 @@ package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude="facturaCostoVehiculo")
 public class InsumoCostoVehiculo extends AbstractEntidad {
     @ManyToOne
     private Insumo insumo;
@@ -38,7 +40,7 @@ public class InsumoCostoVehiculo extends AbstractEntidad {
         return impuestos;
     }
 
-    public void setInsumos(List<ImpuestoCostoVehiculo> impuestos) {
+    public void setImpuestos(List<ImpuestoCostoVehiculo> impuestos) {
         this.impuestos = impuestos;
     }
 
