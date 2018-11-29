@@ -38,7 +38,7 @@ public class InsumoCostoVehiculoInnerForm extends DefaultInnerDialog<InsumoCosto
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("588px");
+        setHeight("310px");
         setWidth("700px");
 
         insumoCS = new InsumoCS("Insumo", getPresentable(), true, true, true);
@@ -47,10 +47,10 @@ public class InsumoCostoVehiculoInnerForm extends DefaultInnerDialog<InsumoCosto
         precio = textField("Precio");
 
         form.add(
-                envolver(insumoCS),
+                envolver(insumoCS, "70%"),
 
-                envolver(cantidad,"48%"),
-                envolver(precio,"48%"),
+                envolver(cantidad,"32%"),
+                envolver(precio,"32%"),
                 envolver(getImpuestos())
         );
 

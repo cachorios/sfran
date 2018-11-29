@@ -52,6 +52,6 @@ public class GraseriaDetalleInsumo extends AbstractEntidad {
     }
 
     public String toString() {
-        return "Insumo(" + this.getInsumo() + ")";
+        return this.getInsumo().toString();
     }
 }

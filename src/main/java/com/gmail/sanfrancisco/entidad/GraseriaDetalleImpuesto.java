@@ -24,6 +24,6 @@ public class GraseriaDetalleImpuesto extends AbstractEntidad {
     private Double saldo;
 
     public String toString() {
-        return "Impuesto(" + this.getImpuesto() + ")";
+        return this.getImpuesto().toString();
     }
 }

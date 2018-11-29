@@ -34,7 +34,7 @@ public class GraseriaInnerForm extends DefaultInnerDialog<Graseria> {
 
     @Override
     protected void generarForm(Div form) {
-        setWidth("980px");
+        setWidth("680px");
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
