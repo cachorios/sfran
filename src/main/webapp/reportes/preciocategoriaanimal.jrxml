@@ -186,7 +186,7 @@ AND dte.fechaCarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}]]>
 	<detail>
 		<band height="15" splitType="Stretch">
 			<textField>
-				<reportElement stretchType="ContainerHeight" x="0" y="0" width="170" height="15" isRemoveLineWhenBlank="true" uuid="7616b065-fddc-4a3d-8c95-7248f5ff807c">
+				<reportElement stretchType="ContainerHeight" x="0" y="0" width="55" height="15" isRemoveLineWhenBlank="true" uuid="7616b065-fddc-4a3d-8c95-7248f5ff807c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -195,8 +195,8 @@ AND dte.fechaCarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement stretchType="ContainerHeight" x="170" y="0" width="60" height="15" isRemoveLineWhenBlank="true" uuid="9a770571-c6c7-40e0-a250-ee5b74bd5eac">
+			<textField pattern="#,##0.##;#,##0.##">
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="170" y="0" width="60" height="15" isRemoveLineWhenBlank="true" backcolor="#DEDEDE" uuid="9a770571-c6c7-40e0-a250-ee5b74bd5eac">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -205,8 +205,8 @@ AND dte.fechaCarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{kgvivo}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement stretchType="ContainerHeight" x="230" y="0" width="90" height="15" isRemoveLineWhenBlank="true" uuid="c1ad5f7d-949e-4460-8588-bba4fb637bb7">
+			<textField pattern="#,##0.##;#,##0.##">
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="230" y="0" width="90" height="15" isRemoveLineWhenBlank="true" backcolor="#DEDEDE" uuid="c1ad5f7d-949e-4460-8588-bba4fb637bb7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9aed832b-3057-48fc-8946-6c7a2ff6b198"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -215,7 +215,7 @@ AND dte.fechaCarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{kgcarne}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.##;#,##0.##">
 				<reportElement stretchType="ContainerHeight" x="320" y="0" width="87" height="15" isRemoveLineWhenBlank="true" uuid="dac0c1b4-3c1a-4c20-bfe5-914f16a986f9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ffff912-42e3-42d8-ba55-2c36c4cf6143"/>
 				</reportElement>
@@ -235,8 +235,8 @@ AND dte.fechaCarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{preciokgvivo}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement stretchType="ContainerHeight" x="520" y="0" width="90" height="15" isRemoveLineWhenBlank="true" uuid="26166300-5881-49ee-8c09-fc908ae9e9b9">
+			<textField pattern="#,##0.##;#,##0.##">
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="520" y="0" width="90" height="15" isRemoveLineWhenBlank="true" backcolor="#DEDEDE" uuid="26166300-5881-49ee-8c09-fc908ae9e9b9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c244b971-5df4-4a44-8250-69368b298194"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -255,8 +255,8 @@ AND dte.fechaCarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{porcentajecomision}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement stretchType="ContainerHeight" x="700" y="0" width="102" height="15" isRemoveLineWhenBlank="true" uuid="6ef24b1e-9257-47b1-a41a-9dd0f9a53b19">
+			<textField pattern="#,##0.##;#,##0.##">
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="700" y="0" width="102" height="15" isRemoveLineWhenBlank="true" backcolor="#DEDEDE" uuid="6ef24b1e-9257-47b1-a41a-9dd0f9a53b19">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c244b971-5df4-4a44-8250-69368b298194"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -265,12 +265,22 @@ AND dte.fechaCarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[($F{preciokgvivo}*$F{kgvivo}*$F{porcentajecomision})/100]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="55" y="0" width="115" height="15" isRemoveLineWhenBlank="true" uuid="31a760d0-b727-41e2-982f-63fca37d719c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
+				</reportElement>
+				<box rightPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desccategoria}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="15">
-			<textField>
-				<reportElement stretchType="ContainerHeight" x="170" y="0" width="60" height="15" isRemoveLineWhenBlank="true" uuid="5fbdf1f8-dff5-4aeb-b63f-8ae4597510a1">
+			<textField pattern="#,##0.##;#,##0.##">
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="170" y="0" width="60" height="15" isRemoveLineWhenBlank="true" backcolor="#DEDEDE" uuid="5fbdf1f8-dff5-4aeb-b63f-8ae4597510a1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -279,8 +289,8 @@ AND dte.fechaCarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{v_TotalKgVivo}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement stretchType="ContainerHeight" x="230" y="0" width="90" height="15" isRemoveLineWhenBlank="true" uuid="56d65a10-a908-4672-b0d4-dd220aac396c">
+			<textField pattern="#,##0.##;#,##0.##">
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="230" y="0" width="90" height="15" isRemoveLineWhenBlank="true" backcolor="#DEDEDE" uuid="56d65a10-a908-4672-b0d4-dd220aac396c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -289,8 +299,8 @@ AND dte.fechaCarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{v_TotalKgCarne}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement stretchType="ContainerHeight" x="520" y="0" width="90" height="15" isRemoveLineWhenBlank="true" uuid="d86af404-20bf-43d6-a8fc-314000205459">
+			<textField pattern="#,##0.##;#,##0.##">
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="520" y="0" width="90" height="15" isRemoveLineWhenBlank="true" backcolor="#DEDEDE" uuid="d86af404-20bf-43d6-a8fc-314000205459">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
 				</reportElement>
 				<box rightPadding="3"/>
@@ -299,8 +309,8 @@ AND dte.fechaCarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{v_TotalImporteBruto}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement stretchType="ContainerHeight" x="700" y="0" width="102" height="15" isRemoveLineWhenBlank="true" uuid="fa5b6da8-1196-4436-afac-d6d368b2e855">
+			<textField pattern="#,##0.##;#,##0.##">
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="700" y="0" width="102" height="15" isRemoveLineWhenBlank="true" backcolor="#DEDEDE" uuid="fa5b6da8-1196-4436-afac-d6d368b2e855">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
 				</reportElement>
 				<box rightPadding="3"/>
