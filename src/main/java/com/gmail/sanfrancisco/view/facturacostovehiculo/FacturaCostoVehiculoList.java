@@ -2,6 +2,7 @@ package com.gmail.sanfrancisco.view.facturacostovehiculo;
 
 import com.gmail.cacho.slapi.view.AbstractList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
+import com.gmail.cacho.slapi.view.renders.DateRenderer;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.entidad.FacturaCostoVehiculo;
 
@@ -13,7 +14,7 @@ public class FacturaCostoVehiculoList extends AbstractList<FacturaCostoVehiculo>
     public FacturaCostoVehiculoList(IPresenterList<FacturaCostoVehiculo> presenter) {
         super(presenter);
         setListaCols(Arrays.asList(
-                new ColumnList<>(FacturaCostoVehiculo::getFecha,"Fecha","fecha", true)
+                new ColumnList<>(new DateRenderer<>(FacturaCostoVehiculo::getFecha, "dd/MM/yyyy"),"Fecha","fecha", true)
         ));
     }
 

@@ -153,8 +153,6 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         tabs.add(getImpuestos(), "Impuestos");
 
 
-
-
         form.add(
                 envolver(numeroTropa, "48%"),
                 envolver(numeroTropaFiscal, "50%"),

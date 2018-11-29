@@ -1,12 +1,12 @@
-package com.gmail.sanfrancisco.view.facturacostovehiculo;
+package com.gmail.sanfrancisco.view.graseria;
 
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
-import com.gmail.sanfrancisco.entidad.FacturaCostoVehiculo;
-import com.gmail.sanfrancisco.entidad.InsumoCostoVehiculo;
-import com.gmail.sanfrancisco.view.insumocostovehiculo.InsumoCostoVehiculoForm;
+import com.gmail.sanfrancisco.entidad.Graseria;
+import com.gmail.sanfrancisco.entidad.GraseriaDetalleInsumo;
+import com.gmail.sanfrancisco.view.graseriadetalleinsumo.GraseriaDetalleInsumoForm;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -20,61 +20,59 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.dateField;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
-public class FacturaCostoVehiculoInnerForm extends DefaultInnerDialog<FacturaCostoVehiculo> {
+public class GraseriaInnerForm extends DefaultInnerDialog<Graseria> {
 
     private TextField id;
     private DatePicker fecha;
 
-    private Grid<InsumoCostoVehiculo> insumoGrid;
-    private UnoaMuchoGrid<FacturaCostoVehiculo, InsumoCostoVehiculo> insumos;
+    private Grid<GraseriaDetalleInsumo> insumoGrid;
+    private UnoaMuchoGrid<Graseria, GraseriaDetalleInsumo> insumos;
 
-    public FacturaCostoVehiculoInnerForm(IPresentableForm<FacturaCostoVehiculo> presentable, String elTitulo) {
+    public GraseriaInnerForm(IPresentableForm<Graseria> presentable, String elTitulo) {
         super(presentable, elTitulo);
     }
 
     @Override
     protected void generarForm(Div form) {
-
-        setHeight("252px");
-        setWidth("700px");
+        setWidth("980px");
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
 
         fecha = dateField("Fecha");
-        fecha.setWidth("100%");
+        fecha.setWidth("32%");
         fecha.setRequired(true);
 
         form.add(
-                envolver(id, "30%"),
+            envolver(id, "30%"),
 
-                envolver(fecha,"50%"),
-                envolver(getInsumos())
+            envolver(fecha),
+            envolver(getInsumos())
         );
     }
 
     private Component getInsumos() {
         insumos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos());
 
-        insumos.getGrid().addColumn(InsumoCostoVehiculo::getInsumo)
+        insumos.getGrid().addColumn(GraseriaDetalleInsumo::getInsumo)
                 .setHeader("Insumo")
                 .setWidth("20%")
                 .setFlexGrow(1)
                 .setKey("insumo")
                 .setFooter("Total");
 
-        insumos.getGrid().addColumn(InsumoCostoVehiculo::getPrecio)
+        insumos.getGrid().addColumn(GraseriaDetalleInsumo::getPrecio)
                 .setHeader("Precio")
                 .setWidth("12%")
                 .setKey("precio");
-        insumos.getGrid().addColumn(InsumoCostoVehiculo::getCantidad)
+        insumos.getGrid().addColumn(GraseriaDetalleInsumo::getCantidad)
                 .setHeader("Cantidad")
                 .setWidth("10%");
 
         insumos
-                .withForm(InsumoCostoVehiculoForm.class)
+                .withForm(GraseriaDetalleInsumoForm.class)
                 .withVer()
-                .withNuevo(InsumoCostoVehiculo.class)
+                .withNuevo(GraseriaDetalleInsumo.class)
                 .withEditar()
                 .withBorrar()
         ;
@@ -86,16 +84,16 @@ public class FacturaCostoVehiculoInnerForm extends DefaultInnerDialog<FacturaCos
     public Focusable getPrimerElementoForm() { return fecha; }
 
     @Override
-    public void bindFormFields(BeanValidationBinder<FacturaCostoVehiculo> binder) {
+    public void bindFormFields(BeanValidationBinder<Graseria> binder) {
 
         binder.forField(id)
-                .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(FacturaCostoVehiculo::getId, null);
+        .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
+        .withNullRepresentation(0l)
+        .bind(Graseria::getId, null);
 
         binder.forField(fecha)
-                .withConverter(new LocalDateADateConverter())
-                .bind(FacturaCostoVehiculo::getFecha, FacturaCostoVehiculo::setFecha);
+        .withConverter(new LocalDateADateConverter())
+        .bind(Graseria::getFecha, Graseria::setFecha);
 
 
         binder.bindInstanceFields( this);

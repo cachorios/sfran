@@ -22,8 +22,7 @@ public class GraseriaService extends ServicioModelo<Graseria> {
 
     @Override
     public Stream<Graseria> findAnyMatching(Object padre, String filtro, int offset, int limit, List<QuerySortOrder> sortOrders) {
-        QueryResult<Graseria> result = ((GraseriaRepositorio)repo).findFiltered( offset, limit, likePattern(filtro));
-
+        QueryResult<Graseria> result = ((GraseriaRepositorio)repo).findFiltered( offset, limit);
 
         return QueryHelper.applyLimitsAndSortOrder(result, offset, limit, sortOrders).getResultList().stream();
     }
@@ -31,7 +30,7 @@ public class GraseriaService extends ServicioModelo<Graseria> {
     @Override
     public long countAnyMatching(Object padre, String filtro) {
         Long cnt = null;
-        cnt = ((GraseriaRepositorio) repo).countFiltered(likePattern(filtro));
+        cnt = ((GraseriaRepositorio) repo).countFiltered();
         return cnt;
     }
 }

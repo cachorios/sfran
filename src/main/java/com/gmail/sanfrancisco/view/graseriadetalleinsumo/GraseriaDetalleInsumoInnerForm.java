@@ -1,13 +1,13 @@
-package com.gmail.sanfrancisco.view.insumocostovehiculo;
+package com.gmail.sanfrancisco.view.graseriadetalleinsumo;
 
 import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.converter.DoubleConverter;
 import com.gmail.sanfrancisco.converter.IntegerConverter;
-import com.gmail.sanfrancisco.entidad.ImpuestoCostoVehiculo;
-import com.gmail.sanfrancisco.entidad.InsumoCostoVehiculo;
-import com.gmail.sanfrancisco.view.impuestocostovehiculo.ImpuestoCostoVehiculoForm;
+import com.gmail.sanfrancisco.entidad.GraseriaDetalleImpuesto;
+import com.gmail.sanfrancisco.entidad.GraseriaDetalleInsumo;
+import com.gmail.sanfrancisco.view.graseriadetalleimpuesto.GraseriaDetalleImpuestoForm;
 import com.gmail.sanfrancisco.view.insumo.InsumoCS;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
@@ -15,30 +15,25 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
-import com.vaadin.flow.data.converter.StringToDoubleConverter;
-import com.vaadin.flow.data.converter.StringToIntegerConverter;
-import com.vaadin.flow.data.converter.StringToLongConverter;
-
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
-public class InsumoCostoVehiculoInnerForm extends DefaultInnerDialog<InsumoCostoVehiculo> {
+public class GraseriaDetalleInsumoInnerForm extends DefaultInnerDialog<GraseriaDetalleInsumo> {
 
     private InsumoCS insumoCS;
     private TextField cantidad;
     private TextField precio;
 
-    private Grid<ImpuestoCostoVehiculo> impuestoGrid;
-    private UnoaMuchoGrid<InsumoCostoVehiculo, ImpuestoCostoVehiculo> impuestos;
+    private Grid<GraseriaDetalleImpuesto> impuestoGrid;
+    private UnoaMuchoGrid<GraseriaDetalleInsumo, GraseriaDetalleImpuesto> impuestos;
 
-    public InsumoCostoVehiculoInnerForm(IPresentableForm<InsumoCostoVehiculo> presentable, String elTitulo) {
+    public GraseriaDetalleInsumoInnerForm(IPresentableForm<GraseriaDetalleInsumo> presentable, String elTitulo) {
         super(presentable, elTitulo);
     }
 
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("588px");
         setWidth("700px");
 
         insumoCS = new InsumoCS("Insumo", getPresentable(), true, true, true);
@@ -48,33 +43,31 @@ public class InsumoCostoVehiculoInnerForm extends DefaultInnerDialog<InsumoCosto
 
         form.add(
                 envolver(insumoCS),
-
-                envolver(cantidad,"48%"),
-                envolver(precio,"48%"),
+                envolver(cantidad, "48%"),
+                envolver(precio, "48%"),
                 envolver(getImpuestos())
         );
-
     }
 
     private Component getImpuestos() {
         impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos());
 
-        impuestos.getGrid().addColumn(ImpuestoCostoVehiculo::getImpuesto)
+        impuestos.getGrid().addColumn(GraseriaDetalleImpuesto::getImpuesto)
                 .setHeader("Impuesto")
                 .setWidth("20%")
                 .setFlexGrow(1)
                 .setKey("impuesto")
                 .setFooter("Total");
 
-        impuestos.getGrid().addColumn(ImpuestoCostoVehiculo::getSaldo)
+        impuestos.getGrid().addColumn(GraseriaDetalleImpuesto::getSaldo)
                 .setHeader("Saldo")
                 .setWidth("12%")
                 .setKey("saldo");
 
         impuestos
-                .withForm(ImpuestoCostoVehiculoForm.class)
+                .withForm(GraseriaDetalleImpuestoForm.class)
                 .withVer()
-                .withNuevo(ImpuestoCostoVehiculo.class)
+                .withNuevo(GraseriaDetalleImpuesto.class)
                 .withEditar()
                 .withBorrar()
         ;
@@ -83,10 +76,10 @@ public class InsumoCostoVehiculoInnerForm extends DefaultInnerDialog<InsumoCosto
     }
 
     @Override
-    public Focusable getPrimerElementoForm() { return precio; }
+    public Focusable getPrimerElementoForm() { return cantidad; }
 
     @Override
-    public void bindFormFields(BeanValidationBinder<InsumoCostoVehiculo> binder) {
+    public void bindFormFields(BeanValidationBinder<GraseriaDetalleInsumo> binder) {
 
         binder.bind(insumoCS, "insumo");
 
@@ -94,7 +87,6 @@ public class InsumoCostoVehiculoInnerForm extends DefaultInnerDialog<InsumoCosto
 
         binder.forField(precio).withConverter(new DoubleConverter()).bind("precio");
 
-
-        binder.bindInstanceFields( this);
+        binder.bindInstanceFields(this);
     }
 }

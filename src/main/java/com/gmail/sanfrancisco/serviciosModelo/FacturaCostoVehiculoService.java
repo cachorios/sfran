@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.serviciosModelo;
 
 import com.gmail.cacho.backend.jpa.ServicioModelo;
+import com.gmail.cacho.slapi.comunes.QueryHelper;
 import com.gmail.sanfrancisco.entidad.FacturaCostoVehiculo;
 import com.gmail.sanfrancisco.repositorio.FacturaCostoVehiculoRepositorio;
 import com.vaadin.flow.data.provider.QuerySortOrder;
@@ -18,16 +19,16 @@ public class FacturaCostoVehiculoService extends ServicioModelo<FacturaCostoVehi
 
     @Override
     public Stream<FacturaCostoVehiculo> findAnyMatching(Object padre, String filtro, int offset, int limit, List<QuerySortOrder> sortOrders) {
-        QueryResult<FacturaCostoVehiculo> result = ((FacturaCostoVehiculoRepositorio)repo).findFiltered(offset, limit, likePattern(filtro));
+        QueryResult<FacturaCostoVehiculo> result = ((FacturaCostoVehiculoRepositorio)repo).findFiltered(offset, limit);
 
-        return result.getResultList().stream();
-        //QueryHelper.applyLimitsAndSortOrder(result, offset, limit, sortOrders).getResultList().stream();
+        //return result.getResultList().stream();
+        return QueryHelper.applyLimitsAndSortOrder(result, offset, limit, sortOrders).getResultList().stream();
     }
 
     @Override
     public long countAnyMatching(Object padre, String filtro) {
         Long cnt = null;
-        cnt = ((FacturaCostoVehiculoRepositorio) repo).countFiltered(likePattern(filtro));
+        cnt = ((FacturaCostoVehiculoRepositorio) repo).countFiltered();
         return cnt;
     }
 }
