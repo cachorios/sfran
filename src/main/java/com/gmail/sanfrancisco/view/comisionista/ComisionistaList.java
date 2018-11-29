@@ -5,6 +5,7 @@ import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.entidad.Comisionista;
+import com.vaadin.flow.component.grid.Grid;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -13,11 +14,7 @@ public class ComisionistaList extends AbstractList<Comisionista> {
     @Inject
     public ComisionistaList(IPresenterList<Comisionista> presenter) {
         super(presenter);
-        setListaCols(Arrays.asList(
-                new ColumnList<>(Comisionista::getNombre,"Nombre","nombre", true),
-                new ColumnList<>(Comisionista::getCelular,"Celular","celular", true),
-                new ColumnList<>(Comisionista::getSaldoInicial,"Saldo inicial","saldoinicial", true)
-        ));
+
     }
 
     @Override
@@ -33,4 +30,26 @@ public class ComisionistaList extends AbstractList<Comisionista> {
     protected ILayoutInnerList<Comisionista> generarLayout(AbstractList<Comisionista> padre, String titulo) {
         return new ComisionistaInnerList(padre, getTitulo());
     }
+
+    @Override
+    public void setCols(Grid<Comisionista> grilla) {
+        grilla.addColumn(Comisionista::getNombre)
+                .setHeader("Nombre")
+                .setWidth("60%x")
+                .setKey("nombre");
+
+        grilla.addColumn(Comisionista::getCelular)
+                .setHeader("Celular")
+                .setWidth("20%")
+                .setKey("celular");
+
+        grilla.addColumn(Comisionista::getSaldoInicial)
+                .setHeader("Inicio")
+                .setWidth("20%")
+                .setKey("saldoInicial");
+
+
+    }
+
+
 }

@@ -80,7 +80,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version> 8.0</version>
+            <version>7.0</version><!-- ya esta el 8 pero en vaadin usan el 7 -->
             <scope>provided</scope>
         </dependency>
 
@@ -203,8 +203,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.2
-            </version>
+            <version>1.18.4</version>
             <scope>provided</scope>
         </dependency>
 
@@ -226,19 +225,12 @@
         <!-- Calendario -->
         <dependency>
             <groupId>org.vaadin.stefan</groupId>
-            <artifactId>fullcalendar-scheduler</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.vaadin.stefan</groupId>
             <artifactId>fullcalendar</artifactId>
             <version>1.7.1</version>
         </dependency>
         <!-- fin calendar -->
 
     </dependencies>
-
-
 
     <build>
         <plugins>
@@ -247,6 +239,12 @@
                 <artifactId>tomee-maven-plugin</artifactId>
                 <version>8.0.0-M1</version>
                 <configuration>
+                    <!-- esto en modo desarrollo-->
+                    <tomeeClassifier>webprofile</tomeeClassifier>
+                    <context>ROOT</context>
+                    <!-- modo produccion -->
+
+                    <!--
                     <tomeeClassifier>plus</tomeeClassifier>
                     <debug>false</debug>
                     <debugPort>5005</debugPort>
@@ -262,6 +260,7 @@
                     </apps>
                     <libs>
                     </libs>
+                    -->
                 </configuration>
             </plugin>
 
@@ -283,7 +282,7 @@
         </plugins>
     </build>
 
-    <!--
+
     <profiles>
         <profile>
             <id>productionMode</id>
@@ -338,8 +337,6 @@
                 </plugins>
             </build>
         </profile>
-
     </profiles>
 
-    -->
 </project>

@@ -1,30 +1,30 @@
 package com.gmail.sanfrancisco.entidad;
 
+
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.backend.entidad.Parametro;
-
 import lombok.Data;
-
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 @Entity
-public  @Data class  Dte extends AbstractEntidad {
+@Data
+public  class  Dte extends AbstractEntidad {
 
     @NotNull
     @Size(min=4, max=4, message="El numero de tropa debe contener 4 caracteres.")
 
+    @NotNull
     private String numeroTropa;
 
     @NotNull
     @Size(min=4, max=4, message="El numero de tropa fiscal debe contener 4 caracteres.")
-
     private String numeroTropaFiscal;
 
     @NotNull
@@ -112,8 +112,11 @@ public  @Data class  Dte extends AbstractEntidad {
         categorias = new ArrayList<>();
         insumos = new ArrayList<>();
         impuestos = new ArrayList<>();
+
+
     }
 
+    /*
     public String toString() {
         return "DTE(" + this.getNumeroTropa() + ")";
     }
@@ -161,4 +164,6 @@ public  @Data class  Dte extends AbstractEntidad {
             }
         }
     }
+
+    */
 }

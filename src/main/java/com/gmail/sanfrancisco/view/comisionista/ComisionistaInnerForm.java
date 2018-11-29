@@ -3,6 +3,7 @@ package com.gmail.sanfrancisco.view.comisionista;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.converter.DoubleConverter;
+import com.gmail.sanfrancisco.converter.LongConverter;
 import com.gmail.sanfrancisco.entidad.Comisionista;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
@@ -73,8 +74,7 @@ public class ComisionistaInnerForm extends DefaultInnerDialog<Comisionista> {
     public void bindFormFields(BeanValidationBinder<Comisionista> binder) {
 
         binder.forField(id)
-                .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
-                .withNullRepresentation(0l)
+                .withConverter(new LongConverter())
                 .bind(Comisionista::getId, null);
 
         binder.forField(saldoInicial).withConverter(new DoubleConverter()).bind("saldoInicial");
