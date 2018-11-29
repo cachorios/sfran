@@ -15,7 +15,7 @@ import com.vaadin.flow.router.Route;
 import javax.inject.Inject;
 
 @Route(value="graseria", layout = MainView.class)
-@PageTitle("Graseria")
+@PageTitle("Lista Facturas  de costos de Graseria")
 @MenuIcon(VaadinIcon.SPECIALIST)
 public class GraseriaView extends AbstractDefaultView<Graseria> {
     @Inject

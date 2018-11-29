@@ -7,10 +7,11 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public @Data class Cuero extends AbstractEntidad {
@@ -19,4 +20,34 @@ public @Data class Cuero extends AbstractEntidad {
 
     @NotNull
     private Date fecha;
+
+    public String toString() {
+        return this.getFecha().toString();
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuero", fetch = FetchType.LAZY)
+    private List<CueroDetalleInsumo> insumos;
+
+    public Cuero() {
+        insumos = new ArrayList<>();
+    }
+
+    public List<CueroDetalleInsumo> getInsumos() {
+        return insumos;
+    }
+
+    public void setInsumos(List<CueroDetalleInsumo> insumos) {
+        this.insumos = insumos;
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void preUpdate(){
+
+        for(CueroDetalleInsumo ins: insumos){
+            if(ins.getCuero() == null){
+                ins.setCuero(this);
+            }
+        }
+    }
 }

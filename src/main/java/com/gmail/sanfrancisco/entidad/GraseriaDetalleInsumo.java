@@ -32,7 +32,7 @@ public class GraseriaDetalleInsumo extends AbstractEntidad {
         impuestos = new ArrayList<>();
     }
 
-    public List<GraseriaDetalleImpuesto> getInsumos() {
+    public List<GraseriaDetalleImpuesto> getImpuestos() {
         return impuestos;
     }
 
@@ -52,6 +52,6 @@ public class GraseriaDetalleInsumo extends AbstractEntidad {
     }
 
     public String toString() {
-        return this.getInsumo().toString();
+        return isNew() ? "Nuevo insumo" : this.getInsumo().toString();
     }
 }
