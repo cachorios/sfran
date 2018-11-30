@@ -33,7 +33,7 @@ public class InsumoCostoVehiculo extends AbstractEntidad {
     }
 
     public String toString() {
-        return this.getInsumo().toString();
+        return isNew() ? "Nuevo insumo" : this.getInsumo().toString();
     }
 
     public List<ImpuestoCostoVehiculo> getImpuestos() {

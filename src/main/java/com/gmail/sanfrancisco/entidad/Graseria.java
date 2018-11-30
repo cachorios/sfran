@@ -21,7 +21,7 @@ public class Graseria extends AbstractEntidad {
         return this.getFecha().toString();
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "insumo", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "graseria", fetch = FetchType.LAZY)
     private List<GraseriaDetalleInsumo> insumos;
 
     public Graseria() {

@@ -1,5 +1,7 @@
 package com.gmail.sanfrancisco.view.impuestocostovehiculo;
 
+import com.gmail.cacho.backend.enumeradores.ETipoParametro;
+import com.gmail.cacho.slapi.view.customs.params.ParamCSComponent;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.converter.DoubleConverter;
@@ -16,7 +18,7 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class ImpuestoCostoVehiculoInnerForm extends DefaultInnerDialog<ImpuestoCostoVehiculo> {
 
-    private TextField id;
+    private ParamCSComponent impuesto;
     private TextField saldo;
 
     public ImpuestoCostoVehiculoInnerForm(IPresentableForm<ImpuestoCostoVehiculo> presentable, String elTitulo) {
@@ -26,17 +28,17 @@ public class ImpuestoCostoVehiculoInnerForm extends DefaultInnerDialog<ImpuestoC
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("588px");
+        setHeight("100px");
         setWidth("700px");
 
-        id = textField("ID");
-        id.setPreventInvalidInput(true);
         saldo = textField("Cantidad");
 
-        form.add(
-                envolver(id, "30%"),
+        impuesto = new ParamCSComponent("Impuestos", getPresentable(), true, true, "Impuestos", ETipoParametro.IMPUESTO);
 
-                envolver(saldo,"50%")
+        form.add(
+                envolver(impuesto, "50%"),
+
+                envolver(saldo,"32%")
         );
 
     }
@@ -47,10 +49,7 @@ public class ImpuestoCostoVehiculoInnerForm extends DefaultInnerDialog<ImpuestoC
     @Override
     public void bindFormFields(BeanValidationBinder<ImpuestoCostoVehiculo> binder) {
 
-        binder.forField(id)
-                .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(ImpuestoCostoVehiculo::getId, null);
+        binder.bind(impuesto, "impuesto");
 
         binder.forField(saldo).withConverter(new DoubleConverter()).bind("saldo");
 

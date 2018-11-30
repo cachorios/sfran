@@ -25,7 +25,7 @@ public class GraseriaDetalleImpuestoInnerForm extends DefaultInnerDialog<Graseri
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("200px");
+        setHeight("100px");
         setWidth("700px");
 
         saldo = textField("Saldo");
@@ -33,7 +33,7 @@ public class GraseriaDetalleImpuestoInnerForm extends DefaultInnerDialog<Graseri
         impuesto = new ParamCSComponent("Impuestos", getPresentable(), true, true, "Impuestos", ETipoParametro.IMPUESTO);
 
         form.add(
-                envolver(impuesto),
+                envolver(impuesto, "50%"),
                 envolver(saldo, "32%")
         );
     }

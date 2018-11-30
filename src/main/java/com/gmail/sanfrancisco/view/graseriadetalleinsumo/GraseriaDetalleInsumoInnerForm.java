@@ -34,7 +34,7 @@ public class GraseriaDetalleInsumoInnerForm extends DefaultInnerDialog<GraseriaD
     @Override
     protected void generarForm(Div form) {
 
-        setWidth("700px");
+        setWidth("800px");
 
         insumoCS = new InsumoCS("Insumo", getPresentable(), true, true, true);
 
@@ -42,9 +42,9 @@ public class GraseriaDetalleInsumoInnerForm extends DefaultInnerDialog<GraseriaD
         precio = textField("Precio");
 
         form.add(
-                envolver(insumoCS),
-                envolver(cantidad, "48%"),
-                envolver(precio, "48%"),
+                envolver(insumoCS, "70%"),
+                envolver(cantidad, "32%"),
+                envolver(precio, "32%"),
                 envolver(getImpuestos())
         );
     }

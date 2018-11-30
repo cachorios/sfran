@@ -35,20 +35,20 @@ public class FacturaCostoVehiculoInnerForm extends DefaultInnerDialog<FacturaCos
     @Override
     protected void generarForm(Div form) {
 
-        setHeight("252px");
+        setHeight("312px");
         setWidth("700px");
 
         id = textField("ID");
         id.setPreventInvalidInput(true);
 
         fecha = dateField("Fecha");
-        fecha.setWidth("100%");
+        fecha.setWidth("32%");
         fecha.setRequired(true);
 
         form.add(
                 envolver(id, "30%"),
 
-                envolver(fecha,"50%"),
+                envolver(fecha),
                 envolver(getInsumos())
         );
     }

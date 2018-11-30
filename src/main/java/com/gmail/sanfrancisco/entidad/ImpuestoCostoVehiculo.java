@@ -24,6 +24,6 @@ public class ImpuestoCostoVehiculo extends AbstractEntidad {
     private Double saldo;
 
     public String toString() {
-        return this.getImpuesto().toString();
+        return isNew() ? "Nuevo impuesto" : this.getImpuesto().toString();
     }
 }
