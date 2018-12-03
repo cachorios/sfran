@@ -24,10 +24,6 @@ public  class  Dte extends AbstractEntidad {
     private String numeroTropa;
 
     @NotNull
-    @Size(min=4, max=4, message="El numero de tropa fiscal debe contener 4 caracteres.")
-    private String numeroTropaFiscal;
-
-    @NotNull
     @ManyToOne
     private Parametro provinciaOrigen;
 
@@ -98,6 +94,9 @@ public  class  Dte extends AbstractEntidad {
     @Size(min=4, max=10, message="La patente de jaula debe contener entre 4 y 10 caracteres.")
     private String patenteJaula;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dte", fetch = FetchType.LAZY)
+    private List<NumeroDte> numeros;
+
     //@NotNull
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dte", fetch = FetchType.LAZY)
     private List<DteDetalleCategoria> categorias;
@@ -112,14 +111,15 @@ public  class  Dte extends AbstractEntidad {
         categorias = new ArrayList<>();
         insumos = new ArrayList<>();
         impuestos = new ArrayList<>();
-
-
+        numeros = new ArrayList<>();
     }
 
-    /*
+
     public String toString() {
         return "DTE(" + this.getNumeroTropa() + ")";
     }
+
+    /*
 
     public List<DteDetalleCategoria> getCategorias() {
         return categorias;
@@ -141,7 +141,7 @@ public  class  Dte extends AbstractEntidad {
     }
     public void setImpuestos(List<DteDetalleImpuesto> impuestos) {
         this.impuestos = impuestos;
-    }
+    } */
 
     @PrePersist
     @PreUpdate
@@ -164,6 +164,4 @@ public  class  Dte extends AbstractEntidad {
             }
         }
     }
-
-    */
 }

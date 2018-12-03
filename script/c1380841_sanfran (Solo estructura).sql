@@ -568,11 +568,11 @@ CREATE TABLE IF NOT EXISTS `faenadet` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `graseria`
+-- Estructura de tabla para la tabla `graseriaCosto`
 --
 
-DROP TABLE IF EXISTS `graseria`;
-CREATE TABLE IF NOT EXISTS `graseria` (
+DROP TABLE IF EXISTS `graseriaCosto`;
+CREATE TABLE IF NOT EXISTS `graseriaCosto` (
   `idGraseria` int(11) NOT NULL AUTO_INCREMENT,
   `idUsuario` int(11) NOT NULL,
   `fechaAlta` datetime NOT NULL,
@@ -1463,9 +1463,9 @@ ALTER TABLE `faenadet`
   ADD CONSTRAINT `insumos_faenadet_fk` FOREIGN KEY (`idInsumo`) REFERENCES `insumos` (`idInsumo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `graseria`
+-- Filtros para la tabla `graseriaCosto`
 --
-ALTER TABLE `graseria`
+ALTER TABLE `graseriaCosto`
   ADD CONSTRAINT `estados_graseria_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `usuarios_graseria_fk` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -1474,7 +1474,7 @@ ALTER TABLE `graseria`
 --
 ALTER TABLE `graseriadet`
   ADD CONSTRAINT `estados_graseriadet_fk` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `graseria_graseriadet_fk` FOREIGN KEY (`idGraseria`) REFERENCES `graseria` (`idGraseria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `graseria_graseriadet_fk` FOREIGN KEY (`idGraseria`) REFERENCES `graseriaCosto` (`idGraseria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `insumos_graseriadet_fk` FOREIGN KEY (`idInsumo`) REFERENCES `insumos` (`idInsumo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
