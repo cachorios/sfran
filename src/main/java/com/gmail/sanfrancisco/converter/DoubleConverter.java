@@ -11,7 +11,7 @@ public class DoubleConverter implements Converter<String, Double> {
     @Override
     public Result<Double> convertToModel(String valor, ValueContext valueContext) {
         try {
-            return Result.ok(((valor == null) ? null : Double.valueOf(valor)));
+            return Result.ok(((valor == null || valor.isEmpty()) ? null : Double.valueOf(valor)));
         } catch (NumberFormatException e) {
             return Result.error(Constantes.MSJ_ERR_DB_ATCONVERTDATA.concat(Constantes.MSJ_ERR_DB_NEEDDOUBLE));
         }
