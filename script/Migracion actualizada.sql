@@ -65,6 +65,7 @@ INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo,
 INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((9024), 'UNKNOW', 'UNKNOW', 'PROVINCIA', 'TUCUMAN', 24, 9, 1);
 
 
+DROP SEQUENCE idloc;
 CREATE SEQUENCE idloc START 1;
 SELECT setval('idloc',1);
 INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorstr, version) SELECT 11989, 'UNKNOW', 'UNKNOW', 'LOCALIDAD', 'INGENIERO CHANOURDIE', nextval('idloc'), 10, id, 1989, 1 FROM parametro WHERE clase='PROVINCIA' and orden=21;
