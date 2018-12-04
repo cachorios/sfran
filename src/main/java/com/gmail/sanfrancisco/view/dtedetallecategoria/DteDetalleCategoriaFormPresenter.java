@@ -4,7 +4,9 @@ import com.gmail.cacho.backend.jpa.PersistenceExceptionUtil;
 import com.gmail.cacho.slapi.Sistema;
 import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.AbstractForm;
+import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
 import com.gmail.cacho.slapi.view.controllers.AbstractPresenterForm;
+import com.gmail.cacho.slapi.view.enums.EModoVista;
 import com.gmail.cacho.slbase.core.enums.ENivelAplicacion;
 import com.gmail.cacho.slbase.logging.L;
 import com.gmail.cacho.slbase.persist.excepciones.UserFriendlyDataException;
@@ -54,5 +56,25 @@ public class DteDetalleCategoriaFormPresenter extends AbstractPresenterForm<DteD
     }
 
 
+
+    @Override
+    public void formSaveAndAdd() {
+        Sistema.getSistema().mostrarBoxConsultaSiNo(
+                C.WIN_TIT_SAVEREG,
+                C.CRUD_MSG_BOXSAVE,
+                C.CRUD_MSG_GUARDAR,
+                C.CRUD_MSG_CANCELAR,
+                () -> {
+                    DteDetalleCategoria reg = getPresentable().getObjetoActivo();
+                    if (procesarGuardado()) {
+                        getPresentable().cerrar();
+                        DteDetalleCategoria nuevo = new DteDetalleCategoria();
+                        ((UnoaMuchoGrid)(getPresentable().getPadre())).setObjetoActivo(nuevo);
+                        nuevo.setProductor(reg.getProductor());
+                        nuevo.setRenspa(reg.getRenspa());
+                        getPresentable().iniciar(EModoVista.NUEVO, nuevo);
+                    }
+                });
+    }
 
 }

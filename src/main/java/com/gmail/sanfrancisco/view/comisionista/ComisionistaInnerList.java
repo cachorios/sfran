@@ -42,9 +42,9 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
         pdfBtn.add("Rendimiento", "productorrendimiento.jrxml", this::dialogFecha);
         pdfBtn.add("Saldo", "saldocomisionista.jrxml", this::crearParametroReporteConFechas);
 
-
         getToolBar().getBotonera().add(pdfBtn);
     }
+
 
     private Map<String, Object> crearParametroReporte() {
         filtro = ((IPresenterList) (this.getPresentable().getPresenter())).getDataProvider().getFiltro();

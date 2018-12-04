@@ -31,11 +31,13 @@ public class ComisionistaList extends AbstractList<Comisionista> {
         return new ComisionistaInnerList(padre, getTitulo());
     }
 
+
+
     @Override
     public void setCols(Grid<Comisionista> grilla) {
         grilla.addColumn(Comisionista::getNombre)
                 .setHeader("Nombre")
-                .setWidth("60%x")
+                .setWidth("60%")
                 .setKey("nombre");
 
         grilla.addColumn(Comisionista::getCelular)

@@ -213,6 +213,11 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
         }
     }
 
+    public void setObjetoActivo(T registroActivo){
+        this.registroActivo = registroActivo;
+    }
+
+
     private void editarAcction(ClickEvent<Button> e) {
         AbstractForm frm = getForm();
         modo = EModoVista.EDITAR;

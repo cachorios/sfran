@@ -165,6 +165,7 @@ public abstract class AbstractPresenterForm<T extends AbstractEntidad, S extends
                 () -> {
                     if (procesarGuardado()) {
                         getPresentable().cerrar();
+
                         getPresentable().iniciar(EModoVista.NUEVO, null);
                     }
                 });
