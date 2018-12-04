@@ -18,7 +18,6 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class DteDetalleImpuestoInnerForm extends DefaultInnerDialog<DteDetalleImpuesto> {
 
-    private TextField id;
     private ParamCSComponent impuesto;
     private TextField saldo;
 
@@ -28,16 +27,14 @@ public class DteDetalleImpuestoInnerForm extends DefaultInnerDialog<DteDetalleIm
 
     @Override
     protected void generarForm(Div form) {
-
-        id = textField("ID");
-        id.setPreventInvalidInput(true);
+        setWidth("700px");
 
         impuesto = new ParamCSComponent("Impuesto", getPresentable(), true, true, "Impuestos", ETipoParametro.IMPUESTO);
 
         saldo = textField("Saldo");
 
         form.add(
-                envolver(impuesto, "65%"),
+                envolver(impuesto, "55%"),
                 envolver(saldo, "32%")
         );
 
@@ -50,11 +47,6 @@ public class DteDetalleImpuestoInnerForm extends DefaultInnerDialog<DteDetalleIm
 
     @Override
     public void bindFormFields(BeanValidationBinder<DteDetalleImpuesto> binder) {
-
-        binder.forField(id)
-                .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(DteDetalleImpuesto::getId, null);
 
         binder.bind(impuesto, "impuesto");
 

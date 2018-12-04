@@ -23,7 +23,6 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
 
-    private TextField id;
     private ComboBox tipoLicencia;
     private DatePicker vencimiento;
     private DatePicker vencimientoNac;
@@ -36,9 +35,6 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
 
     @Override
     protected void generarForm(Div form) {
-
-        id = textField("ID","20em");
-        id.setPreventInvalidInput(true);
 
         tipoLicencia = new ComboBox("Tipo licencia");
         tipoLicencia.setWidth("100%");
@@ -62,7 +58,6 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
         licenciaCarga.setEnabled(true);
 
         form.add(
-                envolver(id),
                 envolver(tipoLicencia, "30%"),
                 envolver(vencimiento, "50%"),
                 envolver(licenciaCarga),
@@ -79,11 +74,6 @@ public class LicenciaInnerForm extends DefaultInnerDialog<Licencia> {
 
     @Override
     public void bindFormFields(BeanValidationBinder<Licencia> binder) {
-
-        binder.forField(id)
-                .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(Licencia::getId, null);
 
         binder.bind(tipoLicencia, "tipoLicencia");
 

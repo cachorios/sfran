@@ -22,7 +22,6 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class VehiculoCostoInnerForm extends DefaultInnerDialog<VehiculoCosto> {
 
-    private TextField id;
     private DatePicker fecha;
 
     private Grid<VehiculoCostoInsumo> insumoGrid;
@@ -38,15 +37,11 @@ public class VehiculoCostoInnerForm extends DefaultInnerDialog<VehiculoCosto> {
         setHeight("312px");
         setWidth("700px");
 
-        id = textField("ID");
-        id.setPreventInvalidInput(true);
-
         fecha = dateField("Fecha");
         fecha.setWidth("32%");
         fecha.setRequired(true);
 
         form.add(
-                envolver(id, "30%"),
 
                 envolver(fecha),
                 envolver(getInsumos())
@@ -78,7 +73,7 @@ public class VehiculoCostoInnerForm extends DefaultInnerDialog<VehiculoCosto> {
                 .withEditar()
                 .withBorrar()
         ;
-        insumos.getGrid().setHeight("9rem");
+        insumos.getGrid().setHeight("11rem");
         return insumos.iniciar();
     }
 
@@ -87,11 +82,6 @@ public class VehiculoCostoInnerForm extends DefaultInnerDialog<VehiculoCosto> {
 
     @Override
     public void bindFormFields(BeanValidationBinder<VehiculoCosto> binder) {
-
-        binder.forField(id)
-                .withConverter(new StringToLongConverter(0l,"No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(VehiculoCosto::getId, null);
 
         binder.forField(fecha)
                 .withConverter(new LocalDateADateConverter())
