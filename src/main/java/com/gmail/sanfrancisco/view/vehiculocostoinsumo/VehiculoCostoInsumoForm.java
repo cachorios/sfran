@@ -29,6 +29,6 @@ public class VehiculoCostoInsumoForm extends AbstractForm<VehiculoCostoInsumo> {
 
     @Override
     public String getTitulo() {
-        return "Insumos de Costo de Vehiculo";
+        return "Insumos de Vehiculos";
     }
 }

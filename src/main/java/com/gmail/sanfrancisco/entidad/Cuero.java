@@ -21,8 +21,9 @@ public @Data class Cuero extends AbstractEntidad {
     @NotNull
     private Date fecha;
 
+    @Override
     public String toString() {
-        return this.getFecha().toString();
+        return isNew() ? "Nuevo costo de cuero" : this.getFecha().toString();
     }
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuero", fetch = FetchType.LAZY)

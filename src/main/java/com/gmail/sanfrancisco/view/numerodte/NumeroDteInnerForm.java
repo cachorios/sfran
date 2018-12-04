@@ -15,8 +15,8 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class NumeroDteInnerForm extends DefaultInnerDialog<NumeroDte> {
 
-    private TextField id;
     private TextField numero;
+    private TextField numeroTropaFiscal;
 
     public NumeroDteInnerForm(IPresentableForm<NumeroDte> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -24,13 +24,13 @@ public class NumeroDteInnerForm extends DefaultInnerDialog<NumeroDte> {
 
     @Override
     protected void generarForm(Div form) {
-        id = textField("ID");
-        id.setPreventInvalidInput(true);
+
         numero = textField("Numero");
+        numeroTropaFiscal = textField("Numero de tropa fiscal");
 
         form.add(
-                envolver(id, "30%"),
-                envolver(numero, "50%")
+                envolver(numero, "48%"),
+                envolver(numeroTropaFiscal, "50%")
         );
     }
 
@@ -40,10 +40,7 @@ public class NumeroDteInnerForm extends DefaultInnerDialog<NumeroDte> {
     @Override
     public void bindFormFields(BeanValidationBinder<NumeroDte> binder) {
 
-        binder.forField(id)
-                .withConverter(new StringToLongConverter(0l, "No es un nro válido."))
-                .withNullRepresentation(0l)
-                .bind(NumeroDte::getId, null);
+
 
         binder.bindInstanceFields(this);
     }

@@ -32,8 +32,9 @@ public class VehiculoCostoInsumo extends AbstractEntidad {
         impuestos = new ArrayList<>();
     }
 
+    @Override
     public String toString() {
-        return isNew() ? "Nuevo insumo" : this.getInsumo().toString();
+        return isNew() ? "Nuevo insumo en costo de vehiculo" : this.getInsumo().toString();
     }
 
     public List<VehiculoCostoInsumoImpuesto> getImpuestos() {

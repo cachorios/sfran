@@ -38,7 +38,7 @@ public @Data class Comisionista extends AbstractEntidad {
 
     @Override
     public String toString() {
-        return getNombre();
+        return isNew() ? "Nuevo Comisionista" : this.getNombre();
     }
 
 

@@ -25,5 +25,5 @@ public class VehiculoCostoList extends AbstractList<VehiculoCosto> {
     public Class<VehiculoCosto> getEntityType() { return VehiculoCosto.class; }
 
     @Override
-    public String getTitulo() { return "Lista Facturas  de costos de Vehiculos"; }
+    public String getTitulo() { return "Costos de Vehiculos"; }
 }

@@ -58,9 +58,7 @@ public class DteDetalleCategoria extends AbstractEntidad {
 
     @Override
     public String toString() {
-        return "(" + productor +
-                ", " + renspa +
-                '}';
+        return isNew() ? "Nueva categoria en dte" : "(" + this.getProductor() + " - " + this.getRenspa() + ")";
     }
 
 

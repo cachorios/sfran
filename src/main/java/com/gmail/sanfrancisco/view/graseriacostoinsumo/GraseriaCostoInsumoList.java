@@ -26,5 +26,5 @@ public class GraseriaCostoInsumoList extends AbstractList<GraseriaCostoInsumo> {
     public Class<GraseriaCostoInsumo> getEntityType() { return GraseriaCostoInsumo.class; }
 
     @Override
-    public String getTitulo() { return "Lista de Graserias"; }
+    public String getTitulo() { return "Insumos de Graserias"; }
 }

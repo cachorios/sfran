@@ -22,10 +22,6 @@ public class Renspa extends AbstractEntidad {
 
     @Override
     public String toString() {
-        String leyenda = "Nuevo renspa";
-        if(!isNew()){
-            leyenda = numeroRenspa;
-        }
-        return leyenda;
+        return isNew() ? "Nuevo numero de renspa" : this.getNumeroRenspa();
     }
 }

@@ -76,10 +76,6 @@ public @Data class Conductor extends AbstractEntidad {
 
     @Override
     public String toString() {
-        String leyenda = "Nuevo Conductor";
-        if(!isNew()){
-            leyenda = getNombre();
-        }
-        return leyenda;
+        return isNew() ? "Nuevo Conductor" : this.getNombre();
     }
 }

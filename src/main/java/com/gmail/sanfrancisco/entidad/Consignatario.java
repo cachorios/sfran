@@ -33,7 +33,8 @@ public @Data class Consignatario extends AbstractEntidad {
 
     private String email;
 
+    @Override
     public String toString() {
-        return getNombre();
+        return isNew() ? "Nuevo Consigantario" : this.getNombre();
     }
 }

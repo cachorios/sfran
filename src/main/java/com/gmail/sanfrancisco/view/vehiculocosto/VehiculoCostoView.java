@@ -15,7 +15,7 @@ import com.vaadin.flow.router.Route;
 import javax.inject.Inject;
 
 @Route(value="vehiculocosto", layout = MainView.class)
-@PageTitle("Lista Facturas  de costos de Vehiculos")
+@PageTitle("Costos de Vehiculos")
 @MenuIcon(VaadinIcon.SPECIALIST)
 public class VehiculoCostoView extends AbstractDefaultView<VehiculoCosto> {
     @Inject

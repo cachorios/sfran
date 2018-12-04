@@ -30,6 +30,6 @@ public class DteDetalleInsumo extends AbstractEntidad {
 
     @Override
     public String toString() {
-        return insumo == null ? "Nuevo Det.Insumo" : insumo.toString()+"("+ cantidad.toString() +")";
+        return isNew() ? "Nuevo insumo en dte" : this.getInsumo().toString();
     }
 }

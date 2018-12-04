@@ -29,6 +29,6 @@ public @Data class Insumo extends AbstractEntidad {
 
     @Override
     public String toString() {
-        return getDescripcion();
+        return isNew() ? "Nuevo Insumo" : this.getDescripcion();
     }
 }

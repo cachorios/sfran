@@ -29,6 +29,6 @@ public class GraseriaCostoForm extends AbstractForm<GraseriaCosto> {
 
     @Override
     public String getTitulo() {
-        return "Graserias";
+        return "Costos de Graserias";
     }
 }

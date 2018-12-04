@@ -114,9 +114,9 @@ public  class  Dte extends AbstractEntidad {
         numeros = new ArrayList<>();
     }
 
-
+    @Override
     public String toString() {
-        return "DTE(" + this.getNumeroTropa() + ")";
+        return isNew() ? "Nuevo DTE" : this.getNumeroTropa();
     }
 
     /*
@@ -160,6 +160,12 @@ public  class  Dte extends AbstractEntidad {
         for(DteDetalleImpuesto imp: impuestos){
             if(imp.getDte() == null){
                 imp.setDte(this);
+            }
+        }
+
+        for(NumeroDte num: numeros){
+            if(num.getDte() == null){
+                num.setDte(this);
             }
         }
     }

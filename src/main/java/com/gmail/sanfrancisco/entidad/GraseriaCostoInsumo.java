@@ -51,7 +51,8 @@ public class GraseriaCostoInsumo extends AbstractEntidad {
         }
     }
 
+    @Override
     public String toString() {
-        return isNew() ? "Nuevo insumo" : this.getInsumo().toString();
+        return isNew() ? "Nuevo insumo en costo de graseria" : this.getInsumo().toString();
     }
 }

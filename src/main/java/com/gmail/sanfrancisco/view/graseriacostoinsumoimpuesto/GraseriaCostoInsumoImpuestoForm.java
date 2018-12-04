@@ -29,6 +29,6 @@ public class GraseriaCostoInsumoImpuestoForm extends AbstractForm<GraseriaCostoI
 
     @Override
     public String getTitulo() {
-        return "Detalle de impuestos en graseria";
+        return "Impuestos de insumos en Graserias";
     }
 }

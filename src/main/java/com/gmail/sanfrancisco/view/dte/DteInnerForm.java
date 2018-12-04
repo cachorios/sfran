@@ -19,6 +19,7 @@ import com.gmail.sanfrancisco.view.consignatario.ConsignatarioCS;
 import com.gmail.sanfrancisco.view.dtedetallecategoria.DteDetalleCategoriaForm;
 import com.gmail.sanfrancisco.view.dtedetalleimpuesto.DteDetalleImpuestoForm;
 import com.gmail.sanfrancisco.view.dtedetalleinsumo.DteDetalleInsumoForm;
+import com.gmail.sanfrancisco.view.numerodte.NumeroDteForm;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
@@ -69,6 +70,9 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     private TextField entrega;
     private TextField totalComisionista;
     private TextField ajustes;
+
+    private Grid<NumeroDte> numeroGrid;
+    private UnoaMuchoGrid<Dte, NumeroDte> numeros;
 
     private Grid<DteDetalleCategoria> categoriaGrid;
     private UnoaMuchoGrid<Dte, DteDetalleCategoria> categorias;
@@ -146,6 +150,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
         PagedTabs tabs = new PagedTabs();
         tabs.setWidth("100%");
+        tabs.add(getNumeros(), "Numeros de DTE");
         tabs.add(getCategorias(), "Categorias");
         tabs.add(getInsumos(), "Insumos");
         tabs.add(getImpuestos(), "Impuestos");
@@ -191,6 +196,31 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         );
 
 //        form.add(envolver(dteDetalleCategoriaList.getViewComponent()));
+    }
+
+    private Component getNumeros() {
+        numeros = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getNumeros());
+
+        numeros.getGrid().addColumn(NumeroDte::getNumero)
+                .setHeader("Numero")
+                .setWidth("50%")
+                .setFlexGrow(1);
+
+        numeros.getGrid().addColumn(NumeroDte::getNumeroTropaFiscal)
+                .setHeader("Numero tropa fiscal")
+                .setWidth("50%");
+
+
+        numeros
+                .withForm(NumeroDteForm.class)
+                .withVer()
+                .withNuevo(NumeroDte.class)
+                .withEditar()
+                .withBorrar()
+        ;
+        numeros.getGrid().setHeight("9rem");
+
+        return numeros.iniciar();
     }
 
 

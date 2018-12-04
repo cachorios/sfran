@@ -14,11 +14,16 @@ import javax.validation.constraints.Size;
 @EqualsAndHashCode(exclude="dte")
 public class NumeroDte extends AbstractEntidad {
     @NotNull
-    @Size(min=11, max=11, message="El nro de DTE tiene 9 digitos + 1 de verfificacion 'nnnnnnnnn-n'")
+    @Size(min=10, max=10, message="El nro de DTE tiene 9 digitos + 1 de verfificacion 'nnnnnnnnn-n'")
     private String numero;
 
     private String numeroTropaFiscal;
 
     @ManyToOne
     private Dte dte;
+
+    @Override
+    public String toString() {
+        return isNew() ? "Nuevo numero de dte" : this.getNumero();
+    }
 }

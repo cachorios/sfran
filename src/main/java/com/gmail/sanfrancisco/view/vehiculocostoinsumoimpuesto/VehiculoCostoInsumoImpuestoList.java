@@ -24,5 +24,5 @@ public class VehiculoCostoInsumoImpuestoList extends AbstractList<VehiculoCostoI
     public Class<VehiculoCostoInsumoImpuesto> getEntityType() { return VehiculoCostoInsumoImpuesto.class; }
 
     @Override
-    public String getTitulo() { return "Lista de Impuestos en Costo de Vehiculo"; }
+    public String getTitulo() { return "Impuestos de insumos en Vehiculos"; }
 }

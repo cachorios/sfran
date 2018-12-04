@@ -60,6 +60,6 @@ public class Productor extends AbstractEntidad {
 
     @Override
     public String toString() {
-        return getNombre();
+        return isNew() ? "Nuevo Productor" : this.getNombre();
     }
 }
