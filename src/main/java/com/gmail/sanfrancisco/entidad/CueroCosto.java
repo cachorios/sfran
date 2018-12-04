@@ -1,11 +1,7 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import com.gmail.cacho.backend.entidad.Usuario;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,10 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public @Data class Cuero extends AbstractEntidad {
-
+public @Data class CueroCosto extends AbstractEntidad {
 //    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
-
     @NotNull
     private Date fecha;
 
@@ -26,18 +20,18 @@ public @Data class Cuero extends AbstractEntidad {
         return isNew() ? "Nuevo costo de cuero" : this.getFecha().toString();
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuero", fetch = FetchType.LAZY)
-    private List<CueroDetalleInsumo> insumos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cueroCosto", fetch = FetchType.LAZY)
+    private List<CueroCostoInsumo> insumos;
 
-    public Cuero() {
+    public CueroCosto() {
         insumos = new ArrayList<>();
     }
 
-    public List<CueroDetalleInsumo> getInsumos() {
+    public List<CueroCostoInsumo> getInsumos() {
         return insumos;
     }
 
-    public void setInsumos(List<CueroDetalleInsumo> insumos) {
+    public void setInsumos(List<CueroCostoInsumo> insumos) {
         this.insumos = insumos;
     }
 
@@ -45,9 +39,9 @@ public @Data class Cuero extends AbstractEntidad {
     @PreUpdate
     public void preUpdate(){
 
-        for(CueroDetalleInsumo ins: insumos){
-            if(ins.getCuero() == null){
-                ins.setCuero(this);
+        for(CueroCostoInsumo ins: insumos){
+            if(ins.getCueroCosto() == null){
+                ins.setCueroCosto(this);
             }
         }
     }
