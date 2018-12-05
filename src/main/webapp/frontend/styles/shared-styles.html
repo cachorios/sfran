@@ -159,11 +159,46 @@
 
             :host([theme~="crud"]) {
                 max-width: calc(1000px + var(--lumo-space-m));
-                background-color: var(--lumo-base-color);
+                /*background-color: var(--lumo-base-color);*/
             }
+
+
+
+
         </style>
     </template>
 </dom-module>
+
+<dom-module id="my-grid-theme" theme-for="vaadin-grid">
+  <template>
+    <style>
+
+      /*[part~="cell"] {*/
+        /*min-height: 300px;*/
+      /*}*/
+
+      /*[part~="cell"] ::slotted(vaadin-grid-cell-content) {*/
+        /*padding: 0;*/
+      /*}*/
+      ::slotted(my-grid-cell-red) {
+            padding: 100px;
+            color: red;
+            background-color: coral;
+       }
+
+       .my-grid-cell-red{
+                  color: red;
+                  background-color: coral;
+                  min-height: 300px;
+              }
+              .my-grid-cell-black{
+                  color: black;
+                  background-color: darkmagenta;
+              }
+    </style>
+  </template>
+</dom-module>
+
 
 <dom-module id="sciolar-checkbox-theme" theme-for="vaadin-checkbox">
     <template>
@@ -288,6 +323,17 @@
 
 <custom-style>
     <style>
+        .my-grid-cell-red{
+            color: red;
+            background-color: coral;
+            min-height: 300px;
+        }
+        .my-grid-cell-black{
+            color: black;
+            background-color: darkmagenta;
+            height: 80px;
+        }
+
         @keyframes v-progress-start {
             0% {
                 width: 0%;
@@ -433,6 +479,14 @@
             align-items: center;
             justify-content: space-between;
         }
+
+        .info {
+            background-image: url(images/otro.png);
+            background-size: cover;
+            background-position-x: center;
+        }
+
+
 
     </style>
 </custom-style>

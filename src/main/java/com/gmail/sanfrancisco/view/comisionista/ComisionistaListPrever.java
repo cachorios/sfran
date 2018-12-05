@@ -35,6 +35,8 @@ public class ComisionistaListPrever extends AbstractPreview<Comisionista> {
         addItem("domicilio", new PreviewItem<>(textField("Domicilio"), Comisionista::getDomicilio));
         addItem("email", new PreviewItem<>(textField("Email"), Comisionista::getEmail));
     }
+
+
     @Override
     protected void posGenerarVista() {
         btnImprimir = new Button(Constantes.CRUD_MSG_PRINT, VaadinIcon.PRINT.create());
