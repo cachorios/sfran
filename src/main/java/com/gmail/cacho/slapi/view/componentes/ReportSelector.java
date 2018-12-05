@@ -1,7 +1,6 @@
 package com.gmail.cacho.slapi.view.componentes;
 
 import com.gmail.cacho.slreport.jasper.ReporteCreator;
-import com.gmail.cacho.slreport.view.DefaultPDFViewDialog;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -9,13 +8,9 @@ import com.vaadin.flow.component.contextmenu.ContextMenu;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.*;
 
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.page.Page;
-import com.vaadin.flow.server.StreamResource;
 import org.vaadin.alejandro.PdfBrowserViewer;
 
-import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,6 +19,13 @@ import java.util.concurrent.Callable;
 
 public class ReportSelector extends Button {
     private  ContextMenu contextMenu;
+    private  Dialog dialog;
+    private Integer tipo;
+
+    public static class Recursos{
+        public static final Integer PDF = 1;
+        public static final Integer XLS = 2;
+    }
 
     public ReportSelector() {
         this.getElement().setAttribute("theme", "primary");
@@ -42,25 +44,68 @@ public class ReportSelector extends Button {
         this.setClassName("action-btn");
     }
 
-
-    public ReportSelector add(String label, String repFile, Callable<Map<String, Object>> getParm){
+    private void ini() {
+        tipo = 0;
         if(contextMenu == null) {
             contextMenu = new ContextMenu(this);
             contextMenu.setOpenOnClick(true);
         }
+
+        if(dialog == null) {
+            dialog = new Dialog();
+            dialog.setCloseOnEsc(true);
+            dialog.setCloseOnOutsideClick(true);
+            dialog.addDialogCloseActionListener(e -> {
+                dialog.close();
+                dialog.removeAll();
+            });
+        }
+    }
+
+    public ReportSelector add(String label, String repFile, Callable<Map<String, Object>> getParm){
+        this.ini();
 
         Image pdfImage = new Image("frontend/images/pdf.png", "pdf");
         pdfImage.setHeight("20px");
         Image xlsImage = new Image("frontend/images/xls.jpg", "xls");
         xlsImage.setHeight("20px");
 
-        contextMenu.addItem(new ItemMenu(label, pdfImage),e -> genPdf(repFile, label, getParm) );
-        contextMenu.addItem(new ItemMenu(label, xlsImage),e -> genXls(repFile, label, getParm) );
+        contextMenu.addItem(new ItemMenu(label, pdfImage),e -> genPdf(label, repFile, getParm) );
+        contextMenu.addItem(new ItemMenu(label, xlsImage),e -> genXls(label, repFile, getParm) );
 
         return this;
     }
 
-    private void genXls(String repFile, String label, Callable<Map<String, Object>> getParm) {
+    public ReportSelector addform(String label, String repFile, Callable<Component> filter) {
+        this.ini();
+
+        Image pdfImage = new Image("frontend/images/pdf.png", "pdf");
+        pdfImage.setHeight("20px");
+        Image xlsImage = new Image("frontend/images/xls.jpg", "xls");
+        xlsImage.setHeight("20px");
+
+        contextMenu.addItem(new ItemMenu(label, pdfImage),e -> {
+            try {
+                tipo = Recursos.PDF;
+                filter.call();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        });
+        contextMenu.addItem(new ItemMenu(label, xlsImage),e -> {
+            try {
+                tipo = Recursos.XLS;
+                filter.call();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        });
+
+        return this;
+    }
+
+    // Genera Xls
+    public void genXls( String label, String repFile, Callable<Map<String, Object>> getParm) {
         Map<String, Object> parm =new HashMap<String, Object>();
 
         try {
@@ -77,20 +122,21 @@ public class ReportSelector extends Button {
         downloadLink.getElement().getStyle().set("display", "none");
         downloadLink.getElement().setAttribute("download", true);
 
-        final Dialog dialog = new Dialog();
         dialog.removeAll();
 
         dialog.add(downloadLink );
-        dialog.open();
         dialog.setHeight("0px");
         dialog.setWidth("0px");
+        dialog.open();
+
 
         Page page = UI.getCurrent().getPage();
         page.executeJavaScript("document.getElementById('"+timeStamp+"').click();");
 
     }
 
-    private void genPdf(String repFile, String label, Callable<Map<String, Object>> getParm) {
+    //    Genera PDF
+    public void genPdf( String label, String repFile, Callable<Map<String, Object>> getParm) {
         Map<String, Object> parm =new HashMap<String, Object>();
 
         try {
@@ -98,27 +144,31 @@ public class ReportSelector extends Button {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        DefaultPDFViewDialog view = new DefaultPDFViewDialog();
+
         PdfBrowserViewer viewer = new PdfBrowserViewer(
                 new ReporteCreator().streamResourceReport("/"+repFile, parm, label)
         );
-        viewer.setHeight("100%");
-        view.getDialog().add(viewer);
-        view.open();
 
-
-
+        viewer.setHeight("600px");
+        dialog.removeAll();
+        dialog.setHeight("600px");
+        dialog.setWidth("800px");
+        dialog.add(viewer);
+        dialog.open();
 
     }
-
 
     public Map<String, Object> getParametro(){
         return new HashMap<>();
     }
 
+    public Dialog getDialog() {
+        return this.dialog;
+    }
 
-
-
+    public Integer getTipo() {
+        return tipo;
+    }
 
     private class ItemMenu extends Div {
 
@@ -128,7 +178,5 @@ public class ReportSelector extends Button {
             this.add(image,new Span(" "), new Label(caption));
         }
     }
-
-
 
 }
