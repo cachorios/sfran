@@ -92,7 +92,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     @Override
     protected void generarForm(Div form) {
-        setWidth("980px");
+        setWidth("1100px");
 
         numeroTropa = textField("Numero de tropa","30%");
 
@@ -157,33 +157,30 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 
         form.add(
-                envolver(numeroTropa, "48%"),
+                envolver(numeroTropa, "99%"),
 
                 //generarTituloSeccion("Origen"),
-                envolver(pciaOrigen, "18%"),
-                envolver(localidadOrigen, "32%"),
-
+                envolver(pciaOrigen, "12%"),
+                envolver(localidadOrigen, "36%"),
                 //generarTituloSeccion("Destino"),
-                envolver(pciaDestino, "18%"),
-                envolver(localidadDestino, "32%"),
+                envolver(pciaDestino, "12%"),
+                envolver(localidadDestino, "36%"),
 
                 envolver(conductorCS, "56%"),
                 envolver(vehiculoComboBox, "22%"),
                 envolver(patenteJaula,"22%"),
 
+                envolver(comisionistaCS,"50%"),
+                envolver(consignatarioCS,"49%"),
 
-                envolver(comisionistaCS,"56%"),
-                envolver(consignatarioCS,"44%"),
+                envolver(cantidad, "33%"),
+                envolver(especie, "33%"),
+                envolver(peso, "33%"),
 
-                envolver(cantidad, "32%"),
-                envolver(especie, "32%"),
-                envolver(peso, "32%"),
-
-                envolver(kmSalida,"48%"),
-                envolver(kmLlegada,"50%"),
-
-                envolver(fechaCarga,"48%"),
-                envolver(fechaVencimiento,"50%"),
+                envolver(kmSalida,"20%"),
+                envolver(kmLlegada,"20%"),
+                envolver(fechaCarga,"24%"),
+                envolver(fechaVencimiento,"24%"),
 
                 envolver(entrega,"32%"),
                 envolver(totalComisionista,"32%"),
