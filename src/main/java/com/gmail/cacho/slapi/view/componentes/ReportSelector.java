@@ -21,6 +21,9 @@ public class ReportSelector extends Button {
     private  ContextMenu contextMenu;
     private  Dialog dialog;
     private Integer tipo;
+    private String fileName;
+
+    private String repFile;
 
     public static class Recursos{
         public static final Integer PDF = 1;
@@ -79,6 +82,7 @@ public class ReportSelector extends Button {
     public ReportSelector addform(String label, String repFile, Callable<Component> filter) {
         this.ini();
 
+
         Image pdfImage = new Image("frontend/images/pdf.png", "pdf");
         pdfImage.setHeight("20px");
         Image xlsImage = new Image("frontend/images/xls.jpg", "xls");
@@ -86,6 +90,8 @@ public class ReportSelector extends Button {
 
         contextMenu.addItem(new ItemMenu(label, pdfImage),e -> {
             try {
+                this.fileName = label;
+                this.repFile = repFile;
                 tipo = Recursos.PDF;
                 filter.call();
             } catch (Exception e1) {
@@ -94,6 +100,8 @@ public class ReportSelector extends Button {
         });
         contextMenu.addItem(new ItemMenu(label, xlsImage),e -> {
             try {
+                this.fileName = label;
+                this.repFile = repFile;
                 tipo = Recursos.XLS;
                 filter.call();
             } catch (Exception e1) {
@@ -168,6 +176,14 @@ public class ReportSelector extends Button {
 
     public Integer getTipo() {
         return tipo;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public String getRepFile() {
+        return repFile;
     }
 
     private class ItemMenu extends Div {

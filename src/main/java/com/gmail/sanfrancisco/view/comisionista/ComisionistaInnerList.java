@@ -16,6 +16,7 @@ import com.vaadin.flow.component.html.Anchor;
 
 import com.vaadin.flow.component.icon.VaadinIcon;
 
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.server.VaadinServlet;
@@ -41,7 +42,7 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
         pdfBtn = new ReportSelector("Imprimir", VaadinIcon.PRINT.create());
 
         pdfBtn.add("Listado", "comisionistas.jrxml", this::crearParametroReporte);
-        pdfBtn.add("Rendimiento", "productorrendimiento.jrxml", this::crearParametroReporte);
+        pdfBtn.addform("Rendimiento", "productorrendimiento.jrxml", this::formFilter);
         pdfBtn.addform("Saldo", "saldocomisionista.jrxml", this::formFilter);
 
         getToolBar().getBotonera().add(pdfBtn);
@@ -58,8 +59,7 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
     }
 
     private Component formFilter() {
-
-        ////        Ver mensaje de error si no tiene un objeto activo.
+        Component data = null;
 
         Dialog dialog = pdfBtn.getDialog();
         DatePicker desde = new DatePicker("Fecha Inicio");
@@ -69,14 +69,24 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
         this.defineRangoFechas(desde, hasta);
 
         Button btnOk = new Button("Aceptar", e -> {
-            filtroFechaInicial = Date.from(desde.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-            filtroFechaFinal = Date.from(hasta.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-            if (pdfBtn.getTipo() == 1) {
-                pdfBtn.genPdf("Rendimiento", "productorrendimiento.jrxml", this::crearParametroReporteConFechas);
-            } else {
-                pdfBtn.genXls("Rendimiento", "productorrendimiento.jrxml", this::crearParametroReporteConFechas);
+
+            if (desde.getValue() != null && hasta.getValue() != null) {
+                filtroFechaInicial = Date.from(desde.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+                filtroFechaFinal = Date.from(hasta.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+                if (pdfBtn.getTipo() == 1) {
+                    pdfBtn.genPdf(pdfBtn.getFileName(), pdfBtn.getRepFile(), this::crearParametroReporteConFechas);
+                } else {
+                    pdfBtn.genXls(pdfBtn.getFileName(), pdfBtn.getRepFile(), this::crearParametroReporteConFechas);
+                }
+            }else{
+                desde.setInvalid(true);
+                desde.setErrorMessage("Seleccione la fecha de finalización");
+
             }
+
         });
+
         Button btnCancel = new Button("Cancelar", e -> dialog.close());
         VerticalLayout contenedor = new VerticalLayout(desde, hasta, new HorizontalLayout(btnOk, btnCancel));
 
