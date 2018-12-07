@@ -36,6 +36,7 @@
 	<parameter name="p_FechaInicial" class="java.sql.Date"/>
 	<parameter name="p_FechaFinal" class="java.sql.Date"/>
 	<parameter name="p_Directorio" class="java.lang.String"/>
+	<parameter name="p_SaldoAnterior" class="java.lang.Double"/>
 	<queryString>
 		<![CDATA[((SELECT
 dte.fechacarga,
@@ -51,7 +52,8 @@ com.saldoinicial
 FROM dte
 JOIN comisionista AS com
 ON dte.comisionista_id=com.id
-WHERE dte.comisionista_id=$P{p_Id})
+WHERE dte.comisionista_id=$P{p_Id}
+AND dte.fechacarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal})
 UNION ALL
 (SELECT
 dte.fechacarga,
@@ -71,7 +73,8 @@ LEFT JOIN dtedetallecategoria AS ddc
 ON dte.id=ddc.dte_id
 LEFT JOIN parametro AS c
 ON ddc.categoria_id=c.id and c.tipo=8
-WHERE dte.comisionista_id=$P{p_Id}))
+WHERE dte.comisionista_id=$P{p_Id}
+AND dte.fechacarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}))
 ORDER BY fechacarga, numerotropa, descCategoria]]>
 	</queryString>
 	<field name="fechacarga" class="java.sql.Date">
@@ -339,7 +342,6 @@ ORDER BY fechacarga, numerotropa, descCategoria]]>
 	</columnHeader>
 	<detail>
 		<band height="16" splitType="Stretch">
-			<printWhenExpression><![CDATA[$P{p_FechaInicial}.before($F{fechacarga}) && $P{p_FechaFinal}.after($F{fechacarga})]]></printWhenExpression>
 			<textField>
 				<reportElement stretchType="ContainerHeight" x="120" y="0" width="90" height="16" isRemoveLineWhenBlank="true" uuid="c1ad5f7d-949e-4460-8588-bba4fb637bb7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9aed832b-3057-48fc-8946-6c7a2ff6b198"/>
@@ -450,7 +452,7 @@ ORDER BY fechacarga, numerotropa, descCategoria]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{saldoinicial}+$V{v_DebeTotal}-$V{v_HaberTotal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{p_SaldoAnterior}+$F{saldoinicial}+$V{v_DebeTotal}-$V{v_HaberTotal}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="60" height="16" isRemoveLineWhenBlank="true" backcolor="#E8E8E8" uuid="36d6aa2e-29cb-4317-be73-0297158884a9">

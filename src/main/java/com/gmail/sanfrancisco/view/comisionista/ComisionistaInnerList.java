@@ -134,9 +134,11 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
     private Map<String, Object> crearParametroReporteConFechas() {
         filtroLong = this.getPresentable().getObjetoActivo().getId();
         String directorio = VaadinServlet.getCurrent().getServletContext().getRealPath("/frontend/images");
+        Double saldoAnterior = 0.0;
 
         Map<String, Object> mapa = new HashMap<String, Object>();
         mapa.put(C.SYS_REP_PARAM_DIRECTORIO, directorio);
+        mapa.put("p_SaldoAnterior", saldoAnterior);
         mapa.put(C.SYS_REP_PARAM_ID, filtroLong);
 
         mapa.put(C.SYS_REP_PARAM_FECHA_INICIAL, filtroFechaInicial);
