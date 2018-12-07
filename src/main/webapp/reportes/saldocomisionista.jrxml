@@ -339,6 +339,7 @@ ORDER BY fechacarga, numerotropa, descCategoria]]>
 	</columnHeader>
 	<detail>
 		<band height="16" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{p_FechaInicial}.before($F{fechacarga}) && $P{p_FechaFinal}.after($F{fechacarga})]]></printWhenExpression>
 			<textField>
 				<reportElement stretchType="ContainerHeight" x="120" y="0" width="90" height="16" isRemoveLineWhenBlank="true" uuid="c1ad5f7d-949e-4460-8588-bba4fb637bb7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9aed832b-3057-48fc-8946-6c7a2ff6b198"/>
