@@ -2,8 +2,8 @@ package com.gmail.sanfrancisco.serviciosModelo;
 
 import com.gmail.cacho.backend.jpa.ServicioModelo;
 import com.gmail.cacho.slapi.comunes.QueryHelper;
-import com.gmail.sanfrancisco.entidad.GraseriaCostoInsumo;
-import com.gmail.sanfrancisco.repositorio.GraseriaCostoInsumoRepositorio;
+import com.gmail.sanfrancisco.entidad.CueroCostoInsumoImpuesto;
+import com.gmail.sanfrancisco.repositorio.CueroCostoInsumoImpuestoRepositorio;
 import com.vaadin.flow.data.provider.QuerySortOrder;
 import org.apache.deltaspike.data.api.QueryResult;
 
@@ -13,16 +13,16 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @Stateless
-public class GraseriaCostoInsumoService extends ServicioModelo<GraseriaCostoInsumo> {
+public class CueroCostoInsumoImpuestoService extends ServicioModelo<CueroCostoInsumoImpuesto> {
     @Inject
-    public GraseriaCostoInsumoService(GraseriaCostoInsumoRepositorio repo) {
+    public CueroCostoInsumoImpuestoService(CueroCostoInsumoImpuestoRepositorio repo) {
         this.repo = repo;
     }
 
 
     @Override
-    public Stream<GraseriaCostoInsumo> findAnyMatching(Object padre, String filtro, int offset, int limit, List<QuerySortOrder> sortOrders) {
-        QueryResult<GraseriaCostoInsumo> result = ((GraseriaCostoInsumoRepositorio)repo).findFiltered( offset, limit);
+    public Stream<CueroCostoInsumoImpuesto> findAnyMatching(Object padre, String filtro, int offset, int limit, List<QuerySortOrder> sortOrders) {
+        QueryResult<CueroCostoInsumoImpuesto> result = ((CueroCostoInsumoImpuestoRepositorio)repo).findFiltered( offset, limit);
 
 
         return QueryHelper.applyLimitsAndSortOrder(result, offset, limit, sortOrders).getResultList().stream();
@@ -31,7 +31,7 @@ public class GraseriaCostoInsumoService extends ServicioModelo<GraseriaCostoInsu
     @Override
     public long countAnyMatching(Object padre, String filtro) {
         Long cnt = null;
-        cnt = ((GraseriaCostoInsumoRepositorio) repo).countFiltered();
+        cnt = ((CueroCostoInsumoImpuestoRepositorio) repo).countFiltered();
         return cnt;
     }
 }

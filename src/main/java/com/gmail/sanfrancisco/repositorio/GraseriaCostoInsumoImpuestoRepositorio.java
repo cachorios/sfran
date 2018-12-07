@@ -7,13 +7,13 @@ import org.apache.deltaspike.data.api.*;
 @Repository
 public interface GraseriaCostoInsumoImpuestoRepositorio extends EntityRepository<GraseriaCostoInsumoImpuesto, Long>, EntityManagerDelegate<GraseriaCostoInsumoImpuesto> {
 
-    @Query("SELECT e FROM GraseriaCostoInsumoImpuesto e WHERE e.numeroTropa like :filter")
+    @Query("SELECT e FROM GraseriaCostoInsumoImpuesto e")
     QueryResult<GraseriaCostoInsumoImpuesto> findFiltered(
             @FirstResult int offset,
-            @MaxResults int limit,
-            @QueryParam("filter") String filter);
+            @MaxResults int limit);
+//            @QueryParam("filter") String filter);
 
-    @Query("SELECT  COUNT(e) FROM GraseriaCostoInsumoImpuesto e WHERE e.numeroTropa like :filter")
-    Long countFiltered(
-            @QueryParam("filter") String filter);
+    @Query("SELECT  COUNT(e) FROM GraseriaCostoInsumoImpuesto e")
+    Long countFiltered();
+//            @QueryParam("filter") String filter);
 }

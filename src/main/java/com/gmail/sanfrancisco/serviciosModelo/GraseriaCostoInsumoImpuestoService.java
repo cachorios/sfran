@@ -22,7 +22,7 @@ public class GraseriaCostoInsumoImpuestoService extends ServicioModelo<GraseriaC
 
     @Override
     public Stream<GraseriaCostoInsumoImpuesto> findAnyMatching(Object padre, String filtro, int offset, int limit, List<QuerySortOrder> sortOrders) {
-        QueryResult<GraseriaCostoInsumoImpuesto> result = ((GraseriaCostoInsumoImpuestoRepositorio)repo).findFiltered( offset, limit, likePattern(filtro));
+        QueryResult<GraseriaCostoInsumoImpuesto> result = ((GraseriaCostoInsumoImpuestoRepositorio)repo).findFiltered( offset, limit);
 
 
         return QueryHelper.applyLimitsAndSortOrder(result, offset, limit, sortOrders).getResultList().stream();
@@ -31,7 +31,7 @@ public class GraseriaCostoInsumoImpuestoService extends ServicioModelo<GraseriaC
     @Override
     public long countAnyMatching(Object padre, String filtro) {
         Long cnt = null;
-        cnt = ((GraseriaCostoInsumoImpuestoRepositorio) repo).countFiltered(likePattern(filtro));
+        cnt = ((GraseriaCostoInsumoImpuestoRepositorio) repo).countFiltered();
         return cnt;
     }
 }
