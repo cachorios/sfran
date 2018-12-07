@@ -150,9 +150,9 @@ INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo,
 
 
 
-INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((36011), 'UNKNOW', 'UNKNOW', 'TIPO.LICENCIA', 'LICENCIA DE CONDUCIR', 1, 12, 1);
-INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((36012), 'UNKNOW', 'UNKNOW', 'TIPO.LICENCIA', 'CNRT PSICOFíSICO LIC NAC HABIL', 2, 12, 1);
-INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((36013), 'UNKNOW', 'UNKNOW', 'TIPO.LICENCIA', 'CNRT LIC NAC HABILITANTE CURSO', 3, 12, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((36011), 'UNKNOW', 'UNKNOW', 'TIPO.LICENCIA', 'LICENCIA DE CONDUCIR', 1, 22, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((36012), 'UNKNOW', 'UNKNOW', 'TIPO.LICENCIA', 'CNRT PSICOFíSICO LIC NAC HABIL', 2, 22, 1);
+INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((36013), 'UNKNOW', 'UNKNOW', 'TIPO.LICENCIA', 'CNRT LIC NAC HABILITANTE CURSO', 3, 22, 1);
 
 
 
