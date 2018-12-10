@@ -47,7 +47,7 @@ WHERE c.id = $P{p_Id}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="11"/>
 				</textElement>
-				<text><![CDATA[Nombre y Apellodo: ]]></text>
+				<text><![CDATA[Nombre y Apellido: ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="82" width="100" height="19" uuid="7773d0ae-d231-4312-b1fd-7fee4489dda8"/>

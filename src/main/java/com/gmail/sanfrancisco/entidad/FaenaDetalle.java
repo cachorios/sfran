@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.backend.entidad.Parametro;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -15,10 +16,13 @@ public class FaenaDetalle extends AbstractEntidad {
 
     @NotNull
     @ManyToOne
-    private DteDetalleCategoria categoria;
+    private Parametro categoria;
 
     @NotNull
-    private Double peso;
+    private Double pesoIzquierdo;
+
+    @NotNull
+    private Double pesoDerecho;
 
     @Override
     public String toString() {
