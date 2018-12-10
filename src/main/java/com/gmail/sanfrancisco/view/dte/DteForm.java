@@ -3,6 +3,7 @@ package com.gmail.sanfrancisco.view.dte;
 import com.gmail.cacho.slapi.view.AbstractForm;
 import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerForm;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterForm;
+import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
 import com.gmail.sanfrancisco.entidad.Dte;
 import com.vaadin.flow.component.Focusable;
 
@@ -13,6 +14,11 @@ public class DteForm extends AbstractForm<Dte> {
     @Inject
     public DteForm(IPresenterForm<Dte> presenter) {
         super(presenter);
+    }
+
+    public DteForm(IPresenterForm<Dte> presenter, IVisualizable padre) {
+        super(presenter);
+        setPadre(padre);
     }
 
     @Override

@@ -77,16 +77,16 @@ SUM(CASE WHEN (impcv.impuesto_id=35907) THEN impcv.saldo ELSE 0 END) as iva
 FROM vehiculo AS v
 INNER JOIN parametro AS tv
 ON v.tipovehiculo_id=tv.id
-INNER JOIN facturacostovehiculo AS fcv
+INNER JOIN vehiculocosto AS fcv
 ON v.id=fcv.vehiculo_id
-INNER JOIN insumocostovehiculo AS inscv
-ON inscv.facturacostovehiculo_id=fcv.id
+INNER JOIN vehiculocostoinsumo AS inscv
+ON inscv.vehiculocosto_id=fcv.id
 INNER JOIN insumo AS i
 ON inscv.insumo_id=i.id
 INNER JOIN parametro AS ti
 ON i.tipoinsumo_id=ti.id
-LEFT JOIN impuestocostovehiculo AS impcv
-ON inscv.id=impcv.insumocostovehiculo_id
+LEFT JOIN vehiculocostoinsumoimpuesto AS impcv
+ON inscv.id=impcv.vehiculocostoinsumo_id
 WHERE v.id=$P{p_Id} and i.tipoinsumo_id =$P{p_TipoInsumo}
 AND fcv.fecha BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}
 GROUP BY v.id, tv.nombre]]>
@@ -127,10 +127,10 @@ SUM(icv.cantidad*icv.precio) AS descGasto
 FROM vehiculo AS v 
 INNER JOIN parametro AS tm
 ON v.tipovehiculo_id=tm.id
-INNER JOIN facturacostovehiculo AS fcv
+INNER JOIN vehiculocosto AS fcv
 ON v.id=fcv.vehiculo_id
-INNER JOIN insumocostovehiculo AS icv
-ON icv.facturacostovehiculo_id=fcv.id
+INNER JOIN vehiculocostoinsumo AS icv
+ON icv.vehiculocosto_id=fcv.id
 INNER JOIN insumo AS i
 ON icv.insumo_id=i.id 
 INNER JOIN parametro AS ti

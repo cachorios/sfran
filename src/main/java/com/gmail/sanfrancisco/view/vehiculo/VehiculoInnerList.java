@@ -1,5 +1,7 @@
 package com.gmail.sanfrancisco.view.vehiculo;
 
+import com.gmail.cacho.backend.entidad.Parametro;
+import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.componentes.ReportSelector;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableList;
@@ -7,14 +9,24 @@ import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerListPolymer;
 import com.gmail.cacho.slreport.jasper.ReporteCreator;
 import com.gmail.cacho.slreport.view.DefaultPDFViewDialog;
+import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
 import com.gmail.sanfrancisco.entidad.Vehiculo;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.VaadinServlet;
 import org.vaadin.alejandro.PdfBrowserViewer;
 
+import javax.enterprise.inject.spi.CDI;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +47,7 @@ public class VehiculoInnerList extends DefaultInnerListPolymer<Vehiculo> {
         pdfBtn = new ReportSelector("Imprimir", VaadinIcon.PRINT.create());
 
         pdfBtn.add("Listado", "vehiculos.jrxml", this::crearParametroReporte);
-        pdfBtn.add("Gastos de tipo vehiculo", "gastosvehiculo.jrxml", this::crearParametroReporte);
+        pdfBtn.addform("Gastos de tipo vehiculo", "gastosvehiculo.jrxml", this::formFilter);
 
 
         getToolBar().getBotonera().add(pdfBtn);
@@ -51,12 +63,98 @@ public class VehiculoInnerList extends DefaultInnerListPolymer<Vehiculo> {
         return mapa;
     }
 
+    private Component formFilter() {
+        Component data = null;
+
+        Dialog dialog = pdfBtn.getDialog();
+        DatePicker desde = new DatePicker("Fecha Inicio");
+        desde.setRequired(true);
+
+        DatePicker hasta = new DatePicker("Fecha Final");
+        hasta.setRequired(true);
+
+        ComboBox tipoVehiculo = new ComboBox("Tipo Vehiculo");
+        tipoVehiculo.setWidth("100%");
+        ParametroVarioDataProvider dpTipoVehiculo = CDI.current().select(ParametroVarioDataProvider.class).get();
+        dpTipoVehiculo.setTipo(ETipoParametro.TIPO_VEHICULO);
+        tipoVehiculo.setDataProvider(dpTipoVehiculo);
+        tipoVehiculo.setRequired(true);
+
+        ComboBox tipoInsumo = new ComboBox("Tipo Insumo");
+        tipoInsumo.setWidth("100%");
+        ParametroVarioDataProvider dpTipoInsumo = CDI.current().select(ParametroVarioDataProvider.class).get();
+        dpTipoInsumo.setTipo(ETipoParametro.TIPO_INSUMO);
+        tipoInsumo.setDataProvider(dpTipoInsumo);
+        tipoInsumo.setRequired(true);
+
+        this.defineRangoFechas(desde, hasta);
+
+        Button btnOk = new Button("Aceptar", e -> {
+
+            if (desde.getValue() != null && hasta.getValue() != null && tipoVehiculo.getValue() != null && tipoInsumo.getValue() != null) {
+                filtroFechaInicial = Date.from(desde.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+                filtroFechaFinal = Date.from(hasta.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+                filtroTipoInsumo = ((Parametro) tipoInsumo.getValue()).getId();
+                filtroLong = ((Parametro) tipoVehiculo.getValue()).getId();
+
+                if (pdfBtn.getTipo() == 1) {
+                    pdfBtn.genPdf(pdfBtn.getFileName(), pdfBtn.getRepFile(), this::crearParametroReporteConFechas);
+                } else {
+                    pdfBtn.genXls(pdfBtn.getFileName(), pdfBtn.getRepFile(), this::crearParametroReporteConFechas);
+                }
+            }else{
+                desde.setInvalid(true);
+                desde.setErrorMessage("Seleccione la fecha de finalización");
+
+            }
+        });
+
+        Button btnCancel = new Button("Cancelar", e -> dialog.close());
+        VerticalLayout contenedor = new VerticalLayout(desde, hasta, tipoVehiculo, tipoInsumo, new HorizontalLayout(btnOk, btnCancel));
+
+            dialog.setHeight("350px");
+            dialog.setWidth("300px");
+
+            dialog.removeAll();
+            dialog.add(contenedor);
+            dialog.open();
+
+            return dialog;
+
+    }
+
+    private void defineRangoFechas(DatePicker startDatePicker, DatePicker endDatePicker) {
+        startDatePicker.addValueChangeListener(event -> {
+            LocalDate selectedDate = event.getValue();
+            LocalDate endDate = endDatePicker.getValue();
+            if (selectedDate != null) {
+                endDatePicker.setMin(selectedDate.plusDays(1));
+                if (endDate == null) {
+                    endDatePicker.setOpened(true);
+                    endDatePicker.setErrorMessage("Seleccione la fecha de finalización");
+                }
+            } else {
+                endDatePicker.setMin(null);
+                endDatePicker.setErrorMessage("Seleccione la fecha de inicio");
+            }
+        });
+
+        endDatePicker.addValueChangeListener(event -> {
+            LocalDate selectedDate = event.getValue();
+            LocalDate startDate = startDatePicker.getValue();
+            if (selectedDate != null) {
+                startDatePicker.setMax(selectedDate.minusDays(1));
+                if (startDate == null) {
+                    startDatePicker.setErrorMessage("Seleccione la fecha de inicio");
+                }
+            } else {
+                startDatePicker.setMax(null);
+            }
+        });
+    }
+
     private Map<String, Object> crearParametroReporteConFechas() {
         String directorio = VaadinServlet.getCurrent().getServletContext().getRealPath("/frontend/images");
-        filtroLong = this.getPresentable().getObjetoActivo().getId();
-        filtroTipoInsumo = new Long(0);
-        filtroFechaInicial = new Date();
-        filtroFechaInicial = new Date();
 
         Map<String, Object> mapa = new HashMap<String, Object>();
         mapa.put(C.SYS_REP_PARAM_DIRECTORIO, directorio);
