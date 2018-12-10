@@ -46,21 +46,21 @@ c.id = $P{p_Id}]]>
 			<staticText>
 				<reportElement x="0" y="63" width="100" height="19" uuid="eee20a54-74d2-42bc-bc5a-d95f1aa713cb"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Nombre y Apellodo: ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="82" width="100" height="19" uuid="7773d0ae-d231-4312-b1fd-7fee4489dda8"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Domicilio:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="101" width="100" height="19" uuid="8412a898-1da3-4640-9644-b7714c53d896"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[CUIL:]]></text>
 			</staticText>
@@ -70,42 +70,42 @@ c.id = $P{p_Id}]]>
 			<staticText>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="300" height="50" uuid="60716ce3-d00e-47b6-84da-d157cf2ce27b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="18" isBold="true"/>
+					<font fontName="SansSerif" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Consignatario]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="100" y="63" width="200" height="19" uuid="1a5be465-324f-4ab7-bb1c-a180c24a2c57"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="82" width="200" height="19" uuid="5cff82ce-c67d-4d06-a291-3218082b37db"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{domicilio}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="101" width="200" height="19" uuid="4b86b4b3-7cc9-4abd-ba69-04ebbd27f8c4"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cuil}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="120" width="100" height="19" uuid="23b385ae-0f24-4aef-ba13-6e42618dc761"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Email:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="140" width="100" height="19" uuid="5864944c-ac97-4b61-b90e-7f00d1b82035"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Telefono:
 ]]></text>
@@ -113,28 +113,28 @@ c.id = $P{p_Id}]]>
 			<textField>
 				<reportElement x="100" y="120" width="200" height="19" uuid="fe2ee824-40e5-4f65-838e-c8f5421a9e75"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="140" width="200" height="19" uuid="0c4a17d9-c245-4226-ab6e-8f5ff0ca0804"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="159" width="200" height="19" uuid="5301737f-50f7-48e6-8dc4-453d6e248f55"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{celular}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="159" width="100" height="19" uuid="285ceb42-05c3-446c-94f3-e620eb4af309"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Celular]]></text>
 			</staticText>

@@ -48,7 +48,7 @@ AND c.fechabaja IS NULL]]>
 			<staticText>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="230" height="50" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="18" isBold="true"/>
+					<font fontName="SansSerif" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Lista de Comisionistas]]></text>
 			</staticText>
@@ -65,7 +65,7 @@ AND c.fechabaja IS NULL]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre y Apellido]]></text>
 			</staticText>
@@ -74,7 +74,7 @@ AND c.fechabaja IS NULL]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[domicilio]]></text>
 			</staticText>
@@ -83,7 +83,7 @@ AND c.fechabaja IS NULL]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9aed832b-3057-48fc-8946-6c7a2ff6b198"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[cuil]]></text>
 			</staticText>
@@ -92,7 +92,7 @@ AND c.fechabaja IS NULL]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ffff912-42e3-42d8-ba55-2c36c4cf6143"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[email]]></text>
 			</staticText>
@@ -101,7 +101,7 @@ AND c.fechabaja IS NULL]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bed66a8e-a8bd-47f2-97e3-877428fdf871"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Telefono]]></text>
 			</staticText>
@@ -110,7 +110,7 @@ AND c.fechabaja IS NULL]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c244b971-5df4-4a44-8250-69368b298194"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Saldo Ini.]]></text>
 			</staticText>
@@ -124,7 +124,7 @@ AND c.fechabaja IS NULL]]>
 				</reportElement>
 				<box rightPadding="3"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font fontName="SansSerif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
@@ -134,7 +134,7 @@ AND c.fechabaja IS NULL]]>
 				</reportElement>
 				<box rightPadding="3"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font fontName="SansSerif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{domicilio}]]></textFieldExpression>
 			</textField>
@@ -144,7 +144,7 @@ AND c.fechabaja IS NULL]]>
 				</reportElement>
 				<box rightPadding="3"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font fontName="SansSerif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cuil}]]></textFieldExpression>
 			</textField>
@@ -154,7 +154,7 @@ AND c.fechabaja IS NULL]]>
 				</reportElement>
 				<box rightPadding="3"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font fontName="SansSerif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
@@ -164,7 +164,7 @@ AND c.fechabaja IS NULL]]>
 				</reportElement>
 				<box rightPadding="3"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font fontName="SansSerif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
@@ -174,7 +174,7 @@ AND c.fechabaja IS NULL]]>
 				</reportElement>
 				<box rightPadding="3"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font fontName="SansSerif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{saldoinicial}]]></textFieldExpression>
 			</textField>
@@ -185,12 +185,16 @@ AND c.fechabaja IS NULL]]>
 			<textField>
 				<reportElement stretchType="RelativeToBandHeight" x="640" y="12" width="100" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
 				<box rightPadding="5"/>
-				<textElement textAlignment="Right"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif"/>
+				</textElement>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement x="740" y="12" width="62" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
-				<textElement textAlignment="Left"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>

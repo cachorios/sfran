@@ -109,21 +109,21 @@ WHERE
 			<staticText>
 				<reportElement x="0" y="63" width="100" height="19" uuid="eee20a54-74d2-42bc-bc5a-d95f1aa713cb"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Dominio:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="82" width="100" height="19" uuid="7773d0ae-d231-4312-b1fd-7fee4489dda8"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Tipo vehiculo:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="116" width="100" height="19" uuid="8412a898-1da3-4640-9644-b7714c53d896"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Modelo:]]></text>
 			</staticText>
@@ -133,252 +133,252 @@ WHERE
 			<staticText>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="280" height="50" uuid="60716ce3-d00e-47b6-84da-d157cf2ce27b"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="18" isBold="true"/>
+					<font fontName="SansSerif" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Vehiculo]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="100" y="63" width="180" height="19" uuid="1a5be465-324f-4ab7-bb1c-a180c24a2c57"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{dominio}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="82" width="180" height="19" uuid="5cff82ce-c67d-4d06-a291-3218082b37db"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tipovehiculo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="169" width="180" height="19" uuid="4b86b4b3-7cc9-4abd-ba69-04ebbd27f8c4"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tipocombustible}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="280" y="116" width="160" height="19" uuid="23b385ae-0f24-4aef-ba13-6e42618dc761"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Color:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="169" width="100" height="19" uuid="5864944c-ac97-4b61-b90e-7f00d1b82035"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Combustible:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="100" y="116" width="180" height="19" uuid="fe2ee824-40e5-4f65-838e-c8f5421a9e75"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="440" y="116" width="110" height="19" uuid="0c4a17d9-c245-4226-ab6e-8f5ff0ca0804"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="440" y="170" width="110" height="19" uuid="5301737f-50f7-48e6-8dc4-453d6e248f55"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{consumocombustible}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="280" y="237" width="160" height="19" uuid="285ceb42-05c3-446c-94f3-e620eb4af309"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Maximo de cabezas:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="280" y="135" width="160" height="19" uuid="1e9a10e1-60b4-478d-87fc-92ffe9d699b4"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Año]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="440" y="135" width="110" height="19" uuid="ca55f8e8-9e7a-4794-b68f-7aa264c2341b"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="256" width="100" height="19" uuid="8ff8ab9e-571d-4512-b8a3-b579773fe0f8"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Tara:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="237" width="100" height="19" uuid="432eff91-0340-4f56-a981-b13933514d9f"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Carga maxima:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="280" y="169" width="160" height="19" uuid="20453121-1853-4b83-aaf6-4d992a796e7d"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Consumo:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="290" width="100" height="19" uuid="7d4bcf98-7b73-46ce-9efd-1270f30aef2d"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Alto:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="309" width="100" height="19" uuid="b0c3007c-113f-4600-aed2-6ebf70813b4a"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Ancho:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="343" width="100" height="19" uuid="14e51f83-becd-4368-a632-3a6089cbafed"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Numero de motor:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="135" width="100" height="19" uuid="f85e4095-ed07-41f2-b001-4fa6f8eca1fa"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Marca de vehiculo:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="203" width="100" height="19" uuid="559260dd-a608-486d-afde-487df0721ece"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Estado del vehiculo:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="280" y="290" width="160" height="19" uuid="5349b4e5-8489-44b2-b937-992537b63deb"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Largo:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="280" y="309" width="160" height="19" uuid="451352d6-e74d-4d36-b986-e51c83d99b46"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Volumen:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="280" y="343" width="160" height="19" uuid="00bd6072-39ae-45e7-9f02-aba59e0f7169"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Numero de chasis:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="280" y="203" width="160" height="19" uuid="f457a9ca-8094-42ef-800d-5e86292debc4"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<text><![CDATA[Fecha de ultimo cambio de estado:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="100" y="135" width="180" height="19" uuid="c869b92e-ec5b-4d9d-ad98-2cb408f93f4f"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="203" width="180" height="19" uuid="47c72901-4bce-44a2-b480-3e177a6e66ab"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{estadomovil}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="440" y="203" width="110" height="19" uuid="4cc5a12a-213f-47e9-94a4-1bf80439bd5d"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="440" y="237" width="110" height="19" uuid="a7daa295-2a81-4dc6-aa3a-68a8d83fd57c"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{maxcabezas}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="237" width="180" height="19" uuid="9dbbb850-16ce-4d6d-b98b-f48d4e4fafa4"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cargamax}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="256" width="180" height="19" uuid="9952c88a-1a3e-4221-86a8-d278e09bdf36"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tara}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="290" width="180" height="19" uuid="50bd82fe-cac6-437a-96d1-cb6a23b533a5"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{alto}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="309" width="180" height="19" uuid="319748fc-bc29-4fba-8abf-a3c3a7b7d814"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ancho}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="440" y="290" width="110" height="19" uuid="19df0af7-0563-4ae2-acfc-cda4c40813ad"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{largo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="440" y="309" width="110" height="19" uuid="bf75e822-e89b-41b0-ad28-0a9cff4c3c33"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{volumen}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="100" y="343" width="180" height="19" uuid="1153fcf5-575b-4d41-ac19-fb3f82e339ae"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numeromotor}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="440" y="343" width="110" height="19" uuid="98de1f5e-a50d-4ac7-a748-85959c7aebfe"/>
 				<textElement verticalAlignment="Middle" markup="styled">
-					<font isBold="true"/>
+					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numerochasis}]]></textFieldExpression>
 			</textField>
