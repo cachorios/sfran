@@ -3,8 +3,12 @@ package com.gmail.sanfrancisco.view.faena;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
+import com.gmail.sanfrancisco.converter.IntegerConverter;
+import com.gmail.sanfrancisco.dataProvider.DteDataProvider;
 import com.gmail.sanfrancisco.entidad.Faena;
+import com.gmail.sanfrancisco.view.productor.ProductorCS;
 import com.vaadin.flow.component.Focusable;
+import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.TextField;
@@ -29,8 +33,8 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
         fecha = dateField("Fecha");
 
         form.add(
-                envolver(fecha, "50%"),
-                envolver(numero, "48%")
+                envolver(fecha, "48%"),
+                envolver(numero, "50%")
 
         );
     }
@@ -43,6 +47,8 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
         binder.forField(fecha)
                 .withConverter(new LocalDateADateConverter())
                 .bind(Faena::getFecha, Faena::setFecha);
+
+        binder.forField(numero).withConverter(new IntegerConverter()).bind("numero");
 
         binder.bindInstanceFields(this);
     }

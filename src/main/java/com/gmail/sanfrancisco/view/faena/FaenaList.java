@@ -15,8 +15,8 @@ public class FaenaList extends AbstractList<Faena> {
         super(presenter);
 
         setListaCols(Arrays.asList(
-                new ColumnList<>(new DateRenderer<>(Faena::getFecha,"dd/MM/yyyy"),"Fecha","fecha", true,"50%"),
-                new ColumnList<>(Faena::getNumero,"Numero","numero", true,"50%")
+                new ColumnList<>(new DateRenderer<>(Faena::getFecha,"dd/MM/yyyy"),"Fecha","fecha", true,"45%"),
+                new ColumnList<>(Faena::getNumero,"Numero","numero", true,"45%")
         ));
     }
 
