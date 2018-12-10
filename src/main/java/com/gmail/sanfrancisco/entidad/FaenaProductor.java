@@ -2,7 +2,6 @@ package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -10,14 +9,14 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-public class FaenaDetalleInsumo extends AbstractEntidad {
-
+public class FaenaProductor extends AbstractEntidad {
+    @NotNull
     @ManyToOne
-    private Insumo insumo;
+    private Productor productor;
 
     @NotNull
-    private Integer cantidad;
+    private String tropa;
 
-    @NotNull
-    private Double precio;
+    @Override
+    public String toString() { return isNew() ? "Nuevo Faena-Productor" : this.productor.toString(); }
 }

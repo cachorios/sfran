@@ -16,33 +16,10 @@ public class Faena extends AbstractEntidad {
     @NotNull
     private Date fecha;
 
+    @NotNull
+    private Integer numero;
+
     public String toString() {
-        return this.getFecha().toString();
-    }
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "faena", fetch = FetchType.LAZY)
-    private List<FaenaDetalleInsumo> insumos;
-
-    public Faena() {
-        insumos = new ArrayList<>();
-    }
-
-    public List<FaenaDetalleInsumo> getInsumos() {
-        return insumos;
-    }
-
-    public void setInsumos(List<FaenaDetalleInsumo> insumos) {
-        this.insumos = insumos;
-    }
-
-    @PrePersist
-    @PreUpdate
-    public void preUpdate(){
-
-        for(FaenaDetalleInsumo ins: insumos){
-            if(ins.getFaena() == null){
-                ins.setFaena(this);
-            }
-        }
+        return isNew() ? "Nueva Faena" : this.getFecha().toString();
     }
 }

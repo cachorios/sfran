@@ -1,0 +1,27 @@
+package com.gmail.sanfrancisco.entidad;
+
+import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Data
+public class FaenaDetalle extends AbstractEntidad {
+    @NotNull
+    private Integer orden;
+
+    @NotNull
+    @ManyToOne
+    private DteDetalleCategoria categoria;
+
+    @NotNull
+    private Double peso;
+
+    @Override
+    public String toString() {
+        return isNew() ? "Nueva Faena Detalle" : this.categoria.toString();
+    }
+}
