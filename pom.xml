@@ -240,11 +240,11 @@
                 <version>8.0.0-M1</version>
                 <configuration>
                     <!-- esto en modo desarrollo-->
-                    <tomeeClassifier>webprofile</tomeeClassifier>
-                    <context>ROOT</context>
+                    <!--<tomeeClassifier>webprofile</tomeeClassifier>-->
+                    <!--<context>ROOT</context>-->
                     <!-- modo produccion -->
 
-                    <!--
+
                     <tomeeClassifier>plus</tomeeClassifier>
                     <debug>false</debug>
                     <debugPort>5005</debugPort>
@@ -260,7 +260,7 @@
                     </apps>
                     <libs>
                     </libs>
-                    -->
+
                 </configuration>
             </plugin>
 

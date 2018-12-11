@@ -35,11 +35,8 @@ public class DteDetalleCategoriaFormPresenter extends AbstractPresenterForm<DteD
 
                 getPresentable().setObjetoActivo(item);
                 Sistema.getSistema().mostrarMensaje(ENivelAplicacion.INFO, C.WIN_TIT_SAVEREG, C.CRUD_MSG_BOXOK);
-                ///////////////////////////////////////////////////////////////////
 
-                ///////////////////////////////////////////////////////////////////
                 // Ejecuta el codigo de SavedOK
-                ///////////////////////////////////////////////////////////////////
                 (Optional.of(((AbstractForm) getPresentable()).getExecutableOnSaveOK())).ifPresent(Runnable::run);
                 ///////////////////////////////////////////////////////////////////
 
@@ -49,7 +46,6 @@ public class DteDetalleCategoriaFormPresenter extends AbstractPresenterForm<DteD
                     Sistema.getSistema().mostrarMensaje(ENivelAplicacion.ERROR, C.MSJ_ERR_DB_ATSAVEDATA, "Se ha producido un problema al guardar los datos. Por favor verifique los campos"  );
                     L.info(C.MSJ_ERR_DB_ATSAVEDATA, "Se ha producido un problema al guardar los datos. Por favor verifique los campos  " + item.getClass().getName()+" | " + e.getLocalizedMessage());
             }
-
         }
 
         return false;

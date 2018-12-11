@@ -230,16 +230,26 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
     private void onFormSaveOK() {
         if (form.getModoVista().equals(EModoVista.NUEVO)) {
             items.add(registroActivo);
-            this.getGrid().setItems(items);
         } else {
+            int index = 0;
             for(T item: items){
+
                 if(item.getId() == registroActivo.getId()){
-                    items.remove(item);
-                    items.add(registroActivo);
+                    this.getGrid().getDataProvider().refreshItem(registroActivo);
+
+                    items.set(index, registroActivo);
+//                    items.remove(item);
+//                    items.add(registroActivo);
                 }
+                index++;
             }
-            this.getGrid().setItems(items);
+
         }
+        this.getGrid().setItems(items);
+
+
+
+
 
     }
 

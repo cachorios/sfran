@@ -16,8 +16,8 @@ public class FaenaProductor extends AbstractEntidad {
     @ManyToOne
     private Productor productor;
 
-    @NotNull
-    private String tropa;
+    @ManyToOne
+    private Dte tropa;
 
     @ManyToOne
     private Faena faena;

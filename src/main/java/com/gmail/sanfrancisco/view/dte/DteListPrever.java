@@ -9,17 +9,21 @@ import com.gmail.cacho.slreport.jasper.ReporteCreator;
 import com.gmail.cacho.slreport.view.DefaultPDFViewDialog;
 import com.gmail.sanfrancisco.entidad.Dte;
 import com.gmail.sanfrancisco.entidad.DteDetalleCategoria;
+import com.gmail.sanfrancisco.repositorio.FaenaRepositorio;
 import com.gmail.sanfrancisco.view.dtedetallecategoria.DteDetalleCategoriaForm;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.VaadinServlet;
 import org.vaadin.alejandro.PdfBrowserViewer;
 
 
+import javax.enterprise.inject.spi.CDI;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
@@ -41,6 +45,9 @@ public class DteListPrever extends AbstractPreview<Dte> {
         btnImprimir.setEnabled(false);
         btnImprimir.addClickListener((e) -> genPdf());
         add(btnImprimir);
+
+
+
     }
 
     @Override
@@ -54,6 +61,16 @@ public class DteListPrever extends AbstractPreview<Dte> {
             idComp = 0L;
             btnImprimir.setEnabled(false);
         }
+        /**
+         * Solo para prueba de query
+         */
+
+        FaenaRepositorio repo = CDI.current().select(FaenaRepositorio.class).get();
+
+        List list = repo.SaldoCategoria(this.registroPreview);
+
+        add(new Label("Cantidad de Dlle" + list.size()));
+
     }
 
     private void genPdf() {

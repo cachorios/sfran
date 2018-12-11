@@ -21,10 +21,10 @@ public class FaenaDetalle extends AbstractEntidad {
     private Parametro categoria;
 
     @NotNull
-    private Double pesoIzquierdo;
+    private Double kgIzquierdo;
 
     @NotNull
-    private Double pesoDerecho;
+    private Double kgDerecho;
 
     @ManyToOne
     private FaenaCabezera faenaCabezera;
