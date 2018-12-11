@@ -34,4 +34,8 @@ public class DteService extends ServicioModelo<Dte> {
         cnt = ((DteRepositorio) repo).countFiltered(likePattern(filtro));
         return cnt;
     }
+
+    public Dte getDteByNumeroTropa(String numerotropa){
+        return ((DteRepositorio) repo).findByNumeroTropa(numerotropa);
+    }
 }

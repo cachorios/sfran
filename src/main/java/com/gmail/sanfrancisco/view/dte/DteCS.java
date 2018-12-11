@@ -9,8 +9,6 @@ import com.gmail.cacho.slapi.view.utils.ColumnList;
 import com.gmail.sanfrancisco.dataProvider.DteDataProvider;
 import com.gmail.sanfrancisco.entidad.Dte;
 import com.gmail.sanfrancisco.serviciosModelo.DteService;
-import com.gmail.sanfrancisco.view.dte.DteForm;
-import com.gmail.sanfrancisco.view.dte.DteFormPresenter;
 
 import javax.enterprise.inject.spi.CDI;
 import java.util.Arrays;
@@ -28,7 +26,7 @@ public class DteCS extends AbstractCustomSelect {
 
     @Override
     protected Dte getElemento(String codigo) {
-        return CDI.current().select(DteService.class).get().load(Long.valueOf(codigo));
+        return CDI.current().select(DteService.class).get().getDteByNumeroTropa(codigo);
     }
 
     @Override
@@ -55,4 +53,6 @@ public class DteCS extends AbstractCustomSelect {
     protected IPresentableForm getFormAgregar() {
         return new DteForm(new DteFormPresenter(CDI.current().select(DteService.class).get()), this.getPadre());
     }
+
+
 }

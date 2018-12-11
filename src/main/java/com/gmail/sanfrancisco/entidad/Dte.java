@@ -71,6 +71,7 @@ public  class  Dte extends AbstractEntidad {
      * @Description: Fecha en que cargan el camion
      */
     @NotNull
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date fechaCarga;
 
     @NotNull

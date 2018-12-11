@@ -20,4 +20,8 @@ public interface DteRepositorio extends EntityRepository<Dte, Long>, EntityManag
     @Query("SELECT  COUNT(e) FROM Dte e WHERE e.id = :filter")
     Long countFiltered(
             @QueryParam("filter") Long filter);
+
+    @Query("SELECT e FROM Dte e WHERE e.numeroTropa = :numerotropa")
+    Dte findByNumeroTropa(
+            @QueryParam("numerotropa") String numerotropa);
 }

@@ -1,6 +1,9 @@
 package com.gmail.sanfrancisco.view.faena;
 
+import com.gmail.cacho.backend.entidad.Parametro;
+import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
+import com.gmail.cacho.slapi.view.customs.params.ParamCSComponent;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.converter.IntegerConverter;
@@ -13,6 +16,7 @@ import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
@@ -29,8 +33,18 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
     private ProductorCS productorCS;
     private DteCS dteCS;
 
-    private VerticalLayout cabezeraLayout;
-    private VerticalLayout detalleLayout;
+    private ParamCSComponent categoria;
+    private TextField cantidad;
+    private TextField faenado;
+    private TextField diferencia;
+    private TextField kgVivo;
+    private TextField aFaenar;
+
+    private DteCS dteCSDetalle;
+    private TextField orden;
+    private ParamCSComponent categoriaDetalle;
+    private TextField kgIzquierdo;
+    private TextField kgDerecho;
 
     public FaenaInnerForm(IPresentableForm<Faena> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -38,14 +52,27 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
     @Override
     protected void generarForm(Div form) {
+        setWidth("1100px");
 
         numero = textField("Numero");
         fecha = dateField("Fecha");
 
         productorCS = new ProductorCS("Productor", getPresentable(), true, true, true);
-        productorCS.addValueChangeListener(e-> {this.cabezeraChanged(e, productorCS, dteCS);});
-        dteCS = new DteCS("Dte", getPresentable(), true, true, true);
-        dteCS.addValueChangeListener(e-> {this.cabezeraChanged(e, productorCS, dteCS);});
+        productorCS.addValueChangeListener(e-> {this.productorChanged(e, dteCS);});
+        dteCS = new DteCS("Tropa", getPresentable(), true, true, true);
+
+        categoria = new ParamCSComponent("Categoria", getPresentable(), true, true, "Categorias", ETipoParametro.CATEGORIA_ANIMAL);
+        cantidad = textField("Cantidad");
+        faenado = textField("Faenado");
+        diferencia = textField("Diferencia");
+        kgVivo = textField("Kilogramos vivos");
+        aFaenar = textField("A faenar");
+
+        orden = textField("Orden");
+        categoriaDetalle = new ParamCSComponent("Categoria", getPresentable(), true, true, "Categorias", ETipoParametro.CATEGORIA_ANIMAL);
+        kgIzquierdo = textField("Kilogramos izquierdo");
+        kgDerecho = textField("Kilogramos derecho");
+
 
         form.add(
                 envolver(fecha, "48%"),
@@ -53,23 +80,26 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
                 envolver(productorCS, "48%"),
                 envolver(dteCS, "50%"),
-                envolver(cabezeraLayout),
-                envolver(detalleLayout)
+
+                envolver(categoria,"28%"),
+                envolver(cantidad,"13%"),
+                envolver(faenado, "13%"),
+                envolver(diferencia, "13%"),
+                envolver(kgVivo,"13%"),
+                envolver(aFaenar,"13%"),
+
+                envolver(orden,"20%"),
+                envolver(categoriaDetalle,"38%"),
+                envolver(kgIzquierdo,"20%"),
+                envolver(kgDerecho,"20%")
         );
     }
 
     @Override
     public Focusable getPrimerElementoForm() { return numero; }
 
-    private void cabezeraChanged(HasValue.ValueChangeEvent<?> e, ProductorCS productorCS, DteCS dteCS) {
-        cabezeraLayout.removeAll();
-        if(e.getValue() != null){
+    private void productorChanged(HasValue.ValueChangeEvent<?> e, DteCS dteCS) {
 
-        }
-        /*ValueProvider<DteDetalleCategoria, String> categorias;
-        categorias = (dteDetalleCategoria) -> {
-
-        };*/
     }
 
     @Override

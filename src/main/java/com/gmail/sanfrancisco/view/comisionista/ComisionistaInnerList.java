@@ -8,6 +8,7 @@ import com.gmail.cacho.slapi.view.layouts.DefaultInnerListPolymer;
 
 import com.gmail.sanfrancisco.entidad.Comisionista;
 
+import com.gmail.sanfrancisco.repositorio.ComisionistaRepositorio;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -22,6 +23,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.server.VaadinServlet;
 
 
+import javax.enterprise.inject.spi.CDI;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -132,9 +134,20 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
     }
 
     private Map<String, Object> crearParametroReporteConFechas() {
-        filtroLong = this.getPresentable().getObjetoActivo().getId();
+        Comisionista com = this.getPresentable().getObjetoActivo();
+        filtroLong = com.getId();
+
         String directorio = VaadinServlet.getCurrent().getServletContext().getRealPath("/frontend/images");
-        Double saldoAnterior = 0.0;
+
+        java.sql.Date sDate = new java.sql.Date(0);
+        java.sql.Date sqlDate = new java.sql.Date(filtroFechaInicial.getTime());
+
+        ComisionistaRepositorio repo = CDI.current().select(ComisionistaRepositorio.class).get();
+        Double saldoAnteriorCabezera = repo.saldoAnteriorCabezera(com, sDate, sqlDate);
+        saldoAnteriorCabezera = saldoAnteriorCabezera == null ? 0.0 : saldoAnteriorCabezera;
+        Double saldoAnteriorDetalle = repo.saldoAnteriorDetalle(com, sDate, sqlDate);
+        saldoAnteriorDetalle = saldoAnteriorDetalle == null ? 0.0 : saldoAnteriorDetalle;
+        Double saldoAnterior = saldoAnteriorDetalle - saldoAnteriorCabezera;
 
         Map<String, Object> mapa = new HashMap<String, Object>();
         mapa.put(C.SYS_REP_PARAM_DIRECTORIO, directorio);
