@@ -36,7 +36,7 @@ public class VehiculoInnerList extends DefaultInnerListPolymer<Vehiculo> {
     private ReportSelector pdfBtn;
     private String filtro;
     private Long filtroLong;
-    private Long filtroTipoInsumo;
+    private Long filtroTipoInsumo = 35705l;
     private Date filtroFechaInicial;
     private Date filtroFechaFinal;
     private Anchor xlsBtn;
@@ -80,21 +80,13 @@ public class VehiculoInnerList extends DefaultInnerListPolymer<Vehiculo> {
         tipoVehiculo.setDataProvider(dpTipoVehiculo);
         tipoVehiculo.setRequired(true);
 
-        ComboBox tipoInsumo = new ComboBox("Tipo Insumo");
-        tipoInsumo.setWidth("100%");
-        ParametroVarioDataProvider dpTipoInsumo = CDI.current().select(ParametroVarioDataProvider.class).get();
-        dpTipoInsumo.setTipo(ETipoParametro.TIPO_INSUMO);
-        tipoInsumo.setDataProvider(dpTipoInsumo);
-        tipoInsumo.setRequired(true);
-
         this.defineRangoFechas(desde, hasta);
 
         Button btnOk = new Button("Aceptar", e -> {
 
-            if (desde.getValue() != null && hasta.getValue() != null && tipoVehiculo.getValue() != null && tipoInsumo.getValue() != null) {
+            if (desde.getValue() != null && hasta.getValue() != null && tipoVehiculo.getValue() != null) {
                 filtroFechaInicial = Date.from(desde.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
                 filtroFechaFinal = Date.from(hasta.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-                filtroTipoInsumo = ((Parametro) tipoInsumo.getValue()).getId();
                 filtroLong = ((Parametro) tipoVehiculo.getValue()).getId();
 
                 if (pdfBtn.getTipo() == 1) {
@@ -110,9 +102,9 @@ public class VehiculoInnerList extends DefaultInnerListPolymer<Vehiculo> {
         });
 
         Button btnCancel = new Button("Cancelar", e -> dialog.close());
-        VerticalLayout contenedor = new VerticalLayout(desde, hasta, tipoVehiculo, tipoInsumo, new HorizontalLayout(btnOk, btnCancel));
+        VerticalLayout contenedor = new VerticalLayout(desde, hasta, tipoVehiculo, new HorizontalLayout(btnOk, btnCancel));
 
-            dialog.setHeight("350px");
+            dialog.setHeight("300px");
             dialog.setWidth("300px");
 
             dialog.removeAll();
