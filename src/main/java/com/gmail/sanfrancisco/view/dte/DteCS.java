@@ -18,7 +18,7 @@ import javax.enterprise.inject.spi.CDI;
 import java.util.Arrays;
 import java.util.List;
 
-public class DteCS extends AbstractCustomSelect {
+public class DteCS extends AbstractCustomSelect<Dte> {
     Dte dte;
 
     public DteCS(String caption, IVisualizable padre, boolean conBuscar, boolean conVer, boolean conAdd) {
@@ -38,29 +38,10 @@ public class DteCS extends AbstractCustomSelect {
     @Override
     protected String getCodigo() {
         try {
-            return dte.getNumeroTropa();
+            return getValue().getNumeroTropa();
         } catch (Exception ex) {
             ex.printStackTrace();
             return "";
-        }
-    }
-
-    @Override
-    protected void onCambioValorManual(String valor){
-        try {
-            if (valor != null && valor != "") {
-                dte = getElemento(valor);
-                if (dte != null) {
-                    setValue(dte);
-                    this.setModelValue(dte,true);
-                    return;
-                }
-            }
-        } catch (Exception ex) {
-            Sistema.getSistema()
-                    .mostrarMensaje(ENivelAplicacion.ERROR, Constantes.MSJ_ERR_CS_CANTSHOW_ITEM, C.MSJ_ERR_CS_NOITEM);
-//            descripcion.setValue("Valor invalido...");
-//            codigo.setValue(getCodigo());
         }
     }
 
@@ -78,8 +59,10 @@ public class DteCS extends AbstractCustomSelect {
 
     @Override
     protected List<ColumnList> getListaCols() {
-        return Arrays.asList(new ColumnList<>(Dte::getId, "Código", "id", true),
-                new ColumnList<>(Dte::getNumeroTropa, "Numero de tropa", "numetroTropa", true)
+        return Arrays.asList(new ColumnList<>(Dte::getNumeroTropa, "Numero de tropa", "numetroTropa", true),
+                new ColumnList<>(Dte::getComisionista, "Comisionista", "comisionista", true),
+                new ColumnList<>(Dte::getLocalidadOrigen, "Localidad origen", "localidadOrigen", true),
+                new ColumnList<>(Dte::getLocalidadDestino, "Localidad destino", "localidadDestino", true)
         );
     }
 

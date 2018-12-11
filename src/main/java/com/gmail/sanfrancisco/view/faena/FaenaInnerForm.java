@@ -59,7 +59,7 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
         productorCS = new ProductorCS("Productor", getPresentable(), true, true, true);
         productorCS.addValueChangeListener(e-> {this.productorChanged(e, dteCS);});
-        dteCS = new DteCS("Tropa", getPresentable(), true, true, true);
+        dteCS = new DteCS("Tropa", getPresentable(), true, true, false);
 
         categoria = new ParamCSComponent("Categoria", getPresentable(), true, true, "Categorias", ETipoParametro.CATEGORIA_ANIMAL);
         cantidad = textField("Cantidad");
