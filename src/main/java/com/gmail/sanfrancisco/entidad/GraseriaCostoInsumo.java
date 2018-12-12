@@ -20,7 +20,7 @@ public class GraseriaCostoInsumo extends AbstractEntidad {
     private Insumo insumo;
 
     @NotNull
-    private Integer cantidad;
+    private Double cantidad;
 
     @NotNull
     private Double precio;
