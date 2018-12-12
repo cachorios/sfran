@@ -10,6 +10,7 @@ import com.gmail.sanfrancisco.converter.IntegerConverter;
 import com.gmail.sanfrancisco.dataProvider.DteDataProvider;
 import com.gmail.sanfrancisco.entidad.DteDetalleCategoria;
 import com.gmail.sanfrancisco.entidad.Faena;
+import com.gmail.sanfrancisco.entidad.Productor;
 import com.gmail.sanfrancisco.view.dte.DteCS;
 import com.gmail.sanfrancisco.view.productor.ProductorCS;
 import com.vaadin.flow.component.Focusable;
@@ -52,7 +53,11 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
         productorCS = new ProductorCS("Productor", getPresentable(), true, true, true);
         productorCS.addValueChangeListener(e-> {this.productorChanged(e, dteCS);});
         dteCS = new DteCS("Tropa", getPresentable(), true, true, false);
+        dteCS.setEnabled(false);
+        dteCS.addValueChangeListener(e-> {this.dteChanged(e);});
 
+        vlDetalleSuperior = new VerticalLayout();
+        vlDetalleInferior = new VerticalLayout();
 
         form.add(
                 envolver(fecha, "48%"),
@@ -70,15 +75,21 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
     public Focusable getPrimerElementoForm() { return numero; }
 
     private void productorChanged(HasValue.ValueChangeEvent<?> e, DteCS dteCS) {
-
+        if(productorCS.getValue() != null){
+            dteCS.setEnabled(true);
+            dteCS.setProductor((Productor)productorCS.getValue());
+            dteCS.setValue(null);
+        }
     }
 
     private void dteChanged(HasValue.ValueChangeEvent<?> e) {
         if(dteCS.getValue() != null){
-            List<DteDetalleCategoria> list = dteCS.getValue().getCategorias();
-            for (DteDetalleCategoria i : list) {
+            vlDetalleSuperior.removeAll();
+            for (DteDetalleCategoria i : dteCS.getValue().getCategorias()) {
                 vlDetalleSuperior.add(new FaenaDetalleSuperior());
             }
+        } else {
+            vlDetalleSuperior.removeAll();
         }
     }
 

@@ -12,9 +12,9 @@ import java.util.Arrays;
 
 @Dependent
 
-public class VehiculolDataProvider extends FilterablePageableDataProvider<Vehiculo, Long, String> {
+public class VehiculoDataProvider extends FilterablePageableDataProvider<Vehiculo, Long, String> {
     @Inject
-    public VehiculolDataProvider(ServicioModelo<Vehiculo> servicio) {
+    public VehiculoDataProvider(ServicioModelo<Vehiculo> servicio) {
         super(servicio, Arrays.asList(
                     new QuerySortOrder("id", SortDirection.ASCENDING))
         );

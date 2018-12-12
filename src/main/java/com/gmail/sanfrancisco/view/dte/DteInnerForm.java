@@ -11,7 +11,7 @@ import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.converter.DoubleConverter;
 import com.gmail.sanfrancisco.converter.IntegerConverter;
 import com.gmail.sanfrancisco.dataProvider.ParametroVarioDataProvider;
-import com.gmail.sanfrancisco.dataProvider.VehiculolDataProvider;
+import com.gmail.sanfrancisco.dataProvider.VehiculoDataProvider;
 import com.gmail.sanfrancisco.entidad.*;
 import com.gmail.sanfrancisco.view.comisionista.ComisionistaCS;
 import com.gmail.sanfrancisco.view.conductor.ConductorCS;
@@ -113,7 +113,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         conductorCS = new ConductorCS("Conductor", getPresentable(), true, true, true);
 
         vehiculoComboBox = new ComboBox<>("Vehiculo");
-        vehiculoComboBox.setDataProvider(CDI.current().select(VehiculolDataProvider.class).get() );
+        vehiculoComboBox.setDataProvider(CDI.current().select(VehiculoDataProvider.class).get() );
 
         patenteJaula = textField("Patente de jaula");
 
