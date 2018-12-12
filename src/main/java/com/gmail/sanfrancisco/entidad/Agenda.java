@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import java.time.ZoneId;
 import java.util.Date;
 
 @Entity
@@ -16,10 +15,13 @@ import java.util.Date;
 public class Agenda extends AbstractEntidad {
     private boolean editable;
     private String title;
+
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date start;
+
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date end;
+
     private boolean allDay;
     private String color;
     private String description;
@@ -31,18 +33,31 @@ public class Agenda extends AbstractEntidad {
     @ManyToOne
     private Comisionista comisionista;
 
+    public Agenda() {
+        setEntry(new Entry());
+    }
 
     public Entry getEntry(){
-
         return new Entry(
-                getId().toString(),
+                getId() == null ? null :  getId().toString(),
                 title,
-                start.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(),
-                end.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(),
+                Fecha.toLocalDateTime(start),
+                Fecha.toLocalDateTime(end),
                 allDay,
                 editable,
                 color,description
         );
+
+    }
+
+    public void setEntry(Entry entry){
+        title = entry.getTitle();
+        start =  Fecha.toDate(entry.getStart());
+        end = Fecha.toDate(entry.getEnd());
+        allDay = entry.isAllDay();
+        editable = entry.isEditable();
+        color = entry.getColor();
+        description = entry.getDescription();
     }
 
 }
