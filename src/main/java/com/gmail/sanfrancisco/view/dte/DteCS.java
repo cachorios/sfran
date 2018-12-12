@@ -1,11 +1,15 @@
 package com.gmail.sanfrancisco.view.dte;
 
 import com.gmail.cacho.backend.jpa.FilterablePageableDataProvider;
+import com.gmail.cacho.slapi.Sistema;
+import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.customs.commons.AbstractCustomSelect;
 import com.gmail.cacho.slapi.view.enums.EModoVista;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
+import com.gmail.cacho.slbase.core.Constantes;
+import com.gmail.cacho.slbase.core.enums.ENivelAplicacion;
 import com.gmail.sanfrancisco.dataProvider.DteDataProvider;
 import com.gmail.sanfrancisco.entidad.Dte;
 import com.gmail.sanfrancisco.serviciosModelo.DteService;
@@ -14,7 +18,9 @@ import javax.enterprise.inject.spi.CDI;
 import java.util.Arrays;
 import java.util.List;
 
-public class DteCS extends AbstractCustomSelect {
+public class DteCS extends AbstractCustomSelect<Dte> {
+    Dte dte;
+
     public DteCS(String caption, IVisualizable padre, boolean conBuscar, boolean conVer, boolean conAdd) {
         super(caption, conBuscar, conVer, conAdd, padre);
     }
@@ -27,6 +33,16 @@ public class DteCS extends AbstractCustomSelect {
     @Override
     protected Dte getElemento(String codigo) {
         return CDI.current().select(DteService.class).get().getDteByNumeroTropa(codigo);
+    }
+
+    @Override
+    protected String getCodigo() {
+        try {
+            return getValue().getNumeroTropa();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
     }
 
     @Override
@@ -43,8 +59,10 @@ public class DteCS extends AbstractCustomSelect {
 
     @Override
     protected List<ColumnList> getListaCols() {
-        return Arrays.asList(new ColumnList<>(Dte::getId, "Código", "id", true),
-                new ColumnList<>(Dte::getNumeroTropa, "Numero de tropa", "numetroTropa", true)
+        return Arrays.asList(new ColumnList<>(Dte::getNumeroTropa, "Numero de tropa", "numetroTropa", true),
+                new ColumnList<>(Dte::getComisionista, "Comisionista", "comisionista", true),
+                new ColumnList<>(Dte::getLocalidadOrigen, "Localidad origen", "localidadOrigen", true),
+                new ColumnList<>(Dte::getLocalidadDestino, "Localidad destino", "localidadDestino", true)
         );
     }
 

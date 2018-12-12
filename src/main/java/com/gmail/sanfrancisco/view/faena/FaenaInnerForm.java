@@ -22,6 +22,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.function.ValueProvider;
 
+import java.util.List;
+
 import static com.gmail.cacho.slapi.view.utils.ViewTools.dateField;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
@@ -33,18 +35,8 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
     private ProductorCS productorCS;
     private DteCS dteCS;
 
-    private ParamCSComponent categoria;
-    private TextField cantidad;
-    private TextField faenado;
-    private TextField diferencia;
-    private TextField kgVivo;
-    private TextField aFaenar;
-
-    private DteCS dteCSDetalle;
-    private TextField orden;
-    private ParamCSComponent categoriaDetalle;
-    private TextField kgIzquierdo;
-    private TextField kgDerecho;
+    private VerticalLayout vlDetalleSuperior;
+    private VerticalLayout vlDetalleInferior;
 
     public FaenaInnerForm(IPresentableForm<Faena> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -59,19 +51,7 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
         productorCS = new ProductorCS("Productor", getPresentable(), true, true, true);
         productorCS.addValueChangeListener(e-> {this.productorChanged(e, dteCS);});
-        dteCS = new DteCS("Tropa", getPresentable(), true, true, true);
-
-        categoria = new ParamCSComponent("Categoria", getPresentable(), true, true, "Categorias", ETipoParametro.CATEGORIA_ANIMAL);
-        cantidad = textField("Cantidad");
-        faenado = textField("Faenado");
-        diferencia = textField("Diferencia");
-        kgVivo = textField("Kilogramos vivos");
-        aFaenar = textField("A faenar");
-
-        orden = textField("Orden");
-        categoriaDetalle = new ParamCSComponent("Categoria", getPresentable(), true, true, "Categorias", ETipoParametro.CATEGORIA_ANIMAL);
-        kgIzquierdo = textField("Kilogramos izquierdo");
-        kgDerecho = textField("Kilogramos derecho");
+        dteCS = new DteCS("Tropa", getPresentable(), true, true, false);
 
 
         form.add(
@@ -81,17 +61,8 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
                 envolver(productorCS, "48%"),
                 envolver(dteCS, "50%"),
 
-                envolver(categoria,"28%"),
-                envolver(cantidad,"13%"),
-                envolver(faenado, "13%"),
-                envolver(diferencia, "13%"),
-                envolver(kgVivo,"13%"),
-                envolver(aFaenar,"13%"),
-
-                envolver(orden,"20%"),
-                envolver(categoriaDetalle,"38%"),
-                envolver(kgIzquierdo,"20%"),
-                envolver(kgDerecho,"20%")
+                envolver(vlDetalleSuperior),
+                envolver(vlDetalleInferior)
         );
     }
 
@@ -100,6 +71,15 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
     private void productorChanged(HasValue.ValueChangeEvent<?> e, DteCS dteCS) {
 
+    }
+
+    private void dteChanged(HasValue.ValueChangeEvent<?> e) {
+        if(dteCS.getValue() != null){
+            List<DteDetalleCategoria> list = dteCS.getValue().getCategorias();
+            for (DteDetalleCategoria i : list) {
+                vlDetalleSuperior.add(new FaenaDetalleSuperior());
+            }
+        }
     }
 
     @Override
