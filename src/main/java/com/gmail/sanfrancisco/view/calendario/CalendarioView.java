@@ -52,14 +52,6 @@ public class CalendarioView extends Div {
 
         add(calendar);
 
-        Entry entry = new Entry();
-        entry.setTitle("Estamos viendo");
-        entry.setStart(LocalDate.now().withDayOfMonth(29).atTime(11, 0));
-        entry.setEnd(entry.getStart().plusHours(2));
-        entry.setColor("slateblue");
-
-        calendar.addEntry(entry);
-
         initBaseLayoutSettings();
     }
 
@@ -76,7 +68,7 @@ public class CalendarioView extends Div {
                 new BusinessHours(LocalTime.of(0, 0), LocalTime.of(18, 0), DayOfWeek.SUNDAY)
         );
 
-        calendar.addEntryClickedListener(event -> new DemoDialog(calendar, event.getEntry(), false).open());
+        calendar.addEntryClickedListener(event -> new AgendaDialog(calendar, event.getEntry(), false).open());
 
         calendar.addEntryResizedListener(event -> {
             event.applyChangesOnEntry();
@@ -86,6 +78,10 @@ public class CalendarioView extends Div {
             Notification.show(entry.getTitle() + " Cambiado a " + entry.getStart() + " - " + entry.getEnd() + " " + calendar.getTimezone().getClientSideValue() + " por " + event.getDelta());
         });
 
+
+        /**
+         * Mover el objeto
+         */
         calendar.addEntryDroppedListener(event -> {
             event.applyChangesOnEntry();
 
@@ -107,8 +103,15 @@ public class CalendarioView extends Div {
             Notification.show(text);
         });
 
+        /**
+         * al navegar en el calendario actualizar las etiquetas
+         */
         calendar.addViewRenderedListener(event -> updateIntervalLabel(buttonDatePicker, comboBoxView.getValue(), event.getIntervalStart()));
 
+
+        /**
+         * Nuevo item de agenda, click sobre espacio no usado
+         */
         calendar.addTimeslotsSelectedListener(event -> {
             Entry entry = new Entry();
 
@@ -117,14 +120,14 @@ public class CalendarioView extends Div {
             entry.setAllDay(event.isAllDay());
 
             entry.setColor("dodgerblue");
-            new DemoDialog(calendar, entry, true).open();
+            new AgendaDialog(calendar, entry, true).open();
         });
 
         calendar.setLocale(Locale.forLanguageTag("es"));
         Timezone zone = new Timezone( ZoneId.of("America/Argentina/Buenos_Aires") );
         calendar.setTimezone(zone);
         calendar.setWeekNumbersVisible(true);
-        createTestEntries(calendar);
+        ////createTestEntries(calendar);
     }
 
     private void createToolbar() {
@@ -200,6 +203,12 @@ public class CalendarioView extends Div {
         }
     }
 
+    /**
+     * al navegar en el calendario actualizar las etiquetas
+     * @param intervalLabel
+     * @param view
+     * @param intervalStart
+     */
     private void updateIntervalLabel(HasText intervalLabel, CalendarView view, LocalDate intervalStart) {
         String text = "--";
         Locale locale = calendar.getLocale();
@@ -227,22 +236,7 @@ public class CalendarioView extends Div {
                     text = intervalStart.format(DateTimeFormatter.ofPattern("yyyy").withLocale(locale));
                     break;
             }
-//        } else if (view instanceof SchedulerView) {
-//            switch ((SchedulerView) view) {
-//                default:
-//                case TIMELINE_MONTH:
-//                    text = intervalStart.format(DateTimeFormatter.ofPattern("MMMM yyyy").withLocale(locale));
-//                    break;
-//                case TIMELINE_DAY:
-//                    text = intervalStart.format(DateTimeFormatter.ofPattern("dd.MM.yyyy").withLocale(locale));
-//                    break;
-//                case TIMELINE_WEEK:
-//                    text = intervalStart.format(DateTimeFormatter.ofPattern("dd.MM.yy").withLocale(locale)) + " - " + intervalStart.plusDays(6).format(DateTimeFormatter.ofPattern("dd.MM.yy").withLocale(locale)) + " (cw " + intervalStart.format(DateTimeFormatter.ofPattern("ww").withLocale(locale)) + ")";
-//                    break;
-//                case TIMELINE_YEAR:
-//                    text = intervalStart.format(DateTimeFormatter.ofPattern("yyyy").withLocale(locale));
-//                    break;
-//            }
+
         }
 
         intervalLabel.setText(text);
@@ -315,8 +309,8 @@ public class CalendarioView extends Div {
         }
     }
 
-    public static class DemoDialog extends Dialog {
-    DemoDialog(FullCalendar calendar, Entry entry, boolean newInstance) {
+    public static class AgendaDialog extends Dialog {
+        AgendaDialog(FullCalendar calendar, Entry entry, boolean newInstance) {
             setCloseOnEsc(true);
             setCloseOnOutsideClick(true);
 
