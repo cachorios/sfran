@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="saldocomisionista" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="451"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="535"/>
@@ -54,7 +54,7 @@ FROM dte
 JOIN comisionista AS com
 ON dte.comisionista_id=com.id
 WHERE dte.comisionista_id=$P{p_Id}
-AND dte.fechacarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal})
+AND dte.fechacarga BETWEEN $P{p_FechaInicial}::timestamp::date AND $P{p_FechaFinal}::timestamp::date)
 UNION ALL
 (SELECT
 dte.fechacarga,
@@ -76,10 +76,10 @@ ON dte.id=ddc.dte_id
 LEFT JOIN parametro AS c
 ON ddc.categoria_id=c.id and c.tipo=8
 WHERE dte.comisionista_id=$P{p_Id}
-AND dte.fechacarga BETWEEN $P{p_FechaInicial} AND $P{p_FechaFinal}))
+AND dte.fechacarga BETWEEN $P{p_FechaInicial}::timestamp::date AND $P{p_FechaFinal}::timestamp::date))
 ORDER BY fechacarga, numerotropa, descCategoria]]>
 	</queryString>
-	<field name="fechacarga" class="java.sql.Date">
+	<field name="fechacarga" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="fechacarga"/>
 	</field>
 	<field name="numerotropa" class="java.lang.String">
