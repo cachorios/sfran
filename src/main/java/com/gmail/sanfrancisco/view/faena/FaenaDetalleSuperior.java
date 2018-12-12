@@ -18,6 +18,7 @@ public class FaenaDetalleSuperior extends Div {
     private TextField aFaenar;
 
     public FaenaDetalleSuperior(){
+        setWidth("800px");
         //categoria = new ParamCSComponent("Categoria", ((DefaultInnerDialog<>)this.getParent()).getPresentable(), true, true, "Categorias", ETipoParametro.CATEGORIA_ANIMAL);
         cantidad = textField("Cantidad", "12%");
         faenado = textField("Faenado", "12%");
@@ -25,8 +26,8 @@ public class FaenaDetalleSuperior extends Div {
         kgVivo = textField("Kilogramos vivos", "12%");
         aFaenar = textField("A Faenar", "12%");
 
-/*        add(
-                envolver(categoria, "30%"),
+        /*add(
+                //envolver(categoria, "30%"),
                 envolver(cantidad),
                 envolver(faenado),
                 envolver(diferencia),
