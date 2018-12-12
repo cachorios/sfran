@@ -52,14 +52,6 @@ public class CalendarioView extends Div {
 
         add(calendar);
 
-        Entry entry = new Entry();
-        entry.setTitle("Estamos viendo");
-        entry.setStart(LocalDate.now().withDayOfMonth(29).atTime(11, 0));
-        entry.setEnd(entry.getStart().plusHours(2));
-        entry.setColor("slateblue");
-
-        calendar.addEntry(entry);
-
         initBaseLayoutSettings();
     }
 
@@ -76,7 +68,10 @@ public class CalendarioView extends Div {
                 new BusinessHours(LocalTime.of(0, 0), LocalTime.of(18, 0), DayOfWeek.SUNDAY)
         );
 
-        calendar.addEntryClickedListener(event -> new DemoDialog(calendar, event.getEntry(), false).open());
+        /**
+         * para editar un dato
+         */
+        calendar.addEntryClickedListener(event -> new AgendaDialog(calendar, event.getEntry(), false).open());
 
         calendar.addEntryResizedListener(event -> {
             event.applyChangesOnEntry();
@@ -86,6 +81,10 @@ public class CalendarioView extends Div {
             Notification.show(entry.getTitle() + " Cambiado a " + entry.getStart() + " - " + entry.getEnd() + " " + calendar.getTimezone().getClientSideValue() + " por " + event.getDelta());
         });
 
+
+        /**
+         * Mover el objeto
+         */
         calendar.addEntryDroppedListener(event -> {
             event.applyChangesOnEntry();
 
@@ -96,19 +95,26 @@ public class CalendarioView extends Div {
             String text = entry.getTitle() + " moved to " + start + " - " + end + " " + calendar.getTimezone().getClientSideValue()+ " by " + event.getDelta();
 
             //
-            if(entry instanceof ResourceEntry) {
-                Set<Resource> resources = ((ResourceEntry) entry).getResources();
-                if(!resources.isEmpty()) {
-                    text += text + " - rooms are " + resources;
-                }
-            }
+//            if(entry instanceof ResourceEntry) {
+//                Set<Resource> resources = ((ResourceEntry) entry).getResources();
+//                if(!resources.isEmpty()) {
+//                    text += text + " - rooms are " + resources;
+//                }
+//            }
 
 
             Notification.show(text);
         });
 
+        /**
+         * al navegar en el calendario actualizar las etiquetas
+         */
         calendar.addViewRenderedListener(event -> updateIntervalLabel(buttonDatePicker, comboBoxView.getValue(), event.getIntervalStart()));
 
+
+        /**
+         * Nuevo item de agenda, click sobre espacio no usado
+         */
         calendar.addTimeslotsSelectedListener(event -> {
             Entry entry = new Entry();
 
@@ -117,14 +123,14 @@ public class CalendarioView extends Div {
             entry.setAllDay(event.isAllDay());
 
             entry.setColor("dodgerblue");
-            new DemoDialog(calendar, entry, true).open();
+            new AgendaDialog(calendar, entry, true).open();
         });
 
         calendar.setLocale(Locale.forLanguageTag("es"));
-        Timezone zone = new Timezone( ZoneId.of("America/Argentina/Buenos_Aires") );
-        calendar.setTimezone(zone);
+       // Timezone zone = new Timezone( ZoneId.of("America/Argentina/Buenos_Aires") );
+//        calendar.setTimezone(zone);
         calendar.setWeekNumbersVisible(true);
-        createTestEntries(calendar);
+        ////createTestEntries(calendar);
     }
 
     private void createToolbar() {
@@ -200,6 +206,12 @@ public class CalendarioView extends Div {
         }
     }
 
+    /**
+     * al navegar en el calendario actualizar las etiquetas
+     * @param intervalLabel
+     * @param view
+     * @param intervalStart
+     */
     private void updateIntervalLabel(HasText intervalLabel, CalendarView view, LocalDate intervalStart) {
         String text = "--";
         Locale locale = calendar.getLocale();
@@ -227,22 +239,7 @@ public class CalendarioView extends Div {
                     text = intervalStart.format(DateTimeFormatter.ofPattern("yyyy").withLocale(locale));
                     break;
             }
-//        } else if (view instanceof SchedulerView) {
-//            switch ((SchedulerView) view) {
-//                default:
-//                case TIMELINE_MONTH:
-//                    text = intervalStart.format(DateTimeFormatter.ofPattern("MMMM yyyy").withLocale(locale));
-//                    break;
-//                case TIMELINE_DAY:
-//                    text = intervalStart.format(DateTimeFormatter.ofPattern("dd.MM.yyyy").withLocale(locale));
-//                    break;
-//                case TIMELINE_WEEK:
-//                    text = intervalStart.format(DateTimeFormatter.ofPattern("dd.MM.yy").withLocale(locale)) + " - " + intervalStart.plusDays(6).format(DateTimeFormatter.ofPattern("dd.MM.yy").withLocale(locale)) + " (cw " + intervalStart.format(DateTimeFormatter.ofPattern("ww").withLocale(locale)) + ")";
-//                    break;
-//                case TIMELINE_YEAR:
-//                    text = intervalStart.format(DateTimeFormatter.ofPattern("yyyy").withLocale(locale));
-//                    break;
-//            }
+
         }
 
         intervalLabel.setText(text);
@@ -315,83 +312,6 @@ public class CalendarioView extends Div {
         }
     }
 
-    public static class DemoDialog extends Dialog {
-    DemoDialog(FullCalendar calendar, Entry entry, boolean newInstance) {
-            setCloseOnEsc(true);
-            setCloseOnOutsideClick(true);
-
-            VerticalLayout layout = new VerticalLayout();
-            layout.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.STRETCH);
-            layout.setSizeFull();
-
-            TextField fieldTitle = new TextField("Title");
-            fieldTitle.focus();
-
-            ComboBox<String> fieldColor = new ComboBox<>("Color", COLORS);
-            TextArea fieldDescription = new TextArea("Description");
-
-            layout.add(fieldTitle, fieldColor, fieldDescription);
-
-            TextField fieldStart = new TextField("Start");
-            fieldStart.setEnabled(false);
-
-            TextField fieldEnd = new TextField("End");
-            fieldEnd.setEnabled(false);
-
-            fieldStart.setValue(calendar.getTimezone().formatWithZoneId(entry.getStartUTC()));
-            fieldEnd.setValue(calendar.getTimezone().formatWithZoneId(entry.getEndUTC()));
-
-            Checkbox fieldAllDay = new Checkbox("All day event");
-            fieldAllDay.setValue(entry.isAllDay());
-            fieldAllDay.setEnabled(false);
-
-            layout.add(fieldStart, fieldEnd, fieldAllDay);
-
-            Binder<Entry> binder = new Binder<>(Entry.class);
-            binder.forField(fieldTitle)
-                    .asRequired()
-                    .bind(Entry::getTitle, Entry::setTitle);
-
-            binder.bind(fieldColor, Entry::getColor, Entry::setColor);
-            binder.bind(fieldDescription, Entry::getDescription, Entry::setDescription);
-            binder.setBean(entry);
-
-            HorizontalLayout buttons = new HorizontalLayout();
-            Button buttonSave;
-            if (newInstance) {
-                buttonSave = new Button("Create", e -> {
-                    if (binder.validate().isOk()) {
-                        calendar.addEntry(entry);
-                    }
-                });
-            } else {
-                buttonSave = new Button("Save", e -> {
-                    if (binder.validate().isOk()) {
-                        calendar.updateEntry(entry);
-                    }
-                });
-            }
-            buttonSave.addClickListener(e -> close());
-            buttons.add(buttonSave);
-
-            Button buttonCancel = new Button("Cancel", e -> close());
-            buttonCancel.getElement().getThemeList().add("tertiary");
-            buttons.add(buttonCancel);
-
-            if (!newInstance) {
-                Button buttonRemove = new Button("Remove", e -> {
-                    calendar.removeEntry(entry);
-                    close();
-                });
-                ThemeList themeList = buttonRemove.getElement().getThemeList();
-                themeList.add("error");
-                themeList.add("tertiary");
-                buttons.add(buttonRemove);
-            }
-
-            add(layout, buttons);
-        }
-    }
 
     private void createTestEntries(FullCalendar calendar) {
         LocalDate now = LocalDate.now();

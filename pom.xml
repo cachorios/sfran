@@ -240,16 +240,16 @@
                 <version>8.0.0-M1</version>
                 <configuration>
                     <!-- esto en modo desarrollo-->
-                    <!--<tomeeClassifier>webprofile</tomeeClassifier>-->
-                    <!--<context>ROOT</context>-->
+                    <tomeeClassifier>webprofile</tomeeClassifier>
+                    <context>ROOT</context>
+
                     <!-- modo produccion -->
-
-
-                    <tomeeClassifier>plus</tomeeClassifier>
-                    <debug>false</debug>
-                    <debugPort>5005</debugPort>
-                    <args>-Dvaadin.productionMode</args>
-                    <config>${project.basedir}/src/test/tomee/conf</config>
+                    <!--<tomeeClassifier>plus</tomeeClassifier>-->
+                    <!--<debug>false</debug>-->
+                    <!--<debugPort>5005</debugPort>-->
+                    <!--<args>-Dvaadin.productionMode</args>-->
+                    <!--<config>${project.basedir}/src/test/tomee/conf</config>-->
+                    <!-- fin modo prod-->
 
                     <webapps>
                         <webapp>org.superbiz:myapp:4.3?name=ROOT</webapp>

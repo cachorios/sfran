@@ -2,6 +2,8 @@ package com.gmail.cacho.slbase.core;
 
         import java.text.SimpleDateFormat;
         import java.time.LocalDate;
+        import java.time.LocalDateTime;
+        import java.time.ZoneId;
         import java.time.format.DateTimeFormatter;
         import java.util.Calendar;
         import java.util.Date;
@@ -15,6 +17,18 @@ public abstract class Fecha {
     static public LocalDate toLocalDate(Date date) {
         return ((date != null) ? LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(date)) : null);
     }
+
+    static public LocalDateTime toLocalDateTime(Date date) {
+        return date != null ? date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime() : null;
+
+    }
+
+    static public Date toDate(LocalDateTime ldt){
+        return ldt != null ? Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant()) : null;
+    }
+
+
+
 
     static public Date truncateDate(Date date) {
         return toDate(toLocalDate(date));
