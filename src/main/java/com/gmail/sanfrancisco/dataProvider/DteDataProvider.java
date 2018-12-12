@@ -18,5 +18,7 @@ public class DteDataProvider extends FilterablePageableDataProvider<Dte, Long, S
                 new QuerySortOrder("id", SortDirection.ASCENDING))
         );
     }
+
+
 }
 
