@@ -83,7 +83,7 @@ public class GraseriaCostoInsumoInnerForm extends DefaultInnerDialog<GraseriaCos
 
         binder.bind(insumoCS, "insumo");
 
-        binder.forField(cantidad).withConverter(new IntegerConverter()).bind("cantidad");
+        binder.forField(cantidad).withConverter(new DoubleConverter()).bind("cantidad");
 
         binder.forField(precio).withConverter(new DoubleConverter()).bind("precio");
 
