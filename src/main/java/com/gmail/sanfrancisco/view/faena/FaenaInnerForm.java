@@ -78,6 +78,7 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
         if(productorCS.getValue() != null){
             dteCS.setEnabled(true);
             dteCS.setProductor((Productor)productorCS.getValue());
+            dteCS.limpiar();
             dteCS.setValue(null);
         }
     }
