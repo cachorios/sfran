@@ -14,7 +14,7 @@ public interface DteRepositorio extends EntityRepository<Dte, Long>, EntityManag
             @MaxResults int limit,
             @QueryParam("filter") String filter);
 
-    @Query("SELECT DISTINCT e FROM Dte e JOIN e.categorias f WHERE f.productor = :productor")
+    @Query("SELECT  e FROM Dte e ,IN(e.categorias) f WHERE f.productor = :productor")
     QueryResult<Dte> findFiltered(
             @FirstResult int offset,
             @MaxResults int limit,

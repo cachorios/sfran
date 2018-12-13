@@ -33,7 +33,7 @@ VALUES
   (26, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PREF', 'DTE',                           14, 2, FALSE, NULL,  8,  25,  'com.gmail.sanfrancisco.view.dte.DteView', 1),
 
   (30, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PREF', 'Faena',                         15, 2, FALSE, NULL,  8,  0,  'Faena', 1),
-  (31, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PREF', 'Faena',                         16, 2, FALSE, NULL,  9,  31,  'com.gmail.sanfrancisco.view.faena.FaenaView', 1),
+  (31, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PREF', 'Faena',                         16, 2, FALSE, NULL,  9,  30,  'com.gmail.sanfrancisco.view.faena.FaenaView', 1),
 
   (90, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Parametros del Sistema',       900, 2, FALSE, NULL,  9,   0,  'Configuracion General del Sistema', 1),
   (91, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Parametros Generales',         901, 2, FALSE, NULL, 10,  90,  'com.gmail.cacho.backend.views.parametro.ParamView', 1),
