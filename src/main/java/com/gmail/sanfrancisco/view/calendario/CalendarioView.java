@@ -3,6 +3,9 @@ package com.gmail.sanfrancisco.view.calendario;
 
 import com.github.appreciated.app.layout.annotations.MenuIcon;
 import com.gmail.cacho.slapi.layout.MainView;
+import com.gmail.cacho.slbase.core.Fecha;
+import com.gmail.sanfrancisco.entidad.Agenda;
+import com.gmail.sanfrancisco.repositorio.AgendaRepository;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -25,13 +28,14 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.vaadin.stefan.fullcalendar.*;
 
+import javax.enterprise.inject.spi.CDI;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 
-@Route(value="calendario-sf", layout = MainView.class)
+@Route(value="agenda", layout = MainView.class)
 @PageTitle("Calendario de Tareas")
 @MenuIcon(VaadinIcon.CALENDAR_ENVELOPE)
 
@@ -39,25 +43,28 @@ public class CalendarioView extends Div {
     private static final String[] COLORS = {"tomato", "orange", "dodgerblue", "mediumseagreen", "gray", "slateblue", "violet"};
     private FullCalendar calendar;
     private Div toolbar;
-    private ComboBox<CalendarView> comboBoxView;
+
     private Button buttonDatePicker;
     private ComboBox<Timezone> timezoneComboBox;
+    private CalendarViewImpl viewMode = CalendarViewImpl.BASIC_WEEK;
 
     public CalendarioView() {
         createToolbar();
         add(toolbar);
         add(new Hr());
 
+        getElement().getStyle().set("margin", "2rem");
         createCalendarInstance();
 
         add(calendar);
 
         initBaseLayoutSettings();
+
     }
 
     private void createCalendarInstance() {
         calendar = FullCalendarBuilder.create().withEntryLimit(5).build();
-        calendar.changeView(CalendarViewImpl.AGENDA_WEEK);
+        calendar.changeView(CalendarViewImpl.BASIC_WEEK);
 
         calendar.setNowIndicatorShown(true);
         calendar.setNumberClickable(true);
@@ -109,7 +116,7 @@ public class CalendarioView extends Div {
         /**
          * al navegar en el calendario actualizar las etiquetas
          */
-        calendar.addViewRenderedListener(event -> updateIntervalLabel(buttonDatePicker, comboBoxView.getValue(), event.getIntervalStart()));
+        calendar.addViewRenderedListener(event -> updateIntervalLabel(buttonDatePicker, viewMode, event.getIntervalStart()));
 
 
         /**
@@ -139,16 +146,26 @@ public class CalendarioView extends Div {
         Button buttonNext = new Button("Sigueinte", VaadinIcon.ANGLE_RIGHT.create(), e -> calendar.next());
         buttonNext.setIconAfterText(true);
 
+        Button vistaSemanaBasico = new Button("Semanal", e -> {viewMode = CalendarViewImpl.BASIC_WEEK; changeViewMode()  ;});
+        Button vistaSemana = new Button("Agenda Semanal", e -> {viewMode = CalendarViewImpl.AGENDA_WEEK; changeViewMode()  ;});
+        Button vistaListaSemana = new Button("Lista Semana", e -> {viewMode = CalendarViewImpl.LIST_WEEK; changeViewMode()  ;});
+        Button vistaBasicDia = new Button("Diario", e -> {viewMode = CalendarViewImpl.BASIC_DAY; changeViewMode()  ;});
+        Button vistaDia = new Button("Agenda Diaria", e -> {viewMode = CalendarViewImpl.AGENDA_DAY; changeViewMode()  ;});
+        Button vistaListaDia = new Button("Lista Dia", e -> {viewMode = CalendarViewImpl.LIST_DAY; changeViewMode()  ;});
+        Button vistaMes = new Button("Mensual", e -> {viewMode = CalendarViewImpl.MONTH; changeViewMode()  ;});
+        Button vistaListaMes = new Button("Lista Mensual", e -> {viewMode = CalendarViewImpl.LIST_MONTH; changeViewMode()  ;});
+        Button vistaAnio = new Button("Lista Anual", e -> {viewMode = CalendarViewImpl.LIST_YEAR; changeViewMode()  ;});
 
-        List<CalendarView> calendarViews = new ArrayList<>();
-        calendarViews.addAll(Arrays.asList(CalendarViewImpl.values()));
-        ////calendarViews.addAll(Arrays.asList(SchedulerView.values()));
-        comboBoxView = new ComboBox<>("", calendarViews);
-        comboBoxView.setValue(CalendarViewImpl.MONTH);
-        comboBoxView.addValueChangeListener(e -> {
-            CalendarView value = e.getValue();
-            calendar.changeView(value == null ? CalendarViewImpl.MONTH : value);
-        });
+
+//        List<CalendarView> calendarViews = new ArrayList<>();
+//        calendarViews.addAll(Arrays.asList(CalendarViewImpl.values()));
+//        ////calendarViews.addAll(Arrays.asList(SchedulerView.values()));
+//        comboBoxView = new ComboBox<>("", calendarViews);
+//        comboBoxView.setValue(CalendarViewImpl.MONTH);
+//        comboBoxView.addValueChangeListener(e -> {
+//            CalendarView value = e.getValue();
+//            calendar.changeView(value == null ? CalendarViewImpl.MONTH : value);
+//        });
 
         // simulate the date picker light that we can use in polymer
         DatePicker gotoDate = new DatePicker();
@@ -186,9 +203,30 @@ public class CalendarioView extends Div {
         });
 
 
-//        toolbar = new Div(buttonToday, buttonPrevious,buttonDatePicker, buttonNext, comboBoxView,buttonHeight,cbWeekNumbers,comboBoxLocales, timezoneComboBox);
-        toolbar = new Div(buttonToday, buttonPrevious,buttonDatePicker, buttonNext, comboBoxView,buttonHeight);
+
+
+        toolbar = new Div( buttonPrevious,buttonToday,buttonDatePicker,
+                vistaSemanaBasico, vistaSemana, vistaListaSemana,
+                vistaBasicDia, vistaDia, vistaListaDia,
+                vistaMes, vistaListaMes, vistaAnio,
+                buttonNext, buttonHeight);
+        toolbar.setWidth("80%");
+
+//        toolbar.getElement().getStyle().set("flex-grow", "1");
+
+        toolbar.getElement().getStyle().set("display", "flex");
+        toolbar.getElement().getStyle().set("align-items", "center");
+        toolbar.getElement().getStyle().set("justify-content", "space-between");
+
+        toolbar.getElement().getStyle().set("background", "#E8E8E8");
+
     }
+
+    private void changeViewMode() {
+        calendar.changeView(viewMode);
+
+    }
+
     private void initBaseLayoutSettings() {
         setSizeFull();
         calendar.setHeightByParent();
@@ -198,6 +236,7 @@ public class CalendarioView extends Div {
         if (flexStyles) {
             calendar.getElement().getStyle().set("flex-grow", "1");
             getElement().getStyle().set("display", "flex");
+            getElement().getStyle().set("align-items", "center");
             getElement().getStyle().set("flex-direction", "column");
         } else {
             calendar.getElement().getStyle().remove("flex-grow");
@@ -214,9 +253,11 @@ public class CalendarioView extends Div {
      */
     private void updateIntervalLabel(HasText intervalLabel, CalendarView view, LocalDate intervalStart) {
         String text = "--";
+        String modo = "";
         Locale locale = calendar.getLocale();
-
+        Date hasta;
         if (view == null) {
+            modo = "MES";
             text = intervalStart.format(DateTimeFormatter.ofPattern("MMMM yyyy").withLocale(locale));
         } else if (view instanceof CalendarViewImpl) {
             switch ((CalendarViewImpl) view) {
@@ -224,25 +265,69 @@ public class CalendarioView extends Div {
                 case MONTH:
                 case LIST_MONTH:
                     text = intervalStart.format(DateTimeFormatter.ofPattern("MMMM yyyy").withLocale(locale));
+                    modo = "MES";
                     break;
                 case AGENDA_DAY:
                 case BASIC_DAY:
                 case LIST_DAY:
                     text = intervalStart.format(DateTimeFormatter.ofPattern("dd.MM.yyyy").withLocale(locale));
+                    modo = "DIA";
                     break;
                 case AGENDA_WEEK:
                 case BASIC_WEEK:
                 case LIST_WEEK:
                     text = intervalStart.format(DateTimeFormatter.ofPattern("dd.MM.yy").withLocale(locale)) + " - " + intervalStart.plusDays(6).format(DateTimeFormatter.ofPattern("dd.MM.yy").withLocale(locale)) + " (cw " + intervalStart.format(DateTimeFormatter.ofPattern("ww").withLocale(locale)) + ")";
+                    modo = "SEMANA";
                     break;
                 case LIST_YEAR:
                     text = intervalStart.format(DateTimeFormatter.ofPattern("yyyy").withLocale(locale));
+                    modo = "ANIO";
                     break;
             }
 
         }
+        hasta = getRangoHasta(intervalStart, modo);
+        refreshData(Fecha.toDate(intervalStart), hasta);
 
         intervalLabel.setText(text);
+    }
+
+    private void refreshData(Date desde, Date hasta) {
+        Calendar cal = Calendar.getInstance();
+
+        calendar.removeAllEntries();
+        AgendaRepository repo = CDI.current().select(AgendaRepository.class).get();
+
+        cal.setTime(desde);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        desde = cal.getTime();
+
+        cal.setTime(hasta);
+        cal.set(Calendar.HOUR_OF_DAY, 24);
+        hasta = cal.getTime();
+
+        List<Agenda> lista = repo.agendaaByRangoFecha(desde, hasta);
+        lista.forEach(agenda -> calendar.addEntry(agenda.getEntry()));
+    }
+
+    private Date getRangoHasta(LocalDate desde, String modo){
+        Date hasta = null;
+        switch (modo){
+            default:
+            case "MES":
+                hasta = Fecha.finMes(Fecha.toDate(desde));
+                break;
+            case "DIA":
+                hasta = Fecha.toDate(desde);
+                break;
+            case "SEMANA":
+                hasta = Fecha.toDate(desde.plusDays(7));
+                break;
+            case "ANIO":
+                hasta = Fecha.toDate(desde.plusDays(365));
+                break;
+        }
+        return hasta;
     }
 
 

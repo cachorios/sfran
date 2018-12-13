@@ -38,9 +38,14 @@ public class Agenda extends AbstractEntidad {
     }
 
     public Entry getEntry(){
+        String titulo = title;
+        if(conductor != null && comisionista != null){
+            titulo =  conductor.getNombre()+ " - " + comisionista.getNombre() + "\n "+ titulo;
+        }
+
         return new Entry(
                 getId() == null ? null :  getId().toString(),
-                title,
+                titulo,
                 Fecha.toLocalDateTime(start),
                 Fecha.toLocalDateTime(end),
                 allDay,

@@ -1,8 +1,14 @@
 package com.gmail.sanfrancisco.view.calendario;
 
+import com.gmail.cacho.backend.entidad.AbstractEntidad;
+import com.gmail.cacho.slapi.view.enums.EModoVista;
+import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
 import com.gmail.cacho.slbase.core.Fecha;
 import com.gmail.sanfrancisco.entidad.Agenda;
 import com.gmail.sanfrancisco.repositorio.AgendaRepository;
+import com.gmail.sanfrancisco.view.comisionista.ComisionistaCS;
+import com.gmail.sanfrancisco.view.conductor.ConductorCS;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -19,7 +25,7 @@ import org.vaadin.stefan.fullcalendar.FullCalendar;
 
 import javax.enterprise.inject.spi.CDI;
 
-public class AgendaDialog  extends Dialog {
+public class AgendaDialog  extends Dialog  implements IVisualizable {
     private static final String[] COLORS = {"tomato", "orange", "dodgerblue", "mediumseagreen", "gray", "slateblue", "violet"};
     private AgendaRepository repository;
     AgendaDialog(FullCalendar calendar, Entry entry, boolean newInstance) {
@@ -41,13 +47,16 @@ public class AgendaDialog  extends Dialog {
         layout.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.STRETCH);
         layout.setSizeFull();
 
+        ConductorCS conductorCS = new ConductorCS("Conductor", this, true, true, false);
+        ComisionistaCS comisionistaCS = new ComisionistaCS("Comisionista", this,true,true, false);
+
         TextField fieldTitle = new TextField("Titulo");
         fieldTitle.focus();
 
         ComboBox<String> fieldColor = new ComboBox<>("Color", COLORS);
         TextArea fieldDescription = new TextArea("Descripción");
 
-        layout.add(fieldTitle, fieldColor, fieldDescription);
+        layout.add(fieldTitle, conductorCS, comisionistaCS, fieldColor, fieldDescription);
 
         TextField fieldStart = new TextField("Inicio");
         fieldStart.setEnabled(false);
@@ -66,6 +75,7 @@ public class AgendaDialog  extends Dialog {
 
         Checkbox fieldAllDay = new Checkbox("Evento del día");
         fieldAllDay.setValue(entry.isAllDay());
+        agendaEntry.setAllDay(entry.isAllDay());
         fieldAllDay.setEnabled(false);
 
         layout.add(fieldStart, fieldEnd, fieldAllDay);
@@ -77,6 +87,8 @@ public class AgendaDialog  extends Dialog {
 
         binder.bind(fieldColor, "color");
         binder.bind(fieldDescription, "description");
+        binder.bind(conductorCS, "conductor");
+        binder.bind(comisionistaCS, "comisionista");
 
         binder.setBean(agendaEntry);
 
@@ -119,5 +131,36 @@ public class AgendaDialog  extends Dialog {
         }
 
         add(layout, buttons);
+    }
+
+
+    @Override
+    public void iniciar(EModoVista modo, AbstractEntidad item) {
+
+    }
+
+    @Override
+    public EModoVista getModoVista() {
+        return null;
+    }
+
+    @Override
+    public Component getViewComponent() {
+        return null;
+    }
+
+    @Override
+    public void cerrar() {
+
+    }
+
+    @Override
+    public IVisualizable getPadre() {
+        return null;
+    }
+
+    @Override
+    public void setPadre(IVisualizable padre) {
+
     }
 }

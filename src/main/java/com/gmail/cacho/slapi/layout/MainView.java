@@ -14,6 +14,7 @@ import com.gmail.cacho.slapi.dialogs.WinChangePass;
 import com.gmail.cacho.slapi.utils.MenuService;
 import com.gmail.cacho.slbase.security.Events;
 
+import com.google.common.eventbus.Subscribe;
 import com.vaadin.flow.component.dependency.HtmlImport;
 
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -50,7 +51,7 @@ public class MainView extends AppLayoutRouterLayout {
 
         // Aqui organiza el layout general con titulo
         // y con la barra superior (y establece el diseño)
-        AppLayoutBuilder alb = AppLayoutBuilder.get(Behaviour.LEFT).withTitle(Sistema.getSistema().getTitulo())
+        AppLayoutBuilder alb = AppLayoutBuilder.get(Behaviour.LEFT_HYBRID).withTitle(Sistema.getSistema().getTitulo())
                 .withAppBar(AppBarBuilder.get().add(tc1).add(tc2).build())
                 .withDesign(AppLayoutDesign.DEFAULT);//.MATERIAL);
 
@@ -70,4 +71,6 @@ public class MainView extends AppLayoutRouterLayout {
 
         return alb.withAppMenu(lamb.build()).build();
     }
+
+
 }
