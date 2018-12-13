@@ -38,7 +38,7 @@ public class DteService extends ServicioModelo<Dte> {
     public Stream<Dte> findAnyMatching(Object padre, Productor productor, int offset, int limit, List<QuerySortOrder> sortOrders) {
         QueryResult<Dte> result = ((DteRepositorio)repo).findFiltered( offset, limit, productor);
 
-
+        //return result.getResultList().stream();
         return QueryHelper.applyLimitsAndSortOrder(result, offset, limit, sortOrders).getResultList().stream();
     }
 

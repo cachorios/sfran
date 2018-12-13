@@ -20,6 +20,7 @@ public class FaenaDetalleInferior extends Div {
     private TextField kgDerecho;
 
     public FaenaDetalleInferior() {
+        setWidth("100%");
         //dteCSDetalle = new DteCS("Tropa", (IPresentable<Faena>)this.getParent()).getPresentable(), true, true, true);
 
         orden = textField("Cantidad");
