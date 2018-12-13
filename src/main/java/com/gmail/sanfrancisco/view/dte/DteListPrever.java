@@ -65,11 +65,11 @@ public class DteListPrever extends AbstractPreview<Dte> {
          * Solo para prueba de query
          */
 
-        FaenaRepositorio repo = CDI.current().select(FaenaRepositorio.class).get();
+        /*FaenaRepositorio repo = CDI.current().select(FaenaRepositorio.class).get();
 
         List list = repo.SaldoCategoria(this.registroPreview);
 
-        add(new Label("Cantidad de Dlle" + list.size()));
+        add(new Label("Cantidad de Dlle" + list.size()));*/
 
     }
 

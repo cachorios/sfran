@@ -17,6 +17,7 @@ import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Anchor;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -46,7 +47,7 @@ public class DteInnerList extends DefaultInnerListPolymer<Dte> {
         pdfBtn = new ReportSelector("Imprimir", VaadinIcon.PRINT.create());
 
         pdfBtn.add("Listado", "dtes.jrxml", this::crearParametroReporte);
-        pdfBtn.add("Saldo de la tropa", "saldotropa.jrxml", this::crearParametroReporteIndividual);
+        pdfBtn.addform("Saldo de la tropa", "saldotropa.jrxml", this::dialogNotificacion);
         pdfBtn.addform("Precio por categoria", "preciocategoriaanimal.jrxml", this::formFilter);
 
 
@@ -123,6 +124,34 @@ public class DteInnerList extends DefaultInnerListPolymer<Dte> {
 
         return dialog;
 
+    }
+
+    private Component dialogNotificacion() {
+        Component data = null;
+
+        Dialog dialog = pdfBtn.getDialog();
+        Label notificacion = new Label("Seleccione un DTE.");
+
+        Button btnCancel = new Button("Cancelar", e -> dialog.close());
+        VerticalLayout contenedor = new VerticalLayout(new HorizontalLayout(notificacion, btnCancel));
+
+        dialog.setHeight("50px");
+        dialog.setWidth("300px");
+
+        dialog.removeAll();
+        dialog.add(contenedor);
+
+        if(this.getPresentable().getObjetoActivo() != null){
+            if (pdfBtn.getTipo() == 1) {
+                pdfBtn.genPdf(pdfBtn.getFileName(), pdfBtn.getRepFile(), this::crearParametroReporteIndividual);
+            } else {
+                pdfBtn.genXls(pdfBtn.getFileName(), pdfBtn.getRepFile(), this::crearParametroReporteIndividual);
+            }
+        } else {
+            dialog.open();
+        }
+
+        return dialog;
     }
 
     private void defineRangoFechas(DatePicker startDatePicker, DatePicker endDatePicker) {
