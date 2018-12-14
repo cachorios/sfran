@@ -37,7 +37,7 @@ VALUES
 
   (90, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Parametros del Sistema',       900, 2, FALSE, NULL,  9,   0,  'Configuracion General del Sistema', 1),
   (91, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Parametros Generales',         901, 2, FALSE, NULL, 10,  90,  'com.gmail.cacho.backend.views.parametro.ParamView', 1),
-  (96, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Usuarios',                     906, 2, FALSE, NULL, 11,  90, 'com.gmail.cacho.backend.views.UsuariosView', 1);
+  (96, NULL, '2017-11-03', 'UNKNOW', 'UNKNOW', 'MENU.PARA', 'Usuarios',                     906, 2, FALSE, NULL, 11,  90, 'com.gmail.cacho.backend.views.usuarios.UsuariosView', 1);
 
            
 INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES (36000, 'UNKNOW', 'UNKNOW', 'ESPECIE', 'BOVINO ', 1, 21,  1);
