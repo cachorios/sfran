@@ -4,18 +4,27 @@ import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.sanfrancisco.converter.IntegerConverter;
-import com.gmail.sanfrancisco.entidad.DteDetalleCategoria;
-import com.gmail.sanfrancisco.entidad.Faena;
-import com.gmail.sanfrancisco.entidad.Productor;
+import com.gmail.sanfrancisco.entidad.*;
+import com.gmail.sanfrancisco.repositorio.FaenaRepositorio;
 import com.gmail.sanfrancisco.view.dte.DteCS;
 import com.gmail.sanfrancisco.view.productor.ProductorCS;
+import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
+import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.internal.AbstractFieldSupport;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.shared.Registration;
+
+import javax.enterprise.inject.spi.CDI;
+import java.util.List;
+import java.util.Objects;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.dateField;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
@@ -24,11 +33,9 @@ import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
     private DatePicker fecha;
     private TextField numero;
+    private FaenaProductorEditor faenaProductorEditor;
 
-    private ProductorCS productorCS;
-    private DteCS dteCS;
-
-    private VerticalLayout vlDetalleSuperior;
+    private FaenaCabeceraEditor cabecera;
     private VerticalLayout vlDetalleInferior;
 
     public FaenaInnerForm(IPresentableForm<Faena> presentable, String elTitulo) {
@@ -42,49 +49,26 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
         numero = textField("Numero");
         fecha = dateField("Fecha");
 
-        productorCS = new ProductorCS("Productor", getPresentable(), true, true, true);
-        productorCS.addValueChangeListener(e-> {this.productorChanged(e, dteCS);});
-        dteCS = new DteCS("Tropa", getPresentable(), true, true, false);
-        dteCS.setEnabled(false);
-        dteCS.addValueChangeListener(e-> {this.dteChanged(e);});
+        faenaProductorEditor = new FaenaProductorEditor();
 
-        vlDetalleSuperior = new VerticalLayout();
+        cabecera = new FaenaCabeceraEditor(getPresentable());
+
         vlDetalleInferior = new VerticalLayout();
 
         form.add(
             envolver(fecha, "48%"),
             envolver(numero, "50%"),
-
-            envolver(productorCS, "48%"),
-            envolver(dteCS, "50%"),
-
-            envolver(vlDetalleSuperior),
+            envolver(faenaProductorEditor,"100%"),
+            envolver(cabecera),
             envolver(vlDetalleInferior)
         );
+
     }
 
     @Override
     public Focusable getPrimerElementoForm() { return numero; }
 
-    private void productorChanged(HasValue.ValueChangeEvent<?> e, DteCS dteCS) {
-        if(productorCS.getValue() != null){
-            dteCS.setEnabled(true);
-            dteCS.setProductor((Productor)productorCS.getValue());
-            dteCS.limpiar();
-            dteCS.setValue(null);
-        }
-    }
 
-    private void dteChanged(HasValue.ValueChangeEvent<?> e) {
-        if(dteCS.getValue() != null){
-            vlDetalleSuperior.removeAll();
-            for (DteDetalleCategoria i : dteCS.getValue().getCategorias()) {
-                vlDetalleSuperior.add(new FaenaCabecera());
-            }
-        } else {
-            vlDetalleSuperior.removeAll();
-        }
-    }
 
     @Override
     public void bindFormFields(BeanValidationBinder<Faena> binder) {
@@ -93,7 +77,102 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
                 .bind(Faena::getFecha, Faena::setFecha);
 
         binder.forField(numero).withConverter(new IntegerConverter()).bind("numero");
-
+        binder.forField(faenaProductorEditor).bind("faenaProductor");
         binder.bindInstanceFields(this);
+    }
+
+    protected class FaenaProductorEditor extends HorizontalLayout implements HasValueAndElement<AbstractField.ComponentValueChangeEvent<FaenaProductorEditor, FaenaProductor>,FaenaProductor> {
+        private ProductorCS productorCS;
+        private DteCS dteCS;
+
+        AbstractFieldSupport<FaenaProductorEditor, FaenaProductor> fieldSupport;
+        private BeanValidationBinder<FaenaProductor> binderFP = new BeanValidationBinder<>(FaenaProductor.class);
+        FaenaProductorEditor(){
+            this.setWidth("100%");
+            fieldSupport = new AbstractFieldSupport<>(this, null, Objects::equals, c->{});
+
+            productorCS = new ProductorCS("Productor", getPresentable(), true, true, true);
+            productorCS.addValueChangeListener(e-> {this.productorChanged(e, dteCS);});
+            binderFP.forField(productorCS).bind("productor");
+
+            dteCS = new DteCS("Tropa", getPresentable(), true, true, false);
+            dteCS.setEnabled(false);
+            dteCS.addValueChangeListener(e-> {this.dteChanged(e);});
+            binderFP.forField(dteCS).bind("tropa");
+
+
+            add(envolver(productorCS, "50%"),
+                    envolver(dteCS, "50%"));
+
+        }
+
+        @Override
+        public void setValue(FaenaProductor faenaProductor) {
+            fieldSupport.setValue(faenaProductor);
+            binderFP.setBean(faenaProductor);
+        }
+
+        @Override
+        public FaenaProductor getValue() {
+            return fieldSupport.getValue();
+        }
+
+        @Override
+        public Registration addValueChangeListener(ValueChangeListener<? super AbstractField.ComponentValueChangeEvent<FaenaProductorEditor, FaenaProductor>> valueChangeListener) {
+            return fieldSupport.addValueChangeListener(valueChangeListener);
+        }
+
+        private void productorChanged(HasValue.ValueChangeEvent<?> e, DteCS dteCS) {
+            if(productorCS.getValue() != null){
+                dteCS.setEnabled(true);
+                dteCS.setProductor((Productor)productorCS.getValue());
+                dteCS.limpiar();
+                dteCS.setValue(null);
+            }
+        }
+        private void dteChanged(HasValue.ValueChangeEvent<?> e) {
+            if(dteCS.getValue() != null){
+                FaenaRepositorio repo = CDI.current().select(FaenaRepositorio.class).get();
+                List list = repo.SaldoCategoria(dteCS.getValue());
+
+                if(list.size() > 0){
+                    if(!getPresentable().getObjetoActivo().isNew()) {
+                        cabecera.setValue(getPresentable().getObjetoActivo().getFaenaProductor().getFaenaCabezera());
+//                    getPresentable().getObjetoActivo().getFaenaProductor().forEach(faenaProductor -> {
+//                        if (faenaProductor.getTropa() == dteCS.getValue()) {
+//                            cabecera.setValue(faenaProductor.getFaenaCabezera(), list);
+//                        }
+//                    });
+                    }else{
+                        binderFP.getBean().getFaenaCabezera().clear();
+                        list.forEach(  elemento -> crearElemento((Object[]) elemento) );
+                    }
+                    ////cabecera.setValue( binderFP.getBean().getFaenaCabezera() );
+
+                }else{
+                    Notification.show("No hay animales para faenar", 5, Notification.Position.BOTTOM_END );
+                    return;
+                }
+
+//            cabecera.removeAll();
+//            cabecera = new FaenaCabeceraEditor( this.getPresentable() ,);
+////            for (DteDetalleCategoria i : dteCS.getValue().getCategorias()) {
+////                cabecera.add(new FaenaCabeceraEditor());
+////            }
+            } else {
+                cabecera.removeAll();
+            }
+        }
+
+        private void crearElemento(Object[] e){
+            FaenaCabezera fc = new FaenaCabezera();
+            DteDetalleCategoria dc = (DteDetalleCategoria)e[0];
+            Long faenado = (Long)e[1];
+            if(faenado< dc.getCantidad()) {
+                fc.setCategoria(dc);
+                fc.setFaenado(faenado.intValue());
+                binderFP.getBean().getFaenaCabezera().add(fc);
+            }
+        }
     }
 }

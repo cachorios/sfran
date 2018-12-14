@@ -39,6 +39,7 @@ public class ViewTools {
         return textField(caption, enabled, "100%", ALTO_DEFAULT);
     }
 
+
     public static TextField textField(String caption, String ancho) {
         return textField(caption, true, ancho, ALTO_DEFAULT);
     }

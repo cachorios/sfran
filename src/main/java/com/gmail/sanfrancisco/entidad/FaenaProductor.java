@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,12 +20,23 @@ public class FaenaProductor extends AbstractEntidad {
     @ManyToOne
     private Dte tropa;
 
-    @ManyToOne
-    private Faena faena;
+//    @ManyToOne
+//    private Faena faena;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "faenaProductor", fetch = FetchType.LAZY)
     private List<FaenaCabezera> faenaCabezera;
 
+    public FaenaProductor() {
+        faenaCabezera = new ArrayList<>();
+    }
+
     @Override
     public String toString() { return isNew() ? "Nuevo Faena-Productor" : this.productor.toString(); }
+
+    @PrePersist
+    @PreUpdate
+    public void preUpdate(){
+        return;
+
+    }
 }

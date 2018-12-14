@@ -19,10 +19,24 @@ public class Faena extends AbstractEntidad {
     @NotNull
     private Integer numero;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "faena", fetch = FetchType.LAZY)
-    private List<FaenaProductor> faenaProductor;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "faena", fetch = FetchType.LAZY)
+//    private List<FaenaProductor> faenaProductor;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private FaenaProductor faenaProductor;
+
+    public Faena() {
+        this.setFaenaProductor(new FaenaProductor());
+    }
 
     public String toString() {
         return isNew() ? "Nueva Faena" : this.getFecha().toString();
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void preUpdate(){
+        return;
+
     }
 }

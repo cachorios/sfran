@@ -18,7 +18,7 @@
         <webapp.directory>src/main/webapp</webapp.directory>
 
         <!-- Dependencies -->
-        <vaadin.version>10.0.6</vaadin.version>
+        <vaadin.version>10.0.9</vaadin.version>
         <deltaspike.version>1.9.0</deltaspike.version>
     </properties>
 
@@ -80,7 +80,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>7.0</version><!-- ya esta el 8 pero en vaadin usan el 7 -->
+            <version>8.0</version><!-- ya esta el 8 pero en vaadin usan el 7 -->
             <scope>provided</scope>
         </dependency>
 
@@ -95,7 +95,7 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-web</artifactId>
             <version>1.4.0</version>
-        </dependency>
+        </dependency>fa
 
         <!-- Delta Spike JPA -->
         <dependency>
