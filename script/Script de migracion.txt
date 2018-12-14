@@ -13,7 +13,7 @@ GROUP BY idLocalidad;
 select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES (",(idCategorias+35100),", 'UNKNOW', 'UNKNOW', 'CATEGORIA ANIMAL', '", descripcion,"', ", idCategorias,", 8, 1);")
 FROM categorias;
 
-select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idTipoLicencias+36010),"), 'UNKNOW', 'UNKNOW', 'TIPO.LICENCIA', '", descripcion,"', ", idTipoLicencias,", 12, 1);")
+select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idTipoLicencias+36010),"), 'UNKNOW', 'UNKNOW', 'TIPO.LICENCIA', '", descripcion,"', ", idTipoLicencias,", 22, 1);")
 FROM tipolicencias;
 
 select CONCAT("INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, version) VALUES ((",(idColor+35200),"), 'UNKNOW', 'UNKNOW', 'COLOR', '", descripcion,"', ", idColor,", 12, 1);")
@@ -172,7 +172,7 @@ select CONCAT("INSERT INTO graseriaCosto (id, fecha, fechaalta, fechabaja, fecha
 FROM graseria;
 
 
-select CONCAT("INSERT INTO graseriacostoinsumo (id, cantidad, precio, graseriacostolic_id, insumo_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idGraseriaDet as CHAR(4)), ", ", cantidad, ", ", precio , ", ", idGraseria, ", ", idInsumo, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'2008-01-01') as CHAR(22)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(22)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'2008-01-01') as CHAR(22)), "', 'UNKNOWN', 'UNKNOWN', 1);")
+select CONCAT("INSERT INTO graseriacostoinsumo (id, cantidad, precio, graseriacosto_id, insumo_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idGraseriaDet as CHAR(4)), ", ", cantidad, ", ", precio , ", ", idGraseria, ", ", idInsumo, ", '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'2008-01-01') as CHAR(22)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(22)), ", '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'2008-01-01') as CHAR(22)), "', 'UNKNOWN', 'UNKNOWN', 1);")
 FROM graseriadet;
 
 

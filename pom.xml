@@ -80,7 +80,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>8.0</version><!-- ya esta el 8 pero en vaadin usan el 7 -->
+            <version>7.0</version><!-- ya esta el 8 pero en vaadin usan el 7 -->
             <scope>provided</scope>
         </dependency>
 
@@ -95,7 +95,7 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-web</artifactId>
             <version>1.4.0</version>
-        </dependency>fa
+        </dependency>
 
         <!-- Delta Spike JPA -->
         <dependency>

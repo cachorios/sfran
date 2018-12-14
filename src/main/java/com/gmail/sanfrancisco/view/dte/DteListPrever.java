@@ -62,6 +62,7 @@ public class DteListPrever extends AbstractPreview<Dte> {
             btnImprimir.setEnabled(false);
         }
 
+
     }
 
     private void genPdf() {

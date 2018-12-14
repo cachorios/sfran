@@ -15,6 +15,7 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Anchor;
 
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.VaadinIcon;
 
 import com.vaadin.flow.component.notification.Notification;
@@ -64,13 +65,16 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
         Component data = null;
 
         Dialog dialog = pdfBtn.getDialog();
+        Label notificacion = new Label("Seleccione un comisionista.");
+        Button btnOk;
+
         DatePicker desde = new DatePicker("Fecha Inicio");
         desde.setRequired(true);
         DatePicker hasta = new DatePicker("Fecha Final");
         hasta.setRequired(true);
         this.defineRangoFechas(desde, hasta);
 
-        Button btnOk = new Button("Aceptar", e -> {
+        btnOk = new Button("Aceptar", e -> {
 
             if (desde.getValue() != null && hasta.getValue() != null) {
                 filtroFechaInicial = Date.from(desde.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
@@ -81,7 +85,7 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
                 } else {
                     pdfBtn.genXls(pdfBtn.getFileName(), pdfBtn.getRepFile(), this::crearParametroReporteConFechas);
                 }
-            }else{
+            } else {
                 desde.setInvalid(true);
                 desde.setErrorMessage("Seleccione la fecha de finalización");
 
@@ -90,10 +94,16 @@ public class ComisionistaInnerList extends DefaultInnerListPolymer<Comisionista>
         });
 
         Button btnCancel = new Button("Cancelar", e -> dialog.close());
-        VerticalLayout contenedor = new VerticalLayout(desde, hasta, new HorizontalLayout(btnOk, btnCancel));
-
-        dialog.setHeight("200px");
-        dialog.setWidth("300px");
+        VerticalLayout contenedor;
+        if(this.getPresentable().getObjetoActivo() != null) {
+            contenedor = new VerticalLayout(desde, hasta, new HorizontalLayout(btnOk, btnCancel));
+            dialog.setHeight("200px");
+            dialog.setWidth("300px");
+        } else {
+            contenedor = new VerticalLayout(new HorizontalLayout(notificacion, btnCancel));
+            dialog.setHeight("50px");
+            dialog.setWidth("300px");
+        }
 
         dialog.removeAll();
         dialog.add(contenedor);

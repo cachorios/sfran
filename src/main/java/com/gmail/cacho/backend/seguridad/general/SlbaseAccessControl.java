@@ -34,7 +34,7 @@ public class SlbaseAccessControl implements IControladorSeguridad {
     public Usuario getUsuarioActivo() {
         if (!isUserSignedIn() || usuarioActivo == null) {
             System.out.println("SlbaseAccessControl.getUsuarioActivo---->" + getNombreDeUsuarioActivo());
-            usuarioActivo = usuarioService.findByUserName(getNombreDeUsuarioActivo());
+            usuarioActivo = usuarioService.findByUsername(getNombreDeUsuarioActivo());
             System.out.println("Usuario Activo -->" + usuarioActivo);
         }
 
