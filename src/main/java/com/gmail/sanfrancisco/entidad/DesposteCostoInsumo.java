@@ -73,10 +73,15 @@ public  class DesposteCostoInsumo extends AbstractEntidad {
         this.impuestos = impuestos;
     }
 
-    @PrePersist
-    @PreUpdate
-    public void preUpdate(){
+    @Override
+    public String toString() {
+        return isNew() ? "Nuevo insumo en costo de desposte" : this.getInsumo().toString();
+    }
 
+    @Override
+    @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
         for(DesposteCostoInsumoImpuesto imp: impuestos){
             if(imp.getDesposteCostoInsumo() == null){
                 imp.setDesposteCostoInsumo(this);
@@ -85,7 +90,13 @@ public  class DesposteCostoInsumo extends AbstractEntidad {
     }
 
     @Override
-    public String toString() {
-        return isNew() ? "Nuevo insumo en costo de desposte" : this.getInsumo().toString();
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
+        for(DesposteCostoInsumoImpuesto imp: impuestos){
+            if(imp.getDesposteCostoInsumo() == null){
+                imp.setDesposteCostoInsumo(this);
+            }
+        }
     }
 }

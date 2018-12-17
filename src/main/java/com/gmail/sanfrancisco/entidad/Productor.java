@@ -105,9 +105,15 @@ public class Productor extends AbstractEntidad {
         this.renspas = renspas;
     }
 
+    @Override
+    public String toString() {
+        return isNew() ? "Nuevo Productor" : this.getNombre();
+    }
+
+    @Override
     @PrePersist
-    @PreUpdate
-    public void preUpdate(){
+    protected void setAltaData() {
+        super.setAltaData();
         for(Renspa ren: renspas){
             if(ren.getProductor() == null){
                 ren.setProductor(this);
@@ -116,7 +122,13 @@ public class Productor extends AbstractEntidad {
     }
 
     @Override
-    public String toString() {
-        return isNew() ? "Nuevo Productor" : this.getNombre();
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
+        for(Renspa ren: renspas){
+            if(ren.getProductor() == null){
+                ren.setProductor(this);
+            }
+        }
     }
 }

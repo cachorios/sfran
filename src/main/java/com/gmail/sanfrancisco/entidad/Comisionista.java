@@ -3,6 +3,8 @@ package com.gmail.sanfrancisco.entidad;
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 
 import javax.persistence.Entity;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -93,5 +95,15 @@ public  class Comisionista extends AbstractEntidad {
         return isNew() ? "Nuevo Comisionista" : this.getNombre();
     }
 
+    @Override
+    @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+    }
 
+    @Override
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
+    }
 }

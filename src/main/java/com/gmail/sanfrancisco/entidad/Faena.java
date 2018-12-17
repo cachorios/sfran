@@ -52,11 +52,17 @@ public class Faena extends AbstractEntidad {
         return isNew() ? "Nueva Faena" : this.getFecha().toString();
     }
 
+    @Override
     @PrePersist
-//    @PreUpdate
-    public void preUpdate(){
+    protected void setAltaData() {
+        super.setAltaData();
+    }
+
+    @Override
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
         System.out.printf( this.toString());
         return;
-
     }
 }

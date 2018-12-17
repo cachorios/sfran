@@ -5,6 +5,8 @@ import com.gmail.cacho.backend.entidad.Parametro;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -49,5 +51,17 @@ public class Insumo extends AbstractEntidad {
     @Override
     public String toString() {
         return isNew() ? "Nuevo Insumo" : this.getDescripcion();
+    }
+
+    @Override
+    @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+    }
+
+    @Override
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
     }
 }

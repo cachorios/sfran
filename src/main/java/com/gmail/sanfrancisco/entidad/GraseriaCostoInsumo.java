@@ -36,17 +36,6 @@ public class GraseriaCostoInsumo extends AbstractEntidad {
         this.impuestos = impuestos;
     }
 
-    @PrePersist
-    @PreUpdate
-    public void preUpdate(){
-
-        for(GraseriaCostoInsumoImpuesto imp: impuestos){
-            if(imp.getGraseriaCostoInsumo() == null){
-                imp.setGraseriaCostoInsumo(this);
-            }
-        }
-    }
-
     public GraseriaCosto getGraseriaCosto() {
         return graseriaCosto;
     }
@@ -86,5 +75,27 @@ public class GraseriaCostoInsumo extends AbstractEntidad {
     @Override
     public String toString() {
         return isNew() ? "Nuevo insumo en costo de graseria" : this.getInsumo().toString();
+    }
+
+    @Override
+    @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+        for(GraseriaCostoInsumoImpuesto imp: impuestos){
+            if(imp.getGraseriaCostoInsumo() == null){
+                imp.setGraseriaCostoInsumo(this);
+            }
+        }
+    }
+
+    @Override
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
+        for(GraseriaCostoInsumoImpuesto imp: impuestos){
+            if(imp.getGraseriaCostoInsumo() == null){
+                imp.setGraseriaCostoInsumo(this);
+            }
+        }
     }
 }

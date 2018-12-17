@@ -2,11 +2,14 @@ package com.gmail.cacho.backend.entidad;
 
 
 
+import com.gmail.cacho.slapi.Sistema;
 import com.gmail.cacho.slapi.comunes.C;
+import com.gmail.cacho.slbase.core.Constantes;
 
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 
@@ -51,16 +54,16 @@ public abstract class AbstractEntidad implements Serializable {
 
 //    @PrePersist
     protected void setAltaData() {
-//        String username = Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
-//        usuarioalta = usuarioumod = (username == null) ? Constantes.SYS_CAD_UNSESION : username;
-//        fechaalta = fechaumod = Date.from(Instant.now());
+        String username = Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
+        usuarioalta = usuarioumod = (username == null) ? Constantes.SYS_CAD_UNSESION : username;
+        fechaalta = fechaumod = Date.from(Instant.now());
     }
 
 //    @PreUpdate
     protected void setUmodData() {
-//        String username = Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
-//        usuarioalta = usuarioumod =  (username == null) ? Constantes.SYS_CAD_UNSESION : username;
-//        fechaumod = Date.from(Instant.now());
+        String username = Sistema.getSistema().getSecurityControl().getNombreDeUsuarioActivo();
+        usuarioalta = usuarioumod =  (username == null) ? Constantes.SYS_CAD_UNSESION : username;
+        fechaumod = Date.from(Instant.now());
     }
 
     public boolean isNew() {

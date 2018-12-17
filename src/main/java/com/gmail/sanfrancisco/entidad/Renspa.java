@@ -3,6 +3,8 @@ package com.gmail.sanfrancisco.entidad;
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -34,5 +36,17 @@ public class Renspa extends AbstractEntidad {
     @Override
     public String toString() {
         return isNew() ? "Nuevo numero de renspa" : this.getNumeroRenspa();
+    }
+
+    @Override
+    @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+    }
+
+    @Override
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
     }
 }

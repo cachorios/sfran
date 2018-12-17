@@ -42,10 +42,21 @@ public  class CueroCosto extends AbstractEntidad {
         this.insumos = insumos;
     }
 
+    @Override
     @PrePersist
-    @PreUpdate
-    public void preUpdate(){
+    protected void setAltaData() {
+        super.setAltaData();
+        for(CueroCostoInsumo ins: insumos){
+            if(ins.getCueroCosto() == null){
+                ins.setCueroCosto(this);
+            }
+        }
+    }
 
+    @Override
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
         for(CueroCostoInsumo ins: insumos){
             if(ins.getCueroCosto() == null){
                 ins.setCueroCosto(this);

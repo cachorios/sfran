@@ -135,9 +135,16 @@ public  class Conductor extends AbstractEntidad {
         this.usuario = usuario;
     }
 
+    @Override
+    public String toString() {
+        return isNew() ? "Nuevo Conductor" : this.getNombre();
+    }
+
+    @Override
     @PrePersist
-    @PreUpdate
-    public void preUpdate(){
+    protected void setAltaData() {
+        super.setAltaData();
+
         for(Licencia lic: licencias){
             if(lic.getConductor() == null){
                 lic.setConductor(this);
@@ -146,7 +153,14 @@ public  class Conductor extends AbstractEntidad {
     }
 
     @Override
-    public String toString() {
-        return isNew() ? "Nuevo Conductor" : this.getNombre();
+    @PreUpdate
+    protected void setUmodData() {
+        for(Licencia lic: licencias){
+            if(lic.getConductor() == null){
+                lic.setConductor(this);
+            }
+        }
+
+        super.setUmodData();
     }
 }

@@ -72,9 +72,21 @@ public class VehiculoCostoInsumo extends AbstractEntidad {
         this.impuestos = impuestos;
     }
 
+    @Override
     @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+        for(VehiculoCostoInsumoImpuesto imp: impuestos){
+            if(imp.getVehiculoCostoInsumo() == null){
+                imp.setVehiculoCostoInsumo(this);
+            }
+        }
+    }
+
+    @Override
     @PreUpdate
-    public void preUpdate(){
+    protected void setUmodData() {
+        super.setUmodData();
         for(VehiculoCostoInsumoImpuesto imp: impuestos){
             if(imp.getVehiculoCostoInsumo() == null){
                 imp.setVehiculoCostoInsumo(this);

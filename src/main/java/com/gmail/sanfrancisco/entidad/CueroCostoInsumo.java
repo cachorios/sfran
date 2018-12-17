@@ -74,10 +74,15 @@ public  class CueroCostoInsumo extends AbstractEntidad {
         this.impuestos = impuestos;
     }
 
-    @PrePersist
-    @PreUpdate
-    public void preUpdate(){
+    @Override
+    public String toString() {
+        return isNew() ? "Nuevo insumo en costo de cuero" : this.getInsumo().toString();
+    }
 
+    @Override
+    @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
         for(CueroCostoInsumoImpuesto imp: impuestos){
             if(imp.getCueroCostoInsumo() == null){
                 imp.setCueroCostoInsumo(this);
@@ -86,7 +91,13 @@ public  class CueroCostoInsumo extends AbstractEntidad {
     }
 
     @Override
-    public String toString() {
-        return isNew() ? "Nuevo insumo en costo de cuero" : this.getInsumo().toString();
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
+        for(CueroCostoInsumoImpuesto imp: impuestos){
+            if(imp.getCueroCostoInsumo() == null){
+                imp.setCueroCostoInsumo(this);
+            }
+        }
     }
 }
