@@ -1,5 +1,7 @@
 package com.gmail.cacho.backend.entidad;
 
+import com.gmail.cacho.backend.enumeradores.ERoles;
+import com.gmail.cacho.slapi.Sistema;
 import com.gmail.cacho.slbase.security.enums.ETipoPermiso;
 import com.gmail.cacho.slbase.security.excepciones.SecurityErrorException;
 
@@ -46,6 +48,12 @@ public class Usuario extends AbstractEntidad {
 
     public Usuario() {
         this.role= Role.USUARIO;
+        this.salt = Sistema.getSistema().getPreSalt();
+    }
+
+    @Override
+    public String toString() {
+        return isNew() ? "Nuevo Usuario" : this.getUsername();
     }
 
     public String getUsername() {

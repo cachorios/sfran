@@ -42,11 +42,21 @@ public  class DesposteCosto extends AbstractEntidad {
         this.insumos = insumos;
     }
 
-
+    @Override
     @PrePersist
-    @PreUpdate
-    public void preUpdate(){
+    protected void setAltaData() {
+        super.setAltaData();
+        for(DesposteCostoInsumo ins: insumos){
+            if(ins.getDesposteCosto() == null){
+                ins.setDesposteCosto(this);
+            }
+        }
+    }
 
+    @Override
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
         for(DesposteCostoInsumo ins: insumos){
             if(ins.getDesposteCosto() == null){
                 ins.setDesposteCosto(this);

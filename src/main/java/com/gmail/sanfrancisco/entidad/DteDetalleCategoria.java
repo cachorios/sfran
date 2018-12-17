@@ -134,5 +134,15 @@ public class DteDetalleCategoria extends AbstractEntidad {
         return isNew() ? "Nueva categoria en dte" : "(" + this.getProductor() + " - " + this.getRenspa() + ")";
     }
 
+    @Override
+    @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+    }
 
+    @Override
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
+    }
 }

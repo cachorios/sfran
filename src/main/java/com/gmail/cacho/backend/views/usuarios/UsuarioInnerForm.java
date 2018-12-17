@@ -1,6 +1,8 @@
 package com.gmail.cacho.backend.views.usuarios;
 
+import com.gmail.cacho.backend.entidad.Role;
 import com.gmail.cacho.backend.entidad.Usuario;
+import com.gmail.cacho.backend.enumeradores.ERoles;
 import com.gmail.cacho.slapi.Sistema;
 import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
@@ -8,18 +10,15 @@ import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.gmail.cacho.slapi.view.utils.ViewTools;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.*;
 import com.vaadin.flow.data.validator.BeanValidator;
 import org.apache.shiro.crypto.RandomNumberGenerator;
-import org.apache.shiro.crypto.SecureRandomNumberGenerator;
-import org.apache.shiro.crypto.hash.Hash;
 import org.apache.shiro.crypto.hash.Sha256Hash;
-import org.apache.shiro.util.ByteSource;
 import org.apache.shiro.util.SimpleByteSource;
-import com.gmail.cacho.backend.seguridad.shiro.HashConfig;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.*;
 
@@ -53,7 +52,7 @@ public class UsuarioInnerForm extends DefaultInnerDialog<Usuario> {
     private TextField legajo;
     private TextField email;
 
-    private TextField role;
+    private ComboBox role;
 
     private PasswordField password;
     private PasswordField passwordConfirm;
@@ -92,7 +91,8 @@ public class UsuarioInnerForm extends DefaultInnerDialog<Usuario> {
         passwordConfirm.setWidth("100%");
         passwordConfirm.setHeight(ViewTools.ALTO_DEFAULT);
 
-        role = textField("Roles");
+        role = new ComboBox<>("Roles");
+        role.setItems(Role.getAllRoles());
 
 //        roles = new MuchoaMuchoGrid<Rol>(servRol.getAll());
 //
@@ -133,6 +133,9 @@ public class UsuarioInnerForm extends DefaultInnerDialog<Usuario> {
         confirmPasswordBinding = binder.forField(passwordConfirm).withValidator(
                 Validator.from(this::ValidarConfirmPassword, C.SYS_APP_CHANGEPASS_ERR_DISTPASS))
                                        .bind(b -> "", (usuario, pwd) -> { });
+
+        binder.bind(role, "role");
+
         binder.bindInstanceFields(this);
 
         password.addValueChangeListener(e -> confirmPasswordBinding.validate());

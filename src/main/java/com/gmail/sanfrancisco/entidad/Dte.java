@@ -310,11 +310,38 @@ public  class  Dte extends AbstractEntidad {
         return isNew() ? "Nuevo DTE" : this.getNumeroTropa();
     }
 
-
-
+    @Override
     @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+        for(DteDetalleCategoria cat: categorias){
+            if(cat.getDte() == null){
+                cat.setDte(this);
+            }
+        }
+        for(DteDetalleInsumo ins: insumos){
+            if(ins.getDte() == null){
+                ins.setDte(this);
+            }
+        }
+
+        for(DteDetalleImpuesto imp: impuestos){
+            if(imp.getDte() == null){
+                imp.setDte(this);
+            }
+        }
+
+        for(NumeroDte num: numeros){
+            if(num.getDte() == null){
+                num.setDte(this);
+            }
+        }
+    }
+
+    @Override
     @PreUpdate
-    public void preUpdate(){
+    protected void setUmodData() {
+        super.setUmodData();
         for(DteDetalleCategoria cat: categorias){
             if(cat.getDte() == null){
                 cat.setDte(this);

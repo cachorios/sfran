@@ -75,6 +75,18 @@ public class FaenaCabezera extends AbstractEntidad {
     @Override
     public String toString() { return  isNew() ? "Nueva Faena Cabezera" : this.categoria.toString(); }
 
+    @Override
+    @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+    }
+
+    @Override
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
+    }
+
 //    @PrePersist
 //    @PreUpdate
 //    public void preUpdate(){

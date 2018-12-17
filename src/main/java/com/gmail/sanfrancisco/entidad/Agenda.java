@@ -3,10 +3,8 @@ package com.gmail.sanfrancisco.entidad;
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.slbase.core.Fecha;
 import org.vaadin.stefan.fullcalendar.Entry;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -141,6 +139,18 @@ public class Agenda extends AbstractEntidad {
         editable = entry.isEditable();
         color = entry.getColor();
         description = entry.getDescription();
+    }
+
+    @Override
+    @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+    }
+
+    @Override
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
     }
 
 }

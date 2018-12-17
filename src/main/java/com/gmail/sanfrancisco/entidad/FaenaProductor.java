@@ -53,9 +53,17 @@ public class FaenaProductor extends AbstractEntidad {
     @Override
     public String toString() { return isNew() ? "Nuevo Faena-Productor" : this.productor.toString(); }
 
+    @Override
     @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+        faenaCabezera.forEach(cabezera -> cabezera.setFaenaProductor(this) );
+    }
+
+    @Override
     @PreUpdate
-    public void preUpdate(){
+    protected void setUmodData() {
+        super.setUmodData();
         faenaCabezera.forEach(cabezera -> cabezera.setFaenaProductor(this) );
     }
 }

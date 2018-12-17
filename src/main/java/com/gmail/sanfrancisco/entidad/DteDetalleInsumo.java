@@ -4,6 +4,8 @@ import com.gmail.cacho.backend.entidad.AbstractEntidad;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -60,5 +62,17 @@ public class DteDetalleInsumo extends AbstractEntidad {
     @Override
     public String toString() {
         return isNew() ? "Nuevo insumo en dte" : this.getInsumo().toString();
+    }
+
+    @Override
+    @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+    }
+
+    @Override
+    @PreUpdate
+    protected void setUmodData() {
+        super.setUmodData();
     }
 }

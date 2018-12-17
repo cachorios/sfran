@@ -51,9 +51,21 @@ public class VehiculoCosto extends AbstractEntidad {
         this.insumos = insumos;
     }
 
+    @Override
     @PrePersist
+    protected void setAltaData() {
+        super.setAltaData();
+        for(VehiculoCostoInsumo ins: insumos){
+            if(ins.getVehiculoCosto() == null){
+                ins.setVehiculoCosto(this);
+            }
+        }
+    }
+
+    @Override
     @PreUpdate
-    public void preUpdate(){
+    protected void setUmodData() {
+        super.setUmodData();
         for(VehiculoCostoInsumo ins: insumos){
             if(ins.getVehiculoCosto() == null){
                 ins.setVehiculoCosto(this);
