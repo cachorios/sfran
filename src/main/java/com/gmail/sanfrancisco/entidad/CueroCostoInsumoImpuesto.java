@@ -2,16 +2,13 @@ package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.backend.entidad.Parametro;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Data
-@EqualsAndHashCode(exclude="cueroCostoInsumo")
 public class CueroCostoInsumoImpuesto extends AbstractEntidad {
     @ManyToOne
     private CueroCostoInsumo cueroCostoInsumo;
@@ -22,6 +19,30 @@ public class CueroCostoInsumoImpuesto extends AbstractEntidad {
 
     @NotNull
     private Double saldo;
+
+    public CueroCostoInsumo getCueroCostoInsumo() {
+        return cueroCostoInsumo;
+    }
+
+    public void setCueroCostoInsumo(CueroCostoInsumo cueroCostoInsumo) {
+        this.cueroCostoInsumo = cueroCostoInsumo;
+    }
+
+    public Parametro getImpuesto() {
+        return impuesto;
+    }
+
+    public void setImpuesto(Parametro impuesto) {
+        this.impuesto = impuesto;
+    }
+
+    public Double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
+    }
 
     @Override
     public String toString() {

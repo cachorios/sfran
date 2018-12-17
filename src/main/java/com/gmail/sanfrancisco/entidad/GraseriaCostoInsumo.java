@@ -1,8 +1,6 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
-@EqualsAndHashCode(exclude="graseriaCosto")
 public class GraseriaCostoInsumo extends AbstractEntidad {
     @ManyToOne
     private GraseriaCosto graseriaCosto;
@@ -49,6 +45,42 @@ public class GraseriaCostoInsumo extends AbstractEntidad {
                 imp.setGraseriaCostoInsumo(this);
             }
         }
+    }
+
+    public GraseriaCosto getGraseriaCosto() {
+        return graseriaCosto;
+    }
+
+    public void setGraseriaCosto(GraseriaCosto graseriaCosto) {
+        this.graseriaCosto = graseriaCosto;
+    }
+
+    public Insumo getInsumo() {
+        return insumo;
+    }
+
+    public void setInsumo(Insumo insumo) {
+        this.insumo = insumo;
+    }
+
+    public Double getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Double cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public void setImpuestos(List<GraseriaCostoInsumoImpuesto> impuestos) {
+        this.impuestos = impuestos;
     }
 
     @Override

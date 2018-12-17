@@ -1,7 +1,6 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@EqualsAndHashCode(exclude="desposteCosto")
-public @Data class DesposteCostoInsumo extends AbstractEntidad {
+public  class DesposteCostoInsumo extends AbstractEntidad {
     @ManyToOne
 //    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
     private DesposteCosto desposteCosto;
@@ -29,6 +27,42 @@ public @Data class DesposteCostoInsumo extends AbstractEntidad {
 
     public DesposteCostoInsumo() {
         impuestos = new ArrayList<>();
+    }
+
+    public DesposteCosto getDesposteCosto() {
+        return desposteCosto;
+    }
+
+    public void setDesposteCosto(DesposteCosto desposteCosto) {
+        this.desposteCosto = desposteCosto;
+    }
+
+    public Insumo getInsumo() {
+        return insumo;
+    }
+
+    public void setInsumo(Insumo insumo) {
+        this.insumo = insumo;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public void setImpuestos(List<DesposteCostoInsumoImpuesto> impuestos) {
+        this.impuestos = impuestos;
     }
 
     public List<DesposteCostoInsumoImpuesto> getImpuestos() {

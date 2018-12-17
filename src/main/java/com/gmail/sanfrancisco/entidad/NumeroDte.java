@@ -1,17 +1,13 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Data
-@EqualsAndHashCode(exclude="dte")
+
 public class NumeroDte extends AbstractEntidad {
     @NotNull
     @Size(min=10, max=10, message="El nro de DTE tiene 9 digitos + 1 de verfificacion 'nnnnnnnnn-n'")
@@ -21,6 +17,30 @@ public class NumeroDte extends AbstractEntidad {
 
     @ManyToOne
     private Dte dte;
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getNumeroTropaFiscal() {
+        return numeroTropaFiscal;
+    }
+
+    public void setNumeroTropaFiscal(String numeroTropaFiscal) {
+        this.numeroTropaFiscal = numeroTropaFiscal;
+    }
+
+    public Dte getDte() {
+        return dte;
+    }
+
+    public void setDte(Dte dte) {
+        this.dte = dte;
+    }
 
     @Override
     public String toString() {

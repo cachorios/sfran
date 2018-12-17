@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.2"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-    <persistence-unit name="default" transaction-type="JTA">
-
-        <!--<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>-->
-        <jta-data-source>jdbc/PostgreDS</jta-data-source>
-
+    <persistence-unit name="sfranDB" transaction-type="JTA">
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+        <jta-data-source>PostgreDS</jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
-        <!--<non-jta-data-source>jdbc/sfnontjta</non-jta-data-source>-->
-
-        <!--<validation-mode>AUTO</validation-mode>-->
-        <!-- CALLBACK O AUTO -->
         <properties>
+            <property name="hibernate.show_sql" value="true"/>  <!-- Permanente -->
 
-            <property name="hibernate.show_sql" value="true"/>
+            <!-- para crear el ddl -->
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
 
             <property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict"/>
             <property name="openjpa.Log" value="Enhance=TRACE, DefaultLevel=WARN, Runtime=WARN, Tool=INFO, SQL=TRACE"/>
-            <property name="openjpa.MetaDataRepository" value="Preload=true"/>
+            <property name="openjpa.MetaDataRepository" value="Preload=true"/> <!-- Permanente -->
 
-            <property name="javax.persistence.schema-generation.scripts.create-target" value="sFranCreate.ddl"/>
-            <property name="javax.persistence.schema-generation.scripts.drop-target" value="sFranDrop.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="siddire.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="siddireDrop.ddl"/>
 
+
+            <!-- fin ddl -->
         </properties>
     </persistence-unit>
 </persistence>

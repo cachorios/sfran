@@ -14,7 +14,7 @@ import com.vaadin.flow.router.Route;
 
 import javax.inject.Inject;
 
-@Route(value = "usuario", layout = MainView.class)
+@Route(value = "usuarios", layout = MainView.class)
 @PageTitle("Administracion de Usuarios")
 @MenuIcon(VaadinIcon.USER)
 public class UsuarioView extends AbstractDefaultView<Usuario> {

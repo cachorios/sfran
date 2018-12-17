@@ -1,8 +1,6 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import com.gmail.cacho.backend.entidad.Usuario;
-import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,7 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
 public class Lavadero extends AbstractEntidad {
     @NotNull
     private Date fecha;
@@ -32,6 +29,22 @@ public class Lavadero extends AbstractEntidad {
 
     public List<LavaderoDetalleInsumo> getInsumos() {
         return insumos;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     public void setInsumos(List<LavaderoDetalleInsumo> insumos) {

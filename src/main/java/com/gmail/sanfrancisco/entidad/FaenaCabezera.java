@@ -1,8 +1,6 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
-@EqualsAndHashCode(exclude="faenaProductor")
+
 public class FaenaCabezera extends AbstractEntidad {
 
     @NotNull
@@ -21,7 +18,6 @@ public class FaenaCabezera extends AbstractEntidad {
     @NotNull
     private Integer cantidad;
 
-    @Transient
     private Integer faenado;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -36,13 +32,53 @@ public class FaenaCabezera extends AbstractEntidad {
         faenaDetalle = new ArrayList<>();
     }
 
+    public DteDetalleCategoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(DteDetalleCategoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Integer getFaenado() {
+        return faenado;
+    }
+
+    public void setFaenado(Integer faenado) {
+        this.faenado = faenado;
+    }
+
+    public FaenaProductor getFaenaProductor() {
+        return faenaProductor;
+    }
+
+    public void setFaenaProductor(FaenaProductor faenaProductor) {
+        this.faenaProductor = faenaProductor;
+    }
+
+    public List<FaenaDetalle> getFaenaDetalle() {
+        return faenaDetalle;
+    }
+
+    public void setFaenaDetalle(List<FaenaDetalle> faenaDetalle) {
+        this.faenaDetalle = faenaDetalle;
+    }
+
     @Override
     public String toString() { return  isNew() ? "Nueva Faena Cabezera" : this.categoria.toString(); }
 
-    @PrePersist
-    @PreUpdate
-    public void preUpdate(){
-        return;
-
-    }
+//    @PrePersist
+//    @PreUpdate
+//    public void preUpdate(){
+//        return;
+//
+//    }
 }

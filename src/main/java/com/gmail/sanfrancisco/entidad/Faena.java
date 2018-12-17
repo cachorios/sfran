@@ -1,17 +1,12 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import com.gmail.cacho.backend.entidad.Usuario;
-import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Data
 public class Faena extends AbstractEntidad {
     @NotNull
     private Date fecha;
@@ -22,11 +17,35 @@ public class Faena extends AbstractEntidad {
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "faena", fetch = FetchType.LAZY)
 //    private List<FaenaProductor> faenaProductor;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     private FaenaProductor faenaProductor;
 
     public Faena() {
-        this.setFaenaProductor(new FaenaProductor());
+
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public FaenaProductor getFaenaProductor() {
+        return faenaProductor;
+    }
+
+    public void setFaenaProductor(FaenaProductor faenaProductor) {
+        this.faenaProductor = faenaProductor;
     }
 
     public String toString() {
@@ -34,8 +53,9 @@ public class Faena extends AbstractEntidad {
     }
 
     @PrePersist
-    @PreUpdate
+//    @PreUpdate
     public void preUpdate(){
+        System.out.printf( this.toString());
         return;
 
     }

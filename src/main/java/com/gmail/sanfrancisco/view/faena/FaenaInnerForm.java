@@ -81,12 +81,14 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
         binder.bindInstanceFields(this);
     }
 
+
     protected class FaenaProductorEditor extends HorizontalLayout implements HasValueAndElement<AbstractField.ComponentValueChangeEvent<FaenaProductorEditor, FaenaProductor>,FaenaProductor> {
         private ProductorCS productorCS;
         private DteCS dteCS;
 
         AbstractFieldSupport<FaenaProductorEditor, FaenaProductor> fieldSupport;
         private BeanValidationBinder<FaenaProductor> binderFP = new BeanValidationBinder<>(FaenaProductor.class);
+
         FaenaProductorEditor(){
             this.setWidth("100%");
             fieldSupport = new AbstractFieldSupport<>(this, null, Objects::equals, c->{});
@@ -108,6 +110,9 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
         @Override
         public void setValue(FaenaProductor faenaProductor) {
+            if(faenaProductor == null){
+                faenaProductor = new FaenaProductor();
+            }
             fieldSupport.setValue(faenaProductor);
             binderFP.setBean(faenaProductor);
         }
@@ -138,27 +143,23 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
                 if(list.size() > 0){
                     if(!getPresentable().getObjetoActivo().isNew()) {
                         cabecera.setValue(getPresentable().getObjetoActivo().getFaenaProductor().getFaenaCabezera());
-//                    getPresentable().getObjetoActivo().getFaenaProductor().forEach(faenaProductor -> {
-//                        if (faenaProductor.getTropa() == dteCS.getValue()) {
-//                            cabecera.setValue(faenaProductor.getFaenaCabezera(), list);
-//                        }
-//                    });
                     }else{
                         binderFP.getBean().getFaenaCabezera().clear();
                         list.forEach(  elemento -> crearElemento((Object[]) elemento) );
+                        cabecera.setValue( binderFP.getBean().getFaenaCabezera() );
                     }
-                    ////cabecera.setValue( binderFP.getBean().getFaenaCabezera() );
+
 
                 }else{
                     Notification.show("No hay animales para faenar", 5, Notification.Position.BOTTOM_END );
                     return;
                 }
 
-//            cabecera.removeAll();
-//            cabecera = new FaenaCabeceraEditor( this.getPresentable() ,);
-////            for (DteDetalleCategoria i : dteCS.getValue().getCategorias()) {
-////                cabecera.add(new FaenaCabeceraEditor());
-////            }
+//                cabecera.removeAll();
+//                cabecera = new FaenaCabeceraEditor( getPresentable() );
+//                for (DteDetalleCategoria i : dteCS.getValue().getCategorias()) {
+//                    cabecera.add(new FaenaCabeceraEditor(getPresentable()));
+//                }
             } else {
                 cabecera.removeAll();
             }

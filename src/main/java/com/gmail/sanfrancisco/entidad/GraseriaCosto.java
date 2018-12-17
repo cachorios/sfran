@@ -1,8 +1,6 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -10,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
 public class GraseriaCosto extends AbstractEntidad {
     @NotNull
     private Date fecha;
@@ -33,6 +30,14 @@ public class GraseriaCosto extends AbstractEntidad {
 
     public void setInsumos(List<GraseriaCostoInsumo> insumos) {
         this.insumos = insumos;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     @PrePersist

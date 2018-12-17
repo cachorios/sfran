@@ -3,21 +3,16 @@ package com.gmail.sanfrancisco.entidad;
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.backend.entidad.Usuario;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public @Data class Conductor extends AbstractEntidad {
+public  class Conductor extends AbstractEntidad {
     @NotNull
     @Size(min=3, max=60, message="El nombre debe contener entre 3 y 60 caracteres.")
 //    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
@@ -62,6 +57,82 @@ public @Data class Conductor extends AbstractEntidad {
 
     public void setLicencias(List<Licencia> licencias) {
         this.licencias = licencias;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCuil() {
+        return cuil;
+    }
+
+    public void setCuil(String cuil) {
+        this.cuil = cuil;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public Parametro getOperadoraTelefonica() {
+        return operadoraTelefonica;
+    }
+
+    public void setOperadoraTelefonica(Parametro operadoraTelefonica) {
+        this.operadoraTelefonica = operadoraTelefonica;
+    }
+
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public List<Licencia> getLicencias() {
+        return licencias;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @PrePersist

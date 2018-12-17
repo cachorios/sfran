@@ -1,7 +1,6 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,10 +9,18 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public @Data class CueroCosto extends AbstractEntidad {
+public  class CueroCosto extends AbstractEntidad {
 //    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
     @NotNull
     private Date fecha;
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 
     @Override
     public String toString() {

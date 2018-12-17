@@ -2,7 +2,6 @@ package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
 import com.gmail.cacho.slbase.core.Fecha;
-import lombok.Data;
 import org.vaadin.stefan.fullcalendar.Entry;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -11,7 +10,6 @@ import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Entity
-@Data
 public class Agenda extends AbstractEntidad {
     private boolean editable;
     private String title;
@@ -35,6 +33,86 @@ public class Agenda extends AbstractEntidad {
 
     public Agenda() {
         setEntry(new Entry());
+    }
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
+    public boolean isAllDay() {
+        return allDay;
+    }
+
+    public void setAllDay(boolean allDay) {
+        this.allDay = allDay;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Entry.RenderingMode getRenderingMode() {
+        return renderingMode;
+    }
+
+    public void setRenderingMode(Entry.RenderingMode renderingMode) {
+        this.renderingMode = renderingMode;
+    }
+
+    public Conductor getConductor() {
+        return conductor;
+    }
+
+    public void setConductor(Conductor conductor) {
+        this.conductor = conductor;
+    }
+
+    public Comisionista getComisionista() {
+        return comisionista;
+    }
+
+    public void setComisionista(Comisionista comisionista) {
+        this.comisionista = comisionista;
     }
 
     public Entry getEntry(){

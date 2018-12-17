@@ -1,7 +1,6 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@EqualsAndHashCode(exclude="cueroCosto")
-public @Data class CueroCostoInsumo extends AbstractEntidad {
+public  class CueroCostoInsumo extends AbstractEntidad {
     @ManyToOne
 //    @Getter(AccessLevel.PUBLIC) @Setter(AccessLevel.PUBLIC)
     private CueroCosto cueroCosto;
@@ -33,6 +31,43 @@ public @Data class CueroCostoInsumo extends AbstractEntidad {
 
     public List<CueroCostoInsumoImpuesto> getImpuestos() {
         return impuestos;
+    }
+
+
+    public CueroCosto getCueroCosto() {
+        return cueroCosto;
+    }
+
+    public void setCueroCosto(CueroCosto cueroCosto) {
+        this.cueroCosto = cueroCosto;
+    }
+
+    public Insumo getInsumo() {
+        return insumo;
+    }
+
+    public void setInsumo(Insumo insumo) {
+        this.insumo = insumo;
+    }
+
+    public Double getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Double cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public void setImpuestos(List<CueroCostoInsumoImpuesto> impuestos) {
+        this.impuestos = impuestos;
     }
 
     public void setInsumos(List<CueroCostoInsumoImpuesto> impuestos) {

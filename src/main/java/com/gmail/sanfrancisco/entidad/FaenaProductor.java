@@ -1,8 +1,6 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
-@EqualsAndHashCode(exclude="faena")
 public class FaenaProductor extends AbstractEntidad {
     @NotNull
     @ManyToOne
@@ -30,13 +26,36 @@ public class FaenaProductor extends AbstractEntidad {
         faenaCabezera = new ArrayList<>();
     }
 
+    public Productor getProductor() {
+        return productor;
+    }
+
+    public void setProductor(Productor productor) {
+        this.productor = productor;
+    }
+
+    public Dte getTropa() {
+        return tropa;
+    }
+
+    public void setTropa(Dte tropa) {
+        this.tropa = tropa;
+    }
+
+    public List<FaenaCabezera> getFaenaCabezera() {
+        return faenaCabezera;
+    }
+
+    public void setFaenaCabezera(List<FaenaCabezera> faenaCabezera) {
+        this.faenaCabezera = faenaCabezera;
+    }
+
     @Override
     public String toString() { return isNew() ? "Nuevo Faena-Productor" : this.productor.toString(); }
 
     @PrePersist
     @PreUpdate
     public void preUpdate(){
-        return;
-
+        faenaCabezera.forEach(cabezera -> cabezera.setFaenaProductor(this) );
     }
 }

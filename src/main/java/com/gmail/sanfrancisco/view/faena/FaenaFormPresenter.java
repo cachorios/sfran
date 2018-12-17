@@ -14,14 +14,7 @@ public class FaenaFormPresenter extends AbstractPresenterForm<Faena, FaenaServic
     public FaenaFormPresenter(FaenaService servicio) {
         super(servicio);
 
-        Faena faena = new Faena();
-        faena.setFecha(new Date());
-        faena.setNumero(12);
-        try {
-            servicio.save(faena);
-        }catch (PersistErrorException e){
-            e.printStackTrace();
-        }
+
 
     }
 }

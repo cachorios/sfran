@@ -1,17 +1,12 @@
 package com.gmail.sanfrancisco.entidad;
 
 import com.gmail.cacho.backend.entidad.AbstractEntidad;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
-@EqualsAndHashCode(exclude="vehiculoCosto")
 public class VehiculoCostoInsumo extends AbstractEntidad {
     @ManyToOne
     private Insumo insumo;
@@ -30,6 +25,38 @@ public class VehiculoCostoInsumo extends AbstractEntidad {
 
     public VehiculoCostoInsumo() {
         impuestos = new ArrayList<>();
+    }
+
+    public Insumo getInsumo() {
+        return insumo;
+    }
+
+    public void setInsumo(Insumo insumo) {
+        this.insumo = insumo;
+    }
+
+    public Double getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Double cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public VehiculoCosto getVehiculoCosto() {
+        return vehiculoCosto;
+    }
+
+    public void setVehiculoCosto(VehiculoCosto vehiculoCosto) {
+        this.vehiculoCosto = vehiculoCosto;
     }
 
     @Override
