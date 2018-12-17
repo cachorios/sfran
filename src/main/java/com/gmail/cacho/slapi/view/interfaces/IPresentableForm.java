@@ -69,4 +69,12 @@ public interface IPresentableForm<T extends AbstractEntidad> extends IVisualizab
      * @return un ejecutablea ejecutar si el panel termina bien una operacion de persistencia
      */
     Runnable getExecutableOnSaveOK();
+
+
+
+    void setHasChanges(boolean hasChanges);
+//
+//    void setHasValidationErrors(boolean hasValidationErrors);
+//
+//    void habilitarBotones();
 }

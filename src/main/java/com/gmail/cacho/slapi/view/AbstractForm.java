@@ -206,6 +206,27 @@ public abstract class AbstractForm<T extends AbstractEntidad> extends AbstractPr
         }
     }
 
+    public void setHasChanges(boolean hasChanges) {
+        this.hasChanges = hasChanges;
+        if(hasChanges){
+            habilitarBotones();
+        }
+    }
+//
+//    public void setHasValidationErrors(boolean hasValidationErrors) {
+//        this.hasValidationErrors = hasValidationErrors;
+//    }
+//
+//    @Override
+//    public void habilitarBotones() {
+//
+//    }
+
+    @Override
+    public String getTagVista() {
+        return null;
+    }
+
     @Override
     public T getObjetoActivo() {
         return editItem;

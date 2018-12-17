@@ -106,6 +106,7 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
             add(envolver(productorCS, "50%"),
                     envolver(dteCS, "50%"));
 
+
         }
 
         @Override
@@ -124,6 +125,7 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
         @Override
         public Registration addValueChangeListener(ValueChangeListener<? super AbstractField.ComponentValueChangeEvent<FaenaProductorEditor, FaenaProductor>> valueChangeListener) {
+
             return fieldSupport.addValueChangeListener(valueChangeListener);
         }
 
@@ -133,8 +135,13 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
                 dteCS.setProductor((Productor)productorCS.getValue());
                 dteCS.limpiar();
                 dteCS.setValue(null);
+                if(e.isFromClient()){
+                    getPresentable().setHasChanges(true);
+                }
+
             }
         }
+
         private void dteChanged(HasValue.ValueChangeEvent<?> e) {
             if(dteCS.getValue() != null){
                 FaenaRepositorio repo = CDI.current().select(FaenaRepositorio.class).get();
@@ -148,18 +155,13 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
                         list.forEach(  elemento -> crearElemento((Object[]) elemento) );
                         cabecera.setValue( binderFP.getBean().getFaenaCabezera() );
                     }
-
-
+                    if(e.isFromClient()){
+                        getPresentable().setHasChanges(true);
+                    }
                 }else{
                     Notification.show("No hay animales para faenar", 5, Notification.Position.BOTTOM_END );
                     return;
                 }
-
-//                cabecera.removeAll();
-//                cabecera = new FaenaCabeceraEditor( getPresentable() );
-//                for (DteDetalleCategoria i : dteCS.getValue().getCategorias()) {
-//                    cabecera.add(new FaenaCabeceraEditor(getPresentable()));
-//                }
             } else {
                 cabecera.removeAll();
             }
@@ -175,5 +177,7 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
                 binderFP.getBean().getFaenaCabezera().add(fc);
             }
         }
+
+
     }
 }
