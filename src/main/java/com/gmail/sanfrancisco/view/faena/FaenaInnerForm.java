@@ -20,11 +20,13 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.binder.BindingValidationStatus;
 import com.vaadin.flow.shared.Registration;
 
 import javax.enterprise.inject.spi.CDI;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.dateField;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
@@ -36,7 +38,7 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
     private FaenaProductorEditor faenaProductorEditor;
 
     private FaenaCabeceraEditor cabecera;
-    private VerticalLayout vlDetalleInferior;
+    private FaenaDetallesEditor detallesEditor;
 
     public FaenaInnerForm(IPresentableForm<Faena> presentable, String elTitulo) {
         super(presentable, elTitulo);
@@ -53,14 +55,16 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
         cabecera = new FaenaCabeceraEditor(getPresentable());
 
-        vlDetalleInferior = new VerticalLayout();
+        detallesEditor = new FaenaDetallesEditor( this.getPresentable() );
+
+
 
         form.add(
             envolver(fecha, "48%"),
             envolver(numero, "50%"),
             envolver(faenaProductorEditor,"100%"),
             envolver(cabecera),
-            envolver(vlDetalleInferior)
+            envolver(detallesEditor)
         );
 
     }
@@ -102,10 +106,8 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
             dteCS.addValueChangeListener(e-> {this.dteChanged(e);});
             binderFP.forField(dteCS).bind("tropa");
 
-
             add(envolver(productorCS, "50%"),
                     envolver(dteCS, "50%"));
-
 
         }
 
@@ -116,6 +118,7 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
             }
             fieldSupport.setValue(faenaProductor);
             binderFP.setBean(faenaProductor);
+            getPresentable().setHasChanges(false);
         }
 
         @Override
@@ -125,7 +128,6 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
         @Override
         public Registration addValueChangeListener(ValueChangeListener<? super AbstractField.ComponentValueChangeEvent<FaenaProductorEditor, FaenaProductor>> valueChangeListener) {
-
             return fieldSupport.addValueChangeListener(valueChangeListener);
         }
 
@@ -178,6 +180,13 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
             }
         }
 
+        public Stream<HasValue<?, ?>> validate() {
+            Stream<HasValue<?, ?>> errorFields = binderFP.validate().getFieldValidationErrors().stream()
+                    .map(BindingValidationStatus::getField);
+
+            //return Stream.concat(errorFields, itemsEditor.validate());
+            return errorFields;
+        }
 
     }
 }

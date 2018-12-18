@@ -8,7 +8,9 @@ import com.gmail.sanfrancisco.entidad.DteDetalleCategoria;
 import com.gmail.sanfrancisco.entidad.FaenaCabezera;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.HasValueAndElement;
+import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Hr;
 import com.vaadin.flow.component.html.Label;
@@ -24,6 +26,8 @@ import java.util.Objects;
 
 import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 
+@Tag("faena-cabecera")
+@HtmlImport("src/views/faena/faena-cabecera.html")
 public class FaenaCabeceraEditor extends Div implements HasValueAndElement<AbstractField.ComponentValueChangeEvent<FaenaCabeceraEditor, List<FaenaCabezera>>, List<FaenaCabezera>> {
 
     IPresentable padre;
@@ -33,11 +37,14 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
     private boolean hasChanges = false;
 //    private BeanValidationBinder<FaenaCabezera> binderFC = new BeanValidationBinder<>(FaenaCabezera.class);
     public FaenaCabeceraEditor(IPresentable padre) {
+
+
         this.padre = padre;
         this.fieldSupport = new AbstractFieldSupport<>(this, Collections.emptyList(),
                 Objects::equals, c ->  {});
 
         setWidth("100%");
+
 
         cabecera();
     }
@@ -53,9 +60,8 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
                 envolver(new Label("Accion"), "10%")
         );
         hlLabel.setWidth("100%");
-        add( hlLabel
-        );
-        add(new Hr());
+        hlLabel.setClassName("faena-cabecera-header");
+        add( hlLabel);
     }
 
     @Override
