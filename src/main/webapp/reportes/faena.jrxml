@@ -112,6 +112,15 @@ WHERE fp.id=$P{p_Id}
 				</textElement>
 				<text><![CDATA[Peso derecho]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="586" y="0" width="100" height="20" uuid="899ea60d-fc4c-486a-b058-a4fd9733a653">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Totales]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -137,7 +146,7 @@ WHERE fp.id=$P{p_Id}
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="386" y="0" width="200" height="16" uuid="03793a87-7ff3-40a2-b9e6-1c740546d98b"/>
+				<reportElement x="386" y="0" width="300" height="16" uuid="03793a87-7ff3-40a2-b9e6-1c740546d98b"/>
 				<subreportParameter name="p_Categoria">
 					<subreportParameterExpression><![CDATA[$F{categoria_id}]]></subreportParameterExpression>
 				</subreportParameter>
