@@ -67,7 +67,7 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
                 envolver(new Label("Accion"), "10%")
         );
         hlLabel.setWidth("100%");
-        hlLabel.setClassName("faena-cabecera-header");
+        hlLabel.setClassName("faena-header");
         add( hlLabel);
     }
 
@@ -139,7 +139,7 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
             kgVivo      = new TextField(); kgVivo.setWidth("10%");      kgVivo.setEnabled(false);
 
             aFaenar     = new TextField(); aFaenar.setWidth("10%");
-            btnAgregar = new Button("Carga");
+            btnAgregar = new Button("Carga"); btnAgregar.setWidth("100%");
 
             binder.forField(aFaenar)
                     .withConverter(new IntegerConverter())

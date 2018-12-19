@@ -17,8 +17,8 @@
             <property name="openjpa.Log" value="Enhance=TRACE, DefaultLevel=WARN, Runtime=WARN, Tool=INFO, SQL=TRACE"/>
             <property name="openjpa.MetaDataRepository" value="Preload=true"/> <!-- Permanente -->
 
-            <property name="javax.persistence.schema-generation.scripts.create-target" value="siddire.ddl"/>
-            <property name="javax.persistence.schema-generation.scripts.drop-target" value="siddireDrop.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="sfran.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="sfranDrop.ddl"/>
 
 
             <!-- fin ddl -->
