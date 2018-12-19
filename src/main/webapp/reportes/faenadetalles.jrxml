@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="faenadetalles" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="p_Categoria" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT
+  fd.kgizquierdo AS pesoizq,
+  fd.kgderecho AS pesoder
+FROM
+  faenaproductor AS fp
+  JOIN faenacabezera AS fc
+    ON fp.id=fc.faenaproductor_id
+  JOIN faenadetalle AS fd
+    ON fc.id=fd.faenacabezera_id
+WHERE fc.categoria_id=$P{p_Categoria}
+      AND fp.fechabaja IS NULL]]>
+	</queryString>
+	<field name="pesoizq" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="pesoizq"/>
+	</field>
+	<field name="pesoder" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="pesoder"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="0" y="0" width="100" height="16" isRemoveLineWhenBlank="true" uuid="c1ad5f7d-949e-4460-8588-bba4fb637bb7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9aed832b-3057-48fc-8946-6c7a2ff6b198"/>
+				</reportElement>
+				<box rightPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesoizq}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="100" y="0" width="100" height="16" isRemoveLineWhenBlank="true" uuid="dac0c1b4-3c1a-4c20-bfe5-914f16a986f9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3ffff912-42e3-42d8-ba55-2c36c4cf6143"/>
+				</reportElement>
+				<box rightPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesoder}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
