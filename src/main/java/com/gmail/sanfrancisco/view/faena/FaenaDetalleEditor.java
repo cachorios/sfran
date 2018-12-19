@@ -44,6 +44,7 @@ public class FaenaDetalleEditor  extends HorizontalLayout implements HasValueAnd
         fieldSupport = new AbstractFieldSupport<>(this,null, Objects::equals, c ->{});
 
         setWidth("100%");
+        setHeight("1.7rem");
 
         orden = new TextField(); orden.setWidth("15%");
         binder.forField(orden)
@@ -54,11 +55,11 @@ public class FaenaDetalleEditor  extends HorizontalLayout implements HasValueAnd
         categoriaDetalle.setWidth("100%");
         binder.bind(categoriaDetalle,"categoria");
 
-        kgIzquierdo = new TextField(); orden.setWidth("17%");
+        kgIzquierdo = new TextField(); kgIzquierdo.setWidth("17%");
         binder.forField(kgIzquierdo)
                 .withConverter(new DoubleConverter())
                 .bind( "kgIzquierdo");
-        kgDerecho = new TextField(); orden.setWidth("17%");
+        kgDerecho = new TextField(); kgDerecho.setWidth("17%");
         binder.forField(kgDerecho)
               .withConverter(new DoubleConverter())
               .bind("kgDerecho");

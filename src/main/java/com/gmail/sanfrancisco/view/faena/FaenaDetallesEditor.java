@@ -44,8 +44,9 @@ public class FaenaDetallesEditor extends Div implements HasValueAndElement<Abstr
                 envolver(new Label("Peso Izq."), "17%"),
                 envolver(new Label("Peso Der."), "17%")
         );
-        hlLabel.setWidth("100%");
 
+        hlLabel.setWidth("100%");
+        hlLabel.setClassName("faena-header");
         add( hlLabel);
     }
 
