@@ -207,7 +207,7 @@ El boton **imprimir** (Arriba a la derecha) de este sector contiene los reportes
 
 ##### Sector productores
 
-![sector consignatarios](Manual imagenes/submenu productores.png)
+![sector productores](Manual imagenes/submenu productores.png)
 
 El boton **imprimir** (Arriba a la derecha) de este sector contiene los reportes:
 - Listado: Una lista de todos los productores y algunos de sus datos.
@@ -246,6 +246,12 @@ El formulario de DTE es uno extenso y combina muchas funciones.
 Luego de cargar el numero de tropa debera cargar el **Origen y Destino**, considere que debera cargar las provincias primero para que el campo localidad se limite a las localidades de la provincia seleccionada.
 Encontrara el **campo especial** mencionado con anterioridad repetidas veces en este formulario (Conductor, Comisionista, Consignatario), recuerde que en el puede buscar el dato deseado ingresando su codigo si lo sabe o darle a la lupa para buscarlo desde una lista.
 En los campos fechas (Por ejemplo: Fecha de carga) puede darle al icono del calendario para tener un forma grafica de busqueda de la fecha que desee.
+
+El boton **imprimir** (Arriba a la derecha) de este sector contiene los reportes:
+- Listado: Una lista de todos los DTEs y algunos de sus datos.
+- Saldo de la tropa: Con un DTE seleccionado en la lista, vea el saldo final de esta tropa.
+- Precio por categoria: Seleccione un rango de fechas, una categoria animal y vea los totales de Kg vivo, Kg carne, importe bruto y valor de comision.
+
 En la parte inferior del formulario se encuentran 4 grillas separadas en pestañas (Numero de DTE, Categoria, Insumos e impuestos). Haciendo click sobre el texto puede navegar entre ellas.
 
 ###### Grilla: Numero de DTE
@@ -302,3 +308,23 @@ Una ves presionado el boton cargar se rellenara la tabla debajo.
 Considere:
 - El campo **Categoria** indica la categoria de salida de la faena, ya que esta puede cambiar.
 - Usted podra presionar CARGAR en la cabezera, rellenar los campos (categoria, peso izquierda, peso derecha) y luego nuevamente darle CARGAR en una cabezera distinta sin perder los datos cargados. Ejemplo de la imagen: Cargo 12 a faenar en la primera categoria de vacas con cantidad 49, rellenar los datos y luego darle a CARGAR a la segunda categoria de vacas con cantidad 1 sin perder los datos ya cargados.
+
+El boton **imprimir** (Arriba a la derecha) de este sector contiene los reportes:
+- Listado: Con una Faena seleccionada de la lista, vea sus detalles.
+
+## Menu parametros del sistema
+
+![faena](Manual imagenes/menu parametros del sistema.png)
+
+##### PARAMETROS GENERALES
+
+En este sector se encuentran registros mezclados que contienen pocos datos. Unos ejemplo serian las localidades que solo poseen el dato de descripcion y la provincia a la que pertenecen; o podrian ser impuestos, categoria animal, color de vehiculo, etc. Estos registros solo poseen una descripcion como dato y nada mas.
+
+![faena](Manual imagenes/menu parametros.png)
+
+##### USUARIOS
+
+Desde aqui usted podra crear nuevos usuarios y asignarle un rol en el sistema para asi definir sus permisos.
+![faena](Manual imagenes/menu usuarios.png)
+
+
