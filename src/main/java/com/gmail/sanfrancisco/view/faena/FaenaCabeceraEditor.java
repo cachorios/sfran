@@ -6,6 +6,7 @@ import com.gmail.cacho.slapi.view.interfaces.IPresentable;
 import com.gmail.sanfrancisco.converter.IntegerConverter;
 import com.gmail.sanfrancisco.entidad.DteDetalleCategoria;
 import com.gmail.sanfrancisco.entidad.FaenaCabezera;
+import com.gmail.sanfrancisco.entidad.FaenaDetalle;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.Tag;
@@ -15,11 +16,14 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Hr;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.internal.AbstractFieldSupport;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 
 import com.vaadin.flow.shared.Registration;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -35,11 +39,14 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
     private final AbstractFieldSupport<FaenaCabeceraEditor,List<FaenaCabezera>> fieldSupport;
 
     private boolean hasChanges = false;
-//    private BeanValidationBinder<FaenaCabezera> binderFC = new BeanValidationBinder<>(FaenaCabezera.class);
-    public FaenaCabeceraEditor(IPresentable padre) {
+    //    private BeanValidationBinder<FaenaCabezera> binderFC = new BeanValidationBinder<>(FaenaCabezera.class);
+    FaenaDetallesEditor detallesEditor;
 
+    public FaenaCabeceraEditor(IPresentable padre, FaenaDetallesEditor detallesEditor) {
 
         this.padre = padre;
+        this.detallesEditor = detallesEditor;
+
         this.fieldSupport = new AbstractFieldSupport<>(this, Collections.emptyList(),
                 Objects::equals, c ->  {});
 
@@ -132,7 +139,7 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
             kgVivo      = new TextField(); kgVivo.setWidth("10%");      kgVivo.setEnabled(false);
 
             aFaenar     = new TextField(); aFaenar.setWidth("10%");
-            btnAgregar = new Button("Carga", e->{});
+            btnAgregar = new Button("Carga");
 
             binder.forField(aFaenar)
                     .withConverter(new IntegerConverter())
@@ -158,11 +165,30 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
             cantidad.setValue(d.getCantidad().toString());
             kgVivo.setValue(d.getKgVivo().toString());
             faenado.setValue(faenaCabezera.getFaenado().toString());
+            btnAgregar.addClickListener(e -> crearDetalle(faenaCabezera));
             Integer dif = 0;
             dif = d.getCantidad() - faenaCabezera.getFaenado();
             diferencia.setValue( dif.toString() );
 
             binder.setBean(faenaCabezera);
+        }
+
+        private void crearDetalle(FaenaCabezera faenaCabezera) {
+            if(faenaCabezera.getCantidad()>0) {
+                detallesEditor.removeAll();
+                detallesEditor.cabecera();
+
+                if (faenaCabezera.getFaenaDetalle() == null || faenaCabezera.getFaenaDetalle().size() == 0 ) {
+                    ArrayList<FaenaDetalle> adetalle = new ArrayList<>();
+                    for (int i = 0; i < faenaCabezera.getCantidad(); i++){
+                        adetalle.add(new FaenaDetalle(i+1,faenaCabezera.getCategoria().getCategoria(),0.0,0.0 ));
+                    }
+                    faenaCabezera.setFaenaDetalle(adetalle);
+                }
+                detallesEditor.setValue(faenaCabezera.getFaenaDetalle());
+            }
+            //Notification.show(faenaCabezera.getCantidad().toString(), 1000, Notification.Position.MIDDLE);
+
         }
 
         @Override

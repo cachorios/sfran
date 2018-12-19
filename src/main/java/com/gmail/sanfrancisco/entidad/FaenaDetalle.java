@@ -28,6 +28,54 @@ public class FaenaDetalle extends AbstractEntidad {
     @ManyToOne
     private FaenaCabezera faenaCabezera;
 
+
+    public FaenaDetalle(@NotNull Integer orden, @NotNull Parametro categoria, @NotNull Double kgIzquierdo, @NotNull Double kgDerecho) {
+        this.orden = orden;
+        this.categoria = categoria;
+        this.kgIzquierdo = kgIzquierdo;
+        this.kgDerecho = kgDerecho;
+    }
+
+    public Integer getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Integer orden) {
+        this.orden = orden;
+    }
+
+    public Parametro getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Parametro categoria) {
+        this.categoria = categoria;
+    }
+
+    public Double getKgIzquierdo() {
+        return kgIzquierdo;
+    }
+
+    public void setKgIzquierdo(Double kgIzquierdo) {
+        this.kgIzquierdo = kgIzquierdo;
+    }
+
+    public Double getKgDerecho() {
+        return kgDerecho;
+    }
+
+    public void setKgDerecho(Double kgDerecho) {
+        this.kgDerecho = kgDerecho;
+    }
+
+    public FaenaCabezera getFaenaCabezera() {
+        return faenaCabezera;
+    }
+
+    public void setFaenaCabezera(FaenaCabezera faenaCabezera) {
+        this.faenaCabezera = faenaCabezera;
+    }
+
     @Override
     public String toString() {
         return isNew() ? "Nueva Faena Detalle" : this.categoria.toString();

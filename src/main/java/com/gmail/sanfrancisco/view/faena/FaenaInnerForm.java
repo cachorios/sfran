@@ -53,9 +53,10 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
         faenaProductorEditor = new FaenaProductorEditor();
 
-        cabecera = new FaenaCabeceraEditor(getPresentable());
-
         detallesEditor = new FaenaDetallesEditor( this.getPresentable() );
+        cabecera = new FaenaCabeceraEditor(getPresentable(), detallesEditor);
+
+
 
 
 
@@ -97,7 +98,7 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
             this.setWidth("100%");
             fieldSupport = new AbstractFieldSupport<>(this, null, Objects::equals, c->{});
 
-            productorCS = new ProductorCS("Productor", getPresentable(), true, true, true);
+            productorCS = new ProductorCS("Productor", getPresentable(), true, true, false);
             productorCS.addValueChangeListener(e-> {this.productorChanged(e, dteCS);});
             binderFP.forField(productorCS).bind("productor");
 

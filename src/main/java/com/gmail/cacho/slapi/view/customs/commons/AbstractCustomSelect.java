@@ -90,6 +90,11 @@ public abstract class AbstractCustomSelect<T extends AbstractEntidad> extends Ab
         return content;
     }
 
+    public AbstractCustomSelect setWidth(String w){
+        getContent().setWidth(w);
+        return this;
+    }
+
     private void avisarAlPadre() {
         if (getPadre() instanceof IPresentableForm) {
      ///       ((IPresentableForm) getPadre()).marcarUnsavedChanges();
