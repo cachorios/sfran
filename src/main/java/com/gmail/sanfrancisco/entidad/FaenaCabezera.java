@@ -79,18 +79,15 @@ public class FaenaCabezera extends AbstractEntidad {
     @PrePersist
     protected void setAltaData() {
         super.setAltaData();
+        faenaDetalle.forEach(detalle -> detalle.setFaenaCabezera(this) );
     }
 
     @Override
     @PreUpdate
     protected void setUmodData() {
         super.setUmodData();
+        faenaDetalle.forEach(detalle -> detalle.setFaenaCabezera(this) );
     }
 
-//    @PrePersist
-//    @PreUpdate
-//    public void preUpdate(){
-//        return;
-//
-//    }
+
 }
