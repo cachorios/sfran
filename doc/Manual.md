@@ -1,58 +1,72 @@
 #Pantalla principal
 
-Al iniciar sesion encontrara en la esquina superior izquierda tres lineas horizontales que le permitiran ocultar el **Menu principal** y en la esquina superior derecha botones que le permitiran **cambiar su contraseña** (Candado) o **cerrar su sesion**.
+La pantalla inicial que encontrara tan pronto inicie sesion cuenta con un **Menu principal** de navegacion desde el cual podra dirigirse a cualquier sector en cuestion de dos clicks. Este menu de navegacion puede ocultarse cuando se deje de usar usando las 3 lineas horizontales ubicadas en la esquina superior izquierda.
+
+En la esquina superior derecha encontrara 2 iconos:
+Usando el candado podra cambiar la contraseña de su cuenta y usando el otro cerrara su sesion.
 
 ![Pantalla pricipal](Manual imagenes/pantalla principal.png)
 
 ## Menu principal
 
-El menu principal permite la facil **navegacion** entre los sectores, presentadolos en una lista que a su ves cada una contiene una sub-lista para su mejor ordenamiento.
+El menu principal permite la facil **navegacion** entre los sectores, presentado las opciones en una lista vertical de sectores agrupados. Se agrupan los sectores para mantener el listado en un tamaño accesible y tener un orden. Cada grupo despliega una sub-lista de los sectores, por ejemplo el grupo 'Personas' contiene los sectores de Comisionistas, Consignatario y Productores.
 
 ![Menu principal](Manual imagenes/Menu principal.png)
 
 ## Interfaz de sectores
 
+Todas las interfaces o pantallas de los sectores mantiene una misma estructura, de esta forma aprender a usar un sector asegura saber usar el resto.
+Tomando de ejemplo el sector de Consignatario explicaremos sus funciones.
+
 ![CRUD](Manual imagenes/CRUD.png)
 
-Cada sector contiene una lista de sus registros (En este caso 'Consignatarios') la cual se puede filtrar con el campo sobre ella. A su derecha un conjunto de botones y debajo de ellos una previsualizacion.
+Cada sector contiene una lista de sus registros (En este caso Consignatarios) mostrando algunos de sus campos. Sobre el listado un campo de busqueda le permitira filtrar la lista para encontrar rapidamente algun registro especifico.
 
 ###### Previsualizacion:
-Este es el cuadro de la derecha. Al seleccionar un registro de la lista mostrara datos extra del mismo. A su ves contiene un boton **imprimir** que mostrara los datos del registro seleccionado en un PDF.
+Este es el cuadro de la derecha. Al seleccionar un registro de la lista mostrara datos extra del mismo. Dentro del mismo contiene un boton **imprimir** que mostrara los datos del registro seleccionado en un PDF.
 
 
 ###### Botones:
+Sobre el recuadro de Previsualizacion hay un conjunto de botones:
+
 ![botones](Manual imagenes/botones.png)
 - VER: Previsualizacion completa del registro seleccionado en la lista.
 - NUEVO: Crear un nuevo registro.
-- EDITAR: Modificar los datos del registro seleccionado.
-- BORRAR: Eliminar el registro seleccionado.
+- EDITAR: Modificar los datos del registro seleccionado de la lista.
+- BORRAR: Eliminar el registro seleccionado de la lista.
 - IMPRIMIR: Despliega una lista de reportes en PDF o EXCEL relacionados con el sector (En este caso 'Consignatarios').
 
 ## Ventanas de carga o edicion de datos
 
-Las interfaces de carga/edicion de datos cuentan con un formulario con los campos correspondientes a rellenar/cambiar y 3 botones:
+Cuando utilice los botones de **NUEVO** o **EDITAR** se abriran ventanas con un formulario. Los campos en este formulario dependeran del registro que este cargando/editando pero los botones en el mismo siempre tendran las mismas funciones:
 
 - GUARDAR: Guardar los cambios o el nuevo registro.
 - GUARDAR Y AGREGAR: Guarda el nuevo registro y mantiene la ventana abierta para otro registro nuevo.
 - CANCELAR: Cancelar la operacion.
 
 ![Ventana Alta-Modificacion](Manual imagenes/Ventana AM.png)
+(Imagen de ejemplo: formulario de Consignatario)
 
 ## Campo especial
 
-En algunos formularios se encontrara con un campo especial (En este caso relacionado a 'Consignatario')
+En algunos formularios se encontrara con un campo especial. Su estructura es la siguiente:
+- Una descripcion sobre el. En la imagen lo ve como 'Consignatario'.
+- Un 'campo de codigo'. En la imagen lo ve como '2'.
+- Un 'campo de descripcion' pegado al campo de codigo. En la imagen lo ve como 'ALMADA RAMON'.
+- Pegado al campo de descripcion, 3 botones: Lupa, goma y ojo.
 
 ![Control custom select](Manual imagenes/custom select.png)
 
-Este tipo de campo le da mas opciones y velocidad a la hora de buscar datos. En el usted puede:
-- Si lo sabe de memoria, puede **ingresar el codigo** del registro que desea y ahorrarse la busqueda manual. En este caso es '2' y el codigo que desee debe ingresarse **en el mismo lugar donde este se encuentra**.
+Este tipo de campo permite encontrar con mayor rapidez un registro con el cual trabaja repetidamente, buscar con facilidad en un gran conjunto de datos el que usted desea o incluso agregar un registro de otro sector sin necesidad de navegar hasta el.
+- Si lo sabe de memoria, puede **ingresar el codigo** (En el campo de codigo) del registro que desea y ahorrarse la busqueda manual.
 - La lupa: Permite desplegar una **lista de los registros** (Consignatarios en este caso), **filtrarlos** con el campo que se encuentra sobre la lista e incluso agregar un registro en el acto con el boton **AGREGAR**.
 
 ![Control custom select listado](Manual imagenes/custom select list.png)
+(Imagen de ejemplo: Listado de consignarios que despliega el boton de la lupa)
 
-- La goma: Quitar del control el registro seleccionado, o en otras palabras, limpiar el campo.
+- La goma: Quitar del campo el registro seleccionado, o en otras palabras, limpiar el campo.
 
-- El ojo: Previsualizar el registro seleccionado.
+- El ojo: Previsualizar el registro seleccionado y todos sus datos.
 
 ## Grillas
 
@@ -79,20 +93,66 @@ Dentro del menu otros se encuentran los sectores de **Agenda** e **Insumos**.
 
 ##### Sector Agenda
 
+Una agenda que le permitira agendar eventos los cuales estan relacionados a comisionista y conductor. Dando click sobre una fecha en la agenda se presentara el formulario para realizar un registro.
 ![menu agenda](Manual imagenes/menu agenda.png)
-Una agenda que le permitira agendar eventos los cuales estan relacionados a comisionista y conductor. Dando click sobre una fecha en la agenda se presentara el formulario.
 
-![menu agenda](Manual imagenes/agenda.png)
 Ingrese el titulo del evento, seleccione Conductor, seleccione Comisionista, seleccione el color con el que quiere que el evento aparesca en la agenda, ingrese una descripcion y termine la operacion dando al boton **Crear**.
 
-![menu agenda](Manual imagenes/agenda mensual.png)
-Tambien podra, con los botones que se encuentran sobre la agenda, cambiar el tipo de visualizacion. Cambie el mes/semana que esta viendo con los botones **Previo, Hoy y Siguiente**.
+![menu agenda](Manual imagenes/agenda.png)
+
+Tambien podra, con los botones que se encuentran sobre la agenda, cambiar el tipo de visualizacion. Esta son las opciones:
+
+![menu agenda](Manual imagenes/botones agenda.png)
+
+SEMANAL:
+
+![agenda semanal](Manual imagenes/agenda semanal.png)
+
+AGENDA SEMANAL:
+
+![agenda agenda semanal](Manual imagenes/agenda agenda semanal.png)
+
+LISTA SEMANAL:
+
+![agenda lista semanal](Manual imagenes/agenda lista semanal.png)
+
+DIARIO:
+
+![agenda diario](Manual imagenes/agenda diario.png)
+
+AGENDA DIARIA:
+
+![agenda agenda diaria](Manual imagenes/agenda agenda diaria.png)
+
+LISTA DIA:
+
+![agenda lista dia](Manual imagenes/agenda lista dia.png)
+
+MENSUAL:
+
+![agenda mensual](Manual imagenes/agenda mensual.png)
+
+LISTA MENSUAL:
+
+![agenda lista mensual](Manual imagenes/agenda lista mensual.png)
+
+LISTA ANUAL:
+
+![agenda lista anual](Manual imagenes/agenda lista anual.png)
+
+Cambie el mes/semana que esta viendo con los botones **Previo, Hoy y Siguiente**.
+
+![menu agenda](Manual imagenes/agenda botones navegacion.png)
+
 
 ##### Sector insumos
 
+Tomemos el sector de insumos para reforzar la explicacion de sobre la estructura y funcionamiento de los sectores.
+
 ![menu insumos](Manual imagenes/menu insumos.png)
 
-Presenta un listado de insumos con algunos de sus datos. Seleccionando uno de estos se pueden previsualizar mas detalles sobre el mismo en el cuadro de la derecha. A su ves el cuadro de la derecha contiene un boton **imprimir** que mostrara los datos del insumo seleccionado en un PDF.
+Principalmente vemos un listado de insumos con algunos de sus datos.
+Seleccionando un registro en la lista se puede previsualizar mas detalles sobre el mismo en el cuadro de la derecha. A su ves el cuadro de la derecha contiene un boton **imprimir** que mostrara los datos del insumo seleccionado en un PDF.
 Puede cargar un nuevo insumo dandole al boton **nuevo**, cargando el formulario que aparecera y terminando la operacion dandole al boton **guardar**, o **guardar y agregar** si desea continuar cargando otro insumo.
 Los botones de **ver**, **editar** y **borrar** se habilitan cuando se tiene seleccionado algun registro en la lista.
 El boton **imprimir** (Arriba a la derecha) presentara un listado de reportes los cuales usted podra elegir si los desea en un PDF o en EXCEL. Las opciones de reportes en este sector son:
@@ -100,7 +160,7 @@ El boton **imprimir** (Arriba a la derecha) presentara un listado de reportes lo
 
 ## Menu transporte
 
-Dentro del menu transporte se encuentran los sectores de **Vehiculos** y **Conductor**.
+Dentro del menu transporte se encuentran los sectores de **Vehiculos** y **Conductores**.
 
 ![menu transporte](Manual imagenes/menu transporte.png)
 
@@ -120,8 +180,8 @@ El boton **imprimir** (Arriba a la derecha) de este sector contiene los reportes
 - Listado: Una lista de todos los conductor y algunos de sus datos.
 
 Dentro del formulario de conductores encontrara la grilla de licencias, que le permitira cargar la cantidad de licencias que desee a dicho conductor o editar/borrar las que ya tenga.
-![grilla licencias](Manual imagenes/grilla licencias.png)
 
+![grilla licencias](Manual imagenes/grilla licencias.png)
 
 ## Menu personas
 
@@ -130,6 +190,8 @@ Dentro del menu personas se encuentran los sectores de **Comisionista**, **Consi
 ##### Sector comisionistas
 
 ![sector comisionista](Manual imagenes/submenu comisionista.png)
+
+En el listado de los comisionistas los saldos iniciales que se encuentren en negativo apareceran coloreados en rojo.
 
 El boton **imprimir** (Arriba a la derecha) de este sector contiene los reportes:
 - Listado: Una lista de todos los comisionistas y algunos de sus datos.
@@ -224,11 +286,19 @@ Dentro del menu faena se encuentran el sector de **Faena**.
 
 ##### FAENA
 
-![faena](Manual imagenes/faena.png)
+El formulario de Faena se desplegara completamente al cabo de terminar los pasos iniciales.
 
-El campo **Tropa** no permitira cargar una tropa que no sea del productor seleccionado, es por esto que **debe cargar el campo Productor con anterioridad**.
+![faena](Manual imagenes/Faena.png)
+
+Cargue los campos Fecha y Numero, cuando **cargue el Productor recien tendra la posibilidad de cargar el campo Tropa**, debido a que las categorias que se presentaran debajo deben estar relacionados a un determinado productor.
+
 Una ves seleccionada la tropa se le apareceran las categorias de la misma. Donde:
 - El campo **Cantidad**: Indica la cantidad de la categoria dentro de la tropa.
 - El campo **Faenado**: Indica la cantidad ya faenada.
 - El campo **Dif** (Diferencia): Indica la cantidad que queda por faenar.
-- El campo **A Faenar**: En este campo debera indicar que cantidad desea faenar y luego darle al boton **CARGAR**.
+- El campo **A Faenar**: En este campo debera indicar que cantidad desea faenar y luego darle al boton CARGAR.
+
+Una ves presionado el boton cargar se rellenara la tabla debajo.
+Considere:
+- El campo **Categoria** indica la categoria de salida de la faena, ya que esta puede cambiar.
+- Usted podra presionar CARGAR en la cabezera, rellenar los campos (categoria, peso izquierda, peso derecha) y luego nuevamente darle CARGAR en una cabezera distinta sin perder los datos cargados. Ejemplo de la imagen: Cargo 12 a faenar en la primera categoria de vacas con cantidad 49, rellenar los datos y luego darle a CARGAR a la segunda categoria de vacas con cantidad 1 sin perder los datos ya cargados.

@@ -51,12 +51,14 @@ public class ComisionistaList extends AbstractList<Comisionista> {
         grilla.addColumn(Comisionista::getNombre)
                 .setHeader("Nombre")
                 .setWidth("40%")
-                .setKey("nombre");
+                .setKey("nombre")
+                .setSortable(true);
 
         grilla.addColumn(Comisionista::getCelular)
                 .setHeader("Celular")
                 .setWidth("15%")
-                .setKey("celular");
+                .setKey("celular")
+                .setSortable(true);
 
 //        grilla.addColumn(Comisionista::getSaldoInicial)
 //                .setHeader("Inicio")
@@ -75,7 +77,9 @@ public class ComisionistaList extends AbstractList<Comisionista> {
         grilla.addColumn(TemplateRenderer.<Comisionista>
                 of("<div style$=\"[[item.class]]\">[[item.saldoInicial]]</div>")
                 .withProperty("class", cssClassProvider)
-                .withProperty("saldoInicial", Comisionista::getSaldoInicial));
+                .withProperty("saldoInicial", Comisionista::getSaldoInicial))
+                .setHeader("Saldo inicial")
+        .setSortable(true);
 
 
 
