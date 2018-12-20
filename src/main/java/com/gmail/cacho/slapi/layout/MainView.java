@@ -41,8 +41,8 @@ public class MainView extends AppLayoutRouterLayout {
     public AppLayout getAppLayout() {
         // Primero define ciertos componentes de la barra superior
 
-        TopClickableComponent ayuda = new TopClickableComponent(null, VaadinIcon.EYE.create(),
-                clickEvent -> new Ayuda());
+        TopClickableComponent ayuda = new TopClickableComponent(null, VaadinIcon.QUESTION.create(),
+                clickEvent -> (new Ayuda()).open());
         ayuda.getElement().getStyle().set("cursor", "pointer");
         ayuda.setSizeFull();
 

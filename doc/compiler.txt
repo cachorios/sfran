@@ -1,3 +1,6 @@
 Comando para compilar.
 
 mvn clean package  -P productionMode
+
+
+ pg_restore --dbname=sfran --verbose /opt/backup.bak -U postgres
