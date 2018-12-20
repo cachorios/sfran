@@ -1,0 +1,289 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<!-- <link rel="import" href="../../../bower_components/polymer/polymer-element.html"> -->
+<link rel="import" href="../../../styles/shared-styles.html">
+
+<dom-module id="ayuda-fran">
+    <template>
+        <style include="shared-styles">
+                :host{
+                    font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;
+                    margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit;
+                }
+                a.url { word-break: break-all; }
+                a:active, a:hover { outline: 0px; }
+                .in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+                #write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; }
+                #write.first-line-indent p { text-indent: 2em; }
+                #write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+                #write.first-line-indent li { margin-left: 2em; }
+                .for-image #write { padding-left: 8px; padding-right: 8px; }
+
+                .typora-export { padding-left: 30px; padding-right: 30px; }
+                .typora-export .footnote-line, .typora-export p { white-space: pre-wrap; }
+
+                @media screen and (max-width: 500px) {
+                  .typora-export { padding-left: 0px; padding-right: 0px; }
+                  .CodeMirror-sizer { margin-left: 0px !important; }
+                  .CodeMirror-gutters { display: none !important; }
+                }
+
+                #write li > figure:first-child { margin-top: -20px; }
+                #write ol, #write ul { position: relative; }
+                img { max-width: 100%; vertical-align: middle; }
+                button, input, select, textarea { color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; }
+                input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+                *, ::after, ::before { box-sizing: border-box; }
+                #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+                #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+                h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+                p { orphans: 4; }
+                h1 { font-size: 2rem; }
+                h2 { font-size: 1.8rem; }
+                h3 { font-size: 1.6rem; }
+                h4 { font-size: 1.4rem; }
+                h5 { font-size: 1.2rem; }
+                h6 { font-size: 1rem; }
+                .md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+                .hidden { display: none; }
+                .md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+                a { cursor: pointer; }
+                sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+                sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+                #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+                figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+                figure > table { margin: 0px !important; }
+                tr { break-inside: avoid; break-after: auto; }
+                thead { display: table-header-group; }
+                table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+                table.md-table td { min-width: 80px; }
+                .CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+                .CodeMirror { text-align: left; }
+                .CodeMirror-placeholder { opacity: 0.3; }
+                .CodeMirror pre { padding: 0px 4px; }
+                .CodeMirror-lines { padding: 0px; }
+                div.hr:focus { cursor: none; }
+                #write pre { white-space: pre-wrap; }
+                #write.fences-no-line-wrapping pre { white-space: pre; }
+                #write pre.ty-contain-cm { white-space: normal; }
+                .CodeMirror-gutters { margin-right: 4px; }
+                .md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+                .md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+                #write .md-fences.mock-cm { white-space: pre-wrap; }
+                .md-fences.md-fences-with-lineno { padding-left: 0px; }
+                #write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+                .md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+                .CodeMirror-line, twitterwidget { break-inside: avoid; }
+                .footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+                .footnotes + .footnotes { margin-top: 0px; }
+                .md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+                li div { padding-top: 0px; }
+                blockquote { margin: 1rem 0px; }
+                li .mathjax-block, li p { margin: 0.5rem 0px; }
+                li { margin: 0px; position: relative; }
+                blockquote > :last-child { margin-bottom: 0px; }
+                blockquote > :first-child, li > :first-child { margin-top: 0px; }
+                .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+                #write .footnote-line { white-space: pre-wrap; }
+                @media print {
+                  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+                  #write { margin-top: 0px; border-color: transparent !important; }
+                  .typora-export * { -webkit-print-color-adjust: exact; }
+                  html.blink-to-pdf { font-size: 13px; }
+                  .typora-export #write { padding-left: 1cm; padding-right: 1cm; padding-bottom: 0px; break-after: avoid; }
+                  .typora-export #write::after { height: 0px; }
+                  @page { margin: 20mm 0px; }
+                }
+                .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+                a img, img a { cursor: pointer; }
+                pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+                p > img:only-child { display: block; margin: auto; }
+                p > .md-image:only-child { display: inline-block; width: 100%; text-align: center; }
+                #write .MathJax_Display { margin: 0.8em 0px 0px; }
+                .md-math-block { width: 100%; }
+                .md-math-block:not(:empty)::after { display: none; }
+                [contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+                .md-task-list-item { position: relative; list-style-type: none; }
+                .task-list-item.md-task-list-item { padding-left: 0px; }
+                .md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); }
+                .math { font-size: 1rem; }
+                .md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+                .md-toc-content { position: relative; margin-left: 0px; }
+                .md-toc-content::after, .md-toc::after { display: none; }
+                .md-toc-item { display: block; color: rgb(65, 131, 196); }
+                .md-toc-item a { text-decoration: none; }
+                .md-toc-inner:hover { text-decoration: underline; }
+                .md-toc-inner { display: inline-block; cursor: pointer; }
+                .md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+                .md-toc-h2 .md-toc-inner { margin-left: 2em; }
+                .md-toc-h3 .md-toc-inner { margin-left: 4em; }
+                .md-toc-h4 .md-toc-inner { margin-left: 6em; }
+                .md-toc-h5 .md-toc-inner { margin-left: 8em; }
+                .md-toc-h6 .md-toc-inner { margin-left: 10em; }
+                @media screen and (max-width: 48em) {
+                  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+                  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+                  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+                  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+                }
+                a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+                .footnote-line a:not(.reversefootnote) { color: inherit; }
+                .md-attr { display: none; }
+                .md-fn-count::after { content: "."; }
+                code, pre, samp, tt { font-family: var(--monospace); }
+                kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+                .md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+                code { text-align: left; vertical-align: initial; }
+                a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+                .md-inline-math .MathJax_SVG .noError { display: none !important; }
+                .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+                .MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+                .MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+                .MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+                .MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+                .MathJax_SVG * { transition: none; }
+                .MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; }
+                .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+                .md-diagram-panel > svg { max-width: 100%; }
+                [lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; }
+                [lang="mermaid"] .node text { font-size: 1rem; }
+                table tr th { border-bottom: 0px; }
+                video { max-width: 100%; display: block; margin: 0px auto; }
+                iframe { max-width: 100%; width: 100%; border: none; }
+                .highlight td, .highlight tr { border: 0px; }
+
+
+                :root { --control-text-color: #777; }
+                @font-face { font-family: Merriweather; font-style: normal; font-weight: normal; src: local("Merriweather Light"), local("Merriweather-Light"), url("./pixyll/merriweather-v19-latin-300.woff") format("woff"); }
+                @font-face { font-family: Merriweather; font-style: normal; font-weight: bold; src: local("Merriweather Heavy"), local("Merriweather-Heavy"), url("./pixyll/merriweather-v19-latin-700.woff") format("woff"); }
+                @font-face { font-family: Merriweather; font-style: italic; font-weight: normal; src: local("Merriweather Light Italic"), local("Merriweather-LightItalic"), url("./pixyll/merriweather-v19-latin-300italic.woff") format("woff"); }
+                @font-face { font-family: Merriweather; font-style: italic; font-weight: bold; src: local("Merriweather Heavy Italic"), local("Merriweather-HeavyItalic"), url("./pixyll/merriweather-v19-latin-700italic.woff") format("woff"); }
+                @font-face { font-family: Lato; font-style: normal; font-weight: normal; src: local("Lato Light"), local("Lato-Light"), url("./pixyll/lato-v14-latin-300.woff") format("woff"); }
+                @font-face { font-family: Lato; font-style: normal; font-weight: bold; src: local("Lato Black"), local("Lato-Blcak"), url("./pixyll/lato-v14-latin-900.woff") format("woff"); }
+                @font-face { font-family: Lato; font-style: italic; font-weight: normal; src: local("Lato LightItalic"), local("Lato-LightItalic"), url("./pixyll/lato-v14-latin-300italic.woff") format("woff"); }
+                @font-face { font-family: Lato; font-style: italic; font-weight: bold; src: local("Lato BlackItalic"), local("Lato-BlackItalic"), url("./pixyll/lato-v14-latin-900italic.woff") format("woff"); }
+                h1, .h1, .f1 { font-size: 2rem; line-height: 2.5rem; }
+                h2, .h2, .f2 { font-size: 1.5rem; line-height: 2rem; }
+                h3, .h3, .f3 { font-size: 1.25rem; line-height: 1.5rem; }
+                p, .p, .f4, h4, h5, h6, dl, ol, ul, pre[cid], div[cid], #typora-source { font-size: 1.125rem; line-height: 1.5rem; }
+                h4 { font-size: 1.13rem; }
+                body { font-family: Merriweather, "PT Serif", Georgia, "Times New Roman", STSong, serif; line-height: 1.5rem; font-weight: 400; }
+                #write { max-width: 914px; color: rgb(51, 51, 51); }
+                img { width: auto; max-width: 100%; }
+                body { font-size: 1.5rem; box-sizing: border-box; }
+                .ty-table-edit { background: rgb(237, 237, 237); }
+                table { width: 100%; font-size: 1.125rem; }
+                table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td, table > tfoot > tr > th, table > tfoot > tr > td { padding: 12px; line-height: 1.2; vertical-align: top; border-top: 1px solid rgb(51, 51, 51); }
+                table > thead > tr > th { vertical-align: bottom; border-bottom: 2px solid rgb(51, 51, 51); }
+                table > caption + thead > tr:first-child > th, table > caption + thead > tr:first-child > td, table > colgroup + thead > tr:first-child > th, table > colgroup + thead > tr:first-child > td, table > thead:first-child > tr:first-child > th, table > thead:first-child > tr:first-child > td { border-top: 0px; }
+                table > tbody + tbody { border-top: 2px solid rgb(51, 51, 51); }
+                p { font-weight: 300; line-height: 1.5; }
+                abbr { border-bottom: 1px dotted black; cursor: help; }
+                pre, code { font-family: Menlo, Monaco, "Courier New", monospace; }
+                code, .md-fences { color: rgb(122, 122, 122); }
+                .md-fences { padding: 0.5rem 1.125em; margin-bottom: 0.88em; font-size: 1rem; border: 1px solid rgb(122, 122, 122); }
+                blockquote { padding: 1.33em; font-style: italic; border-left: 5px solid rgb(122, 122, 122); color: rgb(85, 85, 85); }
+                blockquote em { color: rgb(0, 0, 0); }
+                blockquote footer { font-size: 0.85rem; font-style: normal; background-color: rgb(255, 255, 255); color: rgb(122, 122, 122); border-color: transparent; }
+                h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 { font-family: Lato, "Helvetica Neue", Helvetica, sans-serif; font-weight: bold; line-height: 1.2; margin: 1em 0px 0.5em; }
+                @media screen and (min-width: 48em) {
+                  .h1, h1 { font-size: 3.25rem; }
+                  .h2, h2 { font-size: 2.298rem; }
+                  .h3, h3 { font-size: 1.625rem; }
+                  .h4, h4 { font-size: 1.3rem; }
+                  #write > h4.md-focus::before, #write > h5.md-focus::before, #write > h6.md-focus::before { top: 1px; }
+                  .p, p, li { font-size: 1.25rem; line-height: 1.8; }
+                  table { font-size: 1.25rem; }
+                }
+                @media (max-width: 48em) {
+                  blockquote { margin-left: 1rem; margin-right: 0px; padding: 0.5em; }
+                  .h1, h1 { font-size: 2.827rem; }
+                  .h2, h2 { font-size: 1.999rem; }
+                  .h3, h3 { font-size: 1.413rem; }
+                  .h4, h4 { font-size: 1.3rem; }
+                }
+                @media screen and (min-width: 64em) {
+                  .h1, h1 { font-size: 4.498rem; }
+                  .h2, h2 { font-size: 2.29rem; }
+                  .h3, h3 { font-size: 1.9rem; }
+                  .h4, h4 { font-size: 1.591rem; }
+                  #write > h4.md-focus::before { top: 4px; }
+                }
+                a { color: rgb(70, 63, 92); text-decoration: underline; }
+                #write { padding-top: 2rem; }
+                #write pre.md-meta-block { min-height: 35px; padding: 2000px 1em 10px 0px; white-space: pre; border-width: 0px 30px; border-top-style: initial; border-bottom-style: initial; border-top-color: initial; border-bottom-color: initial; border-image: initial; border-left-style: solid; border-left-color: rgb(248, 248, 248); border-right-style: solid; border-right-color: rgb(248, 248, 248); width: 100vw; max-width: calc(100% + 60px); margin-left: -30px; margin-bottom: 2em; margin-top: -2010px; line-height: 1.5em; color: rgb(122, 122, 122); background-color: rgb(250, 250, 250); font-family: Lato, "Helvetica Neue", Helvetica, sans-serif; font-weight: 300; clear: both; font-size: 1.125rem; }
+                .md-image > .md-meta { color: rgb(70, 63, 92); }
+                .footnotes { font-size: 1.1rem; }
+                .md-tag { font-family: Lato, "Helvetica Neue", Helvetica, sans-serif; }
+                .code-tooltip { background: white; }
+                .code-tooltip-content { font-size: 1.1rem; }
+                .task-list { padding-left: 0px; }
+                .md-task-list-item { padding-left: 34px; }
+                .md-task-list-item > input { width: 1.25rem; height: 1.25rem; display: block; -webkit-appearance: initial; top: -2px; margin-left: -1.6em; margin-top: calc(1rem - 7px); }
+                .md-task-list-item > input:focus { outline: none; box-shadow: none; }
+                .md-task-list-item > input::before { border: 1px solid rgb(85, 85, 85); border-radius: 1.5rem; width: 1.5rem; height: 1.5rem; background: rgb(255, 255, 255); content: " "; transition: background-color 200ms ease-in-out; display: block; }
+                .md-task-list-item > input:checked::before, .md-task-list-item > input[checked]::before { background: rgb(51, 51, 51); border-width: 2px; display: inline-block; transition: background-color 200ms ease-in-out; }
+                .md-task-list-item > input:checked::after, .md-task-list-item > input[checked]::after { opacity: 1; }
+                .md-task-list-item > input::after { transition: opacity 0.05s ease-in-out; transform: rotate(-45deg); position: absolute; top: 0.4375rem; left: 0.28125rem; width: 0.9375rem; height: 0.5rem; border-width: 0px 0px 3px 3px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; content: " "; opacity: 0; }
+                .md-tag { color: inherit; }
+                .md-toc:focus .md-toc-content { margin-top: 19px; }
+                #typora-sidebar { font-size: 1rem !important; }
+                .html-for-mac #typora-sidebar { background-color: white; }
+                .outline-content li, .outline-content ul { font-size: 1rem !important; }
+                .outline-title { line-height: inherit; margin-top: 10px; }
+                .outline-expander { width: 18px; }
+                .outline-expander::before { content: "+"; font-family: inherit; color: rgb(108, 108, 108); font-size: 1.5rem; top: 0.1rem; }
+                .outline-expander:hover::before { content: "+"; }
+                .outline-item-open > .outline-item > .outline-expander::before { content: "-"; }
+                #typora-source { font-family: Courier, monospace; color: rgb(106, 106, 106); }
+                .os-windows #typora-source { font-family: inherit; }
+                .cm-s-typora-default .cm-header, .cm-s-typora-default .cm-property, .CodeMirror.cm-s-typora-default div.CodeMirror-cursor { color: rgb(66, 139, 202); }
+                .cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number { color: rgb(119, 119, 119); }
+                .preference-item-hint { margin-top: 16px; }
+                .md-diagram-panel { margin-top: 24px; margin-left: -1.2em; }
+                .md-mathjax-midline { background: rgb(250, 250, 250); }
+                .enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip, .enable-diagrams pre.md-fences[lang="flow"] .code-tooltip, .enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip { bottom: -3.4em; }
+                .dropdown-menu .divider { border-color: rgb(229, 229, 229); }
+
+                .typora-export p, .typora-export .footnote-line {white-space: normal;}
+
+            </style>
+
+
+        <div id="ayuda" class='typora-export os-windows' >
+        <div  id='write'  class = 'is-node'><h1><a name='header-n0' class='md-header-anchor '></a>Pantalla principal</h1><p>La pantalla inicial que encontrará tan pronto inicie sesión cuenta con un <strong>Menú principal</strong> de navegación desde el cual podrá dirigirse a cualquier sector en cuestión de dos clicks. Este menú de navegación puede ocultarse cuando se deje de usar usando las 3 líneas horizontales ubicadas en la esquina superior izquierda.</p><p>En la esquina superior derecha encontrara 2 iconos:
+        Usando el candado podrá cambiar la contraseña de su cuenta y usando el otro cerrará su sesión.</p><p><img src='/frontend/images/pantalla principal.png' alt='Pantalla principal' referrerPolicy='no-referrer' /></p><h2><a name='header-n5' class='md-header-anchor '></a>Menú principal</h2><p>El menú principal permite la fácil <strong>navegación</strong> entre los sectores, presentado las opciones en una lista vertical de sectores agrupados. Se agrupan los sectores para mantener el listado en un tamaño accesible y tener un orden. Cada grupo despliega una sub-lista de los sectores, por ejemplo, el grupo &#39;Personas&#39; contiene los sectores de Comisionistas, Consignatario y Productores.</p><p><img src='/frontend/images/Menu%20principal.png' alt='Menú principal' referrerPolicy='no-referrer' /></p><h2><a name='header-n8' class='md-header-anchor '></a>Interfaz de sectores</h2><p>Todas las interfaces o pantallas de los sectores mantienen una misma estructura, de esta forma aprender a usar un sector asegura saber usar el resto.
+        Tomando de ejemplo el sector de Consignatario explicaremos sus funciones.</p><p><img src='/frontend/images/crud.png' alt='CRUD' referrerPolicy='no-referrer' /></p><p>Cada sector contiene una lista de sus registros (En este caso Consignatarios) mostrando algunos de sus campos. Sobre el listado un campo de búsqueda le permitirá filtrar la lista para encontrar rápidamente algún registro especifico.</p><h6><a name='header-n12' class='md-header-anchor '></a>Pre visualización:</h6><p>Este es el cuadro de la derecha. Al seleccionar un registro de la lista mostrara datos extra del mismo. Dentro del mismo contiene un botón <strong>imprimir</strong> que mostrara los datos del registro seleccionado en un PDF.</p><h6><a name='header-n15' class='md-header-anchor '></a>Botones:</h6><p>Sobre el recuadro de Pre visualización hay un conjunto de botones:</p><p><img src='/frontend/images/botones.png' alt='botones' referrerPolicy='no-referrer' /></p><ul><li>VER: Pre visualización completa del registro seleccionado en la lista.</li><li>NUEVO: Crear un nuevo registro.</li><li>EDITAR: Modificar los datos del registro seleccionado de la lista.</li><li>BORRAR: Eliminar el registro seleccionado de la lista.</li><li>IMPRIMIR: Despliega una lista de reportes en PDF o EXCEL relacionados con el sector (En este caso &#39;Consignatarios&#39;).</li></ul><h2><a name='header-n29' class='md-header-anchor '></a>Ventanas de carga o edición de datos</h2><p>Cuando utilice los botones de <strong>NUEVO</strong> o <strong>EDITAR</strong> se abrirán ventanas con un formulario. Los campos en este formulario dependerán del registro que este cargando/editando, pero los botones en el mismo siempre tendrán las mismas funciones:</p><ul><li>GUARDAR: Guardar los cambios o el nuevo registro.</li><li>GUARDAR Y AGREGAR: Guarda el nuevo registro y mantiene la ventana abierta para otro registro nuevo.</li><li>CANCELAR: Cancelar la operación.</li></ul><p><img src='/frontend/images/Ventana%20AM.png' alt='Ventana Alta-Modificación' referrerPolicy='no-referrer' />
+        (Imagen de ejemplo: formulario de Consignatario)</p><h2><a name='header-n39' class='md-header-anchor '></a>Campo especial</h2><p>En algunos formularios se encontrará con un campo especial. Su estructura es la siguiente:</p><ul><li>Una descripción sobre él. En la imagen lo ve como &#39;Consignatario&#39;.</li><li>Un &#39;campo de código&#39;. En la imagen lo ve como &#39;2&#39;.</li><li>Un &#39;campo de descripción&#39; pegado al campo de código. En la imagen lo ve como &#39;ALMADA RAMON&#39;.</li><li>Pegado al campo de descripción, 3 botones: Lupa, goma y ojo.</li></ul><p><img src='/frontend/images/custom select.png' alt='Control custom select' referrerPolicy='no-referrer' /></p><p>Este tipo de campo permite encontrar con mayor rapidez un registro con el cual trabaja repetidamente, buscar con facilidad en un gran conjunto de datos el que usted desea o incluso agregar un registro de otro sector sin necesidad de navegar hasta él.</p><ul><li>Si lo sabe de memoria, puede <strong>ingresar el código</strong> (En el campo de código) del registro que desea y ahorrarse la búsqueda manual.</li><li>La lupa: Permite desplegar una <strong>lista de los registros</strong> (Consignatarios en este caso), <strong>filtrarlos</strong> con el campo que se encuentra sobre la lista e incluso agregar un registro en el acto con el botón <strong>AGREGAR</strong>.</li></ul><p><img src='/frontend/images/custom select list.png' alt='Control custom select listado' referrerPolicy='no-referrer' />
+        (Imagen de ejemplo: Listado de consignatarios que despliega el botón de la lupa)</p><ul><li>La goma: Quitar del campo el registro seleccionado, o en otras palabras, limpiar el campo.</li><li>El ojo: Pre visualizar el registro seleccionado y todos sus datos.</li></ul><h2><a name='header-n63' class='md-header-anchor '></a>Grillas</h2><p>En algunos formularios se encontrará con grillas (Estructura de filas y columnas). Estas herramientas permitirán agregar varios registros a uno solo &#39;superior&#39; (Por llamarlo de alguna manera).</p><ul><li>Ejemplo 1: En la imagen de abajo vemos la grilla de categoría que permite cargar varias categorías al mismo DTE. A su vez vemos que en distintas pestañas tenemos las grillas de &#39;Numero de DTE&#39;, &#39;Insumos&#39; e &#39;Impuestos&#39;.</li><li>Ejemplo 2: Grilla de licencias para los conductores.</li><li>Ejemplo 3: Grilla de Renspas para los productores.</li></ul><p><img src='/frontend/images/grilla.png' alt='Control grilla' referrerPolicy='no-referrer' /></p><p>La grilla muestra un <strong>listado de registros</strong> ya cargados y a su vez permite:</p><p><img src='/frontend/images/botones%20grilla.png' alt='botones grilla' referrerPolicy='no-referrer' />
+        Botones:
+        <strong>LUPA</strong>: Pre visualizar un registro cargado.
+        <strong>MAS</strong>: Agregar un registro.
+        <strong>LAPIZ Y PAPEL</strong>: Editar un registro.
+        <strong>TACHO</strong>: Borrar un registro.</p><h2><a name='header-n75' class='md-header-anchor '></a>Menú otros</h2><p>Dentro del menú otros se encuentran los sectores de <strong>Agenda</strong> e <strong>Insumos</strong>.</p><p><img src='/frontend/images/menu%20otros.png' alt='menu otros' referrerPolicy='no-referrer' /></p><h5><a name='header-n78' class='md-header-anchor '></a>Sector Agenda</h5><p>Una agenda que le permitirá agendar eventos los cuales están relacionados a comisionista y conductor. Dando click sobre una fecha en la agenda se presentará el formulario para realizar un registro.
+        <img src='/frontend/images/menu%20agenda.png' alt='menú agenda' referrerPolicy='no-referrer' /></p><p>Ingrese el título del evento, seleccione Conductor, seleccione Comisionista, seleccione el color con el que quiere que el evento aparezca en la agenda, ingrese una descripción y termine la operación dando al botón <strong>Crear</strong>.</p><p><img src='/frontend/images/agenda.png' alt='menu agenda' referrerPolicy='no-referrer' /></p><p>También podrá, con los botones que se encuentran sobre la agenda, cambiar el tipo de visualización. Esta son las opciones:</p><p><img src='/frontend/images/botones%20agenda.png' alt='menu agenda' referrerPolicy='no-referrer' /></p><p>SEMANAL:</p><p><img src='/frontend/images/agenda%20semanal.png' alt='agenda semanal' referrerPolicy='no-referrer' /></p><p>AGENDA SEMANAL:</p><p><img src='/frontend/images/agenda%20agenda%20semanal.png' alt='agenda agenda semanal' referrerPolicy='no-referrer' /></p><p>LISTA SEMANAL:</p><p><img src='/frontend/images/agenda%20lista%20semanal.png' alt='agenda lista semanal' referrerPolicy='no-referrer' /></p><p>DIARIO:</p><p><img src='/frontend/images/agenda%20diario.png' alt='agenda diario' referrerPolicy='no-referrer' /></p><p>AGENDA DIARIA:</p><p><img src='/frontend/images/agenda%20agenda%20diaria.png' alt='agenda agenda diaria' referrerPolicy='no-referrer' /></p><p>LISTA DIA:</p><p><img src='/frontend/images/agenda%20lista%20dia.png' alt='agenda lista dia' referrerPolicy='no-referrer' /></p><p>MENSUAL:</p><p><img src='/frontend/images/agenda%20mensual.png' alt='agenda mensual' referrerPolicy='no-referrer' /></p><p>LISTA MENSUAL:</p><p><img src='/frontend/images/agenda%20lista%20mensual.png' alt='agenda lista mensual' referrerPolicy='no-referrer' /></p><p>LISTA ANUAL:</p><p><img src='/frontend/images/agenda%20lista%20anual.png' alt='agenda lista anual' referrerPolicy='no-referrer' /></p><p>Cambie el mes/semana que esta viendo con los botones <strong>Previo, Hoy y Siguiente</strong>.</p><p><img src='/frontend/images/agenda%20botones%20navegacion.png' alt='menu agenda' referrerPolicy='no-referrer' /></p><h5><a name='header-n105' class='md-header-anchor '></a>Sector insumos</h5><p>Tomemos el sector de insumos para reforzar la explicación de sobre la estructura y funcionamiento de los sectores.</p><p><img src='/frontend/images/menu%20insumos.png' alt='menu insumos' referrerPolicy='no-referrer' /></p><p>Principalmente vemos un listado de insumos con algunos de sus datos.
+        Seleccionando un registro en la lista se puede pre visualizar más detalles sobre el mismo en el cuadro de la derecha. A su vez el cuadro de la derecha contiene un botón <strong>imprimir</strong> que mostrara los datos del insumo seleccionado en un PDF.
+        Puede cargar un nuevo insumo dándole al botón <strong>nuevo</strong>, cargando el formulario que aparecerá y terminando la operación dándole al botón <strong>guardar</strong>, o <strong>guardar y agregar</strong> si desea continuar cargando otro insumo.
+        Los botones de <strong>ver</strong>, <strong>editar</strong> y <strong>borrar</strong> se habilitan cuando se tiene seleccionado algún registro en la lista.
+        El botón <strong>imprimir</strong> (Arriba a la derecha) presentará un listado de reportes los cuales usted podrá elegir si los desea en un PDF o en EXCEL. Las opciones de reportes en este sector son:</p><ul><li>Listado: Una lista de todos los insumos y algunos de sus datos.</li></ul><h2><a name='header-n112' class='md-header-anchor '></a>Menú transporte</h2><p>Dentro del menú transporte se encuentran los sectores de <strong>Vehículos</strong> y <strong>Conductores</strong>.</p><p><img src='/frontend/images/menu%20transporte.png' alt='menu transporte' referrerPolicy='no-referrer' /></p><h5><a name='header-n115' class='md-header-anchor '></a>Sector vehículos</h5><p><img src='/frontend/images/submenu%20vehiculos.png' alt='menu transporte' referrerPolicy='no-referrer' /></p><p>El botón <strong>imprimir</strong> (Arriba a la derecha) de este sector contiene los reportes:</p><ul><li>Listado: Una lista de todos los vehículos y algunos de sus datos.</li><li>Gastos de tipo vehículo: Seleccione un tipo de vehículo y un rango de fechas para ver un listado gastos (Insumos, impuestos: ITC, IDC, DGR e IVA)</li></ul><h5><a name='header-n123' class='md-header-anchor '></a>Sector conductores</h5><p><img src='/frontend/images/submenu%20conductores.png' alt='sector conductor' referrerPolicy='no-referrer' /></p><p>El botón <strong>imprimir</strong> (Arriba a la derecha) de este sector contiene los reportes:</p><ul><li>Listado: Una lista de todos los conductores y algunos de sus datos.</li></ul><p>Dentro del formulario de conductores encontrara la grilla de licencias, que le permitirá cargar la cantidad de licencias que desee a dicho conductor o editar/borrar las que ya tenga.</p><p><img src='/frontend/images/grilla%20licencias.png' alt='grilla licencias' referrerPolicy='no-referrer' /></p><h2><a name='header-n131' class='md-header-anchor '></a>Menú personas</h2><p>Dentro del menú personas se encuentran los sectores de <strong>Comisionista</strong>, <strong>Consignatarios</strong> y <strong>Productores</strong>.</p><h5><a name='header-n133' class='md-header-anchor '></a>Sector comisionistas</h5><p><img src='/frontend/images/submenu%20comisionista.png' alt='sector comisionista' referrerPolicy='no-referrer' /></p><p>En el listado de los comisionistas los saldos iniciales que se encuentren en negativo aparecerán coloreados en rojo.</p><p>El botón <strong>imprimir</strong> (Arriba a la derecha) de este sector contiene los reportes:</p><ul><li>Listado: Una lista de todos los comisionistas y algunos de sus datos.</li><li>Rendimiento: Con un comisionista seleccionado en la lista, cargue un rango de fechas y vea el rendimiento de los productores que trabajan con el comisionista seleccionado.</li><li>Saldo: Con un comisionista seleccionado en la lista, cargue un rango de fechas y vea el movimiento del saldo del comisionista seleccionado dentro de las fechas cargadas.</li></ul><h5><a name='header-n144' class='md-header-anchor '></a>Sector consignatarios</h5><p><img src='/frontend/images/submenu%20consignatarios.png' alt='sector consignatarios' referrerPolicy='no-referrer' /></p><p>El botón <strong>imprimir</strong> (Arriba a la derecha) de este sector contiene los reportes:</p><ul><li>Listado: Una lista de todos los consignatarios y algunos de sus datos.</li></ul><h5><a name='header-n150' class='md-header-anchor '></a>Sector productores</h5><p><img src='/frontend/images/submenu%20productores.png' alt='sector productores' referrerPolicy='no-referrer' /></p><p>El botón <strong>imprimir</strong> (Arriba a la derecha) de este sector contiene los reportes:</p><ul><li>Listado: Una lista de todos los productores y algunos de sus datos.</li></ul><p>Dentro del formulario de productores encontrara la grilla de renspas, que le permitirá cargar la cantidad de renspas que desee a dicho productor o editar/borrar las que ya tenga.
+        <img src='/frontend/images/grilla%20renspa.png' alt='grilla renspa' referrerPolicy='no-referrer' /></p><h2><a name='header-n157' class='md-header-anchor '></a>Menú Costos</h2><p>Dentro del menú personas se encuentran los sectores de <strong>Centro de costos de Graseria</strong>, <strong>Centro de costos de Vehículos</strong> y <strong>Centro de costos de Cuero</strong>.</p><p><img src='/frontend/images/menu%20costos.png' alt='menu costos' referrerPolicy='no-referrer' /></p><p>Los centros de costos contienen formularios dentro de formularios.</p><p>Dentro del formulario inicial de un centro de costo (En este caso: Grasería) encontrara la grilla de insumos.</p><p><img src='/frontend/images/graseria.png' alt='graseria' referrerPolicy='no-referrer' /></p><p>Al agregar un insumo, en el formulario de agregación se encontrará con la grilla de impuestos.</p><p><img src='/frontend/images/graseria%20insumo.png' alt='graseria insumo' referrerPolicy='no-referrer' /></p><h5><a name='header-n165' class='md-header-anchor '></a>Reportes en grasería:</h5><p>El botón <strong>imprimir</strong> (Arriba a la derecha) del centro de costo de grasería contiene los reportes:</p><ul><li>Listado: Ingrese un rango de fechas y vea una lista de todos los costos registrados, sus totales y un total general.</li></ul><h2><a name='header-n170' class='md-header-anchor '></a>Menú Pre faena</h2><p>Dentro del menú pre faena se encuentran el sector de <strong>DTE</strong>.</p><p><img src='/frontend/images/menu%20prefaena.png' alt='menú pre faena' referrerPolicy='no-referrer' /></p><h5><a name='header-n173' class='md-header-anchor '></a>DTE</h5><p>El formulario de DTE es uno extenso y combina muchas funciones.</p><p><img src='/frontend/images/dte.png' alt='dte' referrerPolicy='no-referrer' /></p><p>Luego de cargar el número de tropa deberá cargar el <strong>Origen y Destino</strong>, considere que deberá cargar las provincias primero para que el campo localidad se limite a las localidades de la provincia seleccionada.
+        Encontrará el <strong>campo especial</strong> mencionado con anterioridad repetidas veces en este formulario (Conductor, Comisionista, Consignatario), recuerde que en él puede buscar el dato deseado ingresando su código si lo sabe o darle a la lupa para buscarlo desde una lista.
+        En los campos fechas (Por ejemplo: Fecha de carga) puede darle al icono del calendario para tener una forma gráfica de búsqueda de la fecha que desee.</p><p>El botón <strong>imprimir</strong> (Arriba a la derecha) de este sector contiene los reportes:</p><ul><li>Listado: Una lista de todos los DTEs y algunos de sus datos.</li><li>Saldo de la tropa: Con un DTE seleccionado en la lista, vea el saldo final de esta tropa.</li><li>Precio por categoría: Seleccione un rango de fechas, una categoría animal y vea los totales de Kg vivo, Kg carne, importe bruto y valor de comisión.</li></ul><p>En la parte inferior del formulario se encuentran 4 grillas separadas en pestañas (Numero de DTE, Categoría, Insumos e impuestos). Haciendo click sobre el texto puede navegar entre ellas.</p><h6><a name='header-n186' class='md-header-anchor '></a>Grilla: Numero de DTE</h6><p><img src='/frontend/images/numero%20dte.png' alt='grilla número dte' referrerPolicy='no-referrer' />
+        (Grilla de numero de DTE y su ventana del formulario de agregación)</p><p>Carga manual de numero de DTE y su correspondiente tropa fiscal.</p><h6><a name='header-n189' class='md-header-anchor '></a>Grilla: Categorías</h6><p><img src='/frontend/images/categoria.png' alt='grilla categoría' referrerPolicy='no-referrer' />
+        (Grilla de Categorías y su ventana del formulario de agregación)</p><p>Cargue productor ingresando su código o usando la lupa para buscarlo en una lista. Una vez seleccionado el productor el menú desplegable de RENSPA contendrá datos de los que podrá elegir el deseado. Nuevamente en el campo categoría puede ingresar el código o usar la lupa. El resto de campos son cargas manuales.</p><p>El botón <strong>Guardar y agregar (F10)</strong> del formulario de categorías guarda lo cargado y mantiene la ventana abierta con los datos cargados anteriormente para agilizar la carga de datos.</p><h6><a name='header-n193' class='md-header-anchor '></a>Grilla: Insumos</h6><p><img src='/frontend/images/grilla%20insumo.png' alt='grilla insumo' referrerPolicy='no-referrer' />
+        (Grilla de Insumos y su ventana del formulario de agregación)</p><p>Cargue insumo ingresando su código o usando la lupa para buscarlo en una lista. El resto de campos son cargas manuales.</p><h6><a name='header-n196' class='md-header-anchor '></a>Grilla: Impuestos</h6><p><img src='/frontend/images/grilla%20impuesto.png' alt='grilla impuesto' referrerPolicy='no-referrer' />
+        (Grilla de Impuestos y su ventana del formulario de agregación)</p><p>Cargue impuesto ingresando su código o usando la lupa para buscarlo en una lista. Ingrese el saldo manualmente.</p><h2><a name='header-n199' class='md-header-anchor '></a>Menu Faena</h2><p>Dentro del menu faena se encuentran el sector de <strong>Faena</strong>.</p><p><img src='/frontend/images/menu%20faena.png' alt='menú faena' referrerPolicy='no-referrer' /></p><h5><a name='header-n202' class='md-header-anchor '></a>FAENA</h5><p>El formulario de Faena se desplegará completamente al cabo de terminar los pasos iniciales.</p><p><img src='/frontend/images/faena.png' alt='faena' referrerPolicy='no-referrer' /></p><p>Cargue los campos Fecha y Numero, cuando <strong>cargue el Productor recién tendrá la posibilidad de cargar el campo Tropa</strong>, debido a que las categorías que se presentaran debajo deben estar relacionados a un determinado productor.</p><p>Una vez seleccionada la tropa se le aparecerán las categorías de la misma. Donde:</p><ul><li>El campo <strong>Cantidad</strong>: Indica la cantidad de la categoría dentro de la tropa.</li><li>El campo <strong>Faenado</strong>: Indica la cantidad ya faenada.</li><li>El campo <strong>Dif</strong> (Diferencia): Indica la cantidad que queda por faenar.</li><li>El campo <strong>A Faenar</strong>: En este campo deberá indicar que cantidad desea faenar y luego darle al botón CARGAR.</li></ul><p>Una vez presionado el botón cargar se rellenará la tabla debajo.
+        Considere:</p><ul><li>El campo <strong>Categoría</strong> indica la categoría de salida de la faena, ya que esta puede cambiar.</li><li>Si intenta cargar en el campo &#39;A Faenar&#39; un valor mayor al disponible (Campo diferencia) el sistema limpiara el campo y le informara que esto no es posible.</li><li>Si cambia el valor del campo &#39;A faenar&#39; los valores de peso cargados se mantendrán.</li><li>Usted podrá presionar CARGAR en distintas cabeceras y no perderá los datos de pesos que haya cargado.</li><li>Si se encuentra cargando los pesos (El cursor debe encontrarse dentro de un campo peso) puede utilizar la tecla de tabulación para pasar al siguiente campo de peso con más rapidez.</li></ul><p>El botón <strong>imprimir</strong> (Arriba a la derecha) de este sector contiene los reportes:</p><ul><li>Listado: Con una Faena seleccionada de la lista, vea sus detalles.</li></ul><h2><a name='header-n232' class='md-header-anchor '></a>Menú parámetros del sistema</h2><p><img src='/frontend/images/menu%20parametros%20del%20sistema.png' alt='faena' referrerPolicy='no-referrer' /></p><h5><a name='header-n234' class='md-header-anchor '></a>PARAMETROS GENERALES</h5><p>En este sector se encuentran registros mezclados que contienen pocos datos. Unos ejemplos serían las localidades que solo poseen el dato de descripción y la provincia a la que pertenecen; o podrían ser impuestos, categoría animal, color de vehículo, etc. Estos registros solo poseen una descripción como dato y nada más.</p><p><img src='/frontend/images/menu%20parametros.png' alt='faena' referrerPolicy='no-referrer' /></p><h5><a name='header-n237' class='md-header-anchor '></a>USUARIOS</h5><p>Desde aquí usted podrá crear nuevos usuarios y asignarle un rol en el sistema para así definir sus permisos.
+        <img src='/frontend/images/menu%20usuarios.png' alt='faena' referrerPolicy='no-referrer' /></p><p>&nbsp;</p></div>
+        </div>
+
+    </template>
+    <script>
+        class Ayuda extends Polymer.Element {
+             static get is() {
+                    return 'ayuda-fran';
+                  }
+        }
+         window.customElements.define(Ayuda.is, Ayuda);
+
+    </script>
+</dom-module>

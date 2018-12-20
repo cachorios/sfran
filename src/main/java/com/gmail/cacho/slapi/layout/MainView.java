@@ -14,6 +14,7 @@ import com.gmail.cacho.slapi.dialogs.WinChangePass;
 import com.gmail.cacho.slapi.utils.MenuService;
 import com.gmail.cacho.slbase.security.Events;
 
+import com.gmail.sanfrancisco.view.manual.Ayuda;
 import com.google.common.eventbus.Subscribe;
 import com.vaadin.flow.component.dependency.HtmlImport;
 
@@ -39,6 +40,12 @@ public class MainView extends AppLayoutRouterLayout {
     @Override
     public AppLayout getAppLayout() {
         // Primero define ciertos componentes de la barra superior
+
+        TopClickableComponent ayuda = new TopClickableComponent(null, VaadinIcon.EYE.create(),
+                clickEvent -> new Ayuda());
+        ayuda.getElement().getStyle().set("cursor", "pointer");
+        ayuda.setSizeFull();
+
         TopClickableComponent tc1 = new TopClickableComponent(null, VaadinIcon.LOCK.create(),
                 clickEvent -> (new WinChangePass()).open());
         tc1.getElement().getStyle().set("cursor", "pointer");
@@ -52,7 +59,7 @@ public class MainView extends AppLayoutRouterLayout {
         // Aqui organiza el layout general con titulo
         // y con la barra superior (y establece el diseño)
         AppLayoutBuilder alb = AppLayoutBuilder.get(Behaviour.LEFT_HYBRID).withTitle(Sistema.getSistema().getTitulo())
-                .withAppBar(AppBarBuilder.get().add(tc1).add(tc2).build())
+                .withAppBar(AppBarBuilder.get().add(ayuda).add(tc1).add(tc2).build())
                 .withDesign(AppLayoutDesign.DEFAULT);//.MATERIAL);
 
         // Aqui se comienza el armado del menu principal
