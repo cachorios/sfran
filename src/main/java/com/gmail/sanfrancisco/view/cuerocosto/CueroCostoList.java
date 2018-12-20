@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.view.cuerocosto;
 
 import com.gmail.cacho.slapi.view.AbstractList;
+import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.renders.DateRenderer;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
@@ -26,4 +27,9 @@ public class CueroCostoList extends AbstractList<CueroCosto> {
 
     @Override
     public String getTitulo() { return "Costos de Cuero"; }
+
+    @Override
+    protected ILayoutInnerList<CueroCosto> generarLayout(AbstractList<CueroCosto> padre, String titulo) {
+        return new CueroCostoInnerList(padre, getTitulo());
+    }
 }

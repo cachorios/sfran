@@ -239,6 +239,11 @@ Al agregar un insumo, en el formulario de agregación se encontrará con la gril
 El botón **imprimir** (Arriba a la derecha) del centro de costo de grasería contiene los reportes:
 - Listado: Ingrese un rango de fechas y vea una lista de todos los costos registrados, sus totales y un total general.
 
+##### Reportes en cuero:
+
+El botón **imprimir** (Arriba a la derecha) del centro de costo de cueros contiene los reportes:
+- Listado: Ingrese un rango de fechas y vea una lista de todos los costos registrados, sus totales y un total general.
+
 ## Menú Pre faena
 
 Dentro del menú pre faena se encuentran el sector de **DTE**.

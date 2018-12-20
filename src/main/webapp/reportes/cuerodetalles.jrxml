@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="graseriadetalles" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cuerodetalles" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<parameter name="p_Graseria" class="java.lang.Long"/>
+	<parameter name="p_Cuero" class="java.lang.Long"/>
 	<queryString>
 		<![CDATA[SELECT
   i.descripcion,
-  gci.cantidad,
-  gci.precio
+  cci.cantidad,
+  cci.precio
 FROM
-  graseriacosto AS gc
-  JOIN graseriacostoinsumo AS gci
-    ON gc.id=gci.graseriacosto_id
+  cuerocosto AS cc
+  JOIN cuerocostoinsumo AS cci
+    ON cc.id=cci.cuerocosto_id
   JOIN insumo AS i
-    ON gci.insumo_id=i.id
-WHERE gc.id=$P{p_Graseria}
-      AND gc.fechabaja IS NULL]]>
+    ON cci.insumo_id=i.id
+WHERE cc.id=$P{p_Cuero}
+      AND cc.fechabaja IS NULL]]>
 	</queryString>
 	<field name="descripcion" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
