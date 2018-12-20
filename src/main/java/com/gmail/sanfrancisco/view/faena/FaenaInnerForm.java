@@ -181,7 +181,7 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
                 List list = repo.SaldoCategoria(dteCS.getValue());
                 if (list.size() > 0) {
                     //if ( !(getPresentable().getObjetoActivo().isNew() || cabecera.getValue().size()==0) ) {
-                    getPresentable().getObjetoActivo().getFaenaProductor().getFaenaCabezera();
+
                     if ( !(getPresentable().getObjetoActivo().isNew() || getPresentable().getObjetoActivo().getFaenaProductor().getFaenaCabezera().size()==0) ) {
 //
                         cabecera.setValue(getPresentable().getObjetoActivo().getFaenaProductor().getFaenaCabezera());

@@ -6,6 +6,7 @@ import com.gmail.cacho.slapi.view.enums.EModoVista;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
 import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
+import com.gmail.cacho.slbase.core.StringTools;
 import com.gmail.sanfrancisco.dataProvider.TropaProductorDataProvider;
 import com.gmail.sanfrancisco.entidad.Dte;
 import com.gmail.sanfrancisco.entidad.Productor;
@@ -33,6 +34,7 @@ public class DteCS extends AbstractCustomSelect<Dte> {
 
     @Override
     protected Dte getElemento(String codigo) {
+        codigo = StringTools.right("0000"+codigo, 4);
         return CDI.current().select(DteService.class).get().getDteByNumeroTropa(codigo, productor);
     }
 
