@@ -1,6 +1,7 @@
 package com.gmail.sanfrancisco.view.faena;
 
 import com.gmail.cacho.slapi.view.AbstractList;
+import com.gmail.cacho.slapi.view.interfaces.ILayoutInnerList;
 import com.gmail.cacho.slapi.view.interfaces.IPresenterList;
 import com.gmail.cacho.slapi.view.renders.DateRenderer;
 import com.gmail.cacho.slapi.view.utils.ColumnList;
@@ -66,5 +67,10 @@ public class FaenaList extends AbstractList<Faena> {
     @Override
     public String getTitulo() {
         return "Lista de Faenas";
+    }
+
+    @Override
+    protected ILayoutInnerList<Faena> generarLayout(AbstractList<Faena> padre, String titulo) {
+        return new FaenaInnerList(padre, getTitulo());
     }
 }

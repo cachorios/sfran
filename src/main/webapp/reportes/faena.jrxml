@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="faena" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ede1bf3-d417-4b30-b481-4f5d3265c0de">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgres"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="p_Id" class="java.lang.Long"/>
+	<parameter name="p_Directorio" class="java.lang.String"/>
+	<parameter name="p_Subreporte" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+  d.numeroTropa,
+  fc.categoria_id,
+  p.nombre AS categoria,
+  fc.cantidad AS cantidad
+FROM
+  faenaproductor AS fp
+  JOIN faenacabezera AS fc
+    ON fp.id=fc.faenaproductor_id
+  JOIN dte AS d
+    ON fp.tropa_id=d.id
+  JOIN dtedetallecategoria AS dc
+    ON fc.categoria_id = dc.id
+  JOIN parametro AS p
+    ON dc.categoria_id=p.id
+WHERE fp.id=$P{p_Id}
+      AND fp.fechabaja IS NULL]]>
+	</queryString>
+	<field name="numerotropa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="numerotropa"/>
+	</field>
+	<field name="categoria_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="categoria_id"/>
+	</field>
+	<field name="categoria" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="categoria"/>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="cantidad"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="270" height="30" uuid="ef56675c-9a79-4ed4-8813-a6d335cbee0b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Planilla de Faena]]></text>
+			</staticText>
+			<image hAlign="Right">
+				<reportElement x="486" y="0" width="316" height="50" uuid="dfc4b0af-b9a1-4ee3-9d5b-9b18d2d7647c"/>
+				<imageExpression><![CDATA[$P{p_Directorio}+"/logosf.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="30" width="180" height="20" uuid="b3b69d74-7338-48bc-9fb4-86e83d986f7a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tropa:]]></text>
+			</staticText>
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="180" y="30" width="90" height="20" isRemoveLineWhenBlank="true" uuid="9e1636e1-f444-4f69-971d-e796c22572c8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
+				</reportElement>
+				<box rightPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numerotropa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="270" height="20" uuid="c664df7f-2d90-4dbb-ad07-25c0e102becb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Categoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="0" width="116" height="20" uuid="c4f09ba7-0a73-4b2c-a57d-93bae8e01e10">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="386" y="0" width="100" height="20" uuid="14ba7fba-def8-40ae-8343-5d8082662ec3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso izquierdo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="0" width="100" height="20" uuid="19e1e637-0216-49ee-9655-e5e5bb9a10c6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peso derecho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="586" y="0" width="100" height="20" uuid="899ea60d-fc4c-486a-b058-a4fd9733a653">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Totales]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="0" y="0" width="270" height="16" isRemoveLineWhenBlank="true" uuid="7616b065-fddc-4a3d-8c95-7248f5ff807c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6c8aff2-d15b-4175-ae98-38b2e97e9e3f"/>
+				</reportElement>
+				<box rightPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="270" y="0" width="116" height="16" isRemoveLineWhenBlank="true" uuid="9a770571-c6c7-40e0-a250-ee5b74bd5eac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5d0aafe5-951d-49a5-8932-9b10334a9438"/>
+				</reportElement>
+				<box rightPadding="3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="386" y="0" width="300" height="16" uuid="03793a87-7ff3-40a2-b9e6-1c740546d98b"/>
+				<subreportParameter name="p_Categoria">
+					<subreportParameterExpression><![CDATA[$F{categoria_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{p_Subreporte}+"/faenadetalles.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="640" y="12" width="100" height="15" uuid="4bfb1511-2218-4bf7-ae9b-cfaa3385cc8d"/>
+				<box rightPadding="5"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="740" y="12" width="62" height="15" uuid="320a5b43-dba6-4752-a354-f007a06d2935"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
