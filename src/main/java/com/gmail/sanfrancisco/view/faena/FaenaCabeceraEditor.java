@@ -49,26 +49,7 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
 
         this.fieldSupport = new AbstractFieldSupport<>(this, Collections.emptyList(),
                 Objects::equals, c ->  {});
-
         setWidth("100%");
-
-
-        cabecera();
-    }
-
-    private void cabecera() {
-        HorizontalLayout hlLabel = new HorizontalLayout(
-                envolver(new Label("Categoria"), "40%"),
-                envolver(new Label("Cantidad"), "10%"),
-                envolver(new Label("Faenado"), "10%"),
-                envolver(new Label("Dif."), "10%"),
-                envolver(new Label("Kg vivo"), "10%"),
-                envolver(new Label("a Faenar"), "10%"),
-                envolver(new Label("Accion"), "10%")
-        );
-        hlLabel.setWidth("100%");
-        hlLabel.setClassName("faena-header");
-        add( hlLabel);
     }
 
     @Override
@@ -76,7 +57,6 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
         fieldSupport.setValue(faenaCabezeras);
         hasChanges = false;
         removeAll();
-        cabecera();
 
         if (faenaCabezeras != null) {
             faenaCabezeras.forEach(this::createItem);
@@ -90,7 +70,6 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
         item.setValue(faenaCabezera);
         return item;
     }
-
 
     @Override
     public List<FaenaCabezera> getValue() {
@@ -112,7 +91,6 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
             ///fireEvent(new com.gmail..views.sfran.events.ValueChangeEvent(this));
         }
     }
-
 
     protected class Item extends HorizontalLayout implements HasValueAndElement<AbstractField.ComponentValueChangeEvent<Item, FaenaCabezera>, FaenaCabezera> {
         private ParamCSComponent categoria;
@@ -139,7 +117,11 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
             kgVivo      = new TextField(); kgVivo.setWidth("10%");      kgVivo.setEnabled(false);
 
             aFaenar     = new TextField(); aFaenar.setWidth("10%");
-            btnAgregar = new Button("Carga"); btnAgregar.setWidth("100%");
+            btnAgregar = new Button("Cargar"); btnAgregar.setWidth("100%");
+            btnAgregar.setEnabled(false);
+
+            aFaenar.setPreventInvalidInput(true);
+            aFaenar.addValueChangeListener( this::aFaenarChanged);
 
             binder.forField(aFaenar)
                     .withConverter(new IntegerConverter())
@@ -156,6 +138,29 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
             );
         }
 
+        private void aFaenarChanged(AbstractField.ComponentValueChangeEvent<TextField, String> event) {
+            btnAgregar.setEnabled(false);
+            if(event.isFromClient()) {
+                if (event.getOldValue() == "" || Integer.valueOf(event.getOldValue()) == 0) {
+                    Integer dif = Integer.valueOf(cantidad.getValue()) - Integer.valueOf(faenado.getValue());
+                    if (Integer.valueOf(event.getValue()) > dif) {
+                        aFaenar.clear();
+                        aFaenar.focus();
+                        Notification.show("No puede faenar mas de lo disponible!", 3000, Notification.Position.MIDDLE);
+                        return;
+                    }
+                }else{
+//                    aFaenar.setValue(event.getOldValue());
+//                    aFaenar.focus();
+//                    Notification.show("No puede faenar mas de lo disponible!", 3000, Notification.Position.MIDDLE);
+                }
+            }
+            if(!aFaenar.isEmpty()){
+                if(Integer.valueOf(aFaenar.getValue())>0) {
+                    btnAgregar.setEnabled(true);
+                }
+            }
+        }
 
         @Override
         public void setValue(FaenaCabezera faenaCabezera) {
@@ -165,7 +170,7 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
             cantidad.setValue(d.getCantidad().toString());
             kgVivo.setValue(d.getKgVivo().toString());
             faenado.setValue(faenaCabezera.getFaenado().toString());
-            btnAgregar.addClickListener(e -> crearDetalle(faenaCabezera));
+            btnAgregar.addClickListener(e -> crearDetalle(faenaCabezera, Integer.valueOf(aFaenar.getValue())));
             Integer dif = 0;
             dif = d.getCantidad() - faenaCabezera.getFaenado();
             diferencia.setValue( dif.toString() );
@@ -173,10 +178,9 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
             binder.setBean(faenaCabezera);
         }
 
-        private void crearDetalle(FaenaCabezera faenaCabezera) {
+        private void crearDetalle(FaenaCabezera faenaCabezera, int cantidad) {
             if(faenaCabezera.getCantidad()>0) {
                 detallesEditor.removeAll();
-                detallesEditor.cabecera();
 
                 if (faenaCabezera.getFaenaDetalle() == null || faenaCabezera.getFaenaDetalle().size() == 0 ) {
                     ArrayList<FaenaDetalle> adetalle = new ArrayList<>();
@@ -184,21 +188,37 @@ public class FaenaCabeceraEditor extends Div implements HasValueAndElement<Abstr
                         adetalle.add(new FaenaDetalle(i+1,faenaCabezera.getCategoria().getCategoria(),0.0,0.0 ));
                     }
                     faenaCabezera.setFaenaDetalle(adetalle);
+                }else
+                if(faenaCabezera.getFaenaDetalle().size() > cantidad ){
+                    Integer j = faenaCabezera.getFaenaDetalle().size() -1;
+                    for (int i = j; i>= cantidad; i--){
+                        faenaCabezera.getFaenaDetalle().remove(i);
+                    }
+                }else
+                    if(faenaCabezera.getFaenaDetalle().size() < cantidad ){
+                        Integer j = faenaCabezera.getFaenaDetalle().size() ;
+                        for (int i = j ; i < cantidad ; i++){
+                            faenaCabezera.getFaenaDetalle().add(new FaenaDetalle(i+1,faenaCabezera.getCategoria().getCategoria(),0.0,0.0 ));
+
+                        }
+
                 }
                 detallesEditor.setValue(faenaCabezera.getFaenaDetalle());
+//            }else{
+//                Notification.show("No puede faena mas de los disponible!!", 1000, Notification.Position.MIDDLE);
             }
-            //Notification.show(faenaCabezera.getCantidad().toString(), 1000, Notification.Position.MIDDLE);
+
 
         }
 
         @Override
         public FaenaCabezera getValue() {
-            return null;
+            return fieldSupport.getValue();
         }
 
         @Override
         public Registration addValueChangeListener(ValueChangeListener<? super AbstractField.ComponentValueChangeEvent<Item, FaenaCabezera>> valueChangeListener) {
-            return null;
+            return fieldSupport.addValueChangeListener(valueChangeListener);
         }
 
     }

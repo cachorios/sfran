@@ -28,42 +28,30 @@ public class FaenaDetallesEditor extends Div implements HasValueAndElement<Abstr
     private IPresentableForm<Faena> padre;
     private final AbstractFieldSupport<FaenaDetallesEditor, List<FaenaDetalle>> fieldSupport;
     private boolean hasChanges = false;
-
+    private int index;
     public FaenaDetallesEditor(IPresentableForm<Faena> presentable) {
         this.fieldSupport = new AbstractFieldSupport<>(this, Collections.emptyList(), Objects::equals, c -> {});
         this.padre = presentable;
         setWidth("100%");
-        setHeight("20rem");
-        cabecera();
     }
 
-    public void cabecera() {
-        HorizontalLayout hlLabel = new HorizontalLayout(
-                envolver(new Label("Orden"), "15%"),
-                envolver(new Label("Categoria"), "50%"),
-                envolver(new Label("Peso Izq."), "17%"),
-                envolver(new Label("Peso Der."), "17%")
-        );
 
-        hlLabel.setWidth("100%");
-        hlLabel.setClassName("faena-header");
-        add( hlLabel);
-    }
 
     @Override
     public void setValue(List<FaenaDetalle> items) {
         fieldSupport.setValue(items);
         removeAll();
-        cabecera();
         hasChanges = false;
         if(items != null){
+            index = 0;
             items.forEach(this::createEditor);
         }
         setHasChanges(false);
     }
 
     private void createEditor(FaenaDetalle item) {
-        FaenaDetalleEditor editor = new FaenaDetalleEditor(padre);
+        index ++;
+        FaenaDetalleEditor editor = new FaenaDetalleEditor(padre, index);
         editor.setValue(item);
         add(editor);
     }

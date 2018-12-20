@@ -16,6 +16,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.BindingValidationStatus;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.shared.Registration;
 
 import java.util.Objects;
@@ -39,30 +40,45 @@ public class FaenaDetalleEditor  extends HorizontalLayout implements HasValueAnd
     private BeanValidationBinder<FaenaDetalle> binder = new BeanValidationBinder<>(FaenaDetalle.class);
     IPresentableForm<Faena> padre;
 
-    public FaenaDetalleEditor(IPresentableForm<Faena> presentable) {
+    public FaenaDetalleEditor(IPresentableForm<Faena> presentable, int index) {
         this.padre = presentable;
         fieldSupport = new AbstractFieldSupport<>(this,null, Objects::equals, c ->{});
 
         setWidth("100%");
-        setHeight("1.7rem");
+//        setHeight("1.7rem");
 
         orden = new TextField(); orden.setWidth("15%");
         binder.forField(orden)
                 .withConverter(new IntegerConverter())
                 .bind("orden");
+        orden.setTabIndex(0);
 
         categoriaDetalle = new ParamCSComponent("", padre, true, true, "Categorias", ETipoParametro.CATEGORIA_ANIMAL);
         categoriaDetalle.setWidth("100%");
         binder.bind(categoriaDetalle,"categoria");
 
+
         kgIzquierdo = new TextField(); kgIzquierdo.setWidth("17%");
         binder.forField(kgIzquierdo)
                 .withConverter(new DoubleConverter())
                 .bind( "kgIzquierdo");
+        kgIzquierdo.setTabIndex(2*index -1);
+        kgIzquierdo.setValueChangeMode(ValueChangeMode.ON_BLUR);
+        kgIzquierdo.setAutofocus(true);
+        kgIzquierdo.setPreventInvalidInput(true);
+        kgIzquierdo.setMaxLength(15);
+
+
         kgDerecho = new TextField(); kgDerecho.setWidth("17%");
         binder.forField(kgDerecho)
               .withConverter(new DoubleConverter())
               .bind("kgDerecho");
+        kgDerecho.setPreventInvalidInput(true);
+        kgDerecho.setTabIndex(2*index );
+        kgDerecho.setPlaceholder("Kg");
+
+
+
 
 
         add(

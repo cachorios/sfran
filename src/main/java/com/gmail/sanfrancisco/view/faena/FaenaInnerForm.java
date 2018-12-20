@@ -14,6 +14,7 @@ import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.internal.AbstractFieldSupport;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -50,24 +51,49 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
         numero = textField("Numero");
         fecha = dateField("Fecha");
-
         faenaProductorEditor = new FaenaProductorEditor();
-
         detallesEditor = new FaenaDetallesEditor( this.getPresentable() );
         cabecera = new FaenaCabeceraEditor(getPresentable(), detallesEditor);
-
-
-
-
 
         form.add(
             envolver(fecha, "48%"),
             envolver(numero, "50%"),
             envolver(faenaProductorEditor,"100%"),
-            envolver(cabecera),
-            envolver(detallesEditor)
+            cabeceraFarnaCab(),
+            cabecera,
+            cabeceraDetalle(),
+            detallesEditor
         );
 
+    }
+
+    private HorizontalLayout cabeceraFarnaCab() {
+        HorizontalLayout hlLabel = new HorizontalLayout(
+                envolver(new Label("Categoria"), "40%"),
+                envolver(new Label("Cantidad"), "10%"),
+                envolver(new Label("Faenado"), "10%"),
+                envolver(new Label("Dif."), "10%"),
+                envolver(new Label("Kg vivo"), "10%"),
+                envolver(new Label("a Faenar"), "10%"),
+                envolver(new Label("Accion"), "10%")
+        );
+        hlLabel.setWidth("100%");
+        hlLabel.setClassName("faena-header");
+        return hlLabel;
+
+    }
+
+    public HorizontalLayout cabeceraDetalle() {
+        HorizontalLayout hlLabel = new HorizontalLayout(
+                envolver(new Label("Orden"), "15%"),
+                envolver(new Label("Categoria"), "50%"),
+                envolver(new Label("Peso Izq."), "17%"),
+                envolver(new Label("Peso Der."), "17%")
+        );
+
+        hlLabel.setWidth("100%");
+        hlLabel.setClassName("faena-header");
+        return hlLabel;
     }
 
     @Override
@@ -133,41 +159,55 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
         }
 
         private void productorChanged(HasValue.ValueChangeEvent<?> e, DteCS dteCS) {
-            if(productorCS.getValue() != null){
-                dteCS.setEnabled(true);
-                dteCS.setProductor((Productor)productorCS.getValue());
-                dteCS.limpiar();
-                dteCS.setValue(null);
-                if(e.isFromClient()){
-                    getPresentable().setHasChanges(true);
+            if(e.isFromClient()) {
+                if (productorCS.getValue() != null) {
+                    dteCS.setEnabled(true);
+                    dteCS.setProductor((Productor) productorCS.getValue());
+                    dteCS.limpiar();
+                    dteCS.setValue(null);
+                    if (e.isFromClient()) {
+                        getPresentable().setHasChanges(true);
+                        limpiar();
+                    }
                 }
-
             }
         }
 
         private void dteChanged(HasValue.ValueChangeEvent<?> e) {
-            if(dteCS.getValue() != null){
+            limpiar();
+
+            if (dteCS.getValue() != null) {
                 FaenaRepositorio repo = CDI.current().select(FaenaRepositorio.class).get();
                 List list = repo.SaldoCategoria(dteCS.getValue());
-
-                if(list.size() > 0){
-                    if(!getPresentable().getObjetoActivo().isNew()) {
+                if (list.size() > 0) {
+                    //if ( !(getPresentable().getObjetoActivo().isNew() || cabecera.getValue().size()==0) ) {
+                    getPresentable().getObjetoActivo().getFaenaProductor().getFaenaCabezera();
+                    if ( !(getPresentable().getObjetoActivo().isNew() || getPresentable().getObjetoActivo().getFaenaProductor().getFaenaCabezera().size()==0) ) {
+//
                         cabecera.setValue(getPresentable().getObjetoActivo().getFaenaProductor().getFaenaCabezera());
-                    }else{
+                    } else {
                         binderFP.getBean().getFaenaCabezera().clear();
-                        list.forEach(  elemento -> crearElemento((Object[]) elemento) );
-                        cabecera.setValue( binderFP.getBean().getFaenaCabezera() );
+                        list.forEach(elemento -> crearElemento((Object[]) elemento));
+                        cabecera.setValue(binderFP.getBean().getFaenaCabezera());
                     }
-                    if(e.isFromClient()){
+                    if (e.isFromClient()) {
                         getPresentable().setHasChanges(true);
                     }
-                }else{
-                    Notification.show("No hay animales para faenar", 5, Notification.Position.BOTTOM_END );
+                } else {
+                    Notification.show("No hay animales para faenar", 4000, Notification.Position.BOTTOM_END);
                     return;
                 }
             } else {
-                cabecera.removeAll();
+                //limpiar();
             }
+
+        }
+
+        private void limpiar(){
+            cabecera.removeAll();
+            detallesEditor.removeAll();
+            cabecera.getValue().clear();
+            detallesEditor.getValue().clear();
         }
 
         private void crearElemento(Object[] e){
@@ -178,6 +218,8 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
                 fc.setCategoria(dc);
                 fc.setFaenado(faenado.intValue());
                 binderFP.getBean().getFaenaCabezera().add(fc);
+            }else{
+                Notification.show("No hay disponible para faena!", 5000, Notification.Position.TOP_END);
             }
         }
 
@@ -191,3 +233,9 @@ public class FaenaInnerForm extends DefaultInnerDialog<Faena> {
 
     }
 }
+
+//todo: el valor" de "a faenar debes ser como maximo el valor de "dif."
+//todo: si el valor a faenar es cero que no este habilitado el boon cargar
+//todo: cuando editas un detalle que dispare el poder guardar
+//todo: al cambiar la cantidad de faenar, si ya tiene dato, cambiar el tamaño del arrelog para seguir
+//todo: en detalle, cuando pierde el foco en peso derecho iar a peso izq, de la siguiente fila

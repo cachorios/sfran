@@ -57,13 +57,25 @@ public class FaenaProductor extends AbstractEntidad {
     @PrePersist
     protected void setAltaData() {
         super.setAltaData();
-        faenaCabezera.forEach(cabezera -> cabezera.setFaenaProductor(this) );
+        faenaCabezera.forEach(cabezera ->
+        {
+            if(cabezera.getCantidad() == null){
+                cabezera.setCantidad(0);
+            }
+            cabezera.setFaenaProductor(this);
+        } );
     }
 
     @Override
     @PreUpdate
     protected void setUmodData() {
         super.setUmodData();
-        faenaCabezera.forEach(cabezera -> cabezera.setFaenaProductor(this) );
+        faenaCabezera.forEach(cabezera ->
+            {
+                if(cabezera.getCantidad() == null){
+                    cabezera.setCantidad(0);
+                }
+            cabezera.setFaenaProductor(this);
+        } );
     }
 }
