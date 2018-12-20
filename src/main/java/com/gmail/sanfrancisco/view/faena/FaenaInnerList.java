@@ -44,7 +44,7 @@ public class FaenaInnerList extends DefaultInnerListPolymer<Faena> {
         Map<String, Object> mapa = new HashMap<String, Object>();
         mapa.put(C.SYS_REP_PARAM_ID, filtroLong);
         mapa.put(C.SYS_REP_PARAM_DIRECTORIO, directorio);
-        mapa.put("p_Subreporte", subreporte);
+        mapa.put(C.SYS_REP_PARAM_SUBREPORTE, subreporte);
         return mapa;
     }
 

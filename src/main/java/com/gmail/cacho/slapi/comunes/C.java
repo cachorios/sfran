@@ -25,6 +25,7 @@ public class C extends Constantes {
      **********************************************************/
     public static final String SYS_REP_PARAM_ID = "p_Id";
     public static final String SYS_REP_PARAM_DIRECTORIO = "p_Directorio";
+    public static final String SYS_REP_PARAM_SUBREPORTE = "p_Subreporte";
     public static final String SYS_REP_PARAM_FECHA_INICIAL = "p_FechaInicial";
     public static final String SYS_REP_PARAM_FECHA_FINAL = "p_FechaFinal";
     public static final String SYS_REP_PARAM_TIPO_INSUMO = "p_TipoInsumo";
