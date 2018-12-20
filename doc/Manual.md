@@ -5,20 +5,20 @@ La pantalla inicial que encontrará tan pronto inicie sesión cuenta con un **Me
 En la esquina superior derecha encontrara 2 iconos:
 Usando el candado podrá cambiar la contraseña de su cuenta y usando el otro cerrará su sesión.
 
-![Pantalla principal](Manual imagenes/pantalla principal.png)
+![pantalla principal](Manual imagenes/pantalla principal.png)
 
 ## Menú principal
 
 El menú principal permite la fácil **navegación** entre los sectores, presentado las opciones en una lista vertical de sectores agrupados. Se agrupan los sectores para mantener el listado en un tamaño accesible y tener un orden. Cada grupo despliega una sub-lista de los sectores, por ejemplo, el grupo 'Personas' contiene los sectores de Comisionistas, Consignatario y Productores.
 
-![Menú principal](Manual imagenes/Menu principal.png)
+![menú principal](Manual imagenes/menu principal.png)
 
 ## Interfaz de sectores
 
 Todas las interfaces o pantallas de los sectores mantienen una misma estructura, de esta forma aprender a usar un sector asegura saber usar el resto.
 Tomando de ejemplo el sector de Consignatario explicaremos sus funciones.
 
-![CRUD](Manual imagenes/CRUD.png)
+![CRUD](Manual imagenes/crud.png)
 
 Cada sector contiene una lista de sus registros (En este caso Consignatarios) mostrando algunos de sus campos. Sobre el listado un campo de búsqueda le permitirá filtrar la lista para encontrar rápidamente algún registro especifico.
 
@@ -44,7 +44,7 @@ Cuando utilice los botones de **NUEVO** o **EDITAR** se abrirán ventanas con un
 - GUARDAR Y AGREGAR: Guarda el nuevo registro y mantiene la ventana abierta para otro registro nuevo.
 - CANCELAR: Cancelar la operación.
 
-![Ventana Alta-Modificación](Manual imagenes/Ventana AM.png)
+![Ventana Alta-Modificación](Manual imagenes/ventana am.png)
 (Imagen de ejemplo: formulario de Consignatario)
 
 ## Campo especial
@@ -307,7 +307,7 @@ Dentro del menu faena se encuentran el sector de **Faena**.
 
 El formulario de Faena se desplegará completamente al cabo de terminar los pasos iniciales.
 
-![faena](Manual imagenes/Faena.png)
+![faena](Manual imagenes/faena.png)
 
 Cargue los campos Fecha y Numero, cuando **cargue el Productor recién tendrá la posibilidad de cargar el campo Tropa**, debido a que las categorías que se presentaran debajo deben estar relacionados a un determinado productor.
 
