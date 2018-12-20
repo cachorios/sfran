@@ -296,7 +296,7 @@ Cargue impuesto ingresando su código o usando la lupa para buscarlo en una list
 
 Dentro del menu faena se encuentran el sector de **Faena**.
 
-![menú faena](Manual imagenes/menú faena.png)
+![menú faena](Manual imagenes/menu faena.png)
 
 ##### FAENA
 
@@ -315,7 +315,11 @@ Una vez seleccionada la tropa se le aparecerán las categorías de la misma. Don
 Una vez presionado el botón cargar se rellenará la tabla debajo.
 Considere:
 - El campo **Categoría** indica la categoría de salida de la faena, ya que esta puede cambiar.
-- Usted podrá presionar CARGAR en la cabecera, rellenar los campos (categoría, peso izquierdo, peso derecho) y luego nuevamente darle CARGAR en una cabecera distinta sin perder los datos cargados. Ejemplo de la imagen: Cargo 12 a faenar en la primera categoría de vacas con cantidad 49, rellenar los datos y luego darle a CARGAR a la segunda categoría de vacas con cantidad 1 sin perder los datos ya cargados.
+- Si intenta cargar en el campo 'A Faenar' un valor mayor al disponible (Campo diferencia) el sistema limpiara el campo y le informara que esto no es posible.
+- Si cambia el valor del campo 'A faenar' los valores de peso cargados se mantendrán.
+- Usted podrá presionar CARGAR en distintas cabeceras y no perderá los datos de pesos que haya cargado.
+- Si se encuentra cargando los pesos (El cursor debe encontrarse dentro de un campo peso) puede utilizar la tecla de tabulación para pasar al siguiente campo de peso con más rapidez.
+
 
 El botón **imprimir** (Arriba a la derecha) de este sector contiene los reportes:
 - Listado: Con una Faena seleccionada de la lista, vea sus detalles.
