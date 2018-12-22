@@ -6044,11 +6044,8 @@ INSERT INTO graseriacostoinsumo (id, cantidad, precio, graseriacosto_id, insumo_
 
 
 
-
-
-
-
-
-
 INSERT INTO graseriacostoinsumoimpuesto (id, saldo, impuesto_id, graseriacostoinsumo_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (1, 2970.15, (SELECT id from parametro where tipo=20 and orden=7), 6, '2018-10-30 08:30:01', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
 INSERT INTO graseriacostoinsumoimpuesto (id, saldo, impuesto_id, graseriacostoinsumo_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (2, 2183.79, (SELECT id from parametro where tipo=20 and orden=7), 7, '2018-10-30 08:35:25', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
+
+update  openjpa_sequences_table set  sequence_value = (select max(id)+10 from parametro);
+

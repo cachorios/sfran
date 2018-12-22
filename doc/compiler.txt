@@ -1,6 +1,5 @@
 Comando para compilar.
 
-mvn clean package  -P productionMode
+mvn package -Dvaadin.productionMode
 
-
- pg_restore --dbname=sfran --verbose /opt/backup.bak -U postgres
+pg_restore --dbname=sfran --verbose /opt/backup.bak -U postgres
