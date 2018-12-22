@@ -15,7 +15,7 @@ public class DteDataProvider extends FilterablePageableDataProvider<Dte, Long, S
     @Inject
     public DteDataProvider(ServicioModelo<Dte> servicio) {
         super(servicio, Arrays.asList(
-                new QuerySortOrder("id", SortDirection.ASCENDING))
+                new QuerySortOrder("fechaCarga", SortDirection.DESCENDING))
         );
     }
 

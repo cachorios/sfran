@@ -2,41 +2,52 @@ package com.gmail.sanfrancisco.view.dte;
 
 import com.gmail.cacho.slapi.comunes.C;
 import com.gmail.cacho.slapi.view.AbstractPreview;
-import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
 import com.gmail.cacho.slapi.view.utils.PreviewItem;
 import com.gmail.cacho.slbase.core.Constantes;
 import com.gmail.cacho.slreport.jasper.ReporteCreator;
 import com.gmail.cacho.slreport.view.DefaultPDFViewDialog;
 import com.gmail.sanfrancisco.entidad.Dte;
-import com.gmail.sanfrancisco.entidad.DteDetalleCategoria;
-import com.gmail.sanfrancisco.repositorio.FaenaRepositorio;
-import com.gmail.sanfrancisco.view.dtedetallecategoria.DteDetalleCategoriaForm;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.VaadinServlet;
 import org.vaadin.alejandro.PdfBrowserViewer;
 
-
-import javax.enterprise.inject.spi.CDI;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import static com.gmail.cacho.slapi.view.utils.ViewTools.envolver;
 import static com.gmail.cacho.slapi.view.utils.ViewTools.textField;
 
 public class DteListPrever extends AbstractPreview<Dte> {
     private Button btnImprimir;
     private Long idComp;
+    private VerticalLayout prod = new VerticalLayout();
 
     @Override
     public void crearElementos() {
+
         addItem("totalcomisionista", new PreviewItem<>(textField("Total factura"), Dte::getTotalComisionista));
         addItem("entrega en efectivo", new PreviewItem<>(textField("Entrega en efectivo"), Dte::getImporteEntrega));
         addItem("ajustes", new PreviewItem<>(textField("Ajustes"), Dte::getAjustes));
+    }
+
+    public void addProductores() {
+       // ArrayList<Productor> productors = new ArrayList<>();
+        prod.removeAll();
+        prod.add(new Label("Productores: "));
+
+        if(this.registroPreview.getCategorias() != null) {
+            this.registroPreview.getCategorias().forEach(c -> {
+                //productors.add(c.getProductor());
+                if(c.getProductor() != null) {
+                    prod.add(new Label(c.getProductor().getNombre()));
+                }
+            });
+        }
+
     }
 
     @Override
@@ -45,13 +56,11 @@ public class DteListPrever extends AbstractPreview<Dte> {
         btnImprimir.setEnabled(false);
         btnImprimir.addClickListener((e) -> genPdf());
         add(btnImprimir);
-
-
-
     }
 
     @Override
     public void actualizar(Dte item) {
+//        removeAll();
         super.actualizar(item);
 
         if (registroPreview != null) {
@@ -62,6 +71,8 @@ public class DteListPrever extends AbstractPreview<Dte> {
             btnImprimir.setEnabled(false);
         }
 
+        crearElementos();
+        addProductores();
 
     }
 
