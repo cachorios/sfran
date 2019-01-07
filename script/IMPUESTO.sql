@@ -1,7 +1,0 @@
-INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((35901), 'UNKNOW', 'UNKNOW', 'IMPUESTO', 'RENTAS ', 1, 20, 2.85, false,  1);
-INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((35902), 'UNKNOW', 'UNKNOW', 'IMPUESTO', 'DGR COMBUSTIBLES', 2, 20, 3.31, false,  1);
-INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((35903), 'UNKNOW', 'UNKNOW', 'IMPUESTO', 'ITC DIESEL (NO GRAVADO)', 3, 20, 3.98, false,  1);
-INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((35904), 'UNKNOW', 'UNKNOW', 'IMPUESTO', 'ITC NAFTAS (NO GRAVADO)', 4, 20, 6.32, false,  1);
-INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((35905), 'UNKNOW', 'UNKNOW', 'IMPUESTO', 'IDC DIESEL', 5, 20, 0.45, false,  1);
-INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((35906), 'UNKNOW', 'UNKNOW', 'IMPUESTO', 'IDC NAFTAS', 6, 20, 0.39, false,  1);
-INSERT INTO parametro (id, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorint, valorbol, version) VALUES ((35907), 'UNKNOW', 'UNKNOW', 'IMPUESTO', 'IVA ', 7, 20, 0.21, false,  1);

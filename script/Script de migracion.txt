@@ -63,7 +63,7 @@ FROM comisionista;
 
 
 
-select CONCAT("INSERT INTO conductor (id, dni, nombre, celular, telefono, operadoraTelefonica_id, usuario_id, cuil, fechaalta, fechabaja, fechaIngreso, fechaNacimiento, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idConductor as CHAR(4)), ", '", dni, "', '", CONCAT(nombre, ' ', apellido), "', '", celular, "', '", telefono, "', (SELECT id from parametro where tipo=16 and orden=", idOperadora, "), ", idUsuario, ", '", cuit, "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'2008-01-01') as CHAR(22)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(22)), ", '", CAST(ifnull(if(fechaIngreso='0000-00-00 00:00:00',null,fechaIngreso),'2008-01-01') as CHAR(22)), "', '", CAST(ifnull(if(fechaNac='0000-00-00 00:00:00',null,fechaNac),'2008-01-01') as CHAR(22)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'2008-01-01') as CHAR(22)), "', 'Algo', 'Algo', 1);")
+select CONCAT("INSERT INTO conductor (id, dni, nombre, celular, telefono, operadoraTelefonica_id, usuario_id, cuil, fechaalta, fechabaja, fechaIngreso, fechaNacimiento, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idConductor as CHAR(4)), ", '", dni, "', '", CONCAT(nombre, ' ', apellido), "', '", celular, "', '", telefono, "', (SELECT id from parametro where tipo=16 and orden=", idOperadora, "), 1, '", cuit, "', '", CAST(ifnull(if(fechaAlta='0000-00-00 00:00:00',null,fechaAlta),'2008-01-01') as CHAR(22)), "', ", CAST(if(idEstado=2,CONCAT("'",fechaBaja,"'"),'null') as CHAR(22)), ", '", CAST(ifnull(if(fechaIngreso='0000-00-00 00:00:00',null,fechaIngreso),'2008-01-01') as CHAR(22)), "', '", CAST(ifnull(if(fechaNac='0000-00-00 00:00:00',null,fechaNac),'2008-01-01') as CHAR(22)), "', '", CAST(ifnull(if(fechaModificacion='0000-00-00 00:00:00',null,fechaModificacion),'2008-01-01') as CHAR(22)), "', 'Algo', 'Algo', 1);")
 FROM conductor;
 
 
@@ -116,7 +116,8 @@ FROM renspa;
 
 select CONCAT("INSERT INTO dtedetallecategoria (id, cantidad, categoria_id, kgcarne, kgvivo, preciokgvivo, porcentajecomision, dte_id, productor_id, renspa_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (", CAST(idDteDetCat as CHAR(4)), ", ", dtedetcat.cantidad, ", (SELECT id from parametro where tipo=8 and orden=", idCategorias, "), ", kgCarne, ", ", ksVivo, ", ", precioKgVivo, ", ", porcentaje, ", ", dtedetcat.idDte,", ", idProductor, ", '", if(tipoRenspa!='',tipoRenspa,'0'), "', '", CAST(ifnull(if(dtedetcat.fechaAlta='0000-00-00 00:00:00',null,dtedetcat.fechaAlta),'2008-01-01') as CHAR(22)), "', ", CAST(if(dtedetcat.idEstado=2,CONCAT("'",dtedetcat.fechaBaja,"'"),'null') as CHAR(22)), ", '", CAST(ifnull(if(dtedetcat.fechaModificacion='0000-00-00 00:00:00',null,dtedetcat.fechaModificacion),'2008-01-01') as CHAR(22)), "', 'Algo', 'Algo', 1);")
 FROM dtedetcat
-INNER JOIN dte on dtedetcat.idDte=dte.idDte;
+INNER JOIN dte on dtedetcat.idDte=dte.idDte
+WHERE tipoRenspa != '';
 
 
 
