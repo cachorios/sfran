@@ -51,7 +51,7 @@ public class CueroCostoInsumoInnerForm extends DefaultInnerDialog<CueroCostoInsu
     }
 
     private Component getImpuestos() {
-        impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos());
+        impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos(), this.getPresentable());
 
         impuestos.getGrid().addColumn(CueroCostoInsumoImpuesto::getImpuesto)
                 .setHeader("Impuesto")

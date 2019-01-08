@@ -113,6 +113,16 @@ public  class  Dte extends AbstractEntidad {
         numeros = new ArrayList<>();
     }
 
+    public Double getPesoTotal() {
+        Double pesoTotal = 0.0;
+
+        for (DteDetalleCategoria ddc: categorias) {
+            pesoTotal += ddc.getKgVivo();
+        }
+
+        return pesoTotal;
+    }
+
     public String getNumeroTropa() {
         return numeroTropa;
     }

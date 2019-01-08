@@ -5,6 +5,7 @@ VALUES
   (2,   NULL,       '2017-11-03', 'UNKNOW',   'UNKNOW',     'beto@gmail.com.ar',  'Luis Antonio Rios',  'beto',   '23024b0a1c5bf4c5851931264c8a722b76797913dee4878b3f497c292c4cda09e1e72eac48b7a7ceab7f69ad078d57ef440a79c5bf75c32664d364790090a5c1', 1,      false,  'ADMIN', 'usuario', 'e746da6d0453d512aeab3f904d4e6cb5'),
   (3,   NULL,       '2017-11-03', 'UNKNOW',   'UNKNOW',     'dario@gmail.com.ar',  'Dario Lopez',  'dario',  '23024b0a1c5bf4c5851931264c8a722b76797913dee4878b3f497c292c4cda09e1e72eac48b7a7ceab7f69ad078d57ef440a79c5bf75c32664d364790090a5c1', 1,      false,  'ADMIN', 'usuario', 'e746da6d0453d512aeab3f904d4e6cb5');
 
+INSERT INTO openjpa_sequences_table (id, sequence_value) VALUES ('DEFAULT', 1);
 
 INSERT INTO parametro (id, fechabaja, fechaumod, usuarioalta, usuarioumod, clase, nombre, orden, tipo, valorbol, valordat, valordob, valorint, valorstr, version)
 VALUES
@@ -6661,4 +6662,3 @@ INSERT INTO graseriacostoinsumoimpuesto (id, saldo, impuesto_id, graseriacostoin
 INSERT INTO graseriacostoinsumoimpuesto (id, saldo, impuesto_id, graseriacostoinsumo_id, fechaalta, fechabaja, fechaumod, usuarioalta, usuarioumod, version) VALUES (2, 2183.79, (SELECT id from parametro where tipo=20 and orden=7), 7, '2018-10-30 08:35:25', null, '2008-01-01', 'UNKNOWN', 'UNKNOWN', 1);
 
 update  openjpa_sequences_table set  sequence_value = (select max(id)+10 from parametro);
-

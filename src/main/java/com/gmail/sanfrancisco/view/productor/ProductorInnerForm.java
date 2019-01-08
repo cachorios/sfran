@@ -81,7 +81,7 @@ public class ProductorInnerForm extends DefaultInnerDialog<Productor> {
     }
 
     private Component getRenspas() {
-        renspas = new UnoaMuchoGrid<>("Renspas", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getRenspas());
+        renspas = new UnoaMuchoGrid<>("Renspas", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getRenspas(), this.getPresentable());
 
         renspas.getGrid().addColumn(Renspa::getNumeroRenspa)
                 .setHeader("Numero")

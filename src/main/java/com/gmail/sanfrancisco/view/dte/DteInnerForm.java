@@ -4,6 +4,7 @@ import com.gmail.cacho.backend.entidad.Parametro;
 import com.gmail.cacho.backend.enumeradores.ETipoParametro;
 import com.gmail.cacho.backend.jpa.convert.LocalDateADateConverter;
 import com.gmail.cacho.backend.views.csselect.LocalidadCS;
+import com.gmail.cacho.slapi.view.AbstractForm;
 import com.gmail.cacho.slapi.view.componentes.UnoaMuchoGrid;
 import com.gmail.cacho.slapi.view.customs.params.ParamCSDataProvider;
 import com.gmail.cacho.slapi.view.interfaces.IPresentableForm;
@@ -196,7 +197,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     }
 
     private Component getNumeros() {
-        numeros = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getNumeros());
+        numeros = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getNumeros(), this.getPresentable());
 
         numeros.getGrid().addColumn(NumeroDte::getNumero)
                 .setHeader("Numero")
@@ -222,7 +223,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 
     private Component getCategorias() {
-        categorias = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getCategorias());
+        categorias = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getCategorias(), this.getPresentable());
 
         categorias.getGrid().addColumn(DteDetalleCategoria::getProductor)
                 .setHeader("Prodcutor")
@@ -268,7 +269,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
     }
 
     private Component getInsumos() {
-        insumos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos());
+        insumos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos(), this.getPresentable());
 
         insumos.getGrid().addColumn(DteDetalleInsumo::getInsumo)
                 .setHeader("Insumo")
@@ -303,7 +304,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
 
     private Component getImpuestos() {
-        impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos());
+        impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos(), this.getPresentable());
 
         impuestos.getGrid().addColumn(DteDetalleImpuesto::getImpuesto)
                 .setHeader("Impuesto")

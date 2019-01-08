@@ -43,7 +43,7 @@ public class CueroCostoInnerForm extends DefaultInnerDialog<CueroCosto> {
     }
 
     private Component getInsumos() {
-        insumos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos());
+        insumos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos(), this.getPresentable());
 
         insumos.getGrid().addColumn(CueroCostoInsumo::getInsumo)
                 .setHeader("Insumo")

@@ -58,7 +58,7 @@ public class VehiculoCostoInnerForm extends DefaultInnerDialog<VehiculoCosto> {
     }
 
     private Component getInsumos() {
-        insumos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos());
+        insumos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos(), this.getPresentable());
 
         insumos.getGrid().addColumn(VehiculoCostoInsumo::getInsumo)
                 .setHeader("Insumo")

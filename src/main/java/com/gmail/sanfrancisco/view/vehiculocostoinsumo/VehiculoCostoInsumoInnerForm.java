@@ -54,7 +54,7 @@ public class VehiculoCostoInsumoInnerForm extends DefaultInnerDialog<VehiculoCos
     }
 
     private Component getImpuestos() {
-        impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos());
+        impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos(), this.getPresentable());
 
         impuestos.getGrid().addColumn(VehiculoCostoInsumoImpuesto::getImpuesto)
                 .setHeader("Impuesto")

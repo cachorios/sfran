@@ -26,7 +26,7 @@ public class DteList  extends AbstractList<Dte> {
             new ColumnList<>(Dte::getNumeroTropa,"Numero tropa","numeroTropa", true,"5%"),
             new ColumnList<>(Dte::getComisionista,"Comisionista","comisionista", true,"25%"),
             new ColumnList<>(Dte::getCantidad,"Cantidad","cantidad", true,"5%"),
-            new ColumnList<>(Dte::getPeso,"Peso","peso", true,"10%"),
+            new ColumnList<>(Dte::getPesoTotal,"Peso total","peso", true,"10%"),
             new ColumnList<>(Dte::getTotalComisionista,"Total factura","totalcomisionista", true,"10%")
         ));
     }

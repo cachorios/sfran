@@ -8,8 +8,10 @@ import com.gmail.cacho.slapi.view.AbstractForm;
 
 import com.gmail.cacho.slapi.view.enums.EModoVista;
 
+import com.gmail.cacho.slapi.view.interfaces.IPresentable;
 import com.gmail.cacho.slapi.view.interfaces.IVisualizable;
 
+import com.gmail.cacho.slapi.view.layouts.DefaultInnerDialog;
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -65,10 +67,13 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
     private Class formClass;
     private Class itemClass;
     private AbstractForm  form;
+    private AbstractForm formPadre;
 
 
 
-    public UnoaMuchoGrid(String titulo, S padre, List items ) {
+    public UnoaMuchoGrid(String titulo, S padre, List items, IPresentable presentable) {
+        formPadre = (AbstractForm)presentable;
+
         if(titulo == null || titulo.isEmpty()){
             this.titulo.setVisible(false);
         }else{
@@ -187,6 +192,10 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
         if(nuevoButton.isVisible()){
             nuevoButton.addClickListener(e -> nuevoAcction(e));
         }
+
+        if(borrarButton.isVisible()){
+            borrarButton.addClickListener(e -> borrarAcction(e));
+        }
     }
 
 
@@ -203,6 +212,7 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
         frm.setPadre(this);
         generarNuevo(itemClass);
         frm.iniciar(modo, registroActivo);
+        formPadre.setHasChanges(true);
     }
 
     private void generarNuevo( Class<T> cls) {
@@ -223,9 +233,14 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
         modo = EModoVista.EDITAR;
         frm.setPadre(this);
         frm.iniciar(modo, registroActivo  );
-
+        formPadre.setHasChanges(true);
     }
 
+    private void borrarAcction(ClickEvent<Button> e) {
+        items.remove(registroActivo);
+        grid.getDataProvider().refreshAll();
+        formPadre.setHasChanges(true);
+    }
 
     private void onFormSaveOK() {
         if (form.getModoVista().equals(EModoVista.NUEVO)) {

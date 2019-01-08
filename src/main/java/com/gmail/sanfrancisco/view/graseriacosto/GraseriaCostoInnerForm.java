@@ -43,7 +43,7 @@ public class GraseriaCostoInnerForm extends DefaultInnerDialog<GraseriaCosto> {
     }
 
     private Component getInsumos() {
-        insumos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos());
+        insumos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getInsumos(), this.getPresentable());
 
         insumos.getGrid().addColumn(GraseriaCostoInsumo::getInsumo)
                 .setHeader("Insumo")

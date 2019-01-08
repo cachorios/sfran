@@ -50,7 +50,7 @@ public class GraseriaCostoInsumoInnerForm extends DefaultInnerDialog<GraseriaCos
     }
 
     private Component getImpuestos() {
-        impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos());
+        impuestos = new UnoaMuchoGrid<>("", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getImpuestos(), this.getPresentable());
 
         impuestos.getGrid().addColumn(GraseriaCostoInsumoImpuesto::getImpuesto)
                 .setHeader("Impuesto")

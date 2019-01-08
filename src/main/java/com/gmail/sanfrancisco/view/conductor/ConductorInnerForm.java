@@ -97,7 +97,7 @@ public class ConductorInnerForm extends DefaultInnerDialog<Conductor> {
     }
 
     private Component getLicencias() {
-        licencias = new UnoaMuchoGrid<>("Licencias", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getLicencias());
+        licencias = new UnoaMuchoGrid<>("Licencias", getPresentable().getObjetoActivo() , this.getPresentable().getObjetoActivo().getLicencias(), this.getPresentable());
 
         licencias.getGrid().addColumn(Licencia::getTipoLicencia)
                 .setHeader("Tipo")
