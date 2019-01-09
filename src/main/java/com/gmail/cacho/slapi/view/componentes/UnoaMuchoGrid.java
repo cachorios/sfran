@@ -32,6 +32,7 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import javax.enterprise.inject.spi.CDI;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Tag("uno-mucho")
@@ -227,6 +228,8 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
+
+        formPadre.setHasChanges(true);
     }
 
     public void setObjetoActivo(T registroActivo){
@@ -246,6 +249,7 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
         items.remove(registroActivo);
         grid.getDataProvider().refreshAll();
         formPadre.setHasChanges(true);
+        (Optional.of(onChange)).ifPresent(Runnable::run);
     }
 
     private void onFormSaveOK() {
@@ -255,7 +259,7 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
             int index = 0;
             for(T item: items){
 
-                if(item.getId() == registroActivo.getId()){
+                if(item.equals(registroActivo)/*item.getId() == registroActivo.getId()*/){
                     this.getGrid().getDataProvider().refreshItem(registroActivo);
 
                     items.set(index, registroActivo);
@@ -268,10 +272,7 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
         }
         this.getGrid().setItems(items);
 
-
-
-
-
+        if(onChange != null) { (Optional.of(onChange)).ifPresent(Runnable::run); }
     }
 
 
