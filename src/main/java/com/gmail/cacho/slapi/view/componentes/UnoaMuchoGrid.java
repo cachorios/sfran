@@ -49,6 +49,7 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
     private Button borrarButton;
     private T registroActivo;
     private EModoVista modo = EModoVista.VER;
+    private Runnable onChange;
 
     public interface Model extends TemplateModel {
         void setTitulo(String titulo);
@@ -162,6 +163,11 @@ public class UnoaMuchoGrid<S extends AbstractEntidad ,T extends AbstractEntidad 
 
     public UnoaMuchoGrid withBorrar(){
         borrarButton.setVisible(true);
+        return this;
+    }
+
+    public UnoaMuchoGrid withEscucha(Runnable runnable) {
+        this.onChange = runnable;
         return this;
     }
 

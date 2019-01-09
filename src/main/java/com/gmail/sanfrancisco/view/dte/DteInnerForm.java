@@ -22,6 +22,7 @@ import com.gmail.sanfrancisco.view.dtedetalleimpuesto.DteDetalleImpuestoForm;
 import com.gmail.sanfrancisco.view.dtedetalleinsumo.DteDetalleInsumoForm;
 import com.gmail.sanfrancisco.view.numerodte.NumeroDteForm;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasValue;
 
@@ -80,6 +81,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
 
     private Grid<DteDetalleCategoria> insumoGrid;
     private UnoaMuchoGrid<Dte, DteDetalleInsumo> insumos;
+    private Grid.Column footerInsumos;
 
     private Grid<DteDetalleImpuesto> impuestoGrid;
     private UnoaMuchoGrid<Dte, DteDetalleImpuesto> impuestos;
@@ -285,7 +287,7 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
         insumos.getGrid().addColumn(DteDetalleInsumo::getCantidad)
                 .setHeader("Cantidad")
                 .setWidth("10%");
-        insumos.getGrid().addColumn(DteDetalleInsumo::getImporte)
+        footerInsumos  = insumos.getGrid().addColumn(DteDetalleInsumo::getImporte)
                 .setHeader("Importe")
                 .setWidth("6%")
                 .setFooter(this.getImporteTotal());
@@ -296,11 +298,14 @@ public class DteInnerForm extends DefaultInnerDialog<Dte> {
                 .withNuevo(DteDetalleInsumo.class)
                 .withEditar()
                 .withBorrar()
-        ;
-        insumos.getGrid().setHeight("9rem");
+                .withEscucha(this::onGridInsumoChange);
+
         return insumos.iniciar();
     }
 
+    private void onGridInsumoChange(){
+        footerInsumos.setFooter(this.getImporteTotal());
+    }
 
 
     private Component getImpuestos() {
