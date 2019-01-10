@@ -123,6 +123,26 @@ public  class  Dte extends AbstractEntidad {
         return pesoTotal;
     }
 
+    public Double getCostoTotalInsumos() {
+        Double Total = 0.0;
+
+        for (DteDetalleInsumo ddi: insumos) {
+            Total += ddi.getImporte();
+        }
+
+        return Total;
+    }
+
+    public Double getCostoTotalImpuestos() {
+        Double Total = 0.0;
+
+        for (DteDetalleImpuesto ddi: impuestos) {
+            Total += ddi.getSaldo();
+        }
+
+        return Total;
+    }
+
     public String getNumeroTropa() {
         return numeroTropa;
     }

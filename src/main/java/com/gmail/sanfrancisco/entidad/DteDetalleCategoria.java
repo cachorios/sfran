@@ -49,6 +49,46 @@ public class DteDetalleCategoria extends AbstractEntidad {
         return kgVivo*precioKgVivo;
     }
 
+    public Double getImporteConComision() {
+        return (getImporte() + getSaldoComision());
+    }
+
+    public Double getCosto() {
+        /*Porcentaje que representa el peso de esta categoria en el total de todas las categorias del DTE*/
+        Double porcentajePeso = (kgVivo * 100) / dte.getPesoTotal();
+
+        /*Se toma el costo de insumos e impuesto considerando el porcentaje de peso sobre el total*/
+        Double costos = ((dte.getCostoTotalInsumos() + dte.getCostoTotalImpuestos()) * porcentajePeso) / 100;
+
+        Double costoTotal = costos + getImporteConComision();
+
+        return costoTotal;
+    }
+
+    public Double getCostoKgVivo() {
+        return (getCosto() / kgVivo);
+    }
+
+    public String getCostoKgVivoAsString() {
+        if(dte != null) {
+            return String.format("%.2f", getCostoKgVivo());
+        } else {
+            return "Guarde primero";
+        }
+    }
+
+    public Double getCostoKgCarne() {
+        return (getCosto() / kgCarne);
+    }
+
+    public String getCostoKgCarneAsString() {
+        if(dte != null) {
+            return String.format("%.2f", getCostoKgCarne());
+        } else {
+            return "Guarde primero";
+        }
+    }
+
     public Dte getDte() {
         return dte;
     }
